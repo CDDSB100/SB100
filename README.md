@@ -49,3 +49,5 @@
 |  Contribuidores | Função |      GitHub     |
 | :---:         | :---:  |  :---:          |
 | 🚩 Luis Hilario Tobler Garcia | `Pesquisador Visitante` | @Perfil do GitHub|
+| Lucas dos Santos Gonçalves | `Aluno Voluntário` | @Perfil do GitHub |
+| Daniel Demico | `Aluno Voluntário` | @Perfil do GitHub |
