@@ -41,6 +41,7 @@
 | 🚩 João Ricardo Favan | `Pesquisador Visitante` | @Perfil do GitHub|
 | Maria Eduarda da Cruz de Camargo | `Aluna Bolsista` | [@mariacamargo-ds](https://github.com/mariacamargo-ds) |
 | Pedro Henrique Ribeiro dos Santos | `Aluno Bolsista` | [@PepeSlime2](https://github.com/PepeSlime2) |
+| Daniel Demico | `Aluno Voluntário` | @Perfil do GitHub |
 
 ## [Squad 5️⃣](https://github.com/melissaromao/SB100/wiki/Squad-5%EF%B8%8F%E2%83%A3)
 > 🎯 Responsável pela **criação de agentes inteligentes**.
