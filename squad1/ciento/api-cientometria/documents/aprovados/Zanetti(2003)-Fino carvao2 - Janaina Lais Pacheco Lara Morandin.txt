@@ -1,0 +1,34 @@
+ID: 2b8c8fac-0c3d-4ac0-b728-c5a3610079f2
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): MARCELO ZANETTI; JAIRO OSVALDO CAZETTA; DIRCEU DE MATTOS JÚNIOR; SÉRGIO ALVES DE CARVALHO
+Titulo: USO DE SUBPRODUTOS DE CARVÃO VEGETAL NA FORMAÇÃO DO PORTA-ENXERTO LIMOEIRO ‘CRAVO’ EM AMBIENTE PROTEGIDO
+Subtítulo: 
+Ano: 2003
+Número de citações recebidas (Google Scholar): 67
+Palavras-chave: Citrus; propagação; fino de carvão; extrato pirolenhoso; substrato
+Resumo:  O trabalho teve como objetivo avaliar o efeito do uso de fino de carvão no substrato e da aplicação de extrato pirolenhoso no substrato e na planta sobre o desenvolvimento de porta-enxertos de limoeiro 'Cravo' (Citrus limonia Osbeck) cultivados em ambiente protegido. O experimento foi desenvolvido no delineamento em blocos casualisados, com análise em esquema fatorial 3 x 2 x 3, sendo: 3 proporções de fino de carvão (0, 100 e 200 cm³ dm-3) em mistura com substrato comercial, 2 concentrações de extrato pirolenhoso (0 e 20 cm³ dm-3) misturadas no substrato (240 cm³ por dm³ de substrato) e 3 concentrações de extrato pirolenhoso (0, 5 e 10 cm³ dm-3) pulverizadas na parte aérea, em 4 repetições. Aos 150 e 180 dias após o plantio foram realizadas avaliações do desenvolvimento das plantas. As misturas de fino de carvão e substrato comercial contendo fino de carvão na proporção de 100 cm³ dm-3 não influíram no desenvolvimento de porta-enxertos de limoeiro 'Cravo' , porém, na proporção de 200 cm³ dm-3 prejudica o desenvolvimento dos mesmos. O umedecimento pré-plantio do substrato com solução diluída (20 cm³ dm-3) de extrato pirolenhoso ou pulverização da parte aérea das plantas com soluções a 5 e 10 cm³ dm-3 provoca redução do desenvolvimento de porta-enxertos de limoeiro 'Cravo' .
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Revista Brasileira de Fruticultura
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0100-29452003000300037
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1y79ix4vyrKYeQ0BNWJHSMp7P8yTpLUvj/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em Cordeirópolis/SP, no Centro Avançado de Pesquisas Tecnológicas do Agronegócio de Citros "Sylvio Moreira", em um viveiro coberto (ambiente protegido) com filme plástico transparente e telado anti-afídeos. O substrato comercial utilizado (Multiplant®) era composto por casca de pinus compostada (800 cm³ dm³) e vermiculita expandida (200 cm³ dm³). Características físicas avaliadas variaram significativamente nas misturas com fino de carvão (FC), apresentando proporções de sólidos (28-32%), porosidade (68-72%), espaço de aeração (3% a 24%) e capacidade de retenção de água (45% a 69%).
+ferramentas e técnicas (seleção): Substrato comercial; Viveiro coberto/Ambiente protegido; Delineamento em blocos casualizados; Análise de variância; Teste de Tukey; Medição de massa seca; Análise de granulometria; Medição de porosidade/retenção de água (Mesa de tensão).
+nutrientes (seleção): Fino de Carvão; Extrato Pirolenhoso; Osmocote (18-5-9); Casca de pinus compostada; Vermiculita.
+estratégias de fornecimento de nutrientes (seleção): Mistura/Incorporação no substrato; Umedecimento pré-plantio (solução); Pulverização foliar; Fertilização de base (liberação lenta).
+grupos de culturas (seleção): Citros/Frutíferas; Porta-enxertos.
+culturas presentes (seleção): Limoeiro 'Cravo' (Citrus limonia Osbeck).
+FEEDBACK DO CURADOR (escrever): O estudo é relevante, avaliando o uso de subprodutos de carvão vegetal (fino de carvão e extrato pirolenhoso) como aditivos em substrato e pulverização foliar na produção de porta-enxertos de limoeiro 'Cravo' em ambiente protegido. Os resultados indicam que altas concentrações de fino de carvão (200 cm³ dm³) e a aplicação de extrato pirolenhoso (via substrato ou foliar) foram prejudiciais ao desenvolvimento, destacando a necessidade de otimização das doses para evitar efeitos negativos.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

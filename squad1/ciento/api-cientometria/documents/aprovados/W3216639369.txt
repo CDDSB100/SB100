@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Sherif Fathy EL-Gioushy, Zheli Ding, Asmaa Bahloul, Mohamed S. Gawish, Hanan M. Abou El Ghit, Adel M. R. A. Abdelaziz, Heba S. El-Desouky, Rokayya Sami, Ebtihal Khojah, Taghred A. Hashim, Ahmed M. S. Kheir, Reda M. Y. Zewail
+Titulo: Foliar Application of Nano, Chelated, and Conventional Iron Forms Enhanced Growth, Nutritional Status, Fruiting Aspects, and Fruit Quality of Washington Navel Orange Trees (Citrus sinensis L. Osbeck)
+Subtítulo: 
+Ano: 2021
+Número de citações recebidas (Google Scholar): 37
+Palavras-chave: Orange (colour), Horticulture, Navel orange, Citrus × sinensis, Chelation
+Resumo: Iron (Fe) is required for most metabolic processes, including DNA synthesis, respiration, photosynthesis, and chlorophyll biosynthesis; however, Fe deficiency is common in arid regions, necessitating additional research to determine the most efficient form of absorbance. Nano-fertilizers have characteristics that are not found in their traditional equivalents. This research was implemented on Washington navel orange trees (Citrus sinensis L. Osbeck) to investigate the effect of three iron forms—nano (Fe-NPs), sulfate (FeSO4), and chelated (Fe-chelated)—as a foliar spray on the growth, fruiting aspects, and nutritional status of these trees compared to control. The highest values of the tested parameters were reported when the highest Fe-NPs level and the highest Fe-chelated (EDTA) rate were used. Results obtained here showed that the spraying of the Washington navel orange trees grown under similar environmental conditions and horticulture practices adopted in the current experiment with Fe-NPs (nanoform) and/or Fe-chelated (EDTA) at 0.1% is a beneficial application for enhancing vegetative growth, flower set, tree nutritional status, and fruit production and quality. Application of Fe-NPs and Fe-chelated (EDTA, 0.1%) increased yield by 32.0% and 25% and total soluble solids (TSS) by 18.5% and 17.0%, respectively, compared with control. Spraying Washington navel orange trees with nano and chelated iron could be considered a significant way to improve vegetative growth, fruit production, quality, and nutritional status while also being environmentally preferred in the arid regions.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Chinese Academy of Tropical Agricultural Sciences
+Local: CN
+Tipo de trabalho: 
+Título do periódico: Plants
+Quartil do periódico: 
+Volume: 10
+Número/fascículo: 12
+Páginas: 2577-2577
+DOI: 10.3390/plants10122577
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1SJ5-WtCncs4z25MgiVBfSDy3M5NMXvgT/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Região: Qalubia Governorate, Egito (Clima árido/semi-árido). Solo: Solos egípcios caracterizados por alta alcalinidade, poluição por oligoelementos, nitrato, variabilidade climática e má aeração. O solo tipicamente apresenta deficiência de Fe.
+ferramentas e técnicas (seleção): Aplicação foliar
+nutrientes (seleção): Ferro (Fe)
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar
+grupos de culturas (seleção): Frutas
+culturas presentes (seleção): Laranja 'Washington Navel' (Citrus sinensis L. Osbeck)
+FEEDBACK DO CURADOR (escrever): O artigo fornece uma análise aprofundada da eficácia comparativa de diferentes formas de ferro (nano, quelato e sulfato) aplicadas via foliar em laranjeiras 'Washington Navel' em condições áridas. Os resultados são conclusivos, recomendando a nanoforma de ferro para maior rendimento e qualidade, sendo agronomicamente muito útil.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

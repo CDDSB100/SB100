@@ -1,0 +1,34 @@
+ID: c22327d8-7dd9-4569-9bdc-f43280c0f46e
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Lucas G. P. Bernardi; Rodrigo M. Boaretto; Gabriel Constantino Blain; Dirceu Mattos-Jr
+Titulo: Particle films improve photosynthesis of citrus trees under excess irradiance by reducing leaf temperature
+Subtítulo: 
+Ano: 2022
+Número de citações recebidas (Google Scholar): 3
+Palavras-chave: 
+Resumo: High irradiance and increased air temperature during extreme weather conditions affect tree crops and impact the yield and quality of fruits. Moreover, flowering and fruit set of Citrus are likely impaired by UV radiation and/or reduced carbon assimilation, which increase reactive oxygen species production and damage the leaf photosynthetic apparatus. Particle coating films sprayed on leaves have been offered as a way to minimize crop losses due to the climate change scenario, even though the extent of leaf protection is not characterized. We evaluated the use of two protective films on the oxidative stress and leaf photosynthesis of sweet orange trees exposed to varying daylight levels. Trees were maintained under full sun light, sprayed or not (control) with kaolin or calcium carbonate, and under reduced irradiance using either aluminum shade cloth 50% or anti-UV transparent plastic. Kaolin or calcium carbonate reflected 20%–30% of the incident light on the leaf surface compared to leaves not sprayed and under full sunlight. Leaves with coating exhibited improved CO2 assimilation and photosystem II efficiency, and lower leaf temperatures over time. In addition, the coating protected leaves against excess irradiance due to dissipation of excess energy into the photosynthetic apparatus (NPQt). Nonenzymatic mechanisms for UV protection, such as carotenoids, were higher in full sun control plants than in leaf-coated plants. Comparable responses were observed on trees maintained covered either by the cloth or the plastic film. Finally, we conclude that the use of suspension particles mitigates the harmful effects of excess UV irradiance and temperature in sweet orange trees.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Physiologia Plantarum
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1111/ppl.13844
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1AgGhpqfI7zGaw068isBeAiaoIn-ShE_g/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi realizado no Centro de Citricultura Sylvio Moreira, Cordeirópolis, SP, Brasil (22°27′40″S, 47°24′4″O), uma região típica do cinturão citrícola brasileiro. O estudo aborda a produção sob condições climáticas extremas (altas temperaturas, alta irradiação e estresse por seca/calor). As árvores foram cultivadas em vasos de 12 L com substrato orgânico.
+ferramentas e técnicas (seleção): Filmes de partículas refletoras (Caulim/Kaolin e Carbonato de Cálcio - CaCO3), Tela de sombreamento (Aluminet® 50%), Plástico transparente anti-UV (LDPE), Termômetro infravermelho, Analisador de gás infravermelho (LI-6800), Fluorímetro/Fotosintômetro (MultispeQ® V2.0), Espectrofotômetro para análises bioquímicas.
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): Irrigação por gotejamento, Pulverização foliar de suspensões de partículas (Caulim e Carbonato de Cálcio) com foco em proteção contra estresse abiótico.
+grupos de culturas (seleção): Frutíferas, Citros.
+culturas presentes (seleção): Laranja Doce (Citrus sinensis (L.) Osb., cv. Valencia), Citrumelo (C. paradisi Macf. x Poncirus trifoliata (L.) Raf.).
+FEEDBACK DO CURADOR (escrever): Documento relevante de pesquisa original que avalia o impacto e a eficácia de filmes de partículas (Caulim e Carbonato de Cálcio) na mitigação do estresse por excesso de irradiação e temperatura em laranjeiras, detalhando respostas fisiológicas e bioquímicas.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

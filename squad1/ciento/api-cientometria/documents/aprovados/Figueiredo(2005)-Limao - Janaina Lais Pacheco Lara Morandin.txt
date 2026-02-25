@@ -1,0 +1,34 @@
+ID: 3cf39e71-731f-4b8d-964c-38647a4fd561
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): JOSÉ ORLANDO DE FIGUEIREDO; JOSÉ DAGOBERTO DE NEGRI; DIRCEU DE MATTOS JUNIOR; ROSE MARY PIO; FRANCISCO FERRAZ LARANJEIRA; VALÉRIA XAVIER PAULA GARCIA
+Titulo: PORTA-ENXERTOS PARA O LIMÃO ‘EUREKA KM 47’ EM ARARAQUARA
+Subtítulo: 
+Ano: 2005
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Citrus limon; melhoramento; seleção
+Resumo: Avaliou-se o comportamento de catorze porta-enxertos para o limão ‘Eureka km 47’ clone nucelar, em experimento instalado em 1991, no município paulista de Araraquara. Os porta-enxertos foram os seguintes: tangelos ‘Orlando’ e ‘Semi-nole’, tangerinas ‘Cleópatra’ e ‘Sunki’, limões ‘Cravo’, ‘Rugoso da África’ e ‘Volkameriano Catania 2’, laranjas ‘Caipira DAC’ e ‘Azeda Double Cálice’, trifoliatas ‘EEL’ e ‘Kryder 8-5’, citrange ‘Morton’, Citrus karna e C. pennivesiculata. Estimaram-se as produções, anualmente, analisando-as, separadamente, em dois períodos: 1994 a 1997 e 1998 a 2002. Citrus pennivesiculata induziu maior produção de frutos ao limão ‘Eureka km 47’nos dois períodos. Esse porta-enxerto e a tangerina ‘Cleópatra’ proporcionaram maior produção média de frutos (> 220 kg/planta) em 1998-2002, enquanto produções mais baixas foram obtidas com o emprego de C. karna, tangelos ‘Orlando’ e ‘Seminole’, trifoliatas ‘EEL’ e ‘Kryder 8-5’, ‘Caipira DAC’ (<190 kg/planta). Não houve efeito dos portaenxertos sobre a qualidade dos frutos na safra de 2002. Citrus pennivesiculata apresentou elevada resistência à gomose de Phytophthora, nos períodos estudados, enquanto ‘Volkameriano’ e limão ‘Cravo’ se mostraram os mais suscetíveis.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Laranja
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1XWcwxz5rU6cttSJYOB-rulGz9A0-tkSi/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Experimento realizado na Fazenda Fittipaldi, município de Araraquara-SP. O solo foi classificado como Latossolo vermelho-escuro textura média e o clima, de acordo com a classificação de Köppen, era tipo Cwa.
+ferramentas e técnicas (seleção): Experimentação Agrícola/Clínica
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Limão (Lemon)
+FEEDBACK DO CURADOR (escrever): Documento de alta relevância agronômica focado na avaliação de 14 porta-enxertos para o limão 'Eureka km 47' na região de Araraquara-SP. O estudo apresenta dados detalhados sobre produção, incidência de gomose (Phytophthora) e características de qualidade dos frutos, concluindo que C. pennivesiculata e tangerina 'Cleópatra' tiveram o melhor desempenho. O conteúdo é excelente para seleção de material genético em citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

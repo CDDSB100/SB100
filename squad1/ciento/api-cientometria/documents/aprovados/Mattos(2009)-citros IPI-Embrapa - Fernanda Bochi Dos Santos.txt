@@ -1,0 +1,34 @@
+ID: 19d0f763-0ae7-4c5e-a06b-392d202d99c0
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; José Antônio Quaggio; Heitor Cantarella
+Titulo: Citros
+Subtítulo: 
+Ano: 2009
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Boletim
+Editora: 
+Instituição: Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas; Centro de Pesquisa e Desenvolvimento de Solos e Recursos Ambientais, Instituto Agronômico de Campinas; Centro de Pesquisa e Desenvolvimento de Solos e Recursos Ambientais, Instituto Agronômico de Campinas
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/19aCEeRPHwIbS_BQ1sH7mg7pobCvuw06H/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O documento trata principalmente da citricultura no Brasil, com foco nas condições edafoclimáticas e nutricionais do Estado de São Paulo. Menciona solos tropicais, geralmente deficientes em P, e a adaptabilidade dos citros a condições edáficas distintas (solos pouco profundos, de textura muito argilosa ou arenosa, alcalinos, ácidos e salinos). As condições de cultivo são tropicais e subtropicais, com a cultura sensível a temperaturas acima de 40 °C e abaixo de 13 °C.
+ferramentas e técnicas (seleção): Análise de solo, Análise foliar, Sistema IAC de Análise de Solo, Calibração de análises de solo, Uso de resina trocadora de íons (para P), Amostragem de solo (0-20 cm e >20 cm), Sistematização do terreno (terraços, drenagem, camalhões), Calagem, Adubação, Irrigação
+nutrientes (seleção): Nitrogênio (N), Fósforo (P), Potássio (K), Cálcio (Ca), Magnésio (Mg), Enxofre (S), Boro (B), Cobre (Cu), Ferro (Fe), Manganês (Mn), Zinco (Zn), Molibdênio (Mo)
+estratégias de fornecimento de nutrientes (seleção): Adubação no plantio (em sulcos profundos), Adubação de formação, Adubação de produção (árvores adultas), Aplicação de calcário com incorporação profunda (pré-plantio), Aplicação de calcário no sulco de plantio, Parcelamento das doses de N e K (3 ou 4 aplicações), Aplicação de P em dose única (início da estação chuvosa), Aplicação de fertilizantes no período das águas (primavera/verão), Adubação foliar (para micronutrientes), Uso de fontes de P solúveis em água (para aplicação superficial), Aplicação de ácido bórico dissolvido em calda de herbicidas (glifosato)
+grupos de culturas (seleção): Citros, Perenes, Rutaceae, Frutíferas
+culturas presentes (seleção): Laranjas, Tangerinas, Limões, Limas (ácidas e doces), Pomelos, Cidras, Toranjas, Laranja Valência, Laranja Pêra, Laranja Natal, Laranja Folha Murcha, Laranja Hamlin, Laranja Westin, Lima ácida Tahiti, Tangerina Ponkan, Tangerina Cleópatra, Tangor Murcott, Limão Cravo, Citrumelo Swingle, Citrus sinensis, Fortunella, Poncirus
+FEEDBACK DO CURADOR (escrever): O documento é altamente relevante e detalhado, fornecendo métodos de diagnose (análise de solo e foliar), padrões de fertilidade e recomendações de calagem e adubação para citros, baseadas em pesquisas brasileiras (IAC, Grupo Paulista).
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

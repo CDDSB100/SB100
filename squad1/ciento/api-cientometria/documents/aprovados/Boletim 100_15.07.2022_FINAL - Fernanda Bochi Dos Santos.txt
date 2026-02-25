@@ -1,0 +1,34 @@
+ID: 33257dd1-9256-4b70-acf2-ae98432b8a06
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Heitor Cantarella; José Antonio Quaggio; Dirceu Mattos Jr.; Rodrigo Marcelli Boaretto; Bernardo van Raij
+Titulo: Boletim 100: recomendações de adubação e calagem para o estado de São Paulo
+Subtítulo: 
+Ano: 2022
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Adubação; Calagem; Fertilizantes
+Resumo: 
+Tipo de documento: Boletim
+Editora: 
+Instituição: Instituto Agronômico de Campinas
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1G2-PciJoWAji2VQ-pVj219BQlEAmbW-r/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Recomendações focadas no Estado de São Paulo e regiões subtropicais do Brasil. Os solos são predominantemente tropicais, intemperizados, ácidos e de baixa fertilidade natural, com destaque para a necessidade de correção de acidez e manejo de nutrientes (P, K, Ca, Mg) em solos arenosos, argilosos e de cerrado.
+ferramentas e técnicas (seleção): Análise de solo, Análise foliar, Amostragem de solo, Amostragem de folhas, Calagem, Gessagem, Fertirrigação, Hidroponia, Adubação orgânica, Adubação verde.
+nutrientes (seleção): N, P, K, Ca, Mg, S, B, Cu, Fe, Mn, Mo, Zn, Cl, Ni.
+estratégias de fornecimento de nutrientes (seleção): Adubação mineral, Adubação orgânica, Adubação foliar, Adubação a lanço, Adubação no sulco, Adubação de cobertura, Parcelamento, Fertirrigação, Uso de corretivos, Uso de resíduos (biossólido/vinhaça/torta/composto).
+grupos de culturas (seleção): Cereais, Leguminosas e oleaginosas, Frutíferas, Raízes e tubérculos, Hortaliças, Forrageiras, Plantações florestais e seringueira, Ornamentais e flores, Plantas estimulantes.
+culturas presentes (seleção): Algodão, Café, Cana-de-açúcar, Citros, Milho, Soja, Arroz, Trigo, Feijão, Amendoim, Batata, Mandioca, Banana, Abacate, Uva, Manga, Mamão, Goiaba, Raízes e Tubérculos diversos (inhame, taro), Hortaliças diversas (alface, tomate, cenoura, cebola, pepino, brócolis, etc.), Forrageiras, Eucalipto, Pinus, Seringueira, Palmito pupunha, Plantas estimulantes (cacau, chá, fumo).
+FEEDBACK DO CURADOR (escrever): Documento extremamente relevante e robusto, sendo a 4ª edição revisada do tradicional Boletim 100 do IAC. Apresenta recomendações detalhadas de adubação e calagem para mais de 130 culturas de importância econômica no Estado de São Paulo e regiões subtropicais, com foco em práticas modernas de manejo de fertilidade do solo, incluindo análise de solo/foliar e técnicas avançadas como fertirrigação.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: bf92d6e6-ae24-4397-aad8-e9ae6770e944
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): D. Mattos Jr.; L.N. Huber; G. Petená; G.A. Bortoloti; F.W.R. Hippler; R.M. Boaretto
+Titulo: Biochemical and anatomical aspects of copper deficiency induced by high nitrogen supply in Citrus
+Subtítulo: 
+Ano: 2023
+Número de citações recebidas (Google Scholar): 7
+Palavras-chave: Micronutrient; Physiological traits; Enzyme activity; Tissue anatomy; Visual symptom; Nutrient interaction
+Resumo: "Aims Copper (Cu) is essential for enzymatic sys- tems, electron transport during photosynthesis, and lignin synthesis, affecting plant metabolism and growth. Cu deficiency is observed in young tree orchards, possibly induced by interaction with other mineral nutrients, although visual symptoms are not easily characterized. This study evaluated the induction of Cu deficiency in citrus, due to high nitrogen (N) fertilization, based on the assessment of biochemical parameters, gas exchange, and anatomy of plant tissues. Methods Valencia orange trees were submitted to levels of Cu supply via fertigation in addition to foliar spraying (control without Cu or with 2.4 g plant−1 of Cu), and N (medium=8.6 or high=25.9 g plant−1 of N) for 210 days. Results Plants well supplied with Cu exhibited higher electron transport rate, net CO2 assimiltion, transpiration, and stomatal conductance, incomparison to the control without Cu. Those grown with high N exhibited greater electron transport rate compared to medium N. Plants without Cu and high N supply exhibited the lowest nitrate reductase activ- ity, whereas plants fertilized with Cu and high N exhibited the greatest increase in the activity of this enzyme, in addition to the highest levels of total free amino acids. Furthermore, plants without Cu and high N exhibited the lowest Cu/Zn-SOD II isoform activity. Loose parenchyma structures of leaves and branches were associated with visual symptoms of Cu deficiency. Conclusion Plant responses demonstrated how Cu deficiency is induced in citrus trees by excess N, thus highlighting the importance of establishing best nutrient management for sustainable fruit production."
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Plant Soil
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s11104-023-05899-7
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/18UWijfLoLi-Akrd_PtAljLawsiDvx5yS/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em casa de vegetação (greenhouse) no Centro de Citricultura Sylvio Moreira (IAC), Cordeirópolis, SP, Brasil (22°27′40″S – 47°24′4″W). As plantas foram cultivadas em substrato de casca de pinus (pine-bark substrate) em vasos. O experimento focou na deficiência de Cobre (Cu) induzida por altos níveis de Nitrogênio (N).
+ferramentas e técnicas (seleção): Análise de tecido/anatomia/histologia
+nutrientes (seleção): Cobre (Cu)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação
+grupos de culturas (seleção): Frutas cítricas
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica de alta qualidade, detalhando a interação entre Cobre e Nitrogênio em citros e seus impactos fisiológicos e anatômicos.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

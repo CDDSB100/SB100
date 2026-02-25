@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Marziyeh Jafari, Ali Reza Shahsavar
+Titulo: The Effect of Foliar Application of Melatonin on Changes in Secondary Metabolite Contents in Two Citrus Species Under Drought Stress Conditions
+Subtítulo: 
+Ano: 2021
+Número de citações recebidas (Google Scholar): 68
+Palavras-chave: Secondary metabolite, Melatonin, Biology, Horticulture, Limonene
+Resumo: Plant secondary metabolites are compounds that play an important role in plant interactions and defense. Persian lime and Mexican lime as the two most important sour lime varieties with high levels of secondary metabolites, are widely cultivated in tropical and subtropical areas. Melatonin is a pleiotropic molecule that plays a key role in protecting plants against drought stress through regulating the secondary metabolite biosynthesis pathway. This study was performed as a factorial experiment consisting of three factors in a completely randomized design (CRD), including four concentrations of melatonin (0, 50, 100, and 150 μM), three levels of drought stress [100% (control), 75% (moderate stress), and 40% (severe stress) field capacity (FC)], and two Citrus cultivars. The experiment was conducted for 60 days in a greenhouse condition. Based on the results of this study under severe drought stress, melatonin-treated crops had higher total flavonoid and total phenolic contents than the untreated crops. The highest level of essential oils components was observed on 100 μM foliar application of melatonin under severe drought stress in both varieties. The main component of the essential oil was limonene in both Citrus species. Moreover, based on the analysis of the results, hesperidin was the main polyphenol in both varieties. Since the use of melatonin often increases the production of secondary metabolites, this study can be considered as a very effective method for controlling the adverse effects of drought stress in citrus for both industrial and horticultural aims.
+Tipo de documento: article
+Editora: Frontiers Media
+Instituição: Shiraz University
+Local: IR
+Tipo de trabalho: 
+Título do periódico: Frontiers in Plant Science
+Quartil do periódico: 
+Volume: 12
+Número/fascículo: 
+Páginas: 692735-692735
+DOI: 10.3389/fpls.2021.692735
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1FXStJJb5V0VynJDQKpulQs6Dru-m49iF/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em estufa (greenhouse) focado na mitigação do estresse hídrico (seca) em duas espécies de Citrus (limões Persa e Mexicano). As culturas são amplamente cultivadas em áreas tropicais e subtropicais. O solo (substrato) do experimento consistiu em solo com 'leaf litter' (8.2 w/w) em vasos.
+ferramentas e técnicas (seleção): HPLC, Cromatografia (GC-MS), Destilação (Hydro-Distillation), Aplicação Foliar
+nutrientes (seleção): Melatonina
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar
+grupos de culturas (seleção): Frutíferas, Cítricos
+culturas presentes (seleção): Citrus latifolia (Limão Persa/Tahiti), Citrus aurantifolia (Limão Mexicano)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

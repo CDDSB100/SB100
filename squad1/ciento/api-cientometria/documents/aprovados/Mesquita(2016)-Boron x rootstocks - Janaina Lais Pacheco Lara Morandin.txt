@@ -1,0 +1,34 @@
+ID: 865bb0de-e34b-42e5-9e99-74732e7e7254
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Geisa L. Mesquita; Fernando C. B. Zambrosi; Francisco A. O. Tanaka; Rodrigo M. Boaretto; José A. Quaggio; Rafael V. Ribeiro; Dirceu Mattos Jr.
+Titulo: Anatomical and Physiological Responses of Citrus Trees to Varying Boron Availability Are Dependent on Rootstock
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 74
+Palavras-chave: leaf gas exchange; growth; micronutrient; nutritional stress; microscopy; water relations
+Resumo: In Citrus, water, nutrient transport and thereby fruit production, are influenced among other factors, by the interaction between rootstock and boron (B) nutrition. This study aimed to investigate how B affects the anatomical structure of roots and leaves as well as leaf gas exchange in sweet orange trees grafted on two contrasting rootstocks in response to B supply. Plants grafted on Swingle citrumelo or Sunki mandarin were grown in a nutrient solution of varying B concentration (deficient, adequate, and excessive). Those grafted on Swingle were more tolerant to both B deficiency and toxicity than those on Sunki, as revealed by higher shoot and root growth. In addition, plants grafted on Sunki exhibited more severe anatomical and physiological damages under B deficiency, showing thickening of xylem cell walls and impairments in whole-plant leaf-specific hydraulic conductance and leaf CO2 assimilation. Our data revealed  that trees grafted on Swingle sustain better growth under low B availablitlity in the root medium and still respond positively to increased B levels by combining higher B absorption and root growth as well as better organization of xylem vessels. Taken together, those traits improved water and B transport to the plant canopy. Under B toxicity, Swingle rootstock would also favor plant growth by reducing anatomical and ultrastructural damage to leaf tissue and improving water transport compared with plants grafted on Sunki. From a practical point of view, our results highlight that B management in citrus orchards shall take into account rootstock varieties, of which the Swingle rootstock was characterized by its performance on regulating anatomical and ultrastructural damages, improving water transport and limiting negative impacts of B stress conditions on plant growth.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Frontiers in Plant Science
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1l6XFvFGHpIlsOiAusV6FGA1PqOCRveps/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em condições de casa de vegetação (Greenhouse). O experimento utilizou cultivo em solução nutritiva (hidroponia) para controlar as concentrações de Boro (B). As condições climáticas da casa de vegetação foram: temperaturas mínimas e máximas de ar de 18 e 30°C, respectivamente, e umidade relativa do ar variando entre 45 e 100%. Embora o experimento não tenha sido em solo, a discussão menciona a relevância dos resultados para regiões de cultivo de citros com lixiviação de nutrientes em solos tropicais ou acúmulo em soluções de solos salinos.
+ferramentas e técnicas (seleção): Solução Nutritiva (Hidroponia), Determinação de Massa Seca (DM), Análise de Boro Total, Medição de Condutividade Elétrica (EC) e pH, Analisador de Gás Infravermelho (LI-6400) para trocas gasosas (A, E, gs, Ci), Câmara de Pressão para Potencial Hídrico da Folha ($\Psi$), Microscopia de Luz (LM), Microscopia Eletrônica de Varredura (SEM), Microscopia Eletrônica de Transmissão (TEM), Análise Estatística (ANOVA, Teste de Tukey).
+nutrientes (seleção): Boro (B), Potássio (K), Cálcio (Ca), Magnésio (Mg), Enxofre (S), Ferro (Fe), Manganês (Mn), Zinco (Zn), Molibdênio (Mo).
+estratégias de fornecimento de nutrientes (seleção): Cultivo em Solução Nutritiva (Concentrações controladas de Boro: 0.01, 0.5 e 5.0 mg L⁻¹).
+grupos de culturas (seleção): Frutíferas (Citros).
+culturas presentes (seleção): Laranjeira Doce (Citrus sinensis cv. Valencia), Swingle citrumelo (Citrus paradisi Macf. × Poncirus trifoliata [L.] Raf. - porta-enxerto), Sunki mandarin (C. sunki [Hayata] hort ex Tanaka - porta-enxerto).
+FEEDBACK DO CURADOR (escrever): Documento de alta relevância agronômica que detalha a influência de diferentes porta-enxertos (Swingle citrumelo e Sunki mandarin) na tolerância e mecanismos fisiológicos e anatômicos de estresse por boro (deficiência e toxicidade) em laranjeiras. Excelente material para pesquisa sobre manejo nutricional e seleção de porta-enxertos de citros em condições de estresse.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

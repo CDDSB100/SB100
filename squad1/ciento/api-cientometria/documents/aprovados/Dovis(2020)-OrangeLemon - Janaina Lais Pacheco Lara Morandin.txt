@@ -1,0 +1,34 @@
+ID: 60051731-4155-478d-b748-267571409b1b
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Veronica L. Dovis; Norma M. Erismann; Eduardo C. Machado;  Jose A. Quaggio; Rodrigo M. Boaretto; Dirceu Mattos Jr
+Titulo: Biomass partitioning and photosynthesis in the quest for nitrogen- use efficiency for citrus tree species
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 7
+Palavras-chave: CO2 assimilation; lemon tree; orange tree; relative growth rate; root growth; specific leaf area
+Resumo: Optimizing the use of nitrogen (N) for food production is a major challenge in agricultural systems. The transformation of N into crop production results from intricate pathways, depending on plants, as well as the environment and fertilization regimes, which affect the N-use efficiency (NUE) of plants. In this context, lemon trees [Citrus limon (L.) Burm. f.] attain maximum harvest index at lower leaf N concentrations compared with sweet orange trees [Citrus sinensis (L.) Osbeck], and the processes governing these plant responses are not well known. The aim of this study was to understand how the higher NUE in lemons trees is constructed based on growth and biomass partitioning evaluation, as well as photochemical and biochemical  haracteristics of photosynthesis. To attain this goal, we evaluated growth, photosynthesis and biochemical characteristics in lemon and sweet orange trees under two different N levels over 14 months. We hypothesized that higher NUE in lemon trees is affected by plant capacity to grow with economy on nutrient resources. Furthermore, lemon trees could be more efficient in CO2 assimilation in non-limiting environmental conditions. We found that higher NUE in lemon trees was explained in part by the ability of trees to invest greater biomass in leaves instead of roots, even though this species exhibited lower relative recovery efficiency of N from the substrate than the sweet orange. We also found that lemon trees had a higher relative growth rate than sweet oranges, despite the fact that net CO2 assimilation and dark respiration were similar between the two species. As a consequence, we suggested that lemons could exhibit a lower biomass construction cost than oranges. Because lemon presented lower N concentration than sweet orange trees, the former exhibited better photosynthetic N-use efficiency (PNUE: 55–120 mmol CO2 g N−1 day−1) compared with the sweet orange (PNUE: 31–68 mmol CO2 g N−1 day−1). Lemon trees also exhibited a higher relative rate of electron transport per unit of chlorophyll (ETR/chlor: 350–850) compared with orange trees (ETR/chlor: 300–550) at both low and at high N supply. These characteristics were likely associated with transport facilitation of C O2 to the catalytic sites of plants. In fact, improved growth of lemon trees results from an array of events explained mostly by increase in leaf area and associated low construction cost despite N supply.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Tree Physiology
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1093/treephys/tpaa126
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1V3YYoX0cqdNug6CZ1eGZFuTsbcgbJdoo/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em uma casa de vegetação (screen house) em Cordeirópolis, São Paulo State, Brasil (22°27′40″S-47°24′4″O; 639 m de altitude). As plantas foram transplantadas para vasos plásticos de 42 L contendo uma mistura de areia e substrato de casca de pinus. A pesquisa cobriu três períodos sazonais: verão-outono (P1), inverno-primavera (P2) e primavera-verão (P3), com monitoramento detalhado de temperatura (média, máxima, mínima) e radiação solar (Qg).
+ferramentas e técnicas (seleção): Particionamento e determinação de Biomassa (TDM, LDM, RDM, BDM)
+nutrientes (seleção): N (Nitrogênio)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação/Nutrição em solução completa
+grupos de culturas (seleção): Frutíferas (Citros)
+culturas presentes (seleção): Citrus limon (Limoeiro Lisbon)
+FEEDBACK DO CURADOR (escrever): Documento de pesquisa agronômica detalhado, focado na otimização da eficiência do uso de nitrogênio (NUE) em citros, comparando as estratégias de particionamento de biomassa e respostas fotossintéticas entre limoeiros e laranjeiras em diferentes regimes de fertilização. As descobertas são relevantes para o melhoramento genético de culturas e programas de fertilização afinados.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

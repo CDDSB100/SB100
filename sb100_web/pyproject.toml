@@ -1,0 +1,17 @@
+[project]
+name = "pocket-b100"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.120.0",
+    "google-genai>=1.44.0",
+    "google-generativeai>=0.8.5",
+    "litellm>=1.78.0",
+    "pocketflow>=0.0.1",
+    "python-decouple>=3.8",
+    "qdrant-client>=1.15.1",
+    "redis>=7.0.0",
+    "uvicorn[standard]>=0.38.0",
+]

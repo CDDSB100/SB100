@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Kumari Nandita, Manoj Kundu, Ruby Rani, Farhana Khatoon, Deepak Kumar
+Titulo: Foliar Feeding of Micronutrients: An Essential Tool to Improve Growth, Yield and Fruit Quality of Sweet Orange (Citrus sinensis (L.) Osbeck) cv. Mosambi under Non-traditional Citrus Growing Track
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: Citrus × sinensis, Orange (colour), Horticulture, Micronutrient, Sugar
+Resumo: Calcareous and alkaline nature of the soil under non-traditional citrus growing track is the major drawback for low yield and poor fruit quality of mosambi with increased granulation problem. Generally, these type of soil hinders the smooth up take of micronutrient to the plants from soil. Hence, the present investigation was design to evaluate the impact of foliar feeding of micronutrients on growth, yield and fruit quality of sweet orange (Citrus sinensis (L.) Osbeck) cv. Mosambi. The observations revealed that treatment combination of Zn @ 0.5%+ Fe @ 0.2% + B @ 0.3% + Cu @ 0.1% followed by B @ 0.3% + Fe @0.2% and Zn @ 0.5% + B @ 0.3% were most effective for improving vegetative growth of sweet orange cv. Mosambi in terms of plant height and trunk girth increment, canopy volume and growth of current season shoot. The commencement of reproductive growth in terms of 50% bloom after bud break as well as full bloom after bud break with maximum flowering and fruit setting was also obtained in in Zn @ 0.5% + Fe @ 0.2% + B @ 0.3% + Cu @ 0.1% spray followed by B @ 0.3% + Fe @0.2% and Zn @ 0.5% + B @ 0.3%. the yield was calculated maximum in the treatment consist of Zn @ 0.5% + Fe @ 0.2% + B @ 0.3% + Cu @ 0.1% (8.06 t acre-1). Further, fruit quality attributes in terms of sugar:acid ratio, sucrose content, carotenoid content and edible: non-edible ratio was recorded maximum with Zn @ 0.5% + Fe @ 0.2% + B @ 0.3% + Cu @ 0.1% spray (41.88, 4.44%, 0.59 mg 100 g-1).Therefore, three foliar spay of Zn @ 0.5%+ Fe @ 0.2% + B @ 0.3% + Cu @ 0.1%from May- July may be recommended to get maximum yield of better quality mosambi fruit under non-conventional citrus growing track having calcareous and alkaline nature of soil.
+Tipo de documento: article
+Editora: Excellent Publishers
+Instituição: Bihar Agricultural University
+Local: IN
+Tipo de trabalho: 
+Título do periódico: International Journal of Current Microbiology and Applied Sciences
+Quartil do periódico: 
+Volume: 9
+Número/fascículo: 3
+Páginas: 473-483
+DOI: 10.20546/ijcmas.2020.903.055
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1lUqPcBVyrXAjln4HQBiXs22hYJdNaKn0/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Solos de natureza calcária e alcalina sob trilhas de cultivo de citros não tradicionais (non-traditional citrus growing track). A pesquisa foi realizada em Bihar, Índia.
+ferramentas e técnicas (seleção): Aplicação Foliar (Foliar Feeding)
+nutrientes (seleção): Zn (Zinco)
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar combinada (Zn + Fe + B + Cu)
+grupos de culturas (seleção): Citros (Rutaceae)
+culturas presentes (seleção): Laranja Doce (Sweet Orange, Citrus sinensis (L.) Osbeck) cv. Mosambi
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa original detalhado que avalia o impacto da aplicação foliar combinada de micronutrientes (Zn @ 0.5%+ Fe @ 0.2% + B @ 0.3% + Cu @ 0.1%) no crescimento, produtividade e qualidade da laranja doce Mosambi. O estudo é altamente relevante para superar deficiências de micronutrientes em solos calcários e alcalinos, recomendando uma estratégia clara para maximizar o rendimento e a qualidade dos frutos.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

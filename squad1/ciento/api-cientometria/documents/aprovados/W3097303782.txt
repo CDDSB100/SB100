@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Parameshwar Sidramappa Shirgure, A. K. Srivastava, A.D. Huchche, Prakash Patil
+Titulo: Interactive effect of irrigation schedules and fertigation levels on fruit yield, quality and plant nutrition of Nagpur mandarin (Citrus reticulata)
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 7
+Palavras-chave: Fertigation, Irrigation, Nutrient, Canopy, Horticulture
+Resumo: Water and nutrient-useefficiency, both are considered as pre-requisites for sustained citrus productivity. The interactive effect of irrigation and fertigation levels on growth, yield and quality of 11-year-old Nagpur mandarin (Citrus reticulata Blanco) was studied through a field experiment during 2010-13 at ICAR-Central Citrus Research Institute (Formerly NRCC), Nagpur under AICRP Fruits. The experiment was laid out in split-plot design with nine treatment combinations, comprising three irrigation levels (70 %, 80 % and 90 % of daily evaporation replenishment) and three fertigation levels (60 %, 70 % and 80 % RDF based NPK doses) replicated six times. Canopy volume (74.9 m3) and fruit yield (19.2 tonnes/ha) were observed maximum with the drip irrigation scheduled at 80 % ER combined with 80 % RDF fertigation. The fruit quality parameters, such as fruit weight (129.2 g), juice percentage (45.05 %), TSS (10.27o Brix) and lowest acidity (0.81) were observed favorable with irrigation at 80% and fertigation at 80% RDF, in addition to maximum nutrient concentration in index leaves ( 2.38 % N, 0.12 % P and 1.50 % K) duly supported by changes in available pool of nutrients in soil (123.8 mg/kg N, 14.8 mg/kg P2O5 and 261.2 mg/kg K2O). Interestingly yield efficiency computed as fruit yield per unit canopy volume was also observed maximum (0.26) with treatment carrying irrigation at 80% ER and fertigation with 80% RDF. The sustained productivity of Nagpur mandarin can be achieved with irrigation scheduled at 80 % ER along with fertigation technology at 80 % RDF without any potential nutrient mining.
+Tipo de documento: article
+Editora: Indian Council of Agricultural Research
+Instituição: Central Citrus Research Institute
+Local: IN
+Tipo de trabalho: 
+Título do periódico: The Indian Journal of Agricultural Sciences
+Quartil do periódico: 
+Volume: 86
+Número/fascículo: 11
+Páginas: None-None
+DOI: 10.56093/ijas.v86i11.62954
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/13C-ruifsAHY0IuH602ZFv5h6-O0TDh2F/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Região de Vidarbha, Maharashtra (Índia Central), sob clima tropical sub-úmido. O solo experimental é Typic Ustochrept (53 cm de profundidade, sublinhado por basalto intemperizado), classificado como Inceptisol alcalino, com FC (28,14%) e PWP (19,1%).
+ferramentas e técnicas (seleção): Irrigação por Gotejamento, Fertirrigação, Sondas de Nêutrons (medição de umidade), Análise de Nutrientes Foliares e do Solo, Replenishment de Evaporação (ER).
+nutrientes (seleção): Nitrogênio (N), Fósforo (P), Potássio (K).
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação (aplicação de NPK através do sistema de gotejamento), Doses percentuais de NPK (60%, 70%, 80% da Dose Recomendada de Fertilizantes - RDF).
+grupos de culturas (seleção): Citros, Frutas.
+culturas presentes (seleção): Tangerina Nagpur (Citrus reticulata), Kinnow mandarin, Laranja Valencia, Limão ácido (Citrus aurantifolia Swingle).
+FEEDBACK DO CURADOR (escrever): Estudo detalhado sobre o efeito interativo de regimes de irrigação (baseados em 70-90% de Replenishment de Evaporação – ER) e níveis de fertirrigação (60-80% da Dose Recomendada de Fertilizantes – RDF) na produtividade, qualidade e nutrição da tangerina Nagpur. A pesquisa é altamente relevante para o manejo otimizado de citros em regiões sub-úmidas.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

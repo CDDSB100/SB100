@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Masahiko Shimazaki, Hirohisa Nesumi
+Titulo: A Method for High-Quality Citrus Production Using Drip Fertigation and Plastic Sheet Mulching
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 15
+Palavras-chave: Fertigation, Mulch, Citrus unshiu, Drip irrigation, Sugar
+Resumo: A novel cultivation method that aims to produce high-quality satsuma mandarin (Citrus unshiu Marc.) fruit and other types of citrus fruits was proposed in 2000, in order to meet the market demand for high-quality fruits (i.e., fruits with high sugar content and moderate acidity); this method is called the marudori method. The main feature of this method is the combined drip fertigation with conventional plastic sheet mulching, both of which control tree moisture. Tree moisture management is crucial for the production of high-quality citrus, particularly satsuma mandarins. Therefore, proper active moisture control techniques are required in Japan, where precipitation may vary considerably. Sheet mulching is a conventional technique in which trees are subjected to water stress, which increases the sugar content of fruits. Additionally, drip fertigation is a technique for effective watering and fertilizing, but not commonly used in citrus cultivation in Japan. The combination of these techniques allows this method to provide such benefits as improved fruit quality, efficient fertilization, and enhanced growth of young trees, among others. In this review, we describe this method in detail and discuss the challenges encountered during the improvement and enhancement of the marudori method, with the aim of establishing an objective cultivation system integrated with ICT and other scientific techniques.
+Tipo de documento: article
+Editora: Japan International Research Center for Agricultural Sciences
+Instituição: Institute for Rural Engineering
+Local: JP
+Tipo de trabalho: 
+Título do periódico: Japan Agricultural Research Quarterly JARQ
+Quartil do periódico: 
+Volume: 50
+Número/fascículo: 4
+Páginas: 301-306
+DOI: 10.6090/jarq.50.301
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1LZSNrq5f98yR1-ftRJs0kIS_HJQgA4V4/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Japão (principalmente sudoeste), caracterizado por alta e instável precipitação anual (1000 a 2000 mm), com risco de seca ou umidade excessiva. O manejo de umidade da árvore é crucial devido à variação de precipitação causada pela estação chuvosa e tufões.
+ferramentas e técnicas (seleção): Irrigação por gotejamento
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação
+grupos de culturas (seleção): Frutas/Fruticultura
+culturas presentes (seleção): Satsuma mandarin (Citrus unshiu)
+FEEDBACK DO CURADOR (escrever): Artigo de revisão agronômica altamente relevante, detalhando o método Marudori (fertirrigação por gotejamento combinada com mulching plástico) para produção de citros (especialmente Satsuma mandarin) de alta qualidade no Japão, focando no controle de umidade e alta eficiência de fertilização.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

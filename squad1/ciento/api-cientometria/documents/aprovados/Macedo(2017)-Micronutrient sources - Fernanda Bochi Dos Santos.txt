@@ -1,0 +1,34 @@
+ID: acf2224b-6ac3-41e7-be33-ebf02ea084dd
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Luisa Oliveira Macedo; Rodrigo Marcelli Boaretto; Rodrigo Candido Jacobassi; Natália Fernandes Carr; José Antonio Quaggio; Dirceu Mattos Jr.
+Titulo: Use of sparingly soluble micronutrients sources for citrus production
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 5
+Palavras-chave: fertilizer efficacy; microparticles; plant nutrition; foliar spray
+Resumo: Despite a diverse array of micronutrient fertilizers is manufactured in the world, plant nutritional disorders remain a challenge for many growers. In Brazil, boron (B), zinc (Zn) and manganese (Mn) are the most limiting micronutrients to citrus production. In the soil, B is prone to leaching losses and the metallic nutrients are less available to the plants due to the lower mobility and high fixation to the colloids of the clay fraction. Therefore, foliar applications have represented a major strategy for micronutrient supply to citrus trees, even though; efficiency of such practice is still debated. Differential agronomic responses of sources are attributed to the companion ion of the chemical species, the solubility in water and the particle size of the fertilizer granules. The purpose of this review is to discuss the role of sparingly soluble fertilizer in the nutrition of citrus plants. The development of suspension concentrates, based on sparingly soluble inorganic micronutrient sources, is the single most significant advance in technology recently that has resulted in a wide range of commercial products for growers. The sparingly soluble sources when applied to the soil reduce adsorption of the metal. In foliar sprays, the particles adhered to the leaf surface can serve as a solid phase to restore the micronutrient supply during a prolonged growth phase of the leaf. In both situations, the gradual release of the nutrients may reduce absorption rate and the risk of phytotoxicity. Satisfactory results for the use of sparingly soluble sources were demonstrated, but further studies are necessary to validate the efficacy of foliar application of sparingly soluble sources, which will enable the registration of these products with the official regulatory agencies and allow the recommendation to the citrus growers. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Citrus Research and Technology 
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: http://dx.doi.org/10.4322/crt.ICC099
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1EL9qADwcZCDkc64o8DlLrw34RnpvPcBM/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Brasil. Os distúrbios nutricionais em citros são comumente observados em solos altamente intemperizados dos trópicos, solos não cultivados, solos rasos com lençol freático alto, áreas extremamente arenosas e solos calcários. Os nutrientes metálicos (Zn, Mn) estão menos disponíveis devido à menor mobilidade e alta fixação aos coloides da fração argila. A disponibilidade de Boro (B) é propensa a perdas por lixiviação.
+ferramentas e técnicas (seleção): Concentrados em suspensão
+nutrientes (seleção): Boro (B)
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Citros
+FEEDBACK DO CURADOR (escrever): Revisão abrangente sobre a eficácia e os desafios do uso de fontes de micronutrientes inorgânicos pouco solúveis (como óxidos, carbonatos) e suas formulações avançadas (micro e nanopartículas) na citricultura brasileira. O documento discute as vantagens (redução de fitotoxicidade, liberação gradual) e as barreiras regulatórias (exigência de solubilidade total para foliares) para a adoção dessas tecnologias, sendo extremamente útil para o entendimento da nutrição mineral de citros.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

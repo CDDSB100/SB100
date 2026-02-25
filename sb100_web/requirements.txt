@@ -1,0 +1,7 @@
+pocketflow>=0.0.1
+qdrant-client>=1.7.0
+litellm>=1.35.0
+python-decouple>=3.8
+redis>=4.0.0
+fastapi>=0.95.0
+uvicorn[standard]>=0.22.0

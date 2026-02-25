@@ -1,0 +1,62 @@
+services:
+  # ----------------------------------------------------
+  # 3. APLICAÇÃO DJANGO (Web/Gunicorn)
+  # ----------------------------------------------------
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: pocket_b100:latest
+    container_name: pocket_b100_web
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - frontend_build:/frontend_build # Monta o volume onde a cópia será persistida
+    # NOVO COMANDO: Copia o frontend (que está em /app/frontend/dist) 
+    # para o volume nomeado (/frontend_build) antes de iniciar a app.
+    # O 'uv run uvicorn...' é o comando final definido no CMD do Dockerfile.
+#    user: root
+#    entrypoint: /bin/sh -c "cp -r /app/frontend/dist/. /frontend_build/ && exec su - appuser -c 'uv run uvicorn api:app --host 0.0.0.0 --port 8000'"
+    expose:
+      - "8000"
+    healthcheck:
+      # Use python stdlib for healthcheck (curl may not be installed in the image)
+      test: ["CMD-SHELL", "python - <<'PY'\nimport http.client,sys\ntry:\n    c=http.client.HTTPConnection('127.0.0.1',8000,timeout=2)\n    c.request('GET','/api/health')\n    r=c.getresponse()\n    sys.exit(0) if r.status==200 else sys.exit(1)\nexcept Exception:\n    sys.exit(1)\nPY"]
+      interval: 50s
+      timeout: 3s
+      retries: 3
+
+  # ----------------------------------------------------
+  # 6. NGINX (Servidor Web)
+  # ----------------------------------------------------
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_proxy
+    # Mapeia a porta 80/443 do host para o Nginx
+    ports:
+      - "80:80"
+      - "443:443" # Para HTTPS
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - frontend_build:/usr/share/nginx/html:ro
+    depends_on:
+      - web # Nginx depende do Gunicorn para encaminhar as requisições
+    restart: always
+  # ----------------------------------------------------
+  # 7. Embeddings (Serviço que consome o sentence-transformers)
+  # ----------------------------------------------------
+  embbeding_service:
+    build:
+      # O Contexto de build: a pasta que contém o Dockerfile e o código-fonte
+      context: ../embbedings/try_embbeding_docker
+      # O nome do arquivo (opcional, já que é "Dockerfile")
+      dockerfile: Dockerfile
+
+    ports:
+      - "8000"
+
+# Define volumes para persistência de dados
+volumes:
+  frontend_build: # Para build do React/frontend

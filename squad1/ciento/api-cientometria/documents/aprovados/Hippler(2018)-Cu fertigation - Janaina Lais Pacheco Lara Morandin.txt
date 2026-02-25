@@ -1,0 +1,34 @@
+ID: 04a0fe25-ae87-4f29-86d8-ac662df2d6a0
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz W.R. Hippler; Rodrigo M. Boaretto; Luiz Antonio Junqueira Teixeira; Jose A. Quaggio; Dirceu Mattos Jr. 
+Titulo: Copper supply and fruit yield of young Citrus trees: fertiliser sources and application methods
+Subtítulo: 
+Ano: 2018
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: micronutrient; nutritional status; fertigation; foliar application; citriculture
+Resumo: This study aimed to evaluate the fertiliser sources and application methods of copper (Cu) in citrus trees during the first years of fruit production. Two experiments were set up in an orchard with 3-year-old sweet orange trees, which were applied with three sources of Cu (nitrate, sulfate or EDTA) either via fertigation (Experiment 1) or via foliar sprays (Experiment 2). Regardless of the fertiliser source, Cu application via fertigation was not efficacious to increase the micronutrient concentration in leaves and, consequently, did not affect fruit yield. Conversely, foliar application of Cu, either as nitrate or sulfate, increased this nutrient level in leaves but when applied as copper nitrate, visual phytotoxicity symptoms were verified in leaves due to salt accumulation in the plant canopy, which reduced the fruit yield. Considering the plant growth and intensified phytosanitary management of the orchard with the application of copperbased products after the third year of the experiment, the effects of Cu treatments on fruit yield are expected to be negligible as the trees age.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Bragantia
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/1678-4499.2017125
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1u8fvgBoo65NxHNbpcz-hiosc8dxjWivQ/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Localizado em Colômbia-SP (latitude 560 m), Brasil. O solo é classificado como franco-arenoso (19.7% argila, 76.3% areia) com pH (CaCl₂) 5.1, CEC 68.5 mmol dm⁻³ e 23.5 g.dm⁻³ de matéria orgânica. O clima é classificado como Aw (Köppen), com verão quente e úmido e inverno seco.
+ferramentas e técnicas (seleção): Fertigação
+nutrientes (seleção): Cobre (Cu)
+estratégias de fornecimento de nutrientes (seleção): Fertigação
+grupos de culturas (seleção): Cítricos
+culturas presentes (seleção): Laranja Doce (Sweet Orange)
+FEEDBACK DO CURADOR (escrever): Estudo focado na eficácia de diferentes fontes (nitrato, sulfato, EDTA) e métodos de aplicação (fertigação vs. foliar) de cobre (Cu) em citros jovens, analisando o impacto no status nutricional foliar e na produtividade de frutos. Documento de alta relevância agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

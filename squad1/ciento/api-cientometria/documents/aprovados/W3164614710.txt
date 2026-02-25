@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Jinyun Li, Vladimir G. Kolbasov, Zhiqian Pang, Shuo Duan, Donghwan Lee, Yixiao Huang, Jin Xu, Doron Teper, Tirtha Lamichhane, Nian Wang
+Titulo: Evaluation of the control effect of SAR inducers against citrus Huanglongbing applied by foliar spray, soil drench or trunk injection
+Subtítulo: 
+Ano: 2021
+Número de citações recebidas (Google Scholar): 24
+Palavras-chave: Salicylic acid, Horticulture, Orange (colour), Biology, Trunk
+Resumo: 
+Tipo de documento: article
+Editora: BioMed Central
+Instituição: Florida Department of Citrus
+Local: US
+Tipo de trabalho: 
+Título do periódico: Phytopathology Research
+Quartil do periódico: 
+Volume: 3
+Número/fascículo: 1
+Páginas: None-None
+DOI: 10.1186/s42483-020-00079-2
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1B_waYA15MkwIAub5JQxNTbiMYo0DxFMC/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Central Florida, USA (Lake Alfred, CREC). O campo experimental utilizou laranjeiras 'Hamlin' de 17 anos sobre porta-enxerto Swingle citrumelo, plantadas em 1999. O solo é bem drenado, classificado como Astatula fine sand (Typic Quartzipsamment). Todas as árvores estavam positivas para Huanglongbing (HLB).
+ferramentas e técnicas (seleção): Aplicação foliar (foliar spray)
+nutrientes (seleção): Salicylic Acid (SA)
+estratégias de fornecimento de nutrientes (seleção): Aplicação em múltiplas fases do crescimento (Multi-season applications)
+grupos de culturas (seleção): Frutas perenes (Perennial fruits)
+culturas presentes (seleção): Laranja (Orange)
+FEEDBACK DO CURADOR (escrever): Estudo agronômico altamente relevante para o manejo da doença Huanglongbing (HLB) em citros. Os resultados indicam que a injeção no tronco dos indutores de SAR (ASM, IMI, INA, SA) a 0.25 g/árvore foi significativamente mais eficaz para retardar a progressão da doença e aumentar a produtividade e o rendimento em comparação com a pulverização foliar e o drench no solo. O artigo fornece uma análise econômica detalhada dos custos e benefícios.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

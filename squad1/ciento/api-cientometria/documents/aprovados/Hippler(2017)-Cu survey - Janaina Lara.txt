@@ -1,0 +1,34 @@
+ID: e23d8f19-ee19-413c-a7ee-d7d384a9ddf8
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz W.R. Hippler; Rodrigo M. Boaretto; José A. Quaggio; Dirceu Mattos Jr
+Titulo: Copper in Citrus production: required but avoided
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 21
+Palavras-chave: Citrus; copper-based pesticides; plant nutrition; micronutrient
+Resumo: Copper (Cu) deficiency affects young citrus trees mostly when fertilized with high nitrogen (N) rates and under reduced foliar applications of Cu-based fungicides. On the other hand, trees are prone to Cu toxicity resulting from excessive applications of fungicides to control foliar and fruit diseases in the orchards. Despite Cu present in pesticides is generally found in a water-insoluble form, which facilitates the formation of a pathogen protective layer on plant canopy surfaces, frequent use of these products causes an increases in Cu concentrations in soils and consequently root absorption of the metal. Copper deficiency reduces tree yield capacity by damaging many enzyme systems in plants, as well electron transport in the photosynthesis, whereas toxicity causes metabolic dysfunctions, mainly by increasing oxidative stress levels. This article summarizes the role of Cu nutritional disorders on nutrient status and production of citrus trees, as a basis for fine tuning health management of orchards required for superior plant productivity.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Citrus R&T
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: http://dx.doi.org/10.4322/crt.ICC067
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1FO8FMuJ4dcQmk0kAUxui4XAD-emVolds/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Cinturão citrícola brasileiro (São Paulo, Triângulo Mineiro) e Flórida (EUA). Solos de baixa fertilidade, alto teor de Matéria Orgânica (OM) que limita a absorção de Cu, pH, mineralogia, potencial redox, e teor de argila influenciam a disponibilidade de Cu. Altas concentrações de Cu no solo (>5.0 mg dm⁻³) são frequentes devido ao uso de fungicidas.
+ferramentas e técnicas (seleção): fungicidas e pesticidas cúpricos
+nutrientes (seleção): Cobre (Cu)
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar de micronutrientes
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Citros (Citrus)
+FEEDBACK DO CURADOR (escrever): Excelente artigo de revisão e pesquisa sobre os distúrbios nutricionais de Cobre (Cu) em citros (deficiência e toxicidade), discutindo suas causas (uso de fungicidas cúpricos, alta adubação N) e estratégias de manejo (calagem, OM, porta-enxertos, pulverização).
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

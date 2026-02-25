@@ -1,0 +1,34 @@
+ID: f195710d-207a-4ce2-a986-6e24881f784d
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Ashok K. Alva; Dirceu Mattos, Jr.; José A. Quaggio
+Titulo: Advances in Nitrogen Fertigation of Citrus
+Subtítulo: 
+Ano: 2008
+Número de citações recebidas (Google Scholar): 60
+Palavras-chave: Fruit quality, citrus;  grapefruit; nutrient leaching intogroundwater; nutrient uptake efficiency; partial rootzone wetting; water-soluble granular fertilizer broadcast
+Resumo: Advances in micro-irrigation techniques, i.e., drip and under-the-tree sprinklers, have facilitated greater adoption of fertigation especially for perennial crops including citrus (Citrus sinensis). Fertigation can improve nutrient uptake efficiency and minimize leaching of nutrients below the root zone, and thus can contribute to an increase in crop yield as well as crop quality as compared to those with conventional dry fertilizer broadcast application. In this paper, we summarized the recent fertigation studies on citrus. Long-term studies (over five to six years) have demonstrated that fertigation was beneficial as compared with broadcast of dry granular fertilizer for: (i) increased tree canopy area of young trees; (ii) increased fruit as well as juice yield of bearing orange and grapefruit (Citrus paradisi) trees; and (iii) decreased NO3-N concentration in surficial aquifer. Citrus groves with drip or under-the-tree microsprinkler irrigation are ideal for fertigation with minimal or no extra cost for application of fertilizers. Soil area wetted by the sprinklers or drip emitters must be considered for success of fertigation. Fertigation must be avoided during heavy rainfall period to minimize leaching of nutrients and water below the rootzone.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: JOURNAL OF CROP IMPROVEMENT
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1080/15427520802072967
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1L3k7ui2Tg7QpvMJ_lGY7gkayIcBGK0Px/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Vários solos arenosos e argilosos (ex: Kanapaha fine sand, Candler fine sand, Astatula fine sand, Oxisol argiloso). Regiões de estudo incluem Brasil (São Paulo), Flórida (EUA), Arizona (EUA) e Japão.
+ferramentas e técnicas (seleção): Fertirrigação, Micro-irrigação, Irrigação por gotejamento (Drip), Aspersão (Microsprinklers), Análise do solo/solução
+nutrientes (seleção): N, P, K, Ca, Mg, S, B, Cu, Fe, Mn, Mo, Zn
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação (Fertigation), Aplicação localizada, Aplicação em solução, Frequência de aplicação ajustada, Fertilização em cobertura
+grupos de culturas (seleção): Frutíferas, Culturas perenes
+culturas presentes (seleção): Citros (Citrus), Laranja (Orange), Toranja (Grapefruit), Tangerina/Mandarina (Mandarin/Tangerine)
+FEEDBACK DO CURADOR (escrever): Documento de alta relevância agronômica, focado nos avanços e eficiência da fertirrigação com nitrogênio em citros (laranjas e toranjas) em diferentes condições de solo e regiões (Brasil, Flórida, Arizona). Detalha estratégias de manejo de nutrientes, irrigação e seus impactos na produtividade e qualidade do fruto.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

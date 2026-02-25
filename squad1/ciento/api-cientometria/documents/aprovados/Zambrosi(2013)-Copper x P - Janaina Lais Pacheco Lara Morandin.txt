@@ -1,0 +1,34 @@
+ID: 73deb921-2593-4564-8f98-5549d92e39d0
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Fernando César Bachiega Zambrosi; Geisa Lima Mesquita; Francisco André Ossamu Tanaka; José Antônio Quaggio; Dirceu Mattos Jr. 
+Titulo: Phosphorus availability and rootstock affect copper-induced damage to the root ultra-structure of Citrus
+Subtítulo: 
+Ano: 2013
+Número de citações recebidas (Google Scholar): 34
+Palavras-chave: Abiotic stress; Mineral nutrition; Cell wall; Middle lamella; Metal toxicity
+Resumo: The control of several citrus diseases requires continuous applications of fungicides containing copper (Cu) which favor to the accumulation of this metal in the soil. Therefore, the evaluation of how nutrient availability and rootstock interact with Cu toxicity in the citrus trees is required to maintain sustainability of fruit production in Cu-contaminated soils. Valencia orange trees on Sunki mandarin (SM) or Swingle citrumelo (SC) rootstock were grown in nutrient solutions combining adequate Cu (1.0 μmol L−1), excess Cu (50.0 μmol L−1), deficient phosphorus (P) (0.01 mmol L−1) and sufficient P (0.5 mmol L−1). The excess Cu reduced root and shoot growth, chlorophyll and relative water content in the leaves of the trees compared to those under adequate Cu supply. Furthermore, excess Cu caused severe damage to the root ultra-structure, characterized by the degeneration of the middle lamella and the presence of a thin and sinuous cell wall, as well as, starch accumulation in the plastids, disruption of the mitochondrial membranes and cellular plasmolysis. The damage caused by excess Cu in the cell wall and middle lamella on the root cells of SC was less severe than SM. Sufficient P supply improved the structure of the cell wall and middle lamella of trees subjected to excess Cu in comparison to P-deficient ones. Thus, the occurrence of more preserved cell wall and middle lamella supports the idea that sufficient P availability in the rooting medium and the use of SC rootstock might contribute to increase the ability of young citrus trees to cope with Cu toxicity.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Environmental and Experimental Botany
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1016/j.envexpbot.2013.07.004
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1wI3sShLIx3IkSbvc4QiwV5_4vnTJ7g--/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Solos agrícolas contaminados por cobre (Cu) devido à aplicação contínua de fungicidas contendo Cu. O acúmulo de Cu é uma restrição para a produção de citros devido ao seu potencial fitotóxico elevado. A pesquisa foi realizada no estado de São Paulo, Brasil.
+ferramentas e técnicas (seleção): Solução nutritiva/hidroponia; Microscopia Eletrônica de Transmissão (TEM); SPAD; Análise de Variância (ANOVA); Determinação de Peso Seco (DW); Análise química de tecidos vegetais; Teor relativo de água (RWC).
+nutrientes (seleção): Cobre (Cu); Fósforo (P); Nitrogênio (N); Potássio (K); Cálcio (Ca); Magnésio (Mg); Enxofre (S); Boro (B); Ferro (Fe); Manganês (Mn); Zinco (Zn); Molibdênio (Mo).
+estratégias de fornecimento de nutrientes (seleção): Níveis de fornecimento (Deficiente/Suficiente/Excesso); Nutrição mineral (P e Cu); Uso de porta-enxerto (rootstock selection).
+grupos de culturas (seleção): Citros
+culturas presentes (seleção): Laranja Valência (Citrus sinensis); Mandarina Sunki (Citrus reshni); Citrumelo Swingle (C. paradisi x Poncirus trifoliata).
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica detalhada que investiga o efeito da disponibilidade de fósforo e do uso de diferentes porta-enxertos (Mandarina Sunki e Citrumelo Swingle) na mitigação da toxicidade de cobre em raízes de citros, com foco na ultraestrutura celular. Os resultados são valiosos para definir estratégias de manejo de nutrientes e seleção de porta-enxertos em solos contaminados por Cu.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

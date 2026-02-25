@@ -1,0 +1,34 @@
+ID: 626c4b5c-b66f-43e4-b771-e01e29a50b84
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): J.A Quaggio; D Mattos Jr.; H Cantarella; E.L.E Almeida; S.A.B Cardoso
+Titulo: Lemon yield and fruit quality affected by NPK fertilization
+Subtítulo: 
+Ano: 2002
+Número de citações recebidas (Google Scholar): 126
+Palavras-chave: Lemon; NPK fertilization; Fruit quality
+Resumo: A field trial with Sicilian lemon on Volkameriana rootstock was carried out, during 7 years, in a sandy and low fertility oxisol in the State of São Paulo, Brazil, in order to determine quantitative relationships of lemon yield and fruit quality with NPK fertilization. The experiment was set up in an incomplete factorial design of the (1/2) 43 type, summing up 32 treatments, with yearly rates of N (30, 100, 170, and 240 kg ha−1), P (9, 27, 62 and 79.0 kg ha−1), and K (24, 91, 158, and 225 kg ha−1), split in three applications from early spring to late summer. Mathematical models of the type Y=b0+b11N+b12N2+b21P+b22P2+b31K+b32K2+b12NP+b13NK+b23PK were adjusted to selected variables related to fruit yield and quality, soil, and leaf analyses. The maximum fruit yield, averaged over six harvests, was reached with the rates calculated with the response curve as N=220 kg ha−1, P=20 kg ha−1 and K=310 kg ha−1. For K the optimum rate was much higher than the highest rate applied. The effects of nitrogen and potassium on fruit yield were, respectively, quadratic and linear. The response of lemon to phosphorus, in the first 4 years was linear up to the highest P rate applied, which increased the average yield over 15%. In the fifth year, there was no response to P and in the sixth year, a negative response was observed. These results might be related to P accumulation in the top layer of soil, mainly for the highest rates of P, as shown by the results of soil testing within the years. Leaf analyses for N, P and K, related with maximum yield, were respectively, 15–18, 1.8–2.2 and 15–20 g kg−1, for samples taken from fruit bearing terminals. Fruit quality characteristics were affected by nutrient rates only after the second year of fertilizer application. Phosphorus and potassium were the most effective nutrients to increase fruit size. Negative effects of N and K were observed on the essential oil content of fruits, whereas P promoted a positive trend. The effect of P application on oil concentration was closely related to its effect on peel thickness.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Scientia Horticulturae
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1016/S0304-4238(02)00121-8
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1IfNyMuIR2qdFV6pFcSBet-we7Y4LNFxT/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi realizado em um Oxisol (Latossolo) arenoso, bem drenado e de baixa fertilidade, no Estado de São Paulo, Brasil (próximo a Botucatu). As características químicas iniciais do solo incluíam: pH (CaCl2) = 4.5, P-resina = 4 mg dm⁻³, e saturação de bases (V) de 32%. Foi realizada calagem para elevar V% para 70%.
+ferramentas e técnicas (seleção): Fatorial design incompleto (1/2 4³),Análise de variância,Modelagem matemática (funções de resposta NPK),Análise foliar (em terminais frutíferos),Análise de solo (P-resina, cátions trocáveis),Amostragem de frutos
+nutrientes (seleção): N,P,K,Zn,B,Mn
+estratégias de fornecimento de nutrientes (seleção): Aplicação parcelada (3 vezes, primavera-verão),Fertilizantes NPK (nitrochalk, supertriplo, KCl),Adubação foliar (Micronutrientes),Calagem (correção de acidez)
+grupos de culturas (seleção): Fruticultura,Citros
+culturas presentes (seleção): Limão Siciliano (Citrus limon L.),Porta-enxerto Volkameriana (Citrus volkameriana)
+FEEDBACK DO CURADOR (escrever): Estudo de longo prazo (8 anos) sobre a otimização da adubação NPK para limoeiros em um Oxisol arenoso no Brasil. Fornece faixas ótimas de nutrientes foliares para máxima produtividade (N: 15–18 g/kg, P: 1.8–2.2 g/kg, K: 15–20 g/kg) e demonstrou que o requerimento de potássio para o limão é muito mais alto do que o requerido para laranjas. Os resultados são valiosos para o manejo de citros em solos tropicais de baixa fertilidade.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

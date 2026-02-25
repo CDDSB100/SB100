@@ -1,0 +1,34 @@
+ID: 67af7b21-a51f-41e6-8e7e-6704d25c38c9
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Jefferson Rangel da Silva; Fausto Veiga de Alvarenga; Rodrigo Marcelli Boaretto; João Roberto Spotti Lopes; José Antônio Quaggio; Helvecio Della Coletta Filho; Dirceu Mattos Jr
+Titulo: Following the effects of micronutrient supply in HLB-infected trees: plant responses and ‘Candidatus Liberibacter asiaticus’ acquisition by the Asian citrus psyllid
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 32
+Palavras-chave: Huanglongbing; Greening; Citrus; Zinc; Manganese; Copper; Starch content; Bacteria acquisition
+Resumo: Despite efforts of research to establish best nutrient management practices in HLB-affected citrus orchards, there are still doubts about the contribution of such strategies to minimizing losses caused by the disease in the citrus industry. We evaluated the effects of micronutrient (Zn, Mn, and/or Cu) supply and ‘Candidatus Liberibacter asiaticus’ (CLas) infection on physiological and growth traits of sweet orange trees (Citrus sinensis (L.) Osbeck)) to understand if enhanced micronutrient supply would improve the growth of plants infected with CLas and reduce bacterial infection, as well as the acquisition of CLas by adults and nymphs of Diaphorina citri, correlated with nutritional status of trees. Plants were either grafted with buds obtained from micrografted plants (healthy, −) or buds infectedwith CLas (diseased plants, +). Infected plants were exposed to one of the five nutrient treatments, applied to leaf and root: (i) nilZnMnCu+: not fertilized with Cu, Mn, and Zn; (ii) Zn+: fertilized with zinc sulfate (ZnSO4.H2O); (iii) Mn+: fertilized with manganese sulfate (MnSO4.H2O); (iv) Cu+: fertilized with copper hydroxide [Cu(OH)2]; and (v) ZnMnCu+: fertilized with all three micronutrients. Likewise, healthy plants were exposed to one of the two treatments as above: (i) nilZnMnCu− or (v) ZnMnCu−. We found that CLas impairs plant biomass production regardless of nutrient treatments, especially root growth, and increases specific leaf dry weight as disease progresses because of starch accumulation. Moreover, individual supply with Zn, Mn, or Cu can mitigate such deleterious effects of HLB on starch metabolism. HLB also changes nutrient concentrations in both leaves and sap extract, regardless of nutrient treatments, although treatments do not reduce the CLas titer in plants as determined by RT-qPCR. On the contrary, micronutrients applied in combination (ZnMnCu+) can reduce the acquisition of CLas by adults and especially nymphs of D. citri, likely reducing the disease infection in citrus orchards.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Tropical Plant Pathology
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s40858-020-00370-9
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1UttmiyFiiG-pBy8ww8bVKpOkw_1zf-xn/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em Cordeirópolis, SP (Brasil), utilizando plantas cultivadas em vasos (12 L) com substrato à base de casca de pinus. O substrato apresentou as seguintes características iniciais: pH 6.6, C:N 65.3, N 5.3 g kg⁻¹, P 9.7 g kg⁻¹, K 4.4 mg kg⁻¹, Ca 7.0 g kg⁻¹, Mg 5.4 g kg⁻¹, S 0.8 g kg⁻¹, B 49.9 mg kg⁻¹, Fe 3.3 g kg⁻¹, Cu 7.2 mg kg⁻¹, Mn 90.0 mg kg⁻¹ e Zn 21.2 mg kg⁻¹.
+ferramentas e técnicas (seleção): qPCR
+nutrientes (seleção): Zinco (Zn)
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar
+grupos de culturas (seleção): Citrinos
+culturas presentes (seleção): Laranjeira doce (Citrus sinensis L. Osbeck) cv. Pera
+FEEDBACK DO CURADOR (escrever): Documento agronômico altamente relevante que investiga o uso de micronutrientes (Zn, Mn, Cu), individualmente e em combinação, para mitigar os efeitos do Huanglongbing (HLB) em laranjeiras, focando em respostas fisiológicas, acúmulo de amido e aquisição do patógeno 'Candidatus Liberibacter asiaticus' (CLas) pelo vetor (Diaphorina citri). Os resultados sugerem que a aplicação combinada de micronutrientes pode reduzir significativamente a aquisição de CLas pelos ninfas e adultos do psilídeo.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: f6c62e1d-0a2c-4be4-ad93-bb55c725210c
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): MARCELO ZANETTI; CAROLINA FERNANDES; JAIRO OSVALDO CAZETTA; JOSÉ EDUARDO CORÁ; DIRCEU MATTOS Jr.
+Titulo: CARACTERÍSTICAS FÍSICAS DE SUBSTRATOS PARA A PRODUÇÃO DE MUDAS CÍTRICAS SOB TELADO
+Subtítulo: 
+Ano: 2003
+Número de citações recebidas (Google Scholar): 26
+Palavras-chave: Citrus; propagação; muda envasada; irrigação
+Resumo: As características físicas dos substratos utilizados para a produção de mudas influenciam o desenvolvimento das plantas por afetar a disponibilidade de ar e água utilizados, e, conseqüentemente, intervêm no manejo da sua irrigação. Este trabalho caracterizou fisicamente os principais substratos comerciais usados para a produção inicial de porta-enxertos e formação final de mudas cítricas sob telado, pela determinação da distribuição do tamanho das partículas (granulometria) e da porosidade total do espaço de aeração, da água disponível e da água remanescente. Essa caracterização dos substratos permite a análise da disponibilidade de ar e água para as plantas, proporcionando maior critério na recomendação para o manejo d a irrigação no viveiro. Os substratos recomendados para a produção de porta-enxertos apresentaram granulometria mais fina do que aqueles recomendados para a formação final de mudas, o que influenciou diretamente a relação sólido: ar: água do meio.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Laranja
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1GQuP4BDuGloc5GWzYcc4nmqdbnKvtJPO/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O documento analisa as características físicas de substratos comerciais (meios de crescimento) utilizados para a produção inicial de porta-enxertos e formação final de mudas cítricas sob telado no Estado de São Paulo (SP). Os substratos analisados são compostos por materiais leves como casca de pínus compostada, turfa, vermiculita expandida, perlita, carvão moído e fibra de coco. As características físicas de maior importância incluem granulometria, porosidade total, espaço de aeração (EA), água disponível (AD) e água remanescente (AgR). A granulometria dos substratos para porta-enxertos é mais fina do que a dos substratos para mudas finais.
+ferramentas e técnicas (seleção): Granulometria; Porosidade; Curva de retenção de água; Irrigação; Manejo hídrico; Determinação do tamanho das partículas; Espaço de aeração; Água disponível; Água remanescente; Peneiras (4,0; 2,0; 1,0; 0,5; 0,25 e 0,125 mm); Análise de disponibilidade de ar e água; Saturação hídrica.
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): Capacidade de Troca Catiônica (CTC) (mencionada como propriedade desejável do substrato); Formulação de substratos; Irrigação uniforme (para evitar alterações bruscas na dotação hídrica); Ajuste da quantidade de água aplicada baseado nas propriedades físicas do substrato.
+grupos de culturas (seleção): Frutíferas; Viveiro; Plantas ornamentais.
+culturas presentes (seleção): Citrus; Porta-enxertos cítricos; Laranjeiras (Citrus sinenses).
+FEEDBACK DO CURADOR (escrever): Artigo técnico de alta relevância que detalha a caracterização física de substratos comerciais utilizados na produção de mudas cítricas sob telado, fornecendo informações cruciais para o manejo de irrigação e qualidade do produto final.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

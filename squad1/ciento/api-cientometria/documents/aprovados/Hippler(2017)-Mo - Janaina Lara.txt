@@ -1,0 +1,34 @@
+ID: 007e948f-ff32-42e5-8958-855948af78e4
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz W.R. Hippler; Rodrigo M. Boaretto; Verónica L. Dovis; Graziela O.F. Gomes; José A. Quaggio; Ana Quiñones; Dirceu Mattos Jr. 
+Titulo: Revisiting nutrient management for Citrus production: to what extent does molybdenum affect nitrogen assimilation of trees?
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 12
+Palavras-chave: 
+Resumo: Increasing the nitrogen (N) use efficiency of fruit trees to enhance fruit yield and decrease N rate and fertilization losses in the field is intensively discussed. Noteworthy, molybdenum (Mo) demand is likely to increase in high yielding citrus orchards. However, supply of this micronutrient through fertilization practices is not well-known. Thus, two experiments were carried out under greenhouse conditions to evaluate the nitrate reductase (NRase) activity and the Mo mobility in sweet orange plants (1-yr-old) after foliar application of Mo. For both experiments, the plants were supplied with two N levels via fertigation over 7-mo (totaling 2.8 and 17.5 g of N per plant), with Mo treatments applied in the final month. The first experiment consisted of leaf sprays to the whole plant canopy at 0 (control), 0.12, 0.60 and 1.20 g L−1 Mo. In the second experiment, the 0.60 g L−1 Mo spray was limited to one side of the canopy. The Mo supply enhanced the NRase activity either in leaves or roots and increased the nitrate uptake by roots. Consequently, the N content in the roots, twigs and leaves of plants increased. When the Mo was sprayed on one side of the canopy, the nutrient was translocated (30 − 40% from the absorbed) from the leaves to the roots, but at a lower percentage in plants grown with the highest N supply. Although the Mo concentration did not increase in leaves that did not directly receive the micronutrient spray, the NRase increased in both parts of the canopy, as well as in the roots, enhancing the N content in Citrus.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1016/j.scienta.2017.06.049
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1k6-zG6iuPvWV08hyxAJ0vitN3BbER08k/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Condições de casa de vegetação (estufa). O substrato orgânico utilizado consistiu em 80% casca de pinus, 15% vermiculita e 5% material carbonizado, com pH 5.6. A pesquisa foi realizada em Cordeirópolis, SP, Brasil (Centro de Citricultura Sylvio Moreira, IAC).
+ferramentas e técnicas (seleção): Pulverização foliar
+nutrientes (seleção): Molibdênio (Mo)
+estratégias de fornecimento de nutrientes (seleção): Pulverização foliar
+grupos de culturas (seleção): Citrus
+culturas presentes (seleção): Laranja doce (Citrus sinensis L. Osbeck cv. Valencia)
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica altamente relevante focado na gestão do Molibdênio (Mo) e sua relação com a assimilação de Nitrogênio (N) em laranjeiras. Os experimentos demonstram que a aplicação foliar de Mo aumenta a eficiência de assimilação de NO3- (via enzima nitrato redutase) e apresenta mobilidade moderada a alta na planta.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,35 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Sitlaothaworn, K., Busabun, T., Dechkla, M., Thaipratum, R. and Khunphaderm, M.
+Titulo: Isolation and optimization of efficient indole acetic acid-producing Staphylococcus edaphicus from Saccharum officinarum rhizosphere with their influence on multiple plant growth-promoting traits
+Subtítulo: Isolamento e otimização de Staphylococcus edaphicus eficiente produtor de ácido indolacético do rizosfere de Saccharum officinarum com influência em múltiplos traços de crescimento de plantas
+Ano: 2022
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: Bactérias endofíticas, Ácido indolacético, Concentração de triptofano, Condição de otimização, Staphylococcus sp.
+Resumo: Bactérias endofíticas são microorganismos que promovem o crescimento de plantas e sintetizam ácido indolacético (IAA), modulando a fixação de nitrogênio, produzindo hormônios fito, solubilizando alguns minerais do solo e estimulando a elongação de raízes e caules.
+Tipo de documento: Artigo científico
+Editora: International Journal of Agricultural Technology
+Instituição: Suan Sunandha Rajabhat University
+Local: Banguecoque, Tailândia
+Tipo de trabalho: Pesquisa
+Título do periódico: International Journal of Agricultural Technology
+Quartil do periódico: N/A
+Volume: 18
+Número/fascículo: 5
+Páginas: 2255-2270
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/1a0LgVI9yFfthYmQlVymZG5AaEjVovDTG/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Cultura de bactérias, Sequenciamento do gene 16S rRNA, Análise filogenética, Otimização de condições de produção de IAA
+nutrientes (seleção): Nitrogênio, Fósforo, Potássio, Boro
+estratégias de fornecimento de nutrientes (seleção): Fertilização de cobertura, Adubação foliar, Fertirrigação
+grupos de culturas (seleção): Cereais, Leguminosas, Hortaliças, Frutíferas
+culturas presentes (seleção): Saccharum officinarum (cana-de-açúcar), Citrus aurantifolia (limão)
+FEEDBACK DO CURADOR (escrever): Aprovado: Detalha uma nova técnica de isolamento e otimização de bactérias endofíticas produtoras de ácido indolacético.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 

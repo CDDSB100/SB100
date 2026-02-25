@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): K. HARI e T.R. SRINIVASAN
+Titulo: Response of Sugarcane Varieties to Application of Nitrogen Fixing Bacteria under Different Nitrogen Levels
+Subtítulo: Efeito da aplicação de bactérias fixadoras de nitrogênio em variedades de cana-de-açúcar sob diferentes níveis de nitrogênio
+Ano: 2005
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: cana-de-açúcar, biofertilizantes, Azotobacter, Azospirillum e Gluconacetobacter, bactérias fixadoras de nitrogênio
+Resumo: O estudo avaliou a resposta de variedades de cana-de-açúcar à aplicação de bactérias fixadoras de nitrogênio sob diferentes níveis de nitrogênio.
+Tipo de documento: Artigo científico
+Editora: N/A
+Instituição: Sugarcane Breeding Institute, ICAR, Coimbatore
+Local: Coimbatore, Índia
+Tipo de trabalho: Pesquisa
+Título do periódico: N/A
+Quartil do periódico: N/A
+Volume: N/A
+Número/fascículo: N/A
+Páginas: 28-31
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/11LH1sKHzyEPHxFruic-n-Vp0gijNoZs9/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): N/A
+nutrientes (seleção): N/A
+estratégias de fornecimento de nutrientes (seleção): N/A
+grupos de culturas (seleção): N/A
+culturas presentes (seleção): N/A
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia de Azospirillum no controle de fungos em cana-de-açúcar.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: N/A

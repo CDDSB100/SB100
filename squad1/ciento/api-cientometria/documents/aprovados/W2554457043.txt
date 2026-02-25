@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Mary‐Rus Martínez‐Cuenca, Amparo Primo-Capella, María Ángeles Forner-Giner
+Titulo: Influence of Rootstock on Citrus Tree Growth: Effects on Photosynthesis and Carbohydrate Distribution, Plant Size, Yield, Fruit Quality, and Dwarfing Genotypes
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 37
+Palavras-chave: Rootstock, Dwarfing, Biology, Cultivar, Photosynthesis
+Resumo: Citrus species are the most widely produced fruit crops in the world, and Spain is one of the leading citrus producers that supply the fresh market. Rootstocks greatly influence variety behaviour as it ensures tolerance to abiotic stress conditions, as well as the provision of minerals and water for the total plant, and consequently impact crop yield and fruit quality. So, rootstock choice is one of the most important decisions a grower makes when establishing commercial citrus orchards. In this chapter, we attempted to provide an overview of the response in terms of plant growth, fruit quality and yield parameters of several citrus cultivar trees grafted onto different commercial rootstocks, plus new hybrids and some dwarfing genotypes, to reduce costs in some cultural practices. In particular, we considered the rootstock influence on scion photosynthetic capacity linked to carbohydrate distribution for plant vegetative and reproductive development.
+Tipo de documento: book-chapter
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: InTech eBooks
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: None-None
+DOI: 10.5772/64825
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1EReeJBxbEVfa8FuyuhB5ZMVS6V2AMetQ/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Espanha (principalmente Valência) e Bacia do Mediterrâneo, frequentemente em áreas semiáridas. Solos calcários (contendo mais de 30% de CaCO3, pH entre 7.5 e 8.5), causando clorose induzida por cal/deficiência de Fe. Solos salinos (ECe ≥ 4 dS m⁻¹) e solos suscetíveis a inundações ou com drenagem deficiente.
+ferramentas e técnicas (seleção): Seleção de porta-enxertos
+nutrientes (seleção): Ferro (Fe)
+estratégias de fornecimento de nutrientes (seleção): Uso de porta-enxertos tolerantes a estresses
+grupos de culturas (seleção): Frutas
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): Artigo científico de revisão altamente relevante que analisa a influência de porta-enxertos de citros no crescimento da árvore, fotossíntese, distribuição de carboidratos, rendimento e qualidade dos frutos, com forte foco na tolerância a estresses abióticos como salinidade, deficiência de ferro e alagamento.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

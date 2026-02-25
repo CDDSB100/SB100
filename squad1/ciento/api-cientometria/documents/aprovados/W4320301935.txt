@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Mongi Zekri, Thomas A. Obreza, R. C. J. Koo, Fernando Alférez
+Titulo: Irrigation, Nutrition, and Citrus Fruit Quality
+Subtítulo: 
+Ano: 2018
+Número de citações recebidas (Google Scholar): 15
+Palavras-chave: Irrigation, Agriculture, Business, Quality (philosophy), Agricultural economics
+Resumo: This 3-page publication targets agricultural and horticultural producers, homeowners, Extension agents, industry or governmental staff, land managers, other professionals, youth and interested citizens. It is a minor revision written by Mongi Zekri, Thomas A. Obreza, Robert Koo, and Fernando M. Alferez, and published by the Soil and Water Science Department, April 2018. SL 207/SS426: Irrigation, Nutrition, and Citrus Fruit Quality (ufl.edu)
+Tipo de documento: article
+Editora: George A. Smathers Libraries
+Instituição: University of Florida
+Local: US
+Tipo de trabalho: 
+Título do periódico: EDIS
+Quartil do periódico: 
+Volume: 2018
+Número/fascículo: 
+Páginas: 3-3
+DOI: 10.32473/edis-ss426-2018
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1QTxfV1vmcXW7_-5T2rW4zfGtDtGArvc5/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foca na Flórida, que possui altos padrões de qualidade de frutas cítricas. Fatores como clima, solo e pragas afetam a qualidade. Menciona especificamente solos com baixo fósforo (P) disponível e períodos de alta pluviosidade.
+ferramentas e técnicas (seleção): Irrigação, Agendamento de irrigação (scheduling), Manejo da água, Fertirrigação
+nutrientes (seleção): Nitrogênio (N), Fósforo (P), Potássio (K), Magnésio (Mg), Boro, Cobre
+estratégias de fornecimento de nutrientes (seleção): Programa de nutrição balanceada, Fertirrigação (minimizar estresses ambientais), Fornecimento de nutrição suficiente
+grupos de culturas (seleção): Frutas Cítricas
+culturas presentes (seleção): Citros (geral), Laranja (Orange), Tangerina (Mandarin), Sugabelle (variedade de citros)
+FEEDBACK DO CURADOR (escrever): Documento de extensão agronômica altamente relevante e útil, detalhando os efeitos específicos de macro e micronutrientes, e irrigação na qualidade interna e externa das frutas cítricas, com foco em práticas de manejo na Flórida.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 9f1ad2ef-cc1b-48a4-b278-ce8f3dbacca4
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): José Antônio Quaggio; Thais Regina Souza; Fernando César Bachiega Zambrosi; Rodrigo Marcelli Boaretto; Dirceu Mattos Jr.
+Titulo: Nitrogen-fertilizer forms affect the nitrogen-use efficiency in fertigated citrus groves
+Subtítulo: 
+Ano: 2014
+Número de citações recebidas (Google Scholar): 54
+Palavras-chave: Citrus sinensis; fruit yield; soil solution; calcium; ammonium; nitrate
+Resumo: The fertigated area of the Brazilian citrus industry has grown rapidly during recent years, and an efficient management of nitrogen (N) application at these sites is required for sustainable citrus production. Therefore, a field trial with Valencia orange trees [Citrus sinensis (L.) Osbeck] on Swingle citrumelo rootstock (Citrus paradise Macfad. x Poncirus trifoliata L. Raf.) was conducted for 8 years to evaluate the effects of N rates (80, 160, 240 and 320 kg ha–1 y–1) applied by fertigation, either as ammonium nitrate (AN) or calcium nitrate (CN), on soil solution dynamics, fruit yield, nutritional status, and N-use efficiency (NUE) of trees. The maximum fruit yield was reached with 240 kg N ha–1 for AN, whereas a linear response and greater fruit yield was observed for N supplied as CN. The NUE was reduced for both N forms with increasing N rates. However, the NUE for CN was 14 to 38% greater than the NUE for AN. The lower fruit yield and NUE for AN compared to CN-treated trees was associated with the increased acidification of the soil solution with increased AN rates (pH ≤ 4.0). This limited nitrification resulted in a high ammonium (NH+4 ) concentration in the soil solution and a reduction in the net absorption of cations by the trees, particularly calcium (Ca). Due to the improved ion balance as well as the higher pH of the soil solution (pH ≥ 6.3) and diminished NH+ 4 availability, gains in both fruit yield and NUE in fertigated citrus groves in tropical soils can be obtained with the use of CN as a source of N. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Journal of Plant Nutrition and Soil Science
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: DOI: 10.1002/jpln.201300315
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1assSQqoGgF8apzlzRg9Wz6C4Fcg-otiZ/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Localizado na parte centro-sul do Estado de São Paulo, Brasil (Reginópolis). Solo classificado como Ultisol. Temperatura média anual de 20°C, precipitação de 1400-1500 mm. Características iniciais do solo (0-0.20 m): pHcacl₂ = 5.4; P-resin = 9 mg dm-3; Ca = 10 mmol dm-3, Mg = 10 mmol dm-3, K = 1.9 mmol dm-3; V de 59%. O solo foi calado para elevar V para 70%.
+ferramentas e técnicas (seleção): Fertirrigação; Irrigação por gotejamento; Tensiômetros; Extratores de solução do solo (cápsula cerâmica); Análise de seiva de plantas; Amostragem e análise foliar; Análise de solução do solo; ICP-AOS; Análise de pH; ANOVA/Regressão.
+nutrientes (seleção): N; K; P; Ca; Mg; Mn
+estratégias de fornecimento de nutrientes (seleção): Fertigação; Aplicação de N e K duas vezes por semana (70 aplicações); Aplicação foliar de micronutrientes; Aplicação única de P no inverno; Comparação entre Nitrato de Amônio (AN) e Nitrato de Cálcio (CN).
+grupos de culturas (seleção): Frutíferas; Citros
+culturas presentes (seleção): Laranja 'Valencia' (Citrus sinensis); Porta-enxerto 'Swingle citrumelo' (Citrus paradisi x Poncirus trifoliata)
+FEEDBACK DO CURADOR (escrever): Estudo de campo de longo prazo, útil e bem detalhado, que compara a eficiência e o impacto do Nitrato de Amônio (AN) e do Nitrato de Cálcio (CN) como fontes de N na produtividade, eficiência de uso de N (NUE) e nutrição de pomares de citros fertirrigados em solos tropicais. O documento é altamente relevante para a pesquisa agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: e692d2a3-8670-4a0d-b1df-86239645d177
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; Fernando A. Azevedo; Valéria X. P. Garcia
+Titulo: Colaboração entre os atores da cadeia de produção e consumo para o desenvolvimento sustentável da citricultura
+Subtítulo: 
+Ano: 2024
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Pesquisa em Foco
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1UlZDVCOECQTEE0alLR_wD4C24joSHpc5/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Qualidade do solo, produtividade dos pomares, estresses bióticos e abióticos, estudos focados no cinturão citrícola brasileiro, especialmente nos estados de São Paulo e Minas Gerais.
+ferramentas e técnicas (seleção): Manejo do mato
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): Adubações mais eficientes
+grupos de culturas (seleção): Frutas
+culturas presentes (seleção): Citros
+FEEDBACK DO CURADOR (escrever): Documento focado na sustentabilidade da citricultura brasileira e mundial, abordando temas cruciais como a qualidade do solo, manejo fitossanitário e estratégias de certificação (FSA), sendo de alta relevância agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

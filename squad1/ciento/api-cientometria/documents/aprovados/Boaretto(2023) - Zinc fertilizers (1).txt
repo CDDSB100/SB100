@@ -1,0 +1,34 @@
+ID: 32ab83fc-23e8-416a-a86f-94a4bac1edac
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Rodrigo Marcelli Boaretto; Franz Walter Rieger Hippler; Luiz Antônio Junqueira Teixeira; Raíssa Cagnolato Fornari; José Antônio Quaggio; Dirceu Mattos Jr
+Titulo: Zinc fertilizers for Citrus production: assessing nutriente supply via fertigation or foliar application
+Subtítulo: 
+Ano: 2023
+Número de citações recebidas (Google Scholar): 11
+Palavras-chave: Sweet Orange; Fruit yield; Fertilizer Source; Micronutrient; Antioxidant system; Oxidative stress
+Resumo: Background and aims Zinc (Zn) deficiency is widespread in citrus orchard around the world, which impairs plant growth and fruit yield. Zn fertilization is usually recommended in field orchards, and application strategies toward nutrient use efficiency are key for successful crop management. Methods Field studies were carried out with sweet orange trees for four growing seasons, testing Zn (nitrate, sulfate or EDTA) applied either via fertigation or foliar spray compared to a control without Zn. Results The Zn concentrations in the soil increased with nutrient supply by both application methods. Zn-EDTA via fertigation increased soil nutrient availability compared to the control. Likewise, Zn-nitrate via foliar application also increased soil Zn levels. Regarding the plant, Zn-EDTA via fertigation increased leaf nutrient levels only after the third year of fertilization, whereas Zn-nitrate via foliar spray increased leaf levels in the short term, up to 120 mg kg−1. To a lesser extent, Zn-EDTA or sulfate also increased leaf Zn compared to the control. Accumulated fruit yield was ~20% higher in trees with Zn-EDTA via fertigation and~20% higher in trees with Zn-nitrate or sulfate via foliar application compared to the control, with these latter exerting greater responses. Trees supplied with Zn exhibited lower H2O2 and higher CAT activity compared to the control, which correlated with a fruit yield increase. Conclusion In conclusion, Zn-EDTA via fertigation or nitrate or sulfate via foliar application improved the horticultural performance of trees, supporting the establishment of best nutrient management practices in fruit production. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Plant Soil
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s11104-023-05969-w
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1dUIA31pAJNdVanYIu3x6xPUEb6YsqRL7/view?usp=drive_link
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Colômbia - SP, Brasil. Solo franco-arenoso (760 g/kg areia, 200 g/kg argila), pH 5.1 (CaCl₂), capacidade de troca catiônica (CEC) 68.5 mmol dm⁻³. Matéria orgânica 23.5 g dm⁻³. Clima classificado como Aw (verão quente e úmido, inverno seco), temperatura média anual de 23 °C.
+ferramentas e técnicas (seleção): Fertigação
+nutrientes (seleção): Zinco (Zn)
+estratégias de fornecimento de nutrientes (seleção): Fertigação
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja Pêra (Citrus sinensis cv. Pera)
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa altamente relevante, focando na eficiência de diferentes fontes e métodos de aplicação de Zinco (Zn) (EDTA, nitrato, sulfato) em citros, correlacionando status nutricional, rendimento de frutos e o sistema antioxidante enzimático (SOD/CAT).
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

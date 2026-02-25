@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): M.P. Stephan, M. Oliveira, K.R.S. Teixeira, G. Martinez-Drets e J. D/Sbereiner
+Titulo: Physiology and dinitrogen fixation of A cetobacter diazotrophicus
+Subtítulo: Estudo sobre a fixação de nitrogênio e características fisiológicas de Acetobacter diazotrophicus
+Ano: 1991
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: N2-dependent growth, N2-fixation, in sugar cane, Acetobacter diazotrophicus
+Resumo: O artigo descreve as características fisiológicas e a fixação de nitrogênio de Acetobacter diazotrophicus, um bactério isolado de raízes de cana-de-açúcar.
+Tipo de documento: Artigo científico
+Editora: FEMS Microbiology Letters
+Instituição: CNPBS/EMBRAPA
+Local: Seropédica, Rio de Janeiro, Brasil
+Tipo de trabalho: Estudo de caso
+Título do periódico: FEMS Microbiology Letters
+Quartil do periódico: 
+Volume: 77
+Número/fascículo: 1
+Páginas: 67-72
+DOI: 
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Physiology and dinitrogen fixation of A cetobacter diazotrophicus_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): PCR, Sequenciamento, Microscopia, Ensaios em vasos
+nutrientes (seleção): Acetobacter diazotrophicus
+estratégias de fornecimento de nutrientes (seleção): Inoculação de sementes
+grupos de culturas (seleção): Cana-de-açúcar
+culturas presentes (seleção): Acetobacter diazotrophicus
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia de Acetobacter diazotrophicus na fixação de nitrogênio em cana-de-açúcar.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: BIOINSUMOS

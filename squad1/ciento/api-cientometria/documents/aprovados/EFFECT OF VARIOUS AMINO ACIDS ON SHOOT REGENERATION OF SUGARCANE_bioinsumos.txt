@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Shaheen Asad, Muhammad Arshad, Shahid Mansoor e Yusuf Zafar
+Titulo: Efeito de várias aminoácidos na regeneração de brotos de cana-de-açúcar (Saccharum officinarum L.)
+Subtítulo: Desenvolvimento de um protocolo de regeneração eficiente através da inclusão de aminoácidos no meio de regeneração
+Ano: 2009
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: Saccharum officinarum L, aminoácidos, calos embriogênicos, regeneração de plantas, 2, 4 diclorofenoxiacético
+Resumo: Este estudo visa desenvolver um protocolo de regeneração eficiente para a cana-de-açúcar (Saccharum officinarum L.) através da inclusão de aminoácidos no meio de regeneração. Foram testados cinco níveis de cinco diferentes aminoácidos (glutamina, asparagina, glicina, cisteína e arginina) em um meio de regeneração contendo 6,8 µM 2, 4-D. Os resultados mostraram que a glicina (0,75 mM), a arginina (0,5 mM) e a cisteína (0,25 mM) tiveram um efeito significativo na indução de embriogênese somática e regeneração de brotos.
+Tipo de documento: Artigo científico
+Editora: African Journal of Biotechnology
+Instituição: National Institute for Biotechnology and Genetic Engineering (NIBGE)
+Local: Faisalabad, Paquistão
+Tipo de trabalho: Pesquisa
+Título do periódico: African Journal of Biotechnology
+Quartil do periódico: N/A
+Volume: 8
+Número/fascículo: 7
+Páginas: 1214-1218
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/13jtGLp8KAoaGrRN51LNtDPznt-d_kTSG/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): N/A
+nutrientes (seleção): N/A
+estratégias de fornecimento de nutrientes (seleção): N/A
+grupos de culturas (seleção): N/A
+culturas presentes (seleção): N/A
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia de aminoácidos na regeneração de brotos de cana-de-açúcar.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: BIOLOGIA

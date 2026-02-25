@@ -1,0 +1,34 @@
+ID: 4543b548-0503-4915-9c70-7694097f8275
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): JOSÉ ORLANDO DE FIGUEIREDO; JOSÉ DAGOBERTO DE NEGRI; DIRCEU DE MATTOS JUNIOR; ROSE MARY PIO; FRANCISCO FERRAZ LARANJEIRA; VALÉRIA XAVIER PAULA GARCIA
+Titulo: COMPORTAMENTO DE CATORZE PORTA-ENXERTOS PARA O LIMÃO EUREKA KM 47 NA REGIÃO DE ARARAQUARA-SP
+Subtítulo: 
+Ano: 2005
+Número de citações recebidas (Google Scholar): 6
+Palavras-chave: melhoramento; seleção; Citrus limon
+Resumo: Foi avaliado o comportamento de 14 porta-enxertos para o limão ‘Eureka km 47’ [Citrus limon (L.) Burm. f.], clone nucelar, em experimento instalado em 1991, na Fazenda Fittipaldi, Araraquara-SP. Os porta-enxertos foram: tangelos ‘Orlando’ e ‘Seminole’ (C. reticulata Blanco x C. paradisi Macfad.), tangerinas ‘Cleópatra’ (C. reshni hort. ex Tanaka) e ‘Sunki’ [C. sunki (Hayata) hort. ex Tanaka], limões ‘Cravo’ (C. limonia Osbeck), ‘Rugoso da África’ (C. jambhiri Lush.) e ‘Volkameriano Catania 2’ (C. volkameriana V. Ten. & Pasq.), laranja ‘Caipira DAC’ [C. sinensis (L.) Osbeck], laranja ‘Azeda Doble Cálice’ (C. aurantium L.), trifoliatas ‘EEL’e ‘Kryder 8-5’ [Poncirus trifoliata (L.) Raf.], citrange ‘Morton’ [P. trifoliata (L.) Raf. x C. sinensis (L.) Osbeck], C. karna Raf. e C. pennivesiculata (Lush.) Tanaka. As produções foram avaliadas no período de 1998 a 2002. As maiores produções médias em peso de frutos estiveram relacionadas aos porta-enxertos C. pennivesiculata e tangerina ‘Cleópatra’ (>220 kg/planta). Entre os porta-enxertos que induziram as mais baixas produções, estão C. karna, os dois tangelos, os dois trifoliatas e a ‘Caipira DAC’ (<180 kg/planta). As características de qualidade apresentadas pelos frutos e referentes ao ano de 2002 indicaram não haver diferenças expressivas devido à influência dos tratamentos. São também apresentados dados relativos à suscetibilidade das plantas à gomose de Phytophthora, no período estudado.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Revista Brasileira de Fruticultura
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0100-29452005000100020
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1a1MfarWXtU-WOGqfZKG5U3cFpphjxJLK/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Experimento instalado em Araraquara (SP), Brasil. O solo é classificado como latossolo vermelho-escuro, textura média. O clima é tipo Cwa (classificação de Köppen).
+ferramentas e técnicas (seleção): Avaliação de porta-enxertos (rootstocks), Enxertia (grafting), Avaliação anual de produção (kg/planta), Determinação de características de qualidade dos frutos (massa, teores de suco, sólidos solúveis, óleo essencial), Avaliação de incidência de gomose (*Phytophthora*), Análise de incompatibilidade de enxertia, Delineamento experimental de blocos ao acaso.
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): Não houve irrigação. Tratos culturais uniformes aplicados, seguindo as práticas da fazenda.
+grupos de culturas (seleção): Fruticultura, Citros (Citricultura), Limoeiros, Tangerineiras, Laranjeiras.
+culturas presentes (seleção): Limão 'Eureka km 47' (Copa); Porta-enxertos: Citrus pennivesiculata, Tangerina 'Cleópatra', Limão 'Volkameriano Catania 2', Laranja azeda 'Double Cálice', Tangerina 'Sunki', Limão 'Cravo', Limão 'Rugoso da África', Citrange 'Morton', Citrus karna, Tangelo 'Seminole', Trifoliata 'Kryder 8-5', Trifoliata 'EEL', Tangelo 'Orlando', Laranja 'Caipira DAC'.
+FEEDBACK DO CURADOR (escrever): Estudo robusto e de longa duração (11 anos) essencial para a seleção de porta-enxertos de limão 'Eureka km 47'. O documento fornece dados críticos sobre produção e, mais importante, sobre a resistência à gomose (*Phytophthora*) sob condições edafoclimáticas brasileiras.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

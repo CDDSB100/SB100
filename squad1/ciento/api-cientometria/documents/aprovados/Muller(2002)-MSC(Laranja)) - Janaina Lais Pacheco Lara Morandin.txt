@@ -1,0 +1,34 @@
+ID: 569e8355-50c5-475c-8165-26bd4460a6df
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): G. W. Müller;  J. D. De Negri; C. I. A. Vildoso; D. Mattos Jr.; J. Pompeu Jr.; J. Teófilo Sobrinho; M. A. Machado; S. A. Carvalho; L. F. Girotto
+Titulo: Citrus Sudden Death: A New Citrus Disease in Brazil
+Subtítulo: 
+Ano: 2002
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: A new disease affecting sweet oranges on Rangpur lime rootstock, named Citrus Sudden Death, was first detected in the southwestern part of Minas Gerais and northern part of São Paulo states in 1999. Initially, affected trees present pale green leaves, followed by pronounced leaf drop, twig dieback, and occasional sucker growth of both scion and rootstock. Finally, trees quickly lose all their leaves and die about 6-mo after early symptoms appear. Young fruits remain attached to the twigs of dead trees. Cambial yellowing in the rootstock can be observed but there is no graft incompatibility, and symptoms are more pronounced during the spring. Symptoms have only been found on trees 6-yr or older. The roots have fewer feeder roots, and rootrot occurs. The cause of this disease is unknown. Neither fungi nor nematodes appear to be causal agents. Citrus tristeza virus does not seem to be the cause either, and associations with nutriente disorders are not completely understood. The spatial evolution suggests the existence of foci and airborne transmission. Graft transmission trials have been initiated.
+Tipo de documento: Trabalho apresentado em evento
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/11Rk5p7n_vnoH_j4TqMzu6GvVminR1t_e/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): A doença Morte Súbita dos Citros (MSC) foi detectada no sudoeste de Minas Gerais e no norte de São Paulo (incluindo municípios como Comendador Gomes, Frutal, Uberlândia, Altair, Barretos, Colômbia e Guaraci). Os pomares afetados estão localizados em áreas quentes. Fatores como estresse hídrico, alta temperatura e estresse nutricional são considerados possíveis fatores ambientais que aceleram e/ou induzem os sintomas da MSC. Análises de solo encontraram nematóides (Xiphinema, Tylenchulus e Pratylenchus), mas em níveis populacionais baixos, não sendo relacionados com a causa da doença.
+ferramentas e técnicas (seleção): Poda (severa e leve), Uso de porta-enxertos alternativos, Subenxertia (Inarching), Interplantio/Renovação de pomares, Testes biológicos, Testes moleculares, Microscopia eletrônica, Análise química de tecidos, Teste de iodo, Teste de absorção de água pelo tronco
+nutrientes (seleção): Nitrogênio, Zinco
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Citros
+culturas presentes (seleção): Laranjeiras (Valência, Natal, Pêra, Hamlin, Westin, Baianinha), Limão Cravo, Limão Volkameriano, Laranja Azeda, Tangerina Cleópatra, Citrumelo Swingle, Trifoliata, Lima da Pérsia
+FEEDBACK DO CURADOR (escrever): Artigo técnico de fitopatologia de alta relevância, descrevendo uma nova e grave doença da citricultura brasileira (Morte Súbita dos Citros - MSC). O documento detalha sintomas (amarelecimento do câmbio no porta-enxerto, perda de radicelas), a etiologia (suspeita de vírus transmitido por vetor alado, possivelmente um mutante do CTV) e estratégias de controle e convivência (uso de porta-enxertos tolerantes, subenxertia, erradicação). Informações cruciais para o manejo da cultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

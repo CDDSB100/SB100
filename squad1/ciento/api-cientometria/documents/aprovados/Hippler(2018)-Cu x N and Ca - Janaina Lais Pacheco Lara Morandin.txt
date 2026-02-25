@@ -1,0 +1,34 @@
+ID: 98d291b1-d23f-45ff-b152-f6745567755c
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz W.R. Hippler; Rodrigo M. Boaretto; Veronica Lorena Dovis; Jose A. Quaggio; Ricardo A. Azevedo; Dirceu Mattos Jr. 
+Titulo: Oxidative stress induced by Cu nutritional disorders in Citrus depends on nitrogen and calcium availability
+Subtítulo: 
+Ano: 2018
+Número de citações recebidas (Google Scholar): 52
+Palavras-chave: 
+Resumo: Nutritional stress caused by copper (Cu) deficiency or toxicity affects fruit production of citrus orchards worldwide, but this could be minimised by fine-tuned fertilisation in the orchards. Two experiments were performed aiming to evaluate the photosynthetic capacity and the antioxidant enzyme activities of Swingle citrumelo seedlings, grown in nutrient solution (NS) with two levels of nitrogen (N) in the first experiment (adequate-N and high-N) and two levels of calcium (Ca) in the second (low-Ca and adequate-Ca). Plants were then exposed to various Cu levels (low, medium and high) for 15 days. Plants under Cu-toxicity exhibited specific effects on reactive oxygen species formation and root-to-shoot plant signalling. Copper absorption was greater with increased Cu concentration in the NS, which reduced plant biomass accumulation, gas exchange measurements, the activity of nitrate reductase and affected Cu partitioning between roots and shoots. Despite these effects, oxidative stress induced by excess-Cu was reduced at the highest N dose when compared to control and, on the contrary, increased with low-Ca supply. Therefore, a rational supply of N or Ca minimises Cu-induced stress damages to roots and leaves of plants, by directly enhancing the antioxidant system and protecting the associated antioxidative enzyme activities, whilst maintaining photosynthesis.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Scientific Reports
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1038/s41598-018-19735-x
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/10ajxmVOP5JKkc3qMJ50cKKxac8rYPFgg/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): A pesquisa foi realizada em condições controladas, utilizando mudas de citros cultivadas em solução nutritiva (NS) em casa de vegetação, no Brasil (SP). A motivação do estudo é o manejo de Cu, N e Ca em pomares de citros, especialmente em solos tropicais onde a disponibilidade de N e Ca é inerentemente baixa.
+ferramentas e técnicas (seleção): Análise de Nutrientes
+nutrientes (seleção): Cobre (Cu)
+estratégias de fornecimento de nutrientes (seleção): Níveis de Nutrientes Controlados/Otimizados
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Citros (Swingle citrumelo)
+FEEDBACK DO CURADOR (escrever): O estudo avalia como o manejo nutricional de N e Ca pode mitigar o estresse oxidativo causado pela toxicidade de Cu em porta-enxertos de citros (Swingle citrumelo). Conclui que o fornecimento racional de N e Ca é crítico para minimizar danos por Cu, com alto N aumentando a eficiência do sistema antioxidante e o baixo Ca agravando a toxicidade. O documento é altamente relevante para otimizar as práticas de fertilização em citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

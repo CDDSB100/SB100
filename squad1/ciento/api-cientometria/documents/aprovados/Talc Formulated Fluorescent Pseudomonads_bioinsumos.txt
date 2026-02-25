@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): N. SenthiP, T. Raguchander, R. Viswanathan e R. Samiyappan
+Titulo: Sugarcane Talc Formulated. Fluorescent Pseudomonads for Sugarcane Red Rot Suppression and Enhanced Yield Under Field Conditions
+Subtítulo: Uso de Pseudomonas fluorescens para controle de doenças em cana-de-açúcar
+Ano: 2003
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: Cana-de-açúcar, resistência sistêmica induzida, promoção de crescimento, Pseudomonas fluorescens, doença da rota vermelha
+Resumo: O estudo avaliou a eficácia de Pseudomonas fluorescens em controlar a doença da rota vermelha em cana-de-açúcar. As bactérias foram isoladas da rizosfera da cana-de-açúcar e formuladas em talco. A aplicação das bactérias reduziu a incidência da doença e melhorou a produção de cana-de-açúcar.
+Tipo de documento: Artigo científico
+Editora: Tamil Nadu Agricultural University
+Instituição: Departamento de Patologia Vegetal, Universidade Agrícola de Tamil Nadu
+Local: Coimbatore, Índia
+Tipo de trabalho: Pesquisa
+Título do periódico: Vol. 5 (l&2)
+Quartil do periódico: N/A
+Volume: 5
+Número/fascículo: l&2
+Páginas: 37-43
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/1sFEERT-zmnHYaeIwHasP91l2pFB-Kh6K/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): N/A
+nutrientes (seleção): N/A
+estratégias de fornecimento de nutrientes (seleção): N/A
+grupos de culturas (seleção): N/A
+culturas presentes (seleção): N/A
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia de Pseudomonas fluorescens em controlar a doença da rota vermelha em cana-de-açúcar.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: Agricultura

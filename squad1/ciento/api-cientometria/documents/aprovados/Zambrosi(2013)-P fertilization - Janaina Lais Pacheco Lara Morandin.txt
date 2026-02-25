@@ -1,0 +1,34 @@
+ID: 1d783765-2e9d-40fa-80ee-f897ca0dcbad
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Fernando César Bachiega Zambrosi; Dirceu Mattos Jr.; José Antônio Quaggio; HEITOR CANTARELLA; Rodrigo Marcelli Boaretto
+Titulo: Phosphorus Uptake by Young Citrus Trees in Low-P Soil Depends on Rootstock Varieties and Nutrient Management
+Subtítulo: 
+Ano: 2013
+Número de citações recebidas (Google Scholar): 17
+Palavras-chave: Fertilizer distribution; nutrient availability; phosphorus nutrition; root growth
+Resumo: Because low-phosphorus (P) availability limits citrus growth, rootstocks with a relatively high capacity for P uptake are desirable. An experiment was conducted with trees on Cleopatra mandarin (CM) and Rangpur lime (RL). Treatments consisted of P rates (20, 40, and 80 mg kg−1 of soil) applied in soil layers of 0–0.30 m and/or 0.31–0.60 m, besides an unfertilized control. The P fertilization increased root and shoot growth, and P nutrition was improved as indicated by greater leaf P concentration, P uptake, and P root uptake efficiency (PUE). The P applied in both soil layers improved shoot growth, P uptake, and PUE. Trees on RL took up 23–126% more P and had root systems with greater growth and PUE compared to those on CM. Thus, P uptake by citrus trees in low-P soils can be improved by augmenting the depth of fertilizer application and the use of more adapted rootstocks.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Communications in Soil Science and Plant Analysis 
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1080/00103624.2013.799680
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1O9ME4MiQY87TjUxapLxm89AtScWUMNWt/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O solo utilizado foi um Oxisol (Latossolo) coletado da camada superficial (0–0.25 m) de uma área de pastagem. O solo apresenta alta concentração de argila (617 g kg⁻¹) e baixa disponibilidade de Fósforo (P resina de 3,0 mg dm⁻³). As análises químicas iniciais indicaram pH 4,3 (em CaCl₂). Dolomita foi aplicada para elevar a saturação de bases para 70%. O experimento foi conduzido em Campinas/Cordeirópolis, Brasil, em condições de casa de vegetação.
+ferramentas e técnicas (seleção): Análise de solo (P resina)
+nutrientes (seleção): Fósforo (P)
+estratégias de fornecimento de nutrientes (seleção): Aplicação em profundidade (0-0.30 m e/ou 0.31-0.60 m)
+grupos de culturas (seleção): Fruteiras
+culturas presentes (seleção): Laranja Pêra (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): O artigo é altamente relevante para a agronomia, focado na nutrição de Fósforo (P) em citros em solos tropicais de baixa fertilidade. O estudo demonstra a importância de selecionar porta-enxertos adaptados (Limoeiro Rangpur se mostrou mais eficiente que Tangerina Cleopatra) e de utilizar estratégias de manejo de nutrientes, como a distribuição homogênea do fertilizante em camadas mais profundas do solo, para otimizar a absorção de P e o crescimento das árvores jovens.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 9bd611ae-7e03-4b34-b3e4-41a7a111bdce
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Guilherme A. Ferreira; Franz W.R. Hippler; Luis A. dos S. Prado; Janaína A. H. Rima; Rodrigo M. Boaretto; José A. Quaggio; Arnoldo R. Façanha; Dirceu Mattos Jr
+Titulo: Boron modulates the plasma membrane H+ -ATPase activity affecting nutrient uptake of Citrus trees
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 27
+Palavras-chave: enzyme activity; proton extrusion; membrane hyperpolarization; root medium; nutrient absorption; rootstocks
+Resumo: Boron (B) affects plasma membrane (PM) integrity and consequently modulates the P-type PM H+-ATPase activity creating a driving force for nutrient influx at the root level. Because citrus rootstocks respond differently to B supply, we hypothesised that PM H+-ATPase activity of varieties contrasting in horticultural traits would affect nutrient uptake by trees. Sweet orange (Citrus sinensis) trees grafted onto Rangpur lime (RL; Citrus limonia) or Swingle citrumelo (SW; Citrus paradisi × Poncirus trifoliata) were grown in nutrition solution with four B concentrations (0 [control concentration], 46, 230 and 460 μM B, as H3BO3) up to 7 days of treatment imposition after plant adaptation into the hydroponic condition. SW exhibited higher B absorption, leaf B and enzyme activity than RL. The highest enzyme activity was achieved with 230 μM of B 1 day after treatment imposition (ATI), whereas B excess impaired the PM H+-ATPase in all periods evaluated. Absorption of mineral nutrients correlated with PM H+-ATPase activity, with greater nutrient uptake per root unit in SW compared to RL. Leaf and root nutrient concentrations were equivalent to amounts absorbed and enzyme activity, with greater increments exhibited by trees grafted onto SW compared to RL. Effects of B supply on PM H+-ATPase activity explain distinct nutrient uptake patterns by trees, what supports fine-tuning fertilisation guidelines of citrus taking into account rootstock varieties.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Annals of Apllied Biology
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1111/aab.12630
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/16SQNKWyrf8uTqp_8c9-t-l2j4-ZBjI6o/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em condições de hidroponia (solução nutritiva) no Brasil. Os experimentos envolveram instituições de pesquisa localizadas em Cordeirópolis e Campinas (SP), e Campos dos Goytacazes (RJ). O solo não foi o meio de crescimento, mas sim uma solução nutritiva controlada.
+ferramentas e técnicas (seleção): Hidroponia/Solução Nutritiva, Análise Enzimática (PM H+-ATPase), Espectrometria de Emissão Atômica com Plasma Indutivamente Acoplado (ICP-OES), Cromatografia (Azomethine-H para Boro), Análise de Biomassa/Área Foliar, Determinação de Proteínas (Bradford), Microscopia/Análise Ultraestrutural.
+nutrientes (seleção): Boro (B), Nitrogênio (N), Potássio (K), Fósforo (P), Cálcio (Ca), Magnésio (Mg), Enxofre (S), Ferro (Fe), Manganês (Mn), Zinco (Zn), Cobre (Cu).
+estratégias de fornecimento de nutrientes (seleção): Otimização de Dose de Nutriente (Boro), Fertilização Específica por Genótipo (Porta-Enxerto), Nutrição em Hidroponia, Manejo da Eficiência de Uso de Nutrientes (EUN).
+grupos de culturas (seleção): Frutíferas/Pomáceas, Citros (Citrícola), Plantas lenhosas/Arbóreas.
+culturas presentes (seleção): Laranja Doce (Citrus sinensis cv. Valencia), Limão Cravo (Rangpur lime; Citrus limonia), Citrumelo Swingle (Citrus paradisi x Poncirus trifoliata).
+FEEDBACK DO CURADOR (escrever): Documento científico de alta relevância agronômica. O estudo detalha a modulação da absorção de macronutrientes e micronutrientes (incluindo B, N, K, P, Ca, Mg, Fe, Mn, Zn, Cu) em função da atividade da H+-ATPase da membrana plasmática, um mecanismo fisiológico chave. É fundamental para desenvolver diretrizes de fertilização ajustadas ao porta-enxerto em citricultura, visando maior eficiência nutricional.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Alaa Gomaa
+Titulo: Productivity and Fruit Quality of Lime (Citrus aurantifolia L.) as Affected by GA3 and NAA Foliar Spray
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 3
+Palavras-chave: Lime, Productivity, Horticulture, Quality (philosophy), Agronomy
+Resumo: A field trial was achieved during 2018 and 2019 seasons on 9-years old Balady lime trees, to study the effect of spraying gibberellic acid (GA3) and naphthalene acetic acid (NAA) at 10, 20 and 30 ppm three times each year on yield and fruit physical and chemical properties of the fruit, grown in sandy reclamation soil located at Cairo-Alexandria desert road (60 Km from Cairo city), Egypt.A gradual yield increment was observed, physical and chemical properties of Balady lime fruits were improved the two growth regulators concentration from 0.0 to 30 ppm.Meaningless stimulation was detected among the two higher concentrations of GA 3 and NAA namely 20 and 30 ppm.The best results with regard to yield, fruit physical and chemical properties of Balady lime obtained when the trees were sprayed with GA 3 combined with NAA each at 20 ppm.
+Tipo de documento: article
+Editora: 
+Instituição: Suez Canal University
+Local: EG
+Tipo de trabalho: 
+Título do periódico: Hortscience Journal of Suez Canal University
+Quartil do periódico: 
+Volume: 9
+Número/fascículo: 1
+Páginas: 63-71
+DOI: 10.21608/hjsc.2020.156297
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Ma1vvAYOHhsv01ggvgyGerz5R3J-KTNM/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em um pomar privado localizado na estrada deserta Cairo-Alexandria (aproximadamente 50-60 Km do Cairo), Egito. O solo é classificado como arenoso (sandy soil) de nova recuperação (new reclamation land), com textura Sandy, baixo teor de matéria orgânica (0.46%) e caráter calcário (calcareous soil, 6.6% de cal ativa - CaCO3). O pH do solo é de 8.71. O sistema de irrigação adotado foi o de gotejamento.
+ferramentas e técnicas (seleção): Drip Irrigation
+nutrientes (seleção): Gibberellic Acid (GA3)
+estratégias de fornecimento de nutrientes (seleção): Foliar Spray
+grupos de culturas (seleção): Citrus
+culturas presentes (seleção): Lime (Citrus aurantifolia L.)
+FEEDBACK DO CURADOR (escrever): Documento útil e bem estruturado. O estudo comparou a eficácia do ácido giberélico (GA3) e do ácido naftaleno acético (NAA), isolados e combinados, na melhoria da produtividade e da qualidade do limão (Balady lime) em condições de solo arenoso/calcário no Egito. A melhor combinação para maximizar os resultados foi GA3 e NAA a 20 ppm.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

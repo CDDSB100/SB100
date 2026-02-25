@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): María Gyomar González-González, Juan Gómez‐Sanchís, J. Blasco, Emilio Soria‐Olivas, Patricia Chueca
+Titulo: CitrusYield: A Dashboard for Mapping Yield and Fruit Quality of Citrus in Precision Agriculture
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 26
+Palavras-chave: Precision agriculture, Agricultural engineering, Agriculture, Dashboard, Quality (philosophy)
+Resumo: The application of new technologies in precision agriculture offers the possibility to link information to very specific crop locations. The spatial representation of these agricultural data through yield and fruit quality maps allows for crop management in a precise way that means that agricultural operations may be carried out considering intraorchard variability, thus resulting in greater efficiency. The aim of this work was to advance the development of new tools for the generation of yield and quality maps for precision agriculture. A new tool was implemented for citrus through a dashboard called CitrusYield that integrates the requirements demanded by technicians and farmers in terms of spatial distribution and the quality of their citrus production. The data for testing were collected by a prototype of a citrus harvest-assist platform. In order to obtain maps showing heterogeneity of production, an experimental plot with different varieties and variable production was chosen. The maps, tables and graphs showing different crop data were generated automatically by CitrusYield from the analysis of the data collected. The main advantage of knowing the differences in production between the swaths and areas inside the crop is to provide the grower with precise information to make accurate decisions for localised crop management, such as fertilisation, irrigation, pest and disease control, etc.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Instituto Valenciano de Investigaciones Agrarias
+Local: ES
+Tipo de trabalho: 
+Título do periódico: Agronomy
+Quartil do periódico: 
+Volume: 10
+Número/fascículo: 1
+Páginas: 128-128
+DOI: 10.3390/agronomy10010128
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1xrqNth4e8qXrdZFvxFSEmiuhK46r7a9w/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi conduzido em Moncada, Valência, Espanha (coordenadas WGS84: W: 39.585186, N: −0.397901), em um talhão experimental de citros selecionado por sua produção espacialmente variada. O objetivo é fornecer informações precisas para a tomada de decisões localizadas, incluindo fertilização, irrigação e manejo de pragas, levando em consideração a variabilidade intrapomar e as propriedades do solo e seu estado.
+ferramentas e técnicas (seleção): ICT, GIS, IoT, R software, Dashboard (CitrusYield), Plataforma de assistência à colheita autopropulsada, Visão computacional (inspeção de qualidade, cor, calibre), GNSS (RTK), Mapeamento de produtividade (Yield maps), Mapeamento de qualidade (Colour Map, Calibre Map), Análise Exploratória de Dados (EDA).
+nutrientes (seleção): Nutrientes (geral), Fertilizantes.
+estratégias de fornecimento de nutrientes (seleção): Fertilização localizada, Manejo de precisão de nutrientes, Gestão de culturas em função da variabilidade intrapomar.
+grupos de culturas (seleção): Citros, Frutíferas.
+culturas presentes (seleção): Laranja, Mandarina, Tangerina, Satsuma. Variedades específicas: 'Navelina', 'Navelfoios' (laranja) e 'Clemenules' (mandarina).
+FEEDBACK DO CURADOR (escrever): O artigo descreve o desenvolvimento e a aplicação do dashboard CitrusYield, uma ferramenta inovadora de Agricultura de Precisão. Ele integra dados de sensores de colheita mecanizada, visão computacional e georreferenciamento (GNSS/RTK) para mapear a produtividade e a qualidade (cor e calibre) dos citros. A ferramenta fornece informações cruciais sobre a variabilidade intrapomar, permitindo aos agricultores tomar decisões precisas sobre o manejo localizado, como fertilização e irrigação, aumentando a eficiência e a rastreabilidade da produção. É extremamente útil para a pesquisa e aplicação agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

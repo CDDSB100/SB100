@@ -1,0 +1,34 @@
+ID: 2d6b8773-1303-4c3b-9151-7e05ddf939ab
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Junior; Rodrigo Marcelli Boaretto; Emanuel Roberto de Lima Corrrêa; Mônica Ferreira de Abreu; Sergio Alves de Carvalho
+Titulo: DISPONIBILIDADE DE BORO EM SUBSTRATO PARA PRODUÇÃO DE PORTA-ENXERTOS DE CITROS EM FASE DE SEMENTEIRA
+Subtítulo: 
+Ano: 2008
+Número de citações recebidas (Google Scholar): 4
+Palavras-chave: nutrição; micronutriente; viveiro; análise química; toxicidade de boro
+Resumo: A produção de mudas cítricas em ambiente protegido, associada ao uso de substratos, requer estratégias adequadas de manejo no viveiro. Problemas de falta e/ou excesso de nutrientes freqüentemente causam prejuízos ao setor. Em citros ocorrem diferentes respostas à disponibilidade de boro (B) para a planta e são comuns danos causados pela toxidez desse nutriente. Este trabalho teve como objetivo avaliar os efeitos da adição de B no substrato sobre a absorção e o crescimento de duas variedades de porta-enxertos de citros em fase de sementeira. O experimento foi desenvolvido em esquema fatorial, com limão 'Cravo' e citrumelo 'Swingle' e quatro doses de B misturadas ao substrato na forma de H3BO3 (0, 3, 6, e 12 g m-3 de B), em três repetições. Avaliaram-se os teores de B no substrato no início do experimento, aos 55 e 110 dias de sementeira, e o crescimento dos seedlings e a absorção de B pelas plantas nos mesmos intervalos. Os teores de B no substrato variaram entre 0,1 e 4,7 mg L-1. Aos 55 e 110 dias, houve decréscimo nos teores do nutriente nas plantas provavelmente devido às perdas do nutriente do substrato por lixiviação. Observaram-se sintomas visuais de fitotoxicidade de B nos porta-enxertos cultivados no substrato tratado com 3 g m-3 de B, quando o teor na planta foi >100 mg kg-1. O excesso de B causou redução no crescimento dos porta-enxertos. O maior crescimento e acúmulo de B na massa seca de plantas de citrumelo 'Swingle', comparado ao 'Cravo, indicam maior tolerância do primeiro à fitotoxicidade de B.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Bragantia
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0006-87052008000400022
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1srnWKevchrv9JpEz84zwlnHq7Ib0rgDR/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi desenvolvido no Centro de Citricultura Sylvio Moreira (IAC), em Cordeirópolis (SP), em ambiente protegido (telado). O cultivo foi realizado em tubetes (0,05 dm³) preenchidos com substrato à base de composto de casca de pínus e vermiculita. O substrato apresentou níveis crescentes de B disponível (0,1 a 4,7 mg L⁻¹) e pH ligeiramente ácido (4,7 a 4,9) no início do experimento.
+ferramentas e técnicas (seleção): Esquema fatorial, Análise de variância, Análise química de plantas, Análise química de substratos (Extrato Saturado 1:1,5), Medição de massa seca, Medição de área foliar (AF), Medição de densidade de comprimento de raízes (Lv), SIARCS® 3.0 (análise de imagens digitais), Cultivo em ambiente protegido (telado).
+nutrientes (seleção): Boro (B), Nitrogênio (N), Fósforo (P), Potássio (K), Cálcio (Ca), Magnésio (Mg), Enxofre (S), Ferro (Fe), Manganês (Mn), Zinco (Zn), Cobre (Cu).
+estratégias de fornecimento de nutrientes (seleção): Adição de ácido bórico (H3BO3) diretamente ao substrato em doses (0, 3, 6, e 12 g m⁻³), Aplicação de solução nutritiva contendo macro e micronutrientes via irrigação (aspersão).
+grupos de culturas (seleção): Frutíferas (Citros), Porta-enxertos.
+culturas presentes (seleção): Limão 'Cravo' (Citrus limonia Osbeck), Citrumelo 'Swingle' (Poncirus trifoliata x C. paradisi Macf.).
+FEEDBACK DO CURADOR (escrever): Documento de pesquisa agronômica de alta qualidade, essencial para o manejo nutricional de boro (B) em porta-enxertos de citros em viveiros protegidos. Útil para definir níveis críticos de toxicidade.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

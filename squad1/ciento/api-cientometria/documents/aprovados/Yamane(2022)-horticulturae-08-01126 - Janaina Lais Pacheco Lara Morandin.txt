@@ -1,0 +1,34 @@
+ID: 3e2bb354-1643-47b5-a2fa-036ac5ccc71b
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Danilo Ricardo Yamane; Serge‐Étienne Parent; William Natale; Arthur Bernardes Cecílio Filho; Danilo Eduardo Rozane; Rodrigo Hiyoshi Dalmazzo Nowaki; Dirceu de Mattos Jr.; Léon Etienne Parent 
+Titulo: Site‐Specific Nutrient Diagnosis of Orange Groves
+Subtítulo: 
+Ano: 2022
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: centered log ratio; machine learning; nutrient balance; local diagnosis
+Resumo: Nutrient diagnosis of orange (Citrus sinensis) groves in Brazil relies on regional information from a limited number of studies transferred to other environments under the ceteris paribus assumption. Interpretation methods are based on crude nutrient compositions that are intrinsically biased by genetics X environment interactions. Our objective was to develop accurate and unbiased nutrient diagnosis of orange groves combining machine learning (ML) and compositional methods. Fruit yield and foliar nutrients were quantified in 551 rainfed 7–15-year-old orange groves of ‘Hamlin’, ‘Valência’, and ‘Pêra’ in the state of São Paulo, Brazil. The data set was further documented using soil classification, soil tests, and meteorological indices. Tissue compositions were log-ratio transformed to account for nutrient interactions. Ionomes differed among scions. Regression ML models showed evidence of overfitting. Binary ML classification models showed acceptable values of areas under the curve (>0.7). Regional standards delineating the multivariate elliptical hyperspace depended on the yield cutoff. A shapeless blob hyperspace was delineated using the k-nearest successful neighbors that showed comparable features and reported realistic yield goals. Regionally derived and site-specific reference compositions may lead to differential interpretation. Large-size and diversified data sets must be collected to inform ML models along the learning curve, tackle model overfitting, and evaluate the merit of blob-scale diagnosis.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Horticulturae
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.3390/horticulturae8121126
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1-6iyXVgehRU2HCrFdO3IHHkj9AyQH6L-/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em pomares de laranja não irrigados na região Centro-Sul do estado de São Paulo, Brasil. O clima é tropical Aw (Köppen-Geiger), com estação seca no inverno. Os solos predominantes são Oxisols (Ustox) e Ultisols (Udults e Ustults), que são naturalmente ácidos, de baixo teor de nutrientes e requerem calagem e fertilização. Observou-se grande variação na saturação de bases do CEC (8 a 96% na camada de 0-20 cm).
+ferramentas e técnicas (seleção): Machine Learning (ML)
+nutrientes (seleção): N (Nitrogênio)
+estratégias de fornecimento de nutrientes (seleção): Fertilização Mineral Balanceada
+grupos de culturas (seleção): Frutíferas (Citrus)
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): O artigo é altamente relevante para a pesquisa agronômica, aplicando Machine Learning e métodos composicionais (Centered Log-Ratio) para desenvolver um diagnóstico nutricional 'site-specific' em pomares de laranja no Brasil. Os resultados mostram que fatores genéticos, idade da planta e balanços de nutrientes são os principais preditores de produtividade, e que os padrões regionais de nutrientes podem ser insuficientes, sendo necessária a adoção do conceito 'blob' para diagnóstico local mais preciso. O documento é útil e fornece insights valiosos para a gestão de fertilização.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false
