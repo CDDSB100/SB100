@@ -20,3 +20,4 @@ banner.jpg
 *.log
 !.gitkeep
 ssh
+node_modules/
