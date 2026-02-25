@@ -19,3 +19,4 @@ banner.jpg
 *.db
 *.log
 !.gitkeep
+ssh
