@@ -18,3 +18,4 @@ info_tailscale_bkp
 banner.jpg
 *.db
 *.log
+!.gitkeep
