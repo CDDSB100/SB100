@@ -1,41 +1,20 @@
-
-# arquivos de sistema/config
-
+# Ignorar TUDO que começa com ponto
 .*
-
 !.gitignore
 
-
-
-# Pastas de serviço, ambientes e chaves
-
+# Ignorar pastas de sistema e ambientes
 ssh/
-
-info_tailscale_bkp
-
-banner.jpg
-
-mlflow-env/
-
 snap/
-
-qdrant_service/
-
-milvus_service/
-
-node_modules/
-
-__pycache__/
-
-*.db
-
-*.log
-
-
-
-# Caso específico do nvm
-
-.nvm/
-
+nvm/
+pm2/
+dotnet/
+copilot/
 venv/
-.python_history
+__pycache__/
+mlflow-env/
+qdrant_service/
+milvus_service/
+info_tailscale_bkp
+banner.jpg
+*.db
+*.log

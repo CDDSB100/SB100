@@ -1,4 +1,0 @@
-udo zerotier-cli listnetworks
-200 info 60a4d2c6df 1.16.0 ONLINE
-200 listnetworks <nwid> <name> <mac> <status> <type> <dev> <ZT assigned ips>
-200 listnetworks 45b6e887e206d4d8 fatec_sb100 da:b4:a2:30:41:37 OK PRIVATE ztyjko4uz2 10.147.20.52/24
