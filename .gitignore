@@ -1,52 +1,41 @@
-# Pastas de ambiente do VS Code e Editores
-.vscode-server/
-.vscode/
-.idea/
 
-# Pastas de sistema e gerenciadores de pacotes
-.local/
-.npm/
-.cache/
-.config/
+# arquivos de sistema/config
+
+.*
+
+!.gitignore
+
+
+
+# Pastas de serviço, ambientes e chaves
+
+ssh/
+
+info_tailscale_bkp
+
+banner.jpg
+
+mlflow-env/
+
 snap/
 
-# Repetindo os outros para garantir
 qdrant_service/
+
 milvus_service/
-mlflow-env/
+
+node_modules/
+
 __pycache__/
 
-# === Sistema e Caches ===
-.local/
-.npm/
-.cache/
-.config/
-.ssh/
-.bash_history
-snap/
+*.db
+
 *.log
 
-# === Ambientes Virtuais ===
-mlflow-env/
+
+
+# Caso específico do nvm
+
+.nvm/
+
 venv/
-.venv/
-env/
-__pycache__/
-*.pyc
-
-# === Bancos de Dados e Volumes ===
-# Ignoramos as pastas de dados, mas mantemos os scripts de configuração
-qdrant_service/
-milvus_service/
-*.db
-*.sqlite
-*.sqlite3
-
-# === Notebooks e IDEs ===
-.ipynb_checkpoints/
-.vscode/
-.idea/
-.DS_Store
-
-# === Envio do GitIgnore ===
-!.gitignore
+.python_history
