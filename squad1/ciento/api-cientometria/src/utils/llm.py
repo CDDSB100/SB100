@@ -24,14 +24,20 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
+import httpx
+
 # Variáveis de Ambiente
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
 LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
 
-# Inicialização de Clientes
+# Inicialização de Clientes com HTTPX para ignorar proxies do sistema
+http_client = httpx.Client(proxies={})
+
 client_llm = OpenAI(
     base_url=OLLAMA_BASE_URL,
-    api_key="ollama", # Ollama não exige chave real
+    api_key="ollama",
+    http_client=http_client,
+    timeout=120.0,
 )
 
 class PDFPayload(BaseModel):
