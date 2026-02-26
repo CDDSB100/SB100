@@ -50,12 +50,12 @@ client_llm = OpenAI(
     timeout=120.0,
 )
 
-qdrant_client = None
+client_qdrant = None
 encoder = None
 
 if QDRANT_URL and QDRANT_API_KEY:
     try:
-        qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
+        client_qdrant = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
         encoder = SentenceTransformer("all-MiniLM-L6-v2")
     except Exception as e:
         logger.error(f"Erro ao iniciar Qdrant/Encoder: {e}")
@@ -108,12 +108,12 @@ def get_document_text(encoded_content: str, content_type: str) -> str:
 
 def search_similar_docs(text_query: str, limit: int = 3) -> str:
     """Busca fatos científicos existentes para verificar contradições."""
-    if not qdrant_client or not encoder:
+    if not client_qdrant or not encoder:
         return "Nenhum contexto prévio disponível."
     
     try:
         query_vector = encoder.encode(text_query[:1000]).tolist()
-        hits = qdrant_client.search(
+        hits = client_qdrant.search(
             collection_name=QDRANT_COLLECTION,
             query_vector=query_vector,
             limit=limit

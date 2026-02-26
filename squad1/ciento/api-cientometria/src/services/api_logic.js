@@ -528,16 +528,25 @@ async function processLocalFolderForBatchInsert(folderPath) {
   }
 
   console.log(`  > Total PDFs to process: ${pdfFiles.length}`);
-  const articlesToUpload = [];
   let processedCount = 0;
   let errorCount = 0;
   let skippedCount = 0;
 
   for (const file of pdfFiles) {
     try {
-      console.log(`  > Processing [${processedCount + 1}/${pdfFiles.length}]: ${file.name}`);
+      // Pequeno delay para evitar Rate Limit (429) da Groq
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      console.log(`  > Processing [${processedCount + errorCount + skippedCount + 1}/${pdfFiles.length}]: ${file.name}`);
+      
+      // Reload workbook/allData to have the latest state for duplicate check
+      const currentWb = readWorkbook();
+      const currentWs = currentWb.Sheets[SHEET_NAME];
+      const currentData = xlsx.utils.sheet_to_json(currentWs, { header: 1 });
+      const currentHeaders = currentData[0] || [];
+
       const fileNameTitle = file.name.replace(/\.pdf$/i, "");
-      const duplicate = await isDuplicateLocal(allData, headers, null, fileNameTitle);
+      const duplicate = await isDuplicateLocal(currentData, currentHeaders, null, fileNameTitle);
       if (duplicate) {
         console.log(`    ➜ Skipping duplicate file: ${file.name}`);
         skippedCount++;
@@ -552,7 +561,7 @@ async function processLocalFolderForBatchInsert(folderPath) {
       console.log("    ➜ Calling Custom Curador API (Extraction)...");
       const extractedMetadata = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
 
-      const fullDuplicate = await isDuplicateLocal(allData, headers, extractedMetadata["DOI"], extractedMetadata["Titulo"] || extractedMetadata["Título"]);
+      const fullDuplicate = await isDuplicateLocal(currentData, currentHeaders, extractedMetadata["DOI"], extractedMetadata["Titulo"] || extractedMetadata["Título"]);
       if (fullDuplicate) {
         console.log(`    ➜ Skipping duplicate after metadata extraction: ${extractedMetadata["Titulo"]}`);
         skippedCount++;
@@ -573,9 +582,12 @@ async function processLocalFolderForBatchInsert(folderPath) {
       rowData["URL DO DOCUMENTO"] = file.name; // Store relative path/filename
       rowData["Título"] = extractedMetadata["Titulo"] || file.name.replace(/\.pdf$/i, '');
 
-      articlesToUpload.push(rowData);
+      // SALVAMENTO INCREMENTAL: Salva este artigo IMEDIATAMENTE
+      console.log(`    ➜ Saving [${file.name}] to spreadsheet...`);
+      await uploadToLocalSheet(currentWb, currentData, currentHeaders, [rowData]);
+      
       processedCount++;
-      console.log(`    ➜ Success: ${file.name}`);
+      console.log(`    ➜ Success! Progress: ${processedCount} saved.`);
 
     } catch (e) {
       console.error(`    ➜ ERROR processing file ${file.name}: ${e.message}`);
@@ -583,27 +595,12 @@ async function processLocalFolderForBatchInsert(folderPath) {
     }
   }
 
-  if (articlesToUpload.length > 0) {
-    console.log(`  > Uploading ${articlesToUpload.length} articles to local sheet...`);
-    const success = await uploadToLocalSheet(wb, allData, headers, articlesToUpload);
-    if (success) {
-      return {
-        message: `Processamento em lote concluído. Total: ${pdfFiles.length}, Processados com sucesso: ${processedCount}, Com erros: ${errorCount}, Duplicados: ${skippedCount}. Dados inseridos na planilha local.`,
-        processedCount,
-        errorCount,
-        skippedCount,
-      };
-    } else {
-      throw new Error("Falha ao inserir os dados na planilha local.");
-    }
-  } else {
-    return {
-      message: `Processamento em lote concluído. Total: ${pdfFiles.length}, Nenhum artigo novo inserido (Poderiam ser duplicatas: ${skippedCount}).`,
-      processedCount,
-      errorCount,
-      skippedCount,
-    };
-  }
+  return {
+    message: `Processamento em lote concluído. Total: ${pdfFiles.length}, Processados e salvos: ${processedCount}, Com erros: ${errorCount}, Duplicados: ${skippedCount}.`,
+    processedCount,
+    errorCount,
+    skippedCount,
+  };
 }
 
 async function getCuratedArticles() {
