@@ -28,7 +28,7 @@ import httpx
 
 # Variáveis de Ambiente
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
-LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
+LLM_MODEL = os.getenv("LLM_MODEL", "llama3.2:3b")
 
 # Inicialização de Clientes com HTTPX para ignorar proxies do sistema
 http_client = httpx.Client(trust_env=False)
