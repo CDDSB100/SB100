@@ -93,6 +93,28 @@ export const manualApproveArticle = async (rowNumber, fileName) => {
   return response.data;
 };
 
+export const batchUploadZip = async (file) => {
+  const form = new FormData();
+  form.append("file", file);
+  const response = await api.post("/batch-upload-zip", form, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return response.data;
+};
+
+export const manualRejectArticle = async (rowNumber, fileName) => {
+  const response = await api.post("/manual-rejection", {
+    row_number: rowNumber,
+    fileName: fileName,
+  });
+  return response.data;
+};
+
+export const getLlmLogs = async () => {
+  const response = await api.get("/llm-logs");
+  return response.data;
+};
+
 export const processLocalFolder = async (folderPath) => {
   const response = await api.post("/batch-process-local-folder", {
     folder_path: folderPath,

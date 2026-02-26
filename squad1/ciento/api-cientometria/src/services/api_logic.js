@@ -6,6 +6,8 @@ const fsSync = require("fs");
 const path = require("path");
 const axios = require("axios");
 const xlsx = require("xlsx");
+const AdmZip = require("adm-zip");
+const os = require("os");
 
 // --- CONFIGURATION ---
 const SHEET_NAME = "Tabela completa";
@@ -967,11 +969,13 @@ async function aprovarManualmenteLocal(rowNumber, fileName) {
 
     if (!row) throw new Error(`Linha ${rowNumber} não encontrada.`);
 
-    // 1. Move PDF to aprovados
-    const sourcePath = path.join(DOCUMENTS_DIR, fileName);
+    // 1. Find file in any folder and move to aprovados
+    const sourcePath = findFileInFolders(fileName);
+    if (!sourcePath) throw new Error(`Arquivo ${fileName} não encontrado.`);
+    
     const targetPath = path.join(APROVADOS_DIR, fileName);
 
-    if (fsSync.existsSync(sourcePath)) {
+    if (sourcePath !== targetPath) {
       await fs.rename(sourcePath, targetPath);
     }
 
@@ -988,21 +992,114 @@ async function aprovarManualmenteLocal(rowNumber, fileName) {
     await fs.writeFile(txtPath, metadataText, "utf8");
 
     // 3. Update Excel status
-    const aprovIndex = headers.indexOf("APROVAÇÃO MANUAL");
-    if (aprovIndex !== -1) {
-      allData[rowNumber - 1][aprovIndex] = "TRUE";
-      const newWs = xlsx.utils.aoa_to_sheet(allData);
-      wb.Sheets[SHEET_NAME] = newWs;
-      writeWorkbook(wb);
-    }
+    const aprovManualIndex = headers.indexOf("APROVAÇÃO MANUAL");
+    const rejIndex = headers.indexOf("ARTIGOS REJEITADOS");
+    const aprovIaIndex = headers.indexOf("APROVAÇÃO CURADOR (marcar)");
+
+    if (aprovManualIndex !== -1) allData[rowNumber - 1][aprovManualIndex] = "TRUE";
+    if (rejIndex !== -1) allData[rowNumber - 1][rejIndex] = "FALSE";
+    if (aprovIaIndex !== -1) allData[rowNumber - 1][aprovIaIndex] = "TRUE"; // Also mark as IA approved if manually approved
+
+    const newWs = xlsx.utils.aoa_to_sheet(allData);
+    wb.Sheets[SHEET_NAME] = newWs;
+    writeWorkbook(wb);
 
     return {
       success: true,
-      message: `Artigo ${fileName} aprovado, movido para 'aprovados' e metadados salvos em .txt.`,
+      message: `Artigo ${fileName} aprovado manualmente, movido para 'aprovados' e metadados salvos em .txt.`,
     };
   } catch (error) {
     console.error(`Erro na aprovação manual da linha ${rowNumber}:`, error.message);
     throw new Error(`Falha ao aprovar manualmente o artigo localmente: ${error.message}`);
+  }
+}
+
+async function reprovarManualmenteLocal(rowNumber, fileName) {
+  if (!fileName) {
+    throw new Error("O artigo não possui um arquivo local associado.");
+  }
+
+  try {
+    const wb = readWorkbook();
+    const ws = wb.Sheets[SHEET_NAME];
+    const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
+    const headers = allData[0];
+    const row = allData[rowNumber - 1];
+
+    if (!row) throw new Error(`Linha ${rowNumber} não encontrada.`);
+
+    // 1. Find file in any folder and move to reprovados
+    const sourcePath = findFileInFolders(fileName);
+    if (!sourcePath) throw new Error(`Arquivo ${fileName} não encontrado.`);
+    
+    const targetPath = path.join(REPROVADOS_DIR, fileName);
+
+    if (sourcePath !== targetPath) {
+      await fs.rename(sourcePath, targetPath);
+    }
+
+    // 2. Create .txt with metadata
+    const txtFileName = fileName.replace(/\.[^/.]+$/, "") + ".txt";
+    const txtPath = path.join(REPROVADOS_DIR, txtFileName);
+    
+    let metadataText = "--- METADADOS DO ARTIGO ---\n\n";
+    headers.forEach((header, index) => {
+      const value = row[index] !== undefined ? row[index] : "";
+      metadataText += `${header}: ${value}\n`;
+    });
+
+    await fs.writeFile(txtPath, metadataText, "utf8");
+
+    // 3. Update Excel status
+    const aprovManualIndex = headers.indexOf("APROVAÇÃO MANUAL");
+    const rejIndex = headers.indexOf("ARTIGOS REJEITADOS");
+    const aprovIaIndex = headers.indexOf("APROVAÇÃO CURADOR (marcar)");
+
+    if (aprovManualIndex !== -1) allData[rowNumber - 1][aprovManualIndex] = "FALSE";
+    if (rejIndex !== -1) allData[rowNumber - 1][rejIndex] = "TRUE";
+    if (aprovIaIndex !== -1) allData[rowNumber - 1][aprovIaIndex] = "FALSE";
+
+    const newWs = xlsx.utils.aoa_to_sheet(allData);
+    wb.Sheets[SHEET_NAME] = newWs;
+    writeWorkbook(wb);
+
+    return {
+      success: true,
+      message: `Artigo ${fileName} rejeitado manualmente, movido para 'reprovados' e metadados salvos em .txt.`,
+    };
+  } catch (error) {
+    console.error(`Erro na rejeição manual da linha ${rowNumber}:`, error.message);
+    throw new Error(`Falha ao rejeitar manualmente o artigo localmente: ${error.message}`);
+  }
+}
+
+async function processZipUploadLocal(zipBuffer) {
+  const tempDir = path.join(os.tmpdir(), `api-cientometria-zip-${Date.now()}`);
+  await fs.mkdir(tempDir, { recursive: true });
+
+  try {
+    const zip = new AdmZip(zipBuffer);
+    zip.extractAllTo(tempDir, true);
+
+    // Chamar a lógica de processamento de pasta local, apontando para o tempDir
+    const result = await processLocalFolderForBatchInsert(tempDir);
+    
+    return result;
+  } catch (error) {
+    console.error("Erro ao processar upload de ZIP:", error.message);
+    throw new Error(`Falha ao processar arquivo ZIP: ${error.message}`);
+  } finally {
+    // Limpeza da pasta temporária após um tempo para garantir que os processos terminaram
+    setTimeout(async () => {
+      try {
+        if (fsSync.existsSync(tempDir)) {
+          fsSync.rmSync(tempDir, { recursive: true, force: true });
+          console.log(`Pasta temporária ${tempDir} removida.`);
+        }
+      } catch (e) {
+        console.warn("Erro ao limpar pasta temporária:", e.message);
+      }
+    }, 10000);
   }
 }
 
@@ -1018,7 +1115,9 @@ module.exports = {
   deleteUnavailableRows,
   manualInsert,
   aprovarManualmente: aprovarManualmenteLocal,
+  reprovarManualmente: reprovarManualmenteLocal,
   getAuthenticatedServices,
+  processZipUpload: processZipUploadLocal,
   uploadFileToDrive: async (d, p, f) => {
     // Replacement for Drive upload
     const targetPath = path.join(DOCUMENTS_DIR, f);

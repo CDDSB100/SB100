@@ -33,7 +33,11 @@ import {
   Avatar,
   Fade,
   LinearProgress,
-  MenuItem
+  MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -53,6 +57,8 @@ import StorageIcon from "@mui/icons-material/Storage";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import InfoIcon from "@mui/icons-material/Info";
 import CategoryIcon from "@mui/icons-material/Category";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import TerminalIcon from "@mui/icons-material/Terminal";
 import "./Curation.css";
 import { 
   getCuratedArticles, 
@@ -61,7 +67,10 @@ import {
   categorizeArticleRow, 
   deleteArticleRow, 
   deleteUnavailableArticles, 
-  manualApproveArticle 
+  manualApproveArticle,
+  manualRejectArticle,
+  batchUploadZip,
+  getLlmLogs
 } from '../api';
 
 function CurationPage() {
@@ -91,6 +100,26 @@ function CurationPage() {
   });
   const [isTriggering, setIsTriggering] = useState(false);
   const [processingRow, setProcessingRow] = useState(null);
+
+  const [logs, setLogs] = useState("");
+  const [openLogs, setOpenLogs] = useState(false);
+
+  useEffect(() => {
+    let interval;
+    if (openLogs) {
+      const fetchLogs = async () => {
+        try {
+          const data = await getLlmLogs();
+          setLogs(data.logs || "Sem logs disponíveis.");
+        } catch (e) {
+          console.error("Erro ao buscar logs:", e);
+        }
+      };
+      fetchLogs();
+      interval = setInterval(fetchLogs, 3000);
+    }
+    return () => clearInterval(interval);
+  }, [openLogs]);
 
   const fetchArticles = useCallback(async () => {
     setLoading(true);
@@ -124,10 +153,12 @@ function CurationPage() {
 
       const aprov = String(article["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase();
       const manualAprov = String(article["APROVAÇÃO MANUAL"] || "").toLowerCase();
+      const rejected = String(article["ARTIGOS REJEITADOS"] || "").toLowerCase();
       
       let status = "pending";
-      if (aprov === "true" || aprov === "sim" || manualAprov === "true" || manualAprov === "sim") status = "approved";
-      else if (aprov === "false" || aprov === "não") status = "rejected";
+      if (manualAprov === "true" || manualAprov === "sim") status = "approved_manual";
+      else if (aprov === "true" || aprov === "sim") status = "approved_ia";
+      else if (rejected === "true" || rejected === "sim") status = "rejected";
 
       const matchStatus = statusFilter === "all" || status === statusFilter;
 
@@ -141,14 +172,21 @@ function CurationPage() {
 
   const stats = useMemo(() => {
     const total = articles.length;
-    const approved = articles.filter(a => {
+    const approved_manual = articles.filter(a => {
+      const manual = String(a["APROVAÇÃO MANUAL"] || "").toLowerCase();
+      return manual === "true" || manual === "sim";
+    }).length;
+    const approved_ia = articles.filter(a => {
       const aprov = String(a["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase();
       const manual = String(a["APROVAÇÃO MANUAL"] || "").toLowerCase();
-      return aprov === "true" || aprov === "sim" || manual === "true" || manual === "sim";
+      return (aprov === "true" || aprov === "sim") && !(manual === "true" || manual === "sim");
     }).length;
-    const rejected = articles.filter(a => String(a["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase() === "false").length;
-    const pending = total - approved - rejected;
-    return { total, approved, rejected, pending };
+    const rejected = articles.filter(a => {
+      const rej = String(a["ARTIGOS REJEITADOS"] || "").toLowerCase();
+      return rej === "true" || rej === "sim";
+    }).length;
+    const pending = total - approved_manual - approved_ia - rejected;
+    return { total, approved_manual, approved_ia, rejected, pending };
   }, [articles]);
 
   const handleChangePage = (event, newPage) => setPage(newPage);
@@ -168,6 +206,26 @@ function CurationPage() {
       setSnackbar({ open: true, message: "Erro: " + err.message, severity: "error" });
     } finally {
       setIsTriggering(false);
+    }
+  };
+
+  const handleZipUpload = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    setIsTriggering(true);
+    setSnackbar({ open: true, message: "Enviando e processando ZIP... Isso pode levar alguns minutos.", severity: "info" });
+    
+    try {
+      const response = await batchUploadZip(file);
+      setSnackbar({ open: true, message: response.message, severity: "success" });
+      setTimeout(fetchArticles, 1000);
+    } catch (err) {
+      setSnackbar({ open: true, message: "Erro: " + (err.response?.data?.error || err.message), severity: "error" });
+    } finally {
+      setIsTriggering(false);
+      // Reset input
+      event.target.value = null;
     }
   };
 
@@ -227,6 +285,19 @@ function CurationPage() {
     }
   };
 
+  const handleManualReject = async (rowNumber, fileName) => {
+    setProcessingRow(rowNumber);
+    try {
+      await manualRejectArticle(rowNumber, fileName);
+      setSnackbar({ open: true, message: "Artigo rejeitado manualmente!", severity: "success" });
+      fetchArticles();
+    } catch (err) {
+      setSnackbar({ open: true, message: "Erro: " + err.message, severity: "error" });
+    } finally {
+      setProcessingRow(null);
+    }
+  };
+
   const handlePreview = (url) => {
     if (!url) return;
     let finalUrl = url;
@@ -244,10 +315,17 @@ function CurationPage() {
   const getStatusChip = (article) => {
     const aprov = String(article["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase();
     const manual = String(article["APROVAÇÃO MANUAL"] || "").toLowerCase();
-    if (aprov === "true" || aprov === "sim" || manual === "true" || manual === "sim") 
-      return <Chip icon={<CheckCircleIcon />} label="Aprovado" color="success" size="small" sx={{ fontWeight: 700 }} />;
-    if (aprov === "false" || aprov === "não") 
+    const rejected = String(article["ARTIGOS REJEITADOS"] || "").toLowerCase();
+
+    if (manual === "true" || manual === "sim") 
+      return <Chip icon={<CheckCircleIcon />} label="Aprovado Manualmente" color="success" size="small" sx={{ fontWeight: 700 }} />;
+    
+    if (aprov === "true" || aprov === "sim") 
+      return <Chip icon={<AutoFixHighIcon />} label="Aprovado por IA" color="info" size="small" sx={{ fontWeight: 700 }} />;
+
+    if (rejected === "true" || rejected === "sim") 
       return <Chip icon={<CancelIcon />} label="Rejeitado" color="error" size="small" sx={{ fontWeight: 700 }} />;
+
     return <Chip icon={<HourglassEmptyIcon />} label="Pendente" color="warning" size="small" sx={{ fontWeight: 700 }} />;
   };
 
@@ -270,6 +348,17 @@ function CurationPage() {
             </Grid>
             <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' }, gap: 2 }}>
               <Button 
+                component="label"
+                variant="contained" 
+                color="info" 
+                startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <CloudUploadIcon />}
+                disabled={isTriggering || loading}
+                sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
+              >
+                Subir ZIP
+                <input type="file" hidden accept=".zip" onChange={handleZipUpload} />
+              </Button>
+              <Button 
                 variant="contained" 
                 color="secondary" 
                 startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <AutoFixHighIcon />}
@@ -284,6 +373,11 @@ function CurationPage() {
                   <RefreshIcon />
                 </IconButton>
               </Tooltip>
+              <Tooltip title="Ver Console da LLM">
+                <IconButton onClick={() => setOpenLogs(true)} sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.3)' } }}>
+                  <TerminalIcon />
+                </IconButton>
+              </Tooltip>
             </Grid>
           </Grid>
         </Container>
@@ -294,14 +388,15 @@ function CurationPage() {
         <Grid container spacing={2} sx={{ mb: 6 }}>
           {[
             { label: 'Total', value: stats.total, color: 'primary.main', icon: <StorageIcon /> },
-            { label: 'Aprovados', value: stats.approved, color: 'success.main', icon: <CheckCircleIcon /> },
+            { label: 'Aprov. Manual', value: stats.approved_manual, color: 'success.main', icon: <CheckCircleIcon /> },
+            { label: 'Aprov. IA', value: stats.approved_ia, color: 'info.main', icon: <AutoFixHighIcon /> },
             { label: 'Rejeitados', value: stats.rejected, color: 'error.main', icon: <CancelIcon /> },
             { label: 'Pendentes', value: stats.pending, color: 'warning.main', icon: <HourglassEmptyIcon /> },
           ].map((stat, i) => (
-            <Grid item xs={6} md={3} key={i}>
-              <Paper sx={{ p: 3, textAlign: 'center', borderRadius: 4, transition: '0.3s', '&:hover': { transform: 'translateY(-5px)', boxShadow: 4 } }}>
+            <Grid item xs={6} sm={4} md={2.4} key={i} sx={{ display: { md: 'block' }, flexBasis: { md: '20%' }, maxWidth: { md: '20%' } }}>
+              <Paper sx={{ p: 3, textAlign: 'center', borderRadius: 4, transition: '0.3s', '&:hover': { transform: 'translateY(-5px)', boxShadow: 4 }, height: '100%' }}>
                 <Avatar sx={{ bgcolor: `${stat.color}15`, color: stat.color, mx: 'auto', mb: 1 }}>{stat.icon}</Avatar>
-                <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 800 }}>{stat.label}</Typography>
+                <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 800, lineHeight: 1.2, display: 'block', mb: 1 }}>{stat.label}</Typography>
                 <Typography variant="h4" sx={{ fontWeight: 900, color: stat.color }}>{stat.value}</Typography>
               </Paper>
             </Grid>
@@ -327,7 +422,8 @@ function CurationPage() {
                 <InputLabel>Status</InputLabel>
                 <Select value={statusFilter} label="Status" onChange={(e) => setStatusFilter(e.target.value)}>
                   <MenuItem value="all">Todos os Status</MenuItem>
-                  <MenuItem value="approved">Aprovados</MenuItem>
+                  <MenuItem value="approved_manual">Aprovado Manualmente</MenuItem>
+                  <MenuItem value="approved_ia">Aprovado por IA</MenuItem>
                   <MenuItem value="rejected">Rejeitados</MenuItem>
                   <MenuItem value="pending">Pendentes</MenuItem>
                 </Select>
@@ -421,33 +517,53 @@ function CurationPage() {
                             </IconButton>
                           </Tooltip>
                         </Box>
-                        <Stack direction="row" spacing={1}>
-                          <Button 
-                            variant="outlined" 
-                            size="small" 
-                            startIcon={<AutoFixHighIcon />}
-                            onClick={() => handleSingleCuration(article.__row_number)}
-                            disabled={processingRow === article.__row_number}
-                          >
-                            IA
-                          </Button>
+                        <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1, justifyContent: 'flex-end' }}>
+                          <Tooltip title="Análise IA">
+                            <IconButton 
+                              size="small"
+                              color="primary"
+                              onClick={() => handleSingleCuration(article.__row_number)}
+                              disabled={processingRow === article.__row_number}
+                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                            >
+                              <AutoFixHighIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                          
                           <Button 
                             variant="contained" 
                             size="small" 
                             color="success"
+                            startIcon={<CheckCircleIcon />}
                             onClick={() => handleManualApprove(article.__row_number, article["URL DO DOCUMENTO"])}
                             disabled={processingRow === article.__row_number}
+                            sx={{ borderRadius: '50px' }}
                           >
                             Aprovar
                           </Button>
-                          <IconButton 
+
+                          <Button 
+                            variant="contained" 
+                            size="small" 
                             color="error"
-                            onClick={() => handleDelete(article)}
+                            startIcon={<CancelIcon />}
+                            onClick={() => handleManualReject(article.__row_number, article["URL DO DOCUMENTO"])}
                             disabled={processingRow === article.__row_number}
-                            sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                            sx={{ borderRadius: '50px' }}
                           >
-                            <DeleteIcon fontSize="small" />
-                          </IconButton>
+                            Rejeitar
+                          </Button>
+
+                          <Tooltip title="Excluir Registro">
+                            <IconButton 
+                              color="default"
+                              onClick={() => handleDelete(article)}
+                              disabled={processingRow === article.__row_number}
+                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                            >
+                              <DeleteIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
                         </Stack>
                       </CardActions>
                       {processingRow === article.__row_number && <LinearProgress sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} />}
@@ -523,6 +639,38 @@ function CurationPage() {
           {snackbar.message}
         </Alert>
       </Snackbar>
+
+      <Drawer
+        anchor="right"
+        open={openLogs}
+        onClose={() => setOpenLogs(false)}
+        PaperProps={{ sx: { width: { xs: '100%', md: 600 }, bgcolor: '#1e1e1e', color: '#d4d4d4', p: 3, display: 'flex', flexDirection: 'column' } }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, borderBottom: '1px solid #333', pb: 2 }}>
+          <TerminalIcon sx={{ mr: 2, color: '#4fc1ff' }} />
+          <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 700, color: '#4fc1ff', fontFamily: 'monospace' }}>LLM_CONSOLE @ OLLAMA</Typography>
+          <IconButton onClick={() => setOpenLogs(false)} sx={{ color: '#d4d4d4' }}><ClearIcon /></IconButton>
+        </Box>
+        <Box 
+          sx={{ 
+            flexGrow: 1, 
+            overflow: 'auto', 
+            fontFamily: '"Fira Code", "Courier New", monospace', 
+            fontSize: '0.8rem',
+            whiteSpace: 'pre-wrap',
+            bgcolor: '#000',
+            p: 2,
+            borderRadius: 2,
+            border: '1px solid #333',
+            color: '#32cd32'
+          }}
+        >
+          {logs}
+        </Box>
+        <Typography variant="caption" sx={{ mt: 2, color: '#888', textAlign: 'center', fontFamily: 'monospace' }}>
+          AUTO_REFRESH_ACTIVE [3S]
+        </Typography>
+      </Drawer>
     </Box>
   );
 }

@@ -28,6 +28,8 @@ const {
   deleteUnavailableRows,
   manualInsert,
   aprovarManualmente,
+  reprovarManualmente,
+  processZipUpload,
   processDriveFolderForBatchInsert,
   uploadFileToDrive,
 } = require("./src/services/api_logic.js");
@@ -532,6 +534,36 @@ app.post("/api/manual-approval", authenticateToken, async (req, res) => {
     }
 });
 
+app.post("/api/manual-rejection", authenticateToken, async (req, res) => {
+    try {
+        const { row_number, fileName } = req.body;
+
+        if (!row_number || !fileName) {
+            return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
+        }
+
+        const result = await reprovarManualmente(parseInt(row_number, 10), fileName);
+        res.json(result);
+    } catch (error) {
+        console.error(`Error in /api/manual-rejection: ${error.message}`);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.post("/api/batch-upload-zip", authenticateToken, upload.single('file'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: "Nenhum arquivo ZIP foi enviado." });
+        }
+
+        const result = await processZipUpload(req.file.buffer);
+        res.json(result);
+    } catch (error) {
+        console.error(`Error in /api/batch-upload-zip: ${error.message}`);
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.post("/api/batch-process-local-folder", authenticateToken, async (req, res) => {
   try {
     const { folder_path } = req.body;
@@ -560,6 +592,22 @@ app.get("/api/test-no-auth", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message, stack: error.stack });
   }
+});
+
+app.get("/api/llm-logs", authenticateToken, async (req, res) => {
+    const logPath = path.join(__dirname, "llm.log");
+    try {
+        if (!fsSync.existsSync(logPath)) {
+            return res.json({ logs: "Arquivo de log ainda não criado ou vazio." });
+        }
+        const logs = await fs.readFile(logPath, "utf8");
+        // Retorna as últimas 200 linhas
+        const lines = logs.split("\n").slice(-200).join("\n");
+        res.json({ logs: lines });
+    } catch (error) {
+        console.error("Erro ao ler logs da LLM:", error.message);
+        res.status(500).json({ error: "Falha ao recuperar logs." });
+    }
 });
 
 // --- SERVER START ---
