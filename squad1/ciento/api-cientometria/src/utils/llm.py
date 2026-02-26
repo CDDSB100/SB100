@@ -31,7 +31,7 @@ OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
 LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
 
 # Inicialização de Clientes com HTTPX para ignorar proxies do sistema
-http_client = httpx.Client(proxies={})
+http_client = httpx.Client(trust_env=False)
 
 client_llm = OpenAI(
     base_url=OLLAMA_BASE_URL,
