@@ -179,7 +179,7 @@ Retorne APENAS o objeto JSON preenchido."""
 
         raw_response = response.choices[0].message.content
         logger.info(f"Resposta Bruta da LLM: {raw_response}")
-        
+
         clean_response = clean_json_string(raw_response)
         return json.loads(clean_response)
 
@@ -213,7 +213,7 @@ async def categorize_article(payload: PDFPayload):
         )
 
         category = response.choices[0].message.content.strip()
-        
+
         # Limpeza básica
         if "BIOINSUMOS" in category.upper():
             category = "BIOINSUMOS"
