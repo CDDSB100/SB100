@@ -602,6 +602,10 @@ async function getCuratedArticles() {
     const row = allData[i];
     let category = String(row[colCategoriaIndex] || "").trim();
 
+    // Se a categoria for "MANEJO DE NUTRIENTES E AGUA", é uma categoria antiga que precisa ser atualizada
+    // Mas se o serviço de categorização estiver fora, não queremos ficar tentando infinitamente se já sabemos que falhou
+    const isOldCategory = category === "MANEJO DE NUTRIENTES E AGUA";
+
     if (!allowedCategories.includes(category) && repairedCount < 10) {
       const fileName = row[colUrlDocumentoIndex];
       const filePath = findFileInFolders(fileName);
@@ -619,6 +623,9 @@ async function getCuratedArticles() {
           }
         } catch (e) {
           console.error(`    ➜ Erro ao reparar linha ${i+1}: ${e.message}`);
+          // Se falhou e é a categoria problematica, podemos marcar de alguma forma para não tentar de novo nesta execução
+          // ou apenas aceitar que o log vai mostrar o erro.
+          // Como estamos em um loop de leitura, não queremos travar tudo.
         }
       }
     }
