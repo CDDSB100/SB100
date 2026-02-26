@@ -1,7 +1,5 @@
 fastapi
 uvicorn
 pydantic
-qdrant-client
 openai
 pypdf
-sentence-transformers

@@ -7,10 +7,8 @@ import re
 from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from qdrant_client import QdrantClient
 from openai import OpenAI
 from pypdf import PdfReader
-from sentence_transformers import SentenceTransformer
 
 # --- CONFIGURAÇÃO ---
 LOG_FILE = "llm.log"
@@ -27,32 +25,14 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 
 # Variáveis de Ambiente
-QDRANT_URL = os.getenv("QDRANT_URL")
-QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-QDRANT_COLLECTION = "BaseCurador"
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434/v1")
 LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
 
-# Inicialização de Clientes (Lazy Loading Pattern)
+# Inicialização de Clientes
 client_llm = OpenAI(
     base_url=OLLAMA_BASE_URL,
-    api_key="ollama", # Ollama não exige chave real, mas a lib OpenAI sim
+    api_key="ollama", # Ollama não exige chave real
 )
-
-qdrant_client = None
-encoder = None
-
-if QDRANT_URL and QDRANT_API_KEY:
-    try:
-        qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
-    except Exception as e:
-        logger.error(f"Erro ao iniciar Qdrant: {e}")
-
-try:
-    logger.info("Carregando encoder de embeddings...")
-    encoder = SentenceTransformer('all-MiniLM-L6-v2')
-except Exception as e:
-    logger.error(f"Erro ao carregar Encoder: {e}")
 
 class PDFPayload(BaseModel):
     encoded_content: str
@@ -98,34 +78,7 @@ def get_document_text(encoded_content: str, content_type: str) -> str:
             raise ValueError(f"Tipo de conteúdo desconhecido: {content_type}")
     except Exception as e:
         logger.error(f"Erro na extração de texto: {e}")
-        logger.error(f"Detalhes do erro na extração de texto: {type(e).__name__}: {e}")
         raise HTTPException(status_code=400, detail=f"Erro ao ler conteúdo: {str(e)}")
-
-def search_similar_docs(text_query: str, limit: int = 3) -> str:
-    """Busca fatos científicos existentes para verificar contradições."""
-    if not qdrant_client or not encoder or not text_query:
-        return "Nenhum contexto prévio disponível."
-    try:
-        vector = encoder.encode(text_query[:1000]).tolist()
-        hits = qdrant_client.search(
-            collection_name=QDRANT_COLLECTION,
-            query_vector=vector,
-            limit=limit
-        )
-
-        if not hits:
-            return "Nenhum documento similar encontrado para comparação."
-
-        contextos = []
-        for hit in hits:
-            p = hit.payload
-            info = f"Título: {p.get('titulo', 'Sem título')}. Resumo/Fatos: {p.get('resumo', p.get('conclusao', 'N/A'))}"
-            contextos.append(info)
-
-        return "\n---\n".join(contextos)
-    except Exception as e:
-        logger.warning(f"Erro na busca de contradições: {e}")
-        return "Erro ao acessar banco de dados para verificação."
 
 def clean_json_string(json_str: str) -> str:
     """Remove blocos de markdown ```json ... ```."""
@@ -143,21 +96,17 @@ def clean_json_string(json_str: str) -> str:
 
 @app.post("/curadoria")
 async def curar_documento(payload: PDFPayload):
-    # 2. Extração de Texto
+    # 1. Extração de Texto
     document_text = get_document_text(payload.encoded_content, payload.content_type)
 
-    # 3. Guardrail: Texto Vazio ou Insuficiente
+    # 2. Guardrail: Texto Vazio ou Insuficiente
     if len(document_text) < 150:
         if not ("APROVAÇÃO CURADOR (marcar)" in payload.headers or "FEEDBACK DO CURADOR (escrever)" in payload.headers):
             raise HTTPException(status_code=400, detail="Texto insuficiente para análise.")
         else:
              return {"APROVAÇÃO CURADOR (marcar)": False, "FEEDBACK DO CURADOR (escrever)": "Rejeitado: Texto insuficiente para análise científica."}
 
-    # 4. RAG e Busca de Contradições
-    referencia_rag = search_similar_docs(document_text)
-    contexto_ref = f"### EXISTING DATABASE KNOWLEDGE (For Contradiction Check):\n{referencia_rag}\n"
-
-    # 5. Gerenciamento de Colunas e Schema
+    # 3. Gerenciamento de Colunas e Schema
     current_headers = list(payload.headers)
     if "CATEGORIA" in current_headers:
         current_headers.remove("CATEGORIA")
@@ -170,7 +119,7 @@ async def curar_documento(payload: PDFPayload):
     json_skeleton = {header: "" for header in current_headers}
     schema_str = json.dumps(json_skeleton, indent=2)
 
-    # 6. Prompt Engineering
+    # 4. Prompt Engineering
     if payload.category == "BIOINSUMOS":
         system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica de BIOINSUMOS.
 Extraia os metadados e preencha o JSON abaixo.
@@ -182,7 +131,7 @@ ESQUEMA:
 CRITÉRIOS DE APROVAÇÃO:
 1. Foco em BIOINSUMOS.
 2. Formato de Artigo Científico/Tese.
-3. Consistência com o banco de dados."""
+3. Consistência técnica."""
     else:
         system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica agronômica.
 Extraia os metadados e preencha o JSON abaixo.
@@ -194,13 +143,11 @@ ESQUEMA:
 CRITÉRIOS DE APROVAÇÃO:
 1. Foco em Agronomia Prática.
 2. Formato de Artigo Científico/Tese.
-3. Consistência com o banco de dados."""
+3. Consistência técnica."""
 
     user_prompt = f"""
 ### TAREFA
 Preencha o ESQUEMA JSON com os metadados extraídos do TEXTO DE ENTRADA.
-
-{contexto_ref if referencia_rag != "Nenhum contexto prévio disponível." else ""}
 
 ### TEXTO DE ENTRADA
 '''
@@ -212,7 +159,6 @@ Retorne APENAS o objeto JSON preenchido."""
 
     logger.info(f"--- INICIANDO CURADORIA ---")
     logger.info(f"Payload Category: {payload.category}")
-    logger.info(f"Prompt Enviado (parcial): {user_prompt[:500]}...")
 
     try:
         response = client_llm.chat.completions.create(
@@ -262,7 +208,7 @@ async def categorize_article(payload: PDFPayload):
 
         category = response.choices[0].message.content.strip()
         
-        # Limpeza básica se o modelo retornar texto extra
+        # Limpeza básica
         if "BIOINSUMOS" in category.upper():
             category = "BIOINSUMOS"
         else:
@@ -276,4 +222,4 @@ async def categorize_article(payload: PDFPayload):
 
 @app.get("/")
 def read_root():
-    return {"status": "online", "model": LLM_MODEL, "service": "Local Ollama"}
+    return {"status": "online", "model": LLM_MODEL, "service": "Local Ollama (RAG Disabled)"}

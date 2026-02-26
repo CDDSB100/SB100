@@ -18,7 +18,7 @@ pip install -r requirements.txt
 Ou manualmente:
 
 ```bash
-pip install fastapi uvicorn pydantic qdrant-client openai pypdf sentence-transformers
+pip install fastapi uvicorn pydantic openai pypdf
 ```
 
 ## Resolução de Problemas
