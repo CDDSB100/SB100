@@ -615,11 +615,12 @@ app.get("/api/llm-logs", authenticateToken, async (req, res) => {
 app.listen(port, "0.0.0.0", () => {
   // Start the local LLM server (FastAPI) in background
   console.log("Iniciando servidor LLM local (FastAPI)...");
-  const pythonExecutable = fsSync.existsSync(path.join(__dirname, 'venv', 'bin', 'python3'))
-    ? path.join(__dirname, 'venv', 'bin', 'python3')
-    : 'python3';
+  const venvUvicorn = path.join(__dirname, 'venv', 'bin', 'uvicorn');
+  const uvicornCmd = fsSync.existsSync(venvUvicorn) ? venvUvicorn : 'uvicorn';
+  
+  console.log(`Usando comando uvicorn: ${uvicornCmd}`);
     
-  const llmServer = spawn(pythonExecutable, ['-m', 'uvicorn', 'src.utils.llm:app', '--host', '0.0.0.0', '--port', '8000'], {
+  const llmServer = spawn(uvicornCmd, ['src.utils.llm:app', '--host', '0.0.0.0', '--port', '8000'], {
     stdio: 'inherit',
     env: process.env,
     shell: true
