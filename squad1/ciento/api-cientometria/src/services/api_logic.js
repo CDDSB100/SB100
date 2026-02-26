@@ -484,6 +484,7 @@ async function executarCategorizacaoLinhaUnica(rowNumber) {
 }
 
 async function processLocalFolderForBatchInsert(folderPath) {
+  console.log(`  > processLocalFolderForBatchInsert: Scanning folder ${folderPath}`);
   const wb = readWorkbook();
   const ws = wb.Sheets[SHEET_NAME];
   const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
@@ -495,15 +496,38 @@ async function processLocalFolderForBatchInsert(folderPath) {
     ? folderPath 
     : path.join(__dirname, "../../", folderPath);
 
+  console.log(`  > Absolute path: ${absoluteFolderPath}`);
   if (!fsSync.existsSync(absoluteFolderPath)) {
+    console.error(`  > Folder NOT FOUND: ${absoluteFolderPath}`);
     throw new Error(`Pasta não encontrada: ${absoluteFolderPath}`);
   }
 
   const pdfFiles = await listPdfsInLocalFolder(absoluteFolderPath);
+  console.log(`  > Found ${pdfFiles.length} PDF files in root of extracted folder.`);
+  
+  // Se não encontrar PDFs na raiz, tenta buscar recursivamente uma pasta adentro
+  if (pdfFiles.length === 0) {
+    console.log("  > Searching for PDFs in subdirectories...");
+    const subDirs = (await fs.readdir(absoluteFolderPath, { withFileTypes: true }))
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+    
+    for (const subDir of subDirs) {
+        const subPath = path.join(absoluteFolderPath, subDir);
+        const subPdfs = await listPdfsInLocalFolder(subPath);
+        if (subPdfs.length > 0) {
+            console.log(`  > Found ${subPdfs.length} PDFs in subfolder: ${subDir}`);
+            pdfFiles.push(...subPdfs);
+        }
+    }
+  }
+
   if (!pdfFiles || pdfFiles.length === 0) {
+    console.log("  > No PDF files found to process.");
     return { message: "Nenhum arquivo PDF encontrado na pasta local." };
   }
 
+  console.log(`  > Total PDFs to process: ${pdfFiles.length}`);
   const articlesToUpload = [];
   let processedCount = 0;
   let errorCount = 0;
@@ -511,21 +535,26 @@ async function processLocalFolderForBatchInsert(folderPath) {
 
   for (const file of pdfFiles) {
     try {
+      console.log(`  > Processing [${processedCount + 1}/${pdfFiles.length}]: ${file.name}`);
       const fileNameTitle = file.name.replace(/\.pdf$/i, "");
       const duplicate = await isDuplicateLocal(allData, headers, null, fileNameTitle);
       if (duplicate) {
-        console.log(`Skipping duplicate file: ${file.name}`);
+        console.log(`    ➜ Skipping duplicate file: ${file.name}`);
         skippedCount++;
         continue;
       }
 
       const pdfBuffer = await getLocalPdfContent(file.localPath);
+      
+      console.log("    ➜ Calling Categorization API...");
       const category = await callCategorizationApi(pdfBuffer);
+      
+      console.log("    ➜ Calling Custom Curador API (Extraction)...");
       const extractedMetadata = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
 
       const fullDuplicate = await isDuplicateLocal(allData, headers, extractedMetadata["DOI"], extractedMetadata["Titulo"] || extractedMetadata["Título"]);
       if (fullDuplicate) {
-        console.log(`Skipping duplicate after metadata extraction: ${extractedMetadata["Titulo"]}`);
+        console.log(`    ➜ Skipping duplicate after metadata extraction: ${extractedMetadata["Titulo"]}`);
         skippedCount++;
         continue;
       }
@@ -546,14 +575,16 @@ async function processLocalFolderForBatchInsert(folderPath) {
 
       articlesToUpload.push(rowData);
       processedCount++;
+      console.log(`    ➜ Success: ${file.name}`);
 
     } catch (e) {
-      console.error(`Error processing file ${file.name}: ${e.message}`);
+      console.error(`    ➜ ERROR processing file ${file.name}: ${e.message}`);
       errorCount++;
     }
   }
 
   if (articlesToUpload.length > 0) {
+    console.log(`  > Uploading ${articlesToUpload.length} articles to local sheet...`);
     const success = await uploadToLocalSheet(wb, allData, headers, articlesToUpload);
     if (success) {
       return {
@@ -1082,10 +1113,12 @@ async function reprovarManualmenteLocal(rowNumber, fileName) {
 
 async function processZipUploadLocal(zipBuffer) {
   const tempDir = path.join(os.tmpdir(), `api-cientometria-zip-${Date.now()}`);
+  console.log(`  > Creating temp dir for ZIP extraction: ${tempDir}`);
   await fs.mkdir(tempDir, { recursive: true });
 
   try {
     const zip = new AdmZip(zipBuffer);
+    console.log("  > Extracting ZIP...");
     zip.extractAllTo(tempDir, true);
 
     // Chamar a lógica de processamento de pasta local, apontando para o tempDir
@@ -1093,7 +1126,7 @@ async function processZipUploadLocal(zipBuffer) {
     
     return result;
   } catch (error) {
-    console.error("Erro ao processar upload de ZIP:", error.message);
+    console.error("  > Erro ao processar upload de ZIP:", error.message);
     throw new Error(`Falha ao processar arquivo ZIP: ${error.message}`);
   } finally {
     // Limpeza da pasta temporária após um tempo para garantir que os processos terminaram
@@ -1106,7 +1139,7 @@ async function processZipUploadLocal(zipBuffer) {
       } catch (e) {
         console.warn("Erro ao limpar pasta temporária:", e.message);
       }
-    }, 10000);
+    }, 30000); // 30 segundos para garantir processamento
   }
 }
 
