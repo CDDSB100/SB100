@@ -7,8 +7,11 @@ import re
 from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from groq import Groq
 from openai import OpenAI
 from pypdf import PdfReader
+from qdrant_client import QdrantClient
+from sentence_transformers import SentenceTransformer
 
 # --- CONFIGURAÇÃO ---
 LOG_FILE = "llm.log"
@@ -24,21 +27,38 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-import httpx
-
 # Variáveis de Ambiente
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
-LLM_MODEL = os.getenv("LLM_MODEL", "llama3.2:3b")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+QDRANT_URL = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+QDRANT_COLLECTION = "BaseCurador"
 
-# Inicialização de Clientes com HTTPX para ignorar proxies do sistema
-http_client = httpx.Client(trust_env=False)
+OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
+LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
+
+# Inicialização de Clientes (Lazy Loading Pattern)
+client_groq = None
+if GROQ_API_KEY:
+    try:
+        client_groq = Groq(api_key=GROQ_API_KEY)
+    except Exception as e:
+        logger.error(f"Erro ao iniciar Groq: {e}")
 
 client_llm = OpenAI(
     base_url=OLLAMA_BASE_URL,
     api_key="ollama",
-    http_client=http_client,
     timeout=120.0,
 )
+
+qdrant_client = None
+encoder = None
+
+if QDRANT_URL and QDRANT_API_KEY:
+    try:
+        qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
+        encoder = SentenceTransformer("all-MiniLM-L6-v2")
+    except Exception as e:
+        logger.error(f"Erro ao iniciar Qdrant/Encoder: {e}")
 
 class PDFPayload(BaseModel):
     encoded_content: str
@@ -86,6 +106,28 @@ def get_document_text(encoded_content: str, content_type: str) -> str:
         logger.error(f"Erro na extração de texto: {e}")
         raise HTTPException(status_code=400, detail=f"Erro ao ler conteúdo: {str(e)}")
 
+def search_similar_docs(text_query: str, limit: int = 3) -> str:
+    """Busca fatos científicos existentes para verificar contradições."""
+    if not qdrant_client or not encoder:
+        return "Nenhum contexto prévio disponível."
+    
+    try:
+        query_vector = encoder.encode(text_query[:1000]).tolist()
+        hits = qdrant_client.search(
+            collection_name=QDRANT_COLLECTION,
+            query_vector=query_vector,
+            limit=limit
+        )
+        
+        context = ""
+        for hit in hits:
+            snippet = hit.payload.get("text", "")[:500]
+            context += f"- {snippet}\n"
+        return context if context else "Nenhum contexto prévio relevante encontrado."
+    except Exception as e:
+        logger.error(f"Erro na busca Qdrant: {e}")
+        return "Erro ao acessar o banco de conhecimento."
+
 def clean_json_string(json_str: str) -> str:
     """Remove blocos de markdown ```json ... ```."""
     json_str = json_str.strip()
@@ -102,17 +144,25 @@ def clean_json_string(json_str: str) -> str:
 
 @app.post("/curadoria")
 async def curar_documento(payload: PDFPayload):
-    # 1. Extração de Texto
+    # 1. Verificação de Saúde
+    if not client_groq:
+        raise HTTPException(status_code=503, detail="Serviço indisponível: Groq não configurada.")
+
+    # 2. Extração de Texto
     document_text = get_document_text(payload.encoded_content, payload.content_type)
 
-    # 2. Guardrail: Texto Vazio ou Insuficiente
+    # 3. Guardrail: Texto Vazio ou Insuficiente
     if len(document_text) < 150:
         if not ("APROVAÇÃO CURADOR (marcar)" in payload.headers or "FEEDBACK DO CURADOR (escrever)" in payload.headers):
             raise HTTPException(status_code=400, detail="Texto insuficiente para análise.")
         else:
              return {"APROVAÇÃO CURADOR (marcar)": False, "FEEDBACK DO CURADOR (escrever)": "Rejeitado: Texto insuficiente para análise científica."}
 
-    # 3. Gerenciamento de Colunas e Schema
+    # 4. RAG: Busca de Contexto
+    referencia_rag = search_similar_docs(document_text[:1000])
+    contexto_ref = f"### EXISTING DATABASE KNOWLEDGE (For Contradiction Check):\n{referencia_rag}\n"
+
+    # 5. Gerenciamento de Colunas e Schema
     current_headers = list(payload.headers)
     if "CATEGORIA" in current_headers:
         current_headers.remove("CATEGORIA")
@@ -125,35 +175,92 @@ async def curar_documento(payload: PDFPayload):
     json_skeleton = {header: "" for header in current_headers}
     schema_str = json.dumps(json_skeleton, indent=2)
 
-    # 4. Prompt Engineering
+    # 6. Prompt Engineering
     if payload.category == "BIOINSUMOS":
-        system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica de BIOINSUMOS.
-Extraia os metadados e preencha o JSON abaixo.
-Valores em PT-BR. Retorne APENAS o JSON.
+        system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica de BIOINSUMOS (insumos de origem biológica na agricultura).
+
+Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido e preencher o esquema JSON.
+
+**INSTRUÇÕES DE EXTRAÇÃO DE METADADOS (Siga para todos os campos):**
+- **Subtítulo:** Extraia o subtítulo do artigo, se houver.
+- **Caracteristicas do solo e região (escrever):** Descreva em um parágrafo as características do solo, clima e localização geográfica mencionadas no estudo. Se não mencionadas, deixe vazio.
+- **ferramentas e técnicas (seleção):** Liste as metodologias científicas, ferramentas de laboratório ou campo. Ex: "PCR, Sequenciamento, Microscopia, Ensaios em vasos". Sempre liste pelo menos uma se aplicável.
+- **nutrientes (seleção):** Liste os MICRO-ORGANISMOS (Gênero/Espécie) ou AGENTES BIOLÓGICOS investigados. Ex: "Bradyrhizobium japonicum, Trichoderma harzianum, Bacillus subtilis". Sempre liste pelo menos um se aplicável.
+- **estratégias de fornecimento de nutrientes (seleção):** Liste o MODO DE APLICAÇÃO ou FORMULAÇÃO do bioinsumo. Ex: "Inoculação de sementes, Aplicação via sulco, Pulverização foliar, Grânulos". Sempre liste pelo menos uma se aplicável.
+- **grupos de culturas (seleção):** Liste os grandes grupos de culturas agrícolas investigados. Sempre liste pelo menos um se aplicável.
+- **culturas presentes (seleção):** Liste os nomes específicos das culturas ou plantas estudadas. Sempre liste pelo menos uma se aplicável.
+
+**CONTEXTO DE CURADORIA (se aplicável):**
+Se os campos "APROVAÇÃO CURADOR (marcar)" e "FEEDBACK DO CURADOR (escrever)" estiverem presentes no esquema,
+você TAMBÉM atuará como um Curador Científico especializado em BIOINSUMOS, seguindo estes critérios:
+
+**CRITÉRIOS DE VALIDAÇÃO (OBRIGATÓRIOS - TODOS devem ser atendidos para aprovação):**
+1.  **Tópico Principal:** O FOCO PRINCIPAL do artigo deve ser o uso de BIOINSUMOS (inoculantes, biofertilizantes, biopesticidas, controle biológico, promotores de crescimento).
+    -   *REJEITAR* se o foco for puramente fertilizantes químicos ou manejo de água sem componente biológico proeminente.
+2.  **Formato:** Deve ser um artigo científico, tese ou estudo de caso detalhado com Metodologia e Resultados claros.
+3.  **Consistência:** Não deve contradizer fatos do 'EXISTING DATABASE KNOWLEDGE'.
+
+**REGRAS DE SAÍDA (Siga rigorosamente):**
+1.  Sua saída completa deve ser um único objeto JSON válido.
+2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento. Garanta que os campos específicos (Caracteristicas do solo e região, ferramentas e técnicas, nutrientes, estratégias de fornecimento de nutrientes, grupos de culturas, culturas presentes) sejam sempre respondidos com informações relevantes, inferindo do contexto se necessário. Se um campo não puder ser encontrado ou não for aplicável, deixe vazio.
+3.  Se os campos de curadoria estiverem presentes:
+    -   Preencha o campo **'FEEDBACK DO CURADOR (escrever)'** com a razão explícita para sua decisão:
+        -   Se aprovando: Comece com "Aprovado:" e declare a contribuição específica do bioinsumo (ex: "Aprovado: Avalia a eficácia de Bacillus no controle de fungos em soja.").
+        -   Se rejeitando: Comece com "Rejeitado:" e declare qual critério de validação falhou.
+    -   Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` ou `false`.
+4.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
 
 ESQUEMA:
 {schema_str}
-
-CRITÉRIOS DE APROVAÇÃO:
-1. Foco em BIOINSUMOS.
-2. Formato de Artigo Científico/Tese.
-3. Consistência técnica."""
+"""
     else:
-        system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica agronômica.
-Extraia os metadados e preencha o JSON abaixo.
-Valores em PT-BR. Retorne APENAS o JSON.
+        system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica.
+
+Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido e preencher o esquema JSON.
+
+**INSTRUÇÕES DE EXTRAÇÃO DE METADADOS (Siga para todos os campos):**
+- **Subtítulo:** Extraia o subtítulo do artigo, se houver.
+- **Caracteristicas do solo e região (escrever):** Descreva em um parágrafo as características do solo, clima e localização geográfica mencionadas no estudo. Se não mencionadas, deixe vazio.
+- **ferramentas e técnicas (seleção):** Liste, em formato de string separada por vírgulas, as principais ferramentas, equipamentos e metodologias científicas utilizadas. Ex: "Cromatografia gasosa, Espectrometria de massa, Análise de variância (ANOVA)". Sempre liste pelo menos uma se aplicável.
+- **nutrientes (seleção):** Liste, em formato de string separada por vírgulas, todos os nutrientes de plantas (macro e micro) que são foco do estudo. Ex: "Nitrogênio, Fósforo, Potássio, Boro". Sempre liste pelo menos um se aplicável.
+- **estratégias de fornecimento de nutrientes (seleção):** Liste, em formato de string separada por vírgulas, as estratégias de fertilização ou fornecimento de nutrientes. Ex: "Fertilização de cobertura, Adubação foliar, Fertirrigação". Sempre liste pelo menos uma se aplicável.
+- **grupos de culturas (seleção):** Liste, em formato de string separada por vírgulas, os grandes grupos de culturas agrícolas investigados. Ex: "Cereais, Leguminosas, Hortaliças, Frutíferas". Sempre liste pelo menos um se aplicável.
+- **culturas presentes (seleção):** Liste, em formato de string separada por vírgulas, os nomes específicos das culturas ou plantas estudadas. Ex: "Milho (Zea mays), Soja (Glycine max), Tomate (Solanum lycopersicum)". Sempre liste pelo menos uma se aplicável.
+
+**CONTEXTO DE CURADORIA (se aplicável):**
+Se os campos "APROVAÇÃO CURADOR (marcar)" e "FEEDBACK DO CURADOR (escrever)" estiverem presentes no esquema,
+você TAMBÉM atuará como um Curador Científico especializado em Agronomia, seguindo estes critérios:
+
+**CRITÉRIOS DE VALIDAÇÃO (OBRIGATÓRIOS - TODOS devem ser atendidos para aprovação):**
+1.  **Tópico Principal:** O FOCO PRINCIPAL do artigo deve ser agronomia prática (ex: CULTIVO DE CULTURAS, MANEJO DO SOLO, CONTROLE DE PRAGAS/DOENÇAS, IRRIGAÇÃO, FERTILIZAÇÃO, PLANTAÇÕES).
+    -   *REJEITAR* se o tópico for biologia geral, química, ciência climática, ou se agronomia for apenas um exemplo menor.
+2.  **Formato:** Deve ser um artigo científico, tese ou estudo de caso detalhado com Metodologia e Resultados claros.
+    -   *REJEITAR* resumos, notícias, opiniões ou conteúdo de marketing.
+3.  **Consistência:** Não deve contradizer fatos do 'EXISTING DATABASE KNOWLEDGE'.
+    -   *REJEITAR* se uma contradição for encontrada.
+
+**REGRAS DE SAÍDA (Siga rigorosamente):**
+1.  Sua saída completa deve ser um único objeto JSON válido.
+2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento. Garanta que os campos específicos (Caracteristicas do solo e região, ferramentas e técnicas, nutrientes, estratégias de fornecimento de nutrientes, grupos de culturas, culturas presentes) sejam sempre respondidos com informações relevantes, inferindo do contexto se necessário. Se um campo não puder ser encontrado ou não for aplicável, deixe vazio.
+3.  Se os campos de curadoria estiverem presentes:
+    -   Preencha o campo **'FEEDBACK DO CURADOR (escrever)'** com a razão explícita para sua decisão:
+        -   Se aprovando: Comece com "Aprovado:" e depois declare brevemente a contribuição agronômica específica (ex: "Aprovado: Detalha uma nova técnica de irrigação para milho.").
+        -   Se rejeitando: Comece com "Rejeitado:" e depois declare CLARAMENTE QUAL critério de validação falhou (ex: "Rejeitado: O foco principal é botânica, não agronomia prática." ou "Rejeitado: Não apresenta seção de metodologia.").
+        -   Se rejeitando devido a contradição: Comece com "Rejeitado (Contradição):" e explique a contradição.
+    -   Com base no feedback que você acabou de escrever, defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` ou `false` (valor booleano, **NUNCA** "N/A" ou string vazia).
+4.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
 
 ESQUEMA:
 {schema_str}
-
-CRITÉRIOS DE APROVAÇÃO:
-1. Foco em Agronomia Prática.
-2. Formato de Artigo Científico/Tese.
-3. Consistência técnica."""
+"""
 
     user_prompt = f"""
 ### TAREFA
-Preencha o ESQUEMA JSON com os metadados extraídos do TEXTO DE ENTRADA.
+1. Analise o TEXTO DE ENTRADA.
+2. Compare com o CONHECIMENTO EXISTENTE DO BANCO DE DADOS (se fornecido).
+3. Preencha o ESQUEMA JSON ALVO com os metadados extraídos.
+
+{contexto_ref if referencia_rag != "Nenhum contexto prévio disponível." else ""}
 
 ### TEXTO DE ENTRADA
 '''
@@ -167,28 +274,31 @@ Retorne APENAS o objeto JSON preenchido."""
     logger.info(f"Payload Category: {payload.category}")
 
     try:
-        response = client_llm.chat.completions.create(
+        completion = client_groq.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            model=LLM_MODEL,
+            model="llama-3.1-8b-instant",
             temperature=0.0,
             response_format={"type": "json_object"}
         )
 
-        raw_response = response.choices[0].message.content
+        raw_response = completion.choices[0].message.content
         logger.info(f"Resposta Bruta da LLM: {raw_response}")
-
+        
         clean_response = clean_json_string(raw_response)
         return json.loads(clean_response)
 
     except Exception as e:
-        logger.error(f"Erro LLM Local: {e}")
+        logger.error(f"Erro Groq: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/categorize")
 async def categorize_article(payload: PDFPayload):
+    if not client_groq:
+        raise HTTPException(status_code=503, detail="Serviço indisponível: Groq não configurada.")
+
     document_text = get_document_text(payload.encoded_content, payload.content_type)
 
     if len(document_text) < 100:
@@ -202,18 +312,18 @@ async def categorize_article(payload: PDFPayload):
     user_prompt = f"Artigo:\n{document_text[:6000]}\n\nCategoria:"
 
     try:
-        response = client_llm.chat.completions.create(
+        completion = client_groq.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            model=LLM_MODEL,
+            model="llama-3.1-8b-instant",
             temperature=0.0,
             max_tokens=50,
         )
 
-        category = response.choices[0].message.content.strip()
-
+        category = completion.choices[0].message.content.strip()
+        
         # Limpeza básica
         if "BIOINSUMOS" in category.upper():
             category = "BIOINSUMOS"
@@ -228,4 +338,4 @@ async def categorize_article(payload: PDFPayload):
 
 @app.get("/")
 def read_root():
-    return {"status": "online", "model": LLM_MODEL, "service": "Local Ollama (RAG Disabled)"}
+    return {"status": "online", "version": "v12-Contradiction-Fixed", "service": "Groq Cloud"}
