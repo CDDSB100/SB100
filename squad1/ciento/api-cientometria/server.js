@@ -43,7 +43,9 @@ const upload = multer({ storage: storage });
 
 
 const app = express();
-const port = 5173;
+// allow the port to be overridden (useful for dev vs prod)
+const port = process.env.PORT || 5001;
+
 
 
 // Em um app real, use uma variável de ambiente (process.env.JWT_SECRET)
