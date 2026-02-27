@@ -46,6 +46,25 @@ const app = express();
 // allow the port to be overridden (useful for dev vs prod)
 const port = process.env.PORT || 5001;
 
+// Helper to compute network base URL (http://<ip>:<port>)
+function computeNetworkBaseUrl() {
+  if (process.env.NETWORK_IP) {
+    return `http://${process.env.NETWORK_IP}:${port}`;
+  }
+  const networkInterfaces = os.networkInterfaces();
+  for (const interfaceName in networkInterfaces) {
+    for (const iface of networkInterfaces[interfaceName]) {
+      if ((iface.family === 'IPv4' || iface.family === 4) && !iface.internal) {
+        return `http://${iface.address}:${port}`;
+      }
+    }
+  }
+  return `http://localhost:${port}`;
+}
+
+// store initial base URL (will be refreshed on server start)
+app.locals.baseNetworkUrl = computeNetworkBaseUrl();
+
 
 
 // Em um app real, use uma variável de ambiente (process.env.JWT_SECRET)
@@ -178,6 +197,12 @@ app.get("/", (req, res) => {
 // --- Rota de Health Check ---
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok" });
+});
+
+// Rota que retorna a URL base de rede que o backend está usando (útil para o frontend montar links)
+app.get('/api/base-url', (req, res) => {
+  const base = app.locals.baseNetworkUrl || `http://localhost:${port}`;
+  res.json({ baseUrl: base });
 });
 
 // --- Rota de Login ---
@@ -493,7 +518,11 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
 
       try {
         const localFileName = await uploadFileToDrive(null, tmpPath, originalName);
-        if (localFileName) data.pub_url = localFileName;
+          if (localFileName) {
+            const base = app.locals.baseNetworkUrl || `http://localhost:${port}`;
+            // ensure filename is safely encoded in URL
+            data.pub_url = `${base}/documents/${encodeURIComponent(localFileName)}`;
+          }
       } catch (e) {
         console.error('Error saving file locally:', e.message);
       } finally {
@@ -693,6 +722,9 @@ app.listen(port, "0.0.0.0", () => {
   const displayNetworkUrl = process.env.NETWORK_IP 
     ? `http://${process.env.NETWORK_IP}:${port}` 
     : networkUrl;
+
+  // refresh app.locals.baseNetworkUrl so runtime handlers can build absolute URLs
+  app.locals.baseNetworkUrl = displayNetworkUrl || `http://localhost:${port}`;
 
   if (displayNetworkUrl) {
     console.log(`  ➜  Network: ${displayNetworkUrl}/`);
