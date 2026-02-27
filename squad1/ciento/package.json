@@ -2,12 +2,14 @@
   "name": "ciento-monorepo",
   "private": true,
   "workspaces": [
-    "busca-cientometrica",
-    "api-cientometria"
+    "frontend",
+    "backend"
   ],
   "scripts": {
-    "dev:frontend": "npm --prefix busca-cientometrica run dev",
-    "start:frontend": "npm --prefix busca-cientometrica run start",
-    "start:backend": "npm --prefix api-cientometria run start"
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start:frontend": "npm --prefix frontend run start",
+    "build:frontend": "npm --prefix frontend run build",
+    "start:backend": "npm --prefix backend run start",
+    "dev": "npm run dev:frontend & npm run start:backend"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "name": "frontend-wrapper",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix ../busca-cientometrica run dev",
+    "build": "npm --prefix ../busca-cientometrica run build",
+    "start": "npm --prefix ../busca-cientometrica run start",
+    "lint": "npm --prefix ../busca-cientometrica run lint"
+  }
+}
