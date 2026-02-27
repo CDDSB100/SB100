@@ -17,9 +17,8 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Header from '../components/Header';
 
 const CATEGORIES_OPTIONS = [
-  "MANEJO ECOFISIOLÓGICO E NUTRICIONAL DA CITRICULTURA DE ALTA PERFORMANCE",
-  "MANEJO DE NUTRIENTES E AGUA",
-  "BIOINSUMOS"
+  "solos",
+  "citros e cana"
 ];
 
 const UserManagement = () => {
@@ -187,8 +186,8 @@ const UserManagement = () => {
                 <Select value={newRole} label="Role" onChange={(e) => setNewRole(e.target.value)} sx={{ borderRadius: 3 }}>
                   <MenuItem value="admin">Administrador</MenuItem>
                   <MenuItem value="cientometria">Cientometria (Leitura/Escrita)</MenuItem>
-                  <MenuItem value="curadoria_boaretto">Curador Especializado (Boaretto)</MenuItem>
-                  <MenuItem value="curadoria_bonetti">Curador Especializado (Bonetti)</MenuItem>
+                  <MenuItem value="curadoria_citros_cana">Curador Citros e Cana</MenuItem>
+                  <MenuItem value="curadoria_solos">Curador Solos</MenuItem>
                 </Select>
               </FormControl>
             </Box>

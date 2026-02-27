@@ -133,8 +133,8 @@ const UserRegistrationPage = () => {
               onChange={(e) => setRole(e.target.value)}
             >
               <MenuItem value="cientometria">Cientometria</MenuItem>
-              <MenuItem value="curadoria_boaretto">Curadoria Boaretto</MenuItem>
-              <MenuItem value="curadoria_bonetti">Curadoria Bonetti</MenuItem>
+              <MenuItem value="curadoria_citros_cana">Curador Citros e Cana</MenuItem>
+              <MenuItem value="curadoria_solos">Curador Solos</MenuItem>
               <MenuItem value="admin">Admin</MenuItem>
             </Select>
           </FormControl>

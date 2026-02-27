@@ -483,7 +483,7 @@ async function executarCategorizacaoLinhaUnica(rowNumber) {
   };
 }
 
-async function processLocalFolderForBatchInsert(folderPath) {
+async function processLocalFolderForBatchInsert(folderPath, username = "Desconhecido") {
   console.log(`  > processLocalFolderForBatchInsert: Scanning folder ${folderPath}`);
   const wb = readWorkbook();
   const ws = wb.Sheets[SHEET_NAME];
@@ -581,6 +581,7 @@ async function processLocalFolderForBatchInsert(folderPath) {
       rowData["CATEGORIA"] = category;
       rowData["URL DO DOCUMENTO"] = file.name; // Store relative path/filename
       rowData["Título"] = extractedMetadata["Titulo"] || file.name.replace(/\.pdf$/i, '');
+      rowData["INSERIDO POR"] = username;
 
       // SALVAMENTO INCREMENTAL: Salva este artigo IMEDIATAMENTE
       console.log(`    ➜ Saving [${file.name}] to spreadsheet...`);
@@ -618,8 +619,8 @@ async function getCuratedArticles() {
   const colUrlDocumentoIndex = headers.indexOf("URL DO DOCUMENTO");
 
   const allowedCategories = [
-    "BIOINSUMOS",
-    "MANEJO ECOFISIOLÓGICO E NUTRICIONAL DA CITRICULTURA DE ALTA PERFORMANCE"
+    "solos",
+    "citros e cana"
   ];
 
   let modified = false;
@@ -630,11 +631,15 @@ async function getCuratedArticles() {
     const row = allData[i];
     let category = String(row[colCategoriaIndex] || "").trim();
 
-    // Se a categoria for "MANEJO DE NUTRIENTES E AGUA", é uma categoria antiga que precisa ser atualizada
-    // Mas se o serviço de categorização estiver fora, não queremos ficar tentando infinitamente se já sabemos que falhou
-    const isOldCategory = category === "MANEJO DE NUTRIENTES E AGUA";
+    // Se a categoria for antiga, ela precisa ser atualizada para as novas (solos ou citros e cana)
+    const oldCategories = [
+      "MANEJO DE NUTRIENTES E AGUA",
+      "BIOINSUMOS",
+      "MANEJO ECOFISIOLÓGICO E NUTRICIONAL DA CITRICULTURA DE ALTA PERFORMANCE"
+    ];
+    const isOldCategory = oldCategories.includes(category);
 
-    if (!allowedCategories.includes(category) && repairedCount < 10) {
+    if ((!allowedCategories.includes(category) || isOldCategory) && repairedCount < 10) {
       const fileName = row[colUrlDocumentoIndex];
       const filePath = findFileInFolders(fileName);
       
@@ -771,7 +776,7 @@ async function isDuplicateLocal(allData, headers, doi, title) {
   return false;
 }
 
-async function saveData(selectedRows) {
+async function saveData(selectedRows, username = "Desconhecido") {
   const wb = readWorkbook();
   const ws = wb.Sheets[SHEET_NAME];
   const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
@@ -811,6 +816,7 @@ async function saveData(selectedRows) {
     finalDataToUpload.push({
       ...rowData,
       "URL DO DOCUMENTO": localFileName,
+      "INSERIDO POR": username,
     });
   }
 
@@ -847,7 +853,7 @@ async function uploadToLocalSheet(wb, allData, headers, data) {
   }
 }
 
-async function manualInsert(data) {
+async function manualInsert(data, username = "Desconhecido") {
   const wb = readWorkbook();
   const ws = wb.Sheets[SHEET_NAME];
   const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
@@ -859,6 +865,13 @@ async function manualInsert(data) {
       status: "error",
       message: `Erro: O documento '${data["Título"]}' já está cadastrado na planilha local e não pode ser inserido novamente.`,
     };
+  }
+
+  // Ensure INSERIDO POR header exists
+  let insertedByIndex = headers.indexOf("INSERIDO POR");
+  if (insertedByIndex === -1) {
+    headers.push("INSERIDO POR");
+    insertedByIndex = headers.length - 1;
   }
 
   const rowToUpload = {
@@ -896,6 +909,7 @@ async function manualInsert(data) {
     "FEEDBACK DO CURADOR (escrever)": data["FEEDBACK DO CURADOR (escrever)"],
     "URL DO DOCUMENTO": data.pub_url,
     "work_id": data.id || `manual-${Date.now()}`,
+    "INSERIDO POR": username,
   };
 
   const success = await uploadToLocalSheet(wb, allData, headers, [rowToUpload]);
@@ -990,7 +1004,7 @@ async function deleteUnavailableRows() {
   };
 }
 
-async function aprovarManualmenteLocal(rowNumber, fileName) {
+async function aprovarManualmenteLocal(rowNumber, fileName, username = "Desconhecido") {
   if (!fileName) {
     throw new Error("O artigo não possui um arquivo local associado.");
   }
@@ -1014,13 +1028,23 @@ async function aprovarManualmenteLocal(rowNumber, fileName) {
       await fs.rename(sourcePath, targetPath);
     }
 
+    // Ensure APROVADO POR header exists
+    let approvedByIndex = headers.indexOf("APROVADO POR");
+    if (approvedByIndex === -1) {
+      headers.push("APROVADO POR");
+      approvedByIndex = headers.length - 1;
+    }
+    
+    // Update row with username
+    allData[rowNumber - 1][approvedByIndex] = username;
+
     // 2. Create .txt with metadata
     const txtFileName = fileName.replace(/\.[^/.]+$/, "") + ".txt";
     const txtPath = path.join(APROVADOS_DIR, txtFileName);
     
     let metadataText = "--- METADADOS DO ARTIGO ---\n\n";
     headers.forEach((header, index) => {
-      const value = row[index] !== undefined ? row[index] : "";
+      const value = allData[rowNumber - 1][index] !== undefined ? allData[rowNumber - 1][index] : "";
       metadataText += `${header}: ${value}\n`;
     });
 
@@ -1041,7 +1065,7 @@ async function aprovarManualmenteLocal(rowNumber, fileName) {
 
     return {
       success: true,
-      message: `Artigo ${fileName} aprovado manualmente, movido para 'aprovados' e metadados salvos em .txt.`,
+      message: `Artigo ${fileName} aprovado manualmente por ${username}, movido para 'aprovados' e metadados salvos em .txt.`,
     };
   } catch (error) {
     console.error(`Erro na aprovação manual da linha ${rowNumber}:`, error.message);
@@ -1049,7 +1073,7 @@ async function aprovarManualmenteLocal(rowNumber, fileName) {
   }
 }
 
-async function reprovarManualmenteLocal(rowNumber, fileName) {
+async function reprovarManualmenteLocal(rowNumber, fileName, username = "Desconhecido") {
   if (!fileName) {
     throw new Error("O artigo não possui um arquivo local associado.");
   }
@@ -1073,13 +1097,23 @@ async function reprovarManualmenteLocal(rowNumber, fileName) {
       await fs.rename(sourcePath, targetPath);
     }
 
+    // Ensure APROVADO POR header exists (even for rejections, it records the evaluator)
+    let approvedByIndex = headers.indexOf("APROVADO POR");
+    if (approvedByIndex === -1) {
+      headers.push("APROVADO POR");
+      approvedByIndex = headers.length - 1;
+    }
+    
+    // Update row with username
+    allData[rowNumber - 1][approvedByIndex] = username;
+
     // 2. Create .txt with metadata
     const txtFileName = fileName.replace(/\.[^/.]+$/, "") + ".txt";
     const txtPath = path.join(REPROVADOS_DIR, txtFileName);
     
     let metadataText = "--- METADADOS DO ARTIGO ---\n\n";
     headers.forEach((header, index) => {
-      const value = row[index] !== undefined ? row[index] : "";
+      const value = allData[rowNumber - 1][index] !== undefined ? allData[rowNumber - 1][index] : "";
       metadataText += `${header}: ${value}\n`;
     });
 
@@ -1100,7 +1134,7 @@ async function reprovarManualmenteLocal(rowNumber, fileName) {
 
     return {
       success: true,
-      message: `Artigo ${fileName} rejeitado manualmente, movido para 'reprovados' e metadados salvos em .txt.`,
+      message: `Artigo ${fileName} rejeitado manualmente por ${username}, movido para 'reprovados' e metadados salvos em .txt.`,
     };
   } catch (error) {
     console.error(`Erro na rejeição manual da linha ${rowNumber}:`, error.message);
@@ -1108,7 +1142,7 @@ async function reprovarManualmenteLocal(rowNumber, fileName) {
   }
 }
 
-async function processZipUploadLocal(zipBuffer) {
+async function processZipUploadLocal(zipBuffer, username = "Desconhecido") {
   const tempDir = path.join(os.tmpdir(), `api-cientometria-zip-${Date.now()}`);
   console.log(`  > Creating temp dir for ZIP extraction: ${tempDir}`);
   await fs.mkdir(tempDir, { recursive: true });
@@ -1119,7 +1153,7 @@ async function processZipUploadLocal(zipBuffer) {
     zip.extractAllTo(tempDir, true);
 
     // Chamar a lógica de processamento de pasta local, apontando para o tempDir
-    const result = await processLocalFolderForBatchInsert(tempDir);
+    const result = await processLocalFolderForBatchInsert(tempDir, username);
     
     return result;
   } catch (error) {

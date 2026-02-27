@@ -133,7 +133,7 @@ function BatchProcessDrivePage() {
               </Box>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Typography sx={{ fontWeight: 900, color: 'primary.main' }}>3.</Typography>
-                <Typography variant="body2">Cada artigo será categorizado automaticamente entre BIOINSUMOS ou CITRICULTURA.</Typography>
+                <Typography variant="body2">Cada artigo será categorizado automaticamente entre SOLOS ou CITROS E CANA.</Typography>
               </Box>
               <Box sx={{ display: 'flex', gap: 2 }}>
                 <Typography sx={{ fontWeight: 900, color: 'primary.main' }}>4.</Typography>

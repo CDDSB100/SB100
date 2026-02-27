@@ -219,7 +219,7 @@ const SearchForm = ({ onSearch, loading }) => {
                  <Grid item xs={6}>
                     <Typography variant="caption" sx={{ fontWeight: 900, display: 'block', mb: 1, color: 'primary.main' }}>EXEMPLO</Typography>
                     <Typography variant="body2" sx={{ fontStyle: 'italic', fontSize: '0.8rem', bgcolor: 'grey.50', p: 1, borderRadius: 1 }}>
-                      "bioinsumos" AND ("citros" OR "citricultura")
+                      "solos" AND ("citros" OR "cana")
                     </Typography>
                  </Grid>
               </Grid>

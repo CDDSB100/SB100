@@ -191,17 +191,17 @@ app.post("/api/register", authenticateToken, authorizeAdmin, async (req, res) =>
   }
 
   // Validação simples de role
-  const validRoles = ['admin', 'cientometria', 'curadoria_boaretto', 'curadoria_bonetti'];
+  const validRoles = ['admin', 'cientometria', 'curadoria_citros_cana', 'curadoria_solos'];
   if (!validRoles.includes(role)) {
     return res.status(400).json({ error: `Role inválida. Roles permitidas: ${validRoles.join(', ')}.` });
   }
 
   // Atribuição automática de categorias baseada no Role
   let allowedCategories = null;
-  if (role === 'curadoria_boaretto') {
-    allowedCategories = JSON.stringify(["MANEJO ECOFISIOLÓGICO E NUTRICIONAL DA CITRICULTURA DE ALTA PERFORMANCE"]);
-  } else if (role === 'curadoria_bonetti') {
-    allowedCategories = JSON.stringify(["BIOINSUMOS"]);
+  if (role === 'curadoria_citros_cana') {
+    allowedCategories = JSON.stringify(["citros e cana"]);
+  } else if (role === 'curadoria_solos') {
+    allowedCategories = JSON.stringify(["solos"]);
   }
 
   try {
@@ -403,7 +403,8 @@ app.post("/api/save", authenticateToken, async (req, res) => {
       return res.status(400).json({ error: "No rows selected to save." });
     }
 
-    const result = await saveData(selected_rows);
+    const username = req.user ? req.user.username : "Desconhecido";
+    const result = await saveData(selected_rows, username);
     res.json(result);
   } catch (error) {
     console.error(`Error in /api/save: ${error.message}`);
@@ -505,7 +506,8 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
       }
     }
 
-    const result = await manualInsert(finalData);
+    const username = req.user ? req.user.username : "Desconhecido";
+    const result = await manualInsert(finalData, username);
 
     if (result.status === "success") {
       res.status(201).json(result); // 201 Created
@@ -526,7 +528,8 @@ app.post("/api/manual-approval", authenticateToken, async (req, res) => {
             return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
         }
 
-        const result = await aprovarManualmente(parseInt(row_number, 10), fileName);
+        const username = req.user ? req.user.username : "Desconhecido";
+        const result = await aprovarManualmente(parseInt(row_number, 10), fileName, username);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-approval: ${error.message}`);
@@ -542,7 +545,8 @@ app.post("/api/manual-rejection", authenticateToken, async (req, res) => {
             return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
         }
 
-        const result = await reprovarManualmente(parseInt(row_number, 10), fileName);
+        const username = req.user ? req.user.username : "Desconhecido";
+        const result = await reprovarManualmente(parseInt(row_number, 10), fileName, username);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-rejection: ${error.message}`);
@@ -556,7 +560,8 @@ app.post("/api/batch-upload-zip", authenticateToken, upload.single('file'), asyn
             return res.status(400).json({ error: "Nenhum arquivo ZIP foi enviado." });
         }
 
-        const result = await processZipUpload(req.file.buffer);
+        const username = req.user ? req.user.username : "Desconhecido";
+        const result = await processZipUpload(req.file.buffer, username);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/batch-upload-zip: ${error.message}`);
@@ -571,7 +576,8 @@ app.post("/api/batch-process-local-folder", authenticateToken, async (req, res) 
       return res.status(400).json({ error: "O 'folder_path' é obrigatório." });
     }
 
-    const result = await processDriveFolderForBatchInsert(folder_path);
+    const username = req.user ? req.user.username : "Desconhecido";
+    const result = await processDriveFolderForBatchInsert(folder_path, username);
     res.json(result);
   } catch (error) {
     console.error(`Error in /api/batch-process-local-folder: ${error.message}`);
