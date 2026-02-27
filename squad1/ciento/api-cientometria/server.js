@@ -43,7 +43,7 @@ const upload = multer({ storage: storage });
 
 
 const app = express();
-const port = 5001;
+const port = 5173;
 
 
 // Em um app real, use uma variável de ambiente (process.env.JWT_SECRET)

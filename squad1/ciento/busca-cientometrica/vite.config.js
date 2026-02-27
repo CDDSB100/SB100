@@ -8,7 +8,7 @@ export default defineConfig({
     allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1', '172.28.181.92', '0.0.0.0'],
     proxy: {
       '/api': {
-        target: process.env.VITE_API_TARGET || 'http://localhost:5001',
+        target: process.env.VITE_API_TARGET || 'http://localhost:5173',
         changeOrigin: true,
         secure: false,
         logLevel: 'debug',
