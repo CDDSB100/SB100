@@ -25,7 +25,7 @@ export default defineConfig({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Content-Security-Policy': "default-src 'self' https: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https://static.cloudflareinsights.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' http://127.0.0.1:5001 http://localhost:8000 https: ws: wss:;",
+      'Content-Security-Policy': "default-src 'self' http: https: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https://static.cloudflareinsights.com http: https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' http: https: 'unsafe-inline'; img-src 'self' data: http: https:; font-src 'self' data: http: https:; connect-src 'self' http: https: ws: wss:;",
     }
   },
 })
