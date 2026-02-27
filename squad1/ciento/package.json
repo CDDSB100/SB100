@@ -1,0 +1,13 @@
+{
+  "name": "ciento-monorepo",
+  "private": true,
+  "workspaces": [
+    "busca-cientometrica",
+    "api-cientometria"
+  ],
+  "scripts": {
+    "dev:frontend": "npm --prefix busca-cientometrica run dev",
+    "start:frontend": "npm --prefix busca-cientometrica run start",
+    "start:backend": "npm --prefix api-cientometria run start"
+  }
+}
