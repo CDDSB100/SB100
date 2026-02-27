@@ -301,12 +301,23 @@ async def categorize_article(payload: PDFPayload):
     if len(document_text) < 100:
         raise HTTPException(status_code=400, detail="Texto insuficiente para categorização.")
 
-    system_prompt = """Classifique o artigo em UMA das categorias abaixo. Retorne APENAS o nome da categoria.
-    Categorias:
-    - solos
-    - citros e cana"""
+    system_prompt = """Você é um assistente especializado em classificação de artigos científicos agrícolas.
 
-    user_prompt = f"Artigo:\n{document_text[:6000]}\n\nCategoria:"
+Classifique o artigo em UMA das seguintes categorias:
+1. **solos** - Artigos sobre pedologia, física do solo, química do solo, biologia do solo, manejo e conservação do solo, fertilidade do solo, nutrição de plantas via solo
+2. **citros e cana** - Artigos sobre cultivo, manejo, nutrição e fisiologia de citros (laranja, limão, tangerina) ou cana-de-açúcar
+
+Instruções:
+- Analise o CONTEÚDO PRINCIPAL do artigo
+- Se o foco principal for SOLO, retorne "solos"
+- Se o foco principal for CITROS ou CANA, retorne "citros e cana"
+- Retorne APENAS o nome exato da categoria, em minúsculas
+
+Categorias válidas:
+- solos
+- citros e cana"""
+
+    user_prompt = f"ARTIGO:\n{document_text[:6000]}\n\nCLASSIFICAÇÃO:"
 
     try:
         completion = client_groq.chat.completions.create(
@@ -319,14 +330,21 @@ async def categorize_article(payload: PDFPayload):
             max_tokens=50,
         )
 
-        category = completion.choices[0].message.content.strip()
+        category = completion.choices[0].message.content.strip().lower()
         
-        # Limpeza básica
-        if "SOLO" in category.upper():
+        # Normalização de categorias
+        if "solo" in category:
             category = "solos"
-        else:
+        elif "citro" in category or "cana" in category:
             category = "citros e cana"
+        else:
+            # Se não reconhecer, fazer inferência baseada no conteúdo
+            if "solo" in document_text[:2000].lower() or "pedologia" in document_text.lower():
+                category = "solos"
+            else:
+                category = "citros e cana"
 
+        logger.info(f"Categorização realizada: {category}")
         return {"category": category}
 
     except Exception as e:

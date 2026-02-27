@@ -623,6 +623,13 @@ async function getCuratedArticles() {
     "citros e cana"
   ];
 
+  // Mapeamento de categorias antigas para novas
+  const categoryMapping = {
+    "MANEJO DE NUTRIENTES E AGUA": "citros e cana",
+    "BIOINSUMOS": "solos",
+    "MANEJO ECOFISIOLÓGICO E NUTRICIONAL DA CITRICULTURA DE ALTA PERFORMANCE": "citros e cana"
+  };
+
   let modified = false;
   let repairedCount = 0;
 
@@ -631,24 +638,31 @@ async function getCuratedArticles() {
     const row = allData[i];
     let category = String(row[colCategoriaIndex] || "").trim();
 
-    // Se a categoria for antiga, ela precisa ser atualizada para as novas (solos ou citros e cana)
-    const oldCategories = [
-      "MANEJO DE NUTRIENTES E AGUA",
-      "BIOINSUMOS",
-      "MANEJO ECOFISIOLÓGICO E NUTRICIONAL DA CITRICULTURA DE ALTA PERFORMANCE"
-    ];
-    const isOldCategory = oldCategories.includes(category);
+    // Verificar se é categoria antiga ou inválida
+    const isOldCategory = Object.keys(categoryMapping).includes(category);
+    const isInvalid = !allowedCategories.includes(category) && category !== "";
 
-    if ((!allowedCategories.includes(category) || isOldCategory) && repairedCount < 10) {
+    if ((isOldCategory || isInvalid) && repairedCount < 10) {
       const fileName = row[colUrlDocumentoIndex];
       const filePath = findFileInFolders(fileName);
       
-      if (filePath) {
+      // Se houver mapeamento direto, aplicar primeiro
+      if (categoryMapping[category]) {
+        console.log(`  > Mapeando categoria antiga ('${category}') na linha ${i + 1}...`);
+        allData[i][colCategoriaIndex] = categoryMapping[category];
+        modified = true;
+        repairedCount++;
+        console.log(`    ➜ Nova categoria: ${categoryMapping[category]}`);
+        continue;
+      }
+      
+      // Se não há mapeamento e arquivo existe, tentar API
+      if (filePath && isInvalid) {
         console.log(`  > Reparando categoria inválida ('${category}') na linha ${i + 1}...`);
         try {
           const pdfBuffer = await fs.readFile(filePath);
           const newCategory = await callCategorizationApi(pdfBuffer);
-          if (newCategory) {
+          if (newCategory && allowedCategories.includes(newCategory)) {
             allData[i][colCategoriaIndex] = newCategory;
             modified = true;
             repairedCount++;
@@ -656,9 +670,7 @@ async function getCuratedArticles() {
           }
         } catch (e) {
           console.error(`    ➜ Erro ao reparar linha ${i+1}: ${e.message}`);
-          // Se falhou e é a categoria problematica, podemos marcar de alguma forma para não tentar de novo nesta execução
-          // ou apenas aceitar que o log vai mostrar o erro.
-          // Como estamos em um loop de leitura, não queremos travar tudo.
+          // Deixar para tentar novamente depois
         }
       }
     }
