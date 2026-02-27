@@ -58,8 +58,35 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: "*", // Permite todas as origens (ideal para dev e servidor externo)
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
 }));
+
+// Middleware para permitir recursos externos (Cloudflare Insights, etc)
+app.use((req, res, next) => {
+  // Permitir Cloudflare Insights e outros recursos externos
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Type, Authorization');
+  
+  // Desabilitar Subresource Integrity checks para recursos dinâmicos do Cloudflare
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'ALLOW-FROM *');
+  
+  // Permitir scripts de fontes externas
+  res.setHeader('Content-Security-Policy', 
+    "default-src 'self' https: 'unsafe-inline' 'unsafe-eval' data:; " +
+    "script-src 'self' https://static.cloudflareinsights.com https: 'unsafe-inline' 'unsafe-eval'; " +
+    "style-src 'self' https: 'unsafe-inline'; " +
+    "img-src 'self' data: https:; " +
+    "font-src 'self' data: https:; " +
+    "connect-src 'self' http: https: ws: wss:; " +
+    "frame-ancestors 'self' *"
+  );
+  
+  next();
+});
 
 // Middleware para Log de todas as requisições (ajuda no debug do Vercel)
 app.use((req, res, next) => {

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https://static.cloudflareinsights.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' http://127.0.0.1:5001 http://localhost:8000 https: ws: wss:;">
     <title>busca-cientometrica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,5 +13,14 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Cloudflare Insights: Radar and Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"></script>
+    <script>
+      window.addEventListener('load', function() {
+        if (window.cf) {
+          window.cf.push({'token': 'default'});
+        }
+      });
+    </script>
   </body>
 </html>
