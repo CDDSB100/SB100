@@ -5,27 +5,26 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1'],
+    allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1', '172.28.181.92', '0.0.0.0'],
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:5001',
+        target: process.env.VITE_API_TARGET || 'http://127.0.0.1:5001',
         changeOrigin: true,
         secure: false,
       },
       '/api-py': {
-        target: 'http://localhost:8000',
+        target: process.env.VITE_API_PY_TARGET || 'http://localhost:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api-py/, ''),
         secure: false,
         logLevel: 'debug',
       },
     },
-    // Headers para permitir recursos externos e desabilitar proteção de rastreamento que bloqueia Cloudflare
+    // Headers para CORS e segurança
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-      'Content-Security-Policy': "default-src 'self' http: https: 'unsafe-inline' 'unsafe-eval'; script-src 'self' https://static.cloudflareinsights.com http: https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' http: https: 'unsafe-inline'; img-src 'self' data: http: https:; font-src 'self' data: http: https:; connect-src 'self' http: https: ws: wss:;",
     }
   },
 })
