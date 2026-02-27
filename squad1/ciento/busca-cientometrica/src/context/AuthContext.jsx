@@ -75,11 +75,6 @@ export function AuthProvider({ children }) {
         logout,
     }), [userToken, userRole, isLoading, login, logout]);
 
-    if (isLoading) {
-        // Opcional: retornar um spinner ou nada para evitar flash de conteúdo deslogado
-        return null; 
-    }
-
     return (
         <AuthContext.Provider value={authValue}>
             {children}
