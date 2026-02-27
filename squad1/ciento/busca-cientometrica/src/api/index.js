@@ -1,7 +1,9 @@
 import axios from "axios";
 
+// prefer relative path for same-origin requests; override in dev with env var
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://172.28.181.92:5001/api";
+  import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.PROD ? '/api' : 'http://172.28.181.92:5001/api');
 
 const api = axios.create({
   baseURL: API_BASE_URL,
