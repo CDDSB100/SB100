@@ -83,6 +83,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// Se existir uma build do front-end, servir os arquivos estáticos
+const frontendBuildPath = path.join(__dirname, '../busca-cientometrica/dist');
+if (fsSync.existsSync(frontendBuildPath)) {
+  console.log(`> Servindo frontend estático de ${frontendBuildPath}`);
+  app.use(express.static(frontendBuildPath));
+  // Qualquer rota não-API deve retornar index.html para roteamento do React
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api')) return next();
+    res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  });
+}
+
 // --- AUTH MIDDLEWARE ---
 
 const authenticateToken = (req, res, next) => {
