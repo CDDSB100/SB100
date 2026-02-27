@@ -302,9 +302,8 @@ function CurationPage() {
     if (!url) return;
     let finalUrl = url;
     if (!url.startsWith("http")) {
-      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://172.28.181.92:5001/api";
-      const serverUrl = apiBaseUrl.replace(/\/api\/?$/, ""); 
-      finalUrl = `${serverUrl}/documents/${url}`;
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "/api";
+      finalUrl = `${apiBaseUrl}/documents/${url}`;
     } else if (url.includes("drive.google.com/file/d/")) {
       finalUrl = url.replace("/view", "/preview");
     }
