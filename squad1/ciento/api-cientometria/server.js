@@ -87,7 +87,12 @@ app.use((req, res, next) => {
 const frontendBuildPath = path.join(__dirname, '../busca-cientometrica/dist');
 if (fsSync.existsSync(frontendBuildPath)) {
   console.log(`> Servindo frontend estático de ${frontendBuildPath}`);
-  app.use(express.static(frontendBuildPath));
+  // servir sem cache para evitar antigos conteúdos em browsers
+  app.use(express.static(frontendBuildPath, { maxAge: 0, setHeaders: (res) => {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+  }}));
   // Qualquer rota não-API deve retornar index.html para roteamento do React
   app.get('*', (req, res, next) => {
     if (req.path.startsWith('/api')) return next();
