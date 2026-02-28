@@ -33,9 +33,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://sb100cientometria.optin.com.br",  # Domínio de produção
-        "http://localhost:5173",  # Vite dev server local
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",  # Fallback se rodar em outra porta
+        "http://localhost:5173",                 # Vite dev server local (Porta padrão)
+        "http://127.0.0.1:5173",                 # Alternativa local
+        "http://localhost:8000",                 # Para testes diretos no backend
     ],
     allow_credentials=True,
     allow_methods=["*"],

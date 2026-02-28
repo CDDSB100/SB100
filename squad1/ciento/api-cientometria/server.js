@@ -690,7 +690,8 @@ app.listen(port, "0.0.0.0", () => {
   
   console.log(`Usando comando uvicorn: ${uvicornCmd}`);
     
-  const llmServer = spawn(uvicornCmd, ['src.utils.llm:app', '--host', '0.0.0.0', '--port', '8000'], {
+  // Alterado para usar o main.py da raiz conforme solicitado
+  const llmServer = spawn(uvicornCmd, ['main:app', '--host', '0.0.0.0', '--port', '8000'], {
     stdio: 'inherit',
     env: process.env,
     shell: true
