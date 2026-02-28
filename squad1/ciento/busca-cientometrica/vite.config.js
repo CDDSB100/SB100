@@ -7,14 +7,14 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      // Força o uso de uma única instância do React e Emotion para evitar erros de Hooks e múltiplos carregamentos
-      'react': path.resolve(__dirname, 'node_modules/react'),
-      'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-      '@emotion/react': path.resolve(__dirname, 'node_modules/@emotion/react'),
-      '@emotion/styled': path.resolve(__dirname, 'node_modules/@emotion/styled'),
+      // Força o uso da mesma instância física no disco
+      'react': path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      '@emotion/react': path.resolve(__dirname, './node_modules/@emotion/react'),
+      '@emotion/styled': path.resolve(__dirname, './node_modules/@emotion/styled'),
     },
-    // Garante que o Vite use apenas uma cópia dessas bibliotecas
-    dedupe: ['react', 'react-dom', '@emotion/react', '@emotion/styled']
+    // Deduplicação obrigatória
+    dedupe: ['react', 'react-dom', '@emotion/react', '@emotion/styled', '@mui/material']
   },
   server: {
     allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1', '172.28.181.92', '0.0.0.0'],
