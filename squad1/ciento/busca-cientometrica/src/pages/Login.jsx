@@ -68,10 +68,7 @@ function LoginPage() {
       <Grid container>
         {/* Lado Esquerdo - Visual e Info (Oculto em Mobile) */}
         <Grid 
-          item 
-          xs={false} 
-          sm={4} 
-          md={7} 
+          size={{ xs: 12, sm: 4, md: 7 }}
           sx={{ 
             bgcolor: 'primary.main',
             display: { xs: 'none', sm: 'flex' },
@@ -102,7 +99,7 @@ function LoginPage() {
             </Typography>
             
             <Grid container spacing={4} sx={{ mt: 2 }}>
-              <Grid item xs={6}>
+              <Grid size={{ xs: 6 }}>
                 <Stack spacing={1}>
                   <SchoolIcon sx={{ color: 'secondary.main' }} />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>Pesquisa Eficiente</Typography>
@@ -111,7 +108,7 @@ function LoginPage() {
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid item xs={6}>
+              <Grid size={{ xs: 6 }}>
                 <Stack spacing={1}>
                   <AutoGraphIcon sx={{ color: 'secondary.main' }} />
                   <Typography variant="h6" sx={{ fontWeight: 700 }}>Análise com IA</Typography>
@@ -126,10 +123,7 @@ function LoginPage() {
 
         {/* Lado Direito - Form de Login */}
         <Grid 
-          item 
-          xs={12} 
-          sm={8} 
-          md={5} 
+          size={{ xs: 12, sm: 8, md: 5 }}
           component={Paper} 
           elevation={0} 
           square 
