@@ -6,6 +6,7 @@ import logging
 import re
 from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from groq import Groq
 from openai import OpenAI
@@ -26,6 +27,21 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI()
+
+# ========== CONFIGURAÇÃO DE CORS ==========
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://sb100cientometria.optin.com.br",  # Domínio de produção
+        "http://localhost:5173",  # Vite dev server local
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",  # Fallback se rodar em outra porta
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ===========================================
 
 # Variáveis de Ambiente
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")

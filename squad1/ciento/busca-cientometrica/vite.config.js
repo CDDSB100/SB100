@@ -22,10 +22,12 @@ export default defineConfig({
     middlewareMode: false,
     proxy: {
       '/api': {
-        target: process.env.VITE_API_TARGET || 'http://localhost:5001',
+        target: process.env.VITE_API_TARGET || 'http://localhost:8000',
         changeOrigin: true,
         secure: false,
         logLevel: 'debug',
+        // Remove o prefixo /api antes de enviar a requisição para o FastAPI
+        rewrite: (path) => path.replace(/^\/api/, ''),
         // Trust X-Forwarded-Proto header from reverse proxy (for HTTPS)
         headers: {
           'X-Forwarded-Proto': 'https',
@@ -33,19 +35,6 @@ export default defineConfig({
         // Rewrite the host header based on incoming request
         onProxyReq: (proxyReq, req, res) => {
           // This ensures the backend knows what host it's being accessed from
-          proxyReq.setHeader('X-Forwarded-Host', req.headers.host);
-        },
-      },
-      '/api-py': {
-        target: process.env.VITE_API_PY_TARGET || 'http://localhost:8000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api-py/, ''),
-        secure: false,
-        logLevel: 'debug',
-        headers: {
-          'X-Forwarded-Proto': 'https',
-        },
-        onProxyReq: (proxyReq, req, res) => {
           proxyReq.setHeader('X-Forwarded-Host', req.headers.host);
         },
       },
