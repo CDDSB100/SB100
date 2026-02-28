@@ -20,25 +20,25 @@ export default defineConfig({
     allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1', '172.28.181.92', '0.0.0.0'],
     middlewareMode: false,
     proxy: {
-      // Redireciona todas as chamadas /api para o backend FastAPI na porta 8000
-      '/api': {
+      // 1. Roteamento para o FastAPI (Inteligência Artificial)
+      // Redireciona endpoints específicos de IA para a porta 8000
+      '/api/curadoria': {
         target: 'http://localhost:8000',
         changeOrigin: true,
-        secure: false,
-        // Remove o prefixo /api antes de enviar a requisição para o FastAPI
         rewrite: (path) => path.replace(/^\/api/, ''),
-        // Log para depuração de rotas em desenvolvimento
-        configure: (proxy, _options) => {
-          proxy.on('error', (err, _req, _res) => {
-            console.log('proxy error', err);
-          });
-          proxy.on('proxyReq', (proxyReq, req, _res) => {
-            console.log('Sending Request to the Target:', req.method, req.url);
-          });
-          proxy.on('proxyRes', (proxyRes, req, _res) => {
-            console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
-          });
-        },
+      },
+      '/api/categorize': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+
+      // 2. Roteamento para o Node.js (Gerenciamento/Banco de Dados)
+      // Tudo que sobrar em /api vai para a porta 5001
+      '/api': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+        // O Node.js já espera o prefixo /api no server.js, então não fazemos rewrite aqui
       },
     },
     // Headers para CORS e segurança
