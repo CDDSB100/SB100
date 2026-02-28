@@ -1,9 +1,8 @@
 import axios from "axios";
 
-// Always use relative path or environment variable to avoid mixed content errors
-// The Vite dev server proxy will forward /api requests to the backend
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || '/api';
+// IMPORTANTE: Use apenas '/api' para que o proxy do Vite funcione.
+// Isso evita erros de "Mixed Content" (HTTPS chamando HTTP).
+const API_BASE_URL = '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
