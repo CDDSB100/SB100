@@ -8,7 +8,6 @@ from typing import List, Dict, Any, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from groq import Groq
 from openai import OpenAI
 from pypdf import PdfReader
 from qdrant_client import QdrantClient
@@ -44,7 +43,6 @@ app.add_middleware(
 # ===========================================
 
 # Variáveis de Ambiente
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
 QDRANT_COLLECTION = "BaseCurador"
@@ -52,14 +50,6 @@ QDRANT_COLLECTION = "BaseCurador"
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
 # Alterado para Gemma 3 1B para o teste local
 LLM_MODEL = os.getenv("LLM_MODEL", "gemma3:1b")
-
-# Inicialização de Clientes
-client_groq = None
-if GROQ_API_KEY:
-    try:
-        client_groq = Groq(api_key=GROQ_API_KEY)
-    except Exception as e:
-        logger.error(f"Erro ao iniciar Groq: {e}")
 
 # Cliente local (Ollama)
 client_llm = OpenAI(
@@ -219,13 +209,10 @@ Retorne o JSON preenchido."""
     logger.info(f"--- INICIANDO CURADORIA LOCAL (Modelo: {LLM_MODEL}) ---")
 
     try:
-        # Prioriza Ollama (Local) para este teste
+        # Usa Ollama (Local)
         target_client = client_llm
         target_model = LLM_MODEL
         
-        # Se Groq estiver ativo e você preferir, pode inverter a lógica aqui. 
-        # Para seu teste, usaremos o target_client configurado acima (OpenAI -> Ollama).
-
         completion = target_client.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
@@ -233,7 +220,6 @@ Retorne o JSON preenchido."""
             ],
             model=target_model,
             temperature=0.1,
-            # Nem todos os modelos locais suportam response_format, então limpamos manualmente depois
         )
 
         raw_response = completion.choices[0].message.content
@@ -253,16 +239,6 @@ Retorne o JSON preenchido."""
 
     except Exception as e:
         logger.error(f"Erro na LLM Local: {e}")
-        # Fallback para Groq se disponível em caso de erro na local
-        if client_groq:
-            logger.info("Tentando fallback para Groq...")
-            completion = client_groq.chat.completions.create(
-                messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
-                model="llama-3.1-8b-instant",
-                temperature=0.0,
-                response_format={"type": "json_object"}
-            )
-            return json.loads(completion.choices[0].message.content)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/categorize")
