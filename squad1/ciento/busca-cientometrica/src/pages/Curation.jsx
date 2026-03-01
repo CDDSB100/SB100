@@ -59,6 +59,8 @@ import InfoIcon from "@mui/icons-material/Info";
 import CategoryIcon from "@mui/icons-material/Category";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import TerminalIcon from "@mui/icons-material/Terminal";
+import ErrorIcon from "@mui/icons-material/Error";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
 import "./Curation.css";
 import { 
   getCuratedArticles, 
@@ -70,7 +72,8 @@ import {
   manualApproveArticle,
   manualRejectArticle,
   batchUploadZip,
-  getLlmLogs
+  getLlmLogs,
+  getBatchProgress
 } from '../api';
 
 function CurationPage() {
@@ -104,6 +107,14 @@ function CurationPage() {
   const [logs, setLogs] = useState("");
   const [openLogs, setOpenLogs] = useState(false);
 
+  const [feedbackDialogOpen, setFeedbackDialogOpen] = useState(false);
+  const [feedbackText, setFeedbackText] = useState("");
+  const [pendingAction, setPendingAction] = useState(null); // { rowNumber, fileName, action: 'approve' | 'reject' }
+
+  // Batch Progress state
+  const [batchProgress, setBatchProgress] = useState(null);
+  const [showProgressDialog, setShowProgressDialog] = useState(false);
+
   useEffect(() => {
     let interval;
     if (openLogs) {
@@ -120,6 +131,31 @@ function CurationPage() {
     }
     return () => clearInterval(interval);
   }, [openLogs]);
+
+  // Progress polling effect
+  useEffect(() => {
+    let pollInterval;
+    if (isTriggering && showProgressDialog) {
+      pollInterval = setInterval(async () => {
+        try {
+          const progress = await getBatchProgress();
+          setBatchProgress(progress);
+          if (progress.status === 'completed' || progress.status === 'idle') {
+            setIsTriggering(false);
+            // Wait a bit then refresh articles
+            setTimeout(() => {
+              fetchArticles();
+            }, 2000);
+          }
+        } catch (e) {
+          console.error("Erro ao buscar progresso:", e);
+        }
+      }, 2000);
+    }
+    return () => {
+      if (pollInterval) clearInterval(pollInterval);
+    };
+  }, [isTriggering, showProgressDialog]);
 
   const fetchArticles = useCallback(async () => {
     setLoading(true);
@@ -214,7 +250,8 @@ function CurationPage() {
     if (!file) return;
 
     setIsTriggering(true);
-    setSnackbar({ open: true, message: "Enviando e processando ZIP... Isso pode levar alguns minutos.", severity: "info" });
+    setBatchProgress({ total: 0, current: 0, processed: 0, errors: 0, skipped: 0, status: 'processing', message: 'Enviando arquivo...' });
+    setShowProgressDialog(true);
     
     try {
       const response = await batchUploadZip(file);
@@ -222,8 +259,8 @@ function CurationPage() {
       setTimeout(fetchArticles, 1000);
     } catch (err) {
       setSnackbar({ open: true, message: "Erro: " + (err.response?.data?.error || err.message), severity: "error" });
-    } finally {
       setIsTriggering(false);
+    } finally {
       // Reset input
       event.target.value = null;
     }
@@ -272,29 +309,42 @@ function CurationPage() {
     }
   };
 
-  const handleManualApprove = async (rowNumber, fileName) => {
-    setProcessingRow(rowNumber);
-    try {
-      await manualApproveArticle(rowNumber, fileName);
-      setSnackbar({ open: true, message: "Artigo aprovado manualmente!", severity: "success" });
-      fetchArticles();
-    } catch (err) {
-      setSnackbar({ open: true, message: "Erro: " + err.message, severity: "error" });
-    } finally {
-      setProcessingRow(null);
-    }
+  const handleManualApprove = (rowNumber, fileName) => {
+    setPendingAction({ rowNumber, fileName, action: 'approve' });
+    setFeedbackText("");
+    setFeedbackDialogOpen(true);
   };
 
-  const handleManualReject = async (rowNumber, fileName) => {
+  const handleManualReject = (rowNumber, fileName) => {
+    setPendingAction({ rowNumber, fileName, action: 'reject' });
+    setFeedbackText("");
+    setFeedbackDialogOpen(true);
+  };
+
+  const confirmFeedbackAction = async () => {
+    if (!feedbackText.trim()) {
+      setSnackbar({ open: true, message: "O feedback é obrigatório.", severity: "warning" });
+      return;
+    }
+
+    const { rowNumber, fileName, action } = pendingAction;
     setProcessingRow(rowNumber);
+    setFeedbackDialogOpen(false);
+
     try {
-      await manualRejectArticle(rowNumber, fileName);
-      setSnackbar({ open: true, message: "Artigo rejeitado manualmente!", severity: "success" });
+      if (action === 'approve') {
+        await manualApproveArticle(rowNumber, fileName, feedbackText);
+        setSnackbar({ open: true, message: "Artigo aprovado manualmente!", severity: "success" });
+      } else {
+        await manualRejectArticle(rowNumber, fileName, feedbackText);
+        setSnackbar({ open: true, message: "Artigo rejeitado manualmente!", severity: "success" });
+      }
       fetchArticles();
     } catch (err) {
       setSnackbar({ open: true, message: "Erro: " + err.message, severity: "error" });
     } finally {
       setProcessingRow(null);
+      setPendingAction(null);
     }
   };
 
@@ -483,6 +533,20 @@ function CurationPage() {
                             <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'grey.300' }}>D</Avatar>
                             <Typography variant="body2" color="text.secondary">DOI: {article.DOI || "N/A"}</Typography>
                           </Box>
+                          <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+                            <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'success.light' }}>I</Avatar>
+                            <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem' }}>
+                              Inserido por: <strong>{article["INSERIDO POR"] || "Sistema"}</strong>
+                            </Typography>
+                          </Box>
+                          {article["APROVADO POR"] && (
+                            <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+                              <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'info.light' }}>C</Avatar>
+                              <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem' }}>
+                                Curador: <strong>{article["APROVADO POR"]}</strong>
+                              </Typography>
+                            </Box>
+                          )}
                         </Stack>
                         
                         {article["FEEDBACK DO CURADOR (escrever)"] && article["FEEDBACK DO CURADOR (escrever)"] !== "N/A" && (
@@ -670,6 +734,113 @@ function CurationPage() {
           AUTO_REFRESH_ACTIVE [3S]
         </Typography>
       </Drawer>
+
+      {/* Feedback Dialog */}
+      <Dialog open={feedbackDialogOpen} onClose={() => setFeedbackDialogOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle sx={{ fontWeight: 800 }}>
+          {pendingAction?.action === 'approve' ? 'Confirmar Aprovação' : 'Confirmar Rejeição'}
+        </DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
+            Por favor, forneça um feedback sobre esta decisão. Este comentário será salvo no registro do artigo.
+          </Typography>
+          <TextField
+            fullWidth
+            multiline
+            rows={4}
+            label="Feedback do Curador"
+            value={feedbackText}
+            onChange={(e) => setFeedbackText(e.target.value)}
+            placeholder="Descreva o motivo da aprovação ou rejeição..."
+            variant="outlined"
+          />
+        </DialogContent>
+        <DialogActions sx={{ p: 3 }}>
+          <Button onClick={() => setFeedbackDialogOpen(false)} color="inherit">Cancelar</Button>
+          <Button 
+            onClick={confirmFeedbackAction} 
+            variant="contained" 
+            color={pendingAction?.action === 'approve' ? 'success' : 'error'}
+            disabled={!feedbackText.trim()}
+            sx={{ borderRadius: '50px', px: 3 }}
+          >
+            Confirmar {pendingAction?.action === 'approve' ? 'Aprovação' : 'Rejeição'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Batch Progress Dialog */}
+      <Dialog 
+        open={showProgressDialog} 
+        onClose={() => batchProgress?.status === 'completed' && setShowProgressDialog(false)}
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{ sx: { borderRadius: 4 } }}
+      >
+        <DialogTitle sx={{ fontWeight: 900, bgcolor: 'primary.main', color: 'white' }}>
+          Processamento em Lote
+        </DialogTitle>
+        <DialogContent sx={{ mt: 2 }}>
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 1 }}>
+              {batchProgress?.message || 'Iniciando...'}
+            </Typography>
+            <LinearProgress 
+              variant={batchProgress?.total > 0 ? "determinate" : "indeterminate"} 
+              value={batchProgress?.total > 0 ? (batchProgress.current / batchProgress.total) * 100 : 0} 
+              sx={{ height: 10, borderRadius: 5 }}
+            />
+            {batchProgress?.total > 0 && (
+              <Typography variant="caption" sx={{ mt: 1, display: 'block', textAlign: 'right', fontWeight: 700 }}>
+                {batchProgress.current} de {batchProgress.total} artigos analisados
+              </Typography>
+            )}
+          </Box>
+
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'success.light', color: 'white', borderRadius: 3 }}>
+                <CheckCircleIcon sx={{ mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 900 }}>{batchProgress?.processed || 0}</Typography>
+                <Typography variant="caption" sx={{ fontWeight: 700 }}>Inseridos</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={4}>
+              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'warning.light', color: 'white', borderRadius: 3 }}>
+                <SkipNextIcon sx={{ mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 900 }}>{batchProgress?.skipped || 0}</Typography>
+                <Typography variant="caption" sx={{ fontWeight: 700 }}>Duplicados</Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={4}>
+              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'error.light', color: 'white', borderRadius: 3 }}>
+                <ErrorIcon sx={{ mb: 0.5 }} />
+                <Typography variant="h6" sx={{ fontWeight: 900 }}>{batchProgress?.errors || 0}</Typography>
+                <Typography variant="caption" sx={{ fontWeight: 700 }}>Erros</Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+
+          {batchProgress?.status === 'processing' && (
+            <Box sx={{ mt: 3, display: 'flex', alignItems: 'center', gap: 2, p: 2, bgcolor: 'grey.50', borderRadius: 2 }}>
+              <CircularProgress size={20} />
+              <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
+                A Inteligência Artificial está extraindo metadados e analisando o conteúdo...
+              </Typography>
+            </Box>
+          )}
+        </DialogContent>
+        <DialogActions sx={{ p: 2 }}>
+          <Button 
+            onClick={() => setShowProgressDialog(false)} 
+            variant="contained" 
+            disabled={batchProgress?.status === 'processing'}
+            sx={{ borderRadius: '50px', px: 4 }}
+          >
+            Fechar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

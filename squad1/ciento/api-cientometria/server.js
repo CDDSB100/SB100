@@ -37,6 +37,17 @@ const { pool, initDb, saltRounds } = require("./src/services/database.js"); // I
 const { extractMetadata } = require("./src/controllers/metadata_controller.js"); // Importar o novo controller
 const multer = require("multer"); // Importar multer
 
+// Progress tracking for batch processes
+let batchProgress = {
+  total: 0,
+  current: 0,
+  processed: 0,
+  errors: 0,
+  skipped: 0,
+  status: 'idle', // 'idle', 'processing', 'completed'
+  message: ''
+};
+
 // Configuração do Multer para upload de arquivos em memória
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -586,14 +597,14 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
 
 app.post("/api/manual-approval", authenticateToken, async (req, res) => {
     try {
-        const { row_number, fileName } = req.body; // Use fileName for local
+        const { row_number, fileName, feedback } = req.body; // Use fileName for local
 
         if (!row_number || !fileName) {
             return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
         }
 
         const username = req.user ? req.user.username : "Desconhecido";
-        const result = await aprovarManualmente(parseInt(row_number, 10), fileName, username);
+        const result = await aprovarManualmente(parseInt(row_number, 10), fileName, username, feedback);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-approval: ${error.message}`);
@@ -603,14 +614,14 @@ app.post("/api/manual-approval", authenticateToken, async (req, res) => {
 
 app.post("/api/manual-rejection", authenticateToken, async (req, res) => {
     try {
-        const { row_number, fileName } = req.body;
+        const { row_number, fileName, feedback } = req.body;
 
         if (!row_number || !fileName) {
             return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
         }
 
         const username = req.user ? req.user.username : "Desconhecido";
-        const result = await reprovarManualmente(parseInt(row_number, 10), fileName, username);
+        const result = await reprovarManualmente(parseInt(row_number, 10), fileName, username, feedback);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-rejection: ${error.message}`);
@@ -625,9 +636,28 @@ app.post("/api/batch-upload-zip", authenticateToken, upload.single('file'), asyn
         }
 
         const username = req.user ? req.user.username : "Desconhecido";
-        const result = await processZipUpload(req.file.buffer, username);
+        
+        // Reset progress
+        batchProgress = {
+          total: 0,
+          current: 0,
+          processed: 0,
+          errors: 0,
+          skipped: 0,
+          status: 'processing',
+          message: 'Iniciando processamento de ZIP...'
+        };
+
+        const result = await processZipUpload(req.file.buffer, username, (p) => {
+          batchProgress = { ...batchProgress, ...p };
+        });
+
+        batchProgress.status = 'completed';
+        batchProgress.message = result.message;
         res.json(result);
     } catch (error) {
+        batchProgress.status = 'idle';
+        batchProgress.message = 'Erro: ' + error.message;
         console.error(`Error in /api/batch-upload-zip: ${error.message}`);
         res.status(500).json({ error: error.message });
     }
@@ -641,12 +671,35 @@ app.post("/api/batch-process-local-folder", authenticateToken, async (req, res) 
     }
 
     const username = req.user ? req.user.username : "Desconhecido";
-    const result = await processDriveFolderForBatchInsert(folder_path, username);
+    
+    // Reset progress
+    batchProgress = {
+      total: 0,
+      current: 0,
+      processed: 0,
+      errors: 0,
+      skipped: 0,
+      status: 'processing',
+      message: 'Escaneando pasta local...'
+    };
+
+    const result = await processDriveFolderForBatchInsert(folder_path, username, (p) => {
+      batchProgress = { ...batchProgress, ...p };
+    });
+
+    batchProgress.status = 'completed';
+    batchProgress.message = result.message;
     res.json(result);
   } catch (error) {
+    batchProgress.status = 'idle';
+    batchProgress.message = 'Erro: ' + error.message;
     console.error(`Error in /api/batch-process-local-folder: ${error.message}`);
     res.status(500).json({ error: "Falha interna ao iniciar o processamento em lote." });
   }
+});
+
+app.get("/api/batch-progress", authenticateToken, (req, res) => {
+  res.json(batchProgress);
 });
 
 // --- Nova Rota para Extração de Metadados ---

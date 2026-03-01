@@ -483,7 +483,7 @@ async function executarCategorizacaoLinhaUnica(rowNumber) {
   };
 }
 
-async function processLocalFolderForBatchInsert(folderPath, username = "Desconhecido") {
+async function processLocalFolderForBatchInsert(folderPath, username = "Desconhecido", onProgress = null) {
   console.log(`  > processLocalFolderForBatchInsert: Scanning folder ${folderPath}`);
   const wb = readWorkbook();
   const ws = wb.Sheets[SHEET_NAME];
@@ -532,18 +532,27 @@ async function processLocalFolderForBatchInsert(folderPath, username = "Desconhe
   let errorCount = 0;
   let skippedCount = 0;
 
-  for (const file of pdfFiles) {
+  if (onProgress) onProgress({ total: pdfFiles.length, current: 0, processed: 0, errors: 0, skipped: 0 });
+
+  for (const [index, file] of pdfFiles.entries()) {
     try {
+      if (onProgress) onProgress({ total: pdfFiles.length, current: index + 1, processed: processedCount, errors: errorCount, skipped: skippedCount });
+      
       // Pequeno delay para evitar Rate Limit (429) da Groq
       await new Promise(resolve => setTimeout(resolve, 1000));
 
-      console.log(`  > Processing [${processedCount + errorCount + skippedCount + 1}/${pdfFiles.length}]: ${file.name}`);
+      console.log(`  > Processing [${index + 1}/${pdfFiles.length}]: ${file.name}`);
       
       // Reload workbook/allData to have the latest state for duplicate check
       const currentWb = readWorkbook();
       const currentWs = currentWb.Sheets[SHEET_NAME];
       const currentData = xlsx.utils.sheet_to_json(currentWs, { header: 1 });
       const currentHeaders = currentData[0] || [];
+
+      // Ensure INSERIDO POR header exists
+      if (currentHeaders.indexOf("INSERIDO POR") === -1) {
+        currentHeaders.push("INSERIDO POR");
+      }
 
       const fileNameTitle = file.name.replace(/\.pdf$/i, "");
       const duplicate = await isDuplicateLocal(currentData, currentHeaders, null, fileNameTitle);
@@ -596,11 +605,12 @@ async function processLocalFolderForBatchInsert(folderPath, username = "Desconhe
     }
   }
 
+  const finalProgress = { total: pdfFiles.length, current: pdfFiles.length, processed: processedCount, errors: errorCount, skipped: skippedCount };
+  if (onProgress) onProgress(finalProgress);
+
   return {
     message: `Processamento em lote concluído. Total: ${pdfFiles.length}, Processados e salvos: ${processedCount}, Com erros: ${errorCount}, Duplicados: ${skippedCount}.`,
-    processedCount,
-    errorCount,
-    skippedCount,
+    ...finalProgress
   };
 }
 
@@ -794,6 +804,11 @@ async function saveData(selectedRows, username = "Desconhecido") {
   const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
   const headers = allData[0] || [];
   
+  // Ensure INSERIDO POR header exists
+  if (headers.indexOf("INSERIDO POR") === -1) {
+    headers.push("INSERIDO POR");
+  }
+
   const finalDataToUpload = [];
 
   for (const [i, rowData] of selectedRows.entries()) {
@@ -1016,7 +1031,7 @@ async function deleteUnavailableRows() {
   };
 }
 
-async function aprovarManualmenteLocal(rowNumber, fileName, username = "Desconhecido") {
+async function aprovarManualmenteLocal(rowNumber, fileName, username = "Desconhecido", feedback = "Aprovado manualmente") {
   if (!fileName) {
     throw new Error("O artigo não possui um arquivo local associado.");
   }
@@ -1049,6 +1064,14 @@ async function aprovarManualmenteLocal(rowNumber, fileName, username = "Desconhe
     
     // Update row with username
     allData[rowNumber - 1][approvedByIndex] = username;
+
+    // Ensure FEEDBACK DO CURADOR (escrever) header exists
+    let feedbackIndex = headers.indexOf("FEEDBACK DO CURADOR (escrever)");
+    if (feedbackIndex === -1) {
+      headers.push("FEEDBACK DO CURADOR (escrever)");
+      feedbackIndex = headers.length - 1;
+    }
+    allData[rowNumber - 1][feedbackIndex] = feedback;
 
     // 2. Create .txt with metadata
     const txtFileName = fileName.replace(/\.[^/.]+$/, "") + ".txt";
@@ -1085,7 +1108,7 @@ async function aprovarManualmenteLocal(rowNumber, fileName, username = "Desconhe
   }
 }
 
-async function reprovarManualmenteLocal(rowNumber, fileName, username = "Desconhecido") {
+async function reprovarManualmenteLocal(rowNumber, fileName, username = "Desconhecido", feedback = "Rejeitado manualmente") {
   if (!fileName) {
     throw new Error("O artigo não possui um arquivo local associado.");
   }
@@ -1118,6 +1141,14 @@ async function reprovarManualmenteLocal(rowNumber, fileName, username = "Desconh
     
     // Update row with username
     allData[rowNumber - 1][approvedByIndex] = username;
+
+    // Ensure FEEDBACK DO CURADOR (escrever) header exists
+    let feedbackIndex = headers.indexOf("FEEDBACK DO CURADOR (escrever)");
+    if (feedbackIndex === -1) {
+      headers.push("FEEDBACK DO CURADOR (escrever)");
+      feedbackIndex = headers.length - 1;
+    }
+    allData[rowNumber - 1][feedbackIndex] = feedback;
 
     // 2. Create .txt with metadata
     const txtFileName = fileName.replace(/\.[^/.]+$/, "") + ".txt";

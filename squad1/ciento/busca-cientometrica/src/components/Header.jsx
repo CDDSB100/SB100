@@ -28,6 +28,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
@@ -63,6 +64,7 @@ const Header = () => {
     { text: 'Inserção Manual', icon: <PlaylistAddIcon />, path: '/manual-insert', show: isAuthenticated },
     { text: 'Curadoria', icon: <ArticleIcon />, path: '/curation', show: isAuthenticated },
     { text: 'Usuários', icon: <GroupIcon />, path: '/user-management', show: isAuthenticated && userRole === 'admin' },
+    { text: 'Ajuda', icon: <HelpOutlineIcon />, path: '/help', show: isAuthenticated },
   ];
 
   const drawer = (

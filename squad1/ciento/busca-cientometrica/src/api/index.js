@@ -86,10 +86,11 @@ export const manualInsertArticle = async (dataToSave, file) => {
   return response.data;
 };
 
-export const manualApproveArticle = async (rowNumber, fileName) => {
+export const manualApproveArticle = async (rowNumber, fileName, feedback) => {
   const response = await api.post("/manual-approval", {
     row_number: rowNumber,
     fileName: fileName,
+    feedback: feedback,
   });
   return response.data;
 };
@@ -103,11 +104,17 @@ export const batchUploadZip = async (file) => {
   return response.data;
 };
 
-export const manualRejectArticle = async (rowNumber, fileName) => {
+export const manualRejectArticle = async (rowNumber, fileName, feedback) => {
   const response = await api.post("/manual-rejection", {
     row_number: rowNumber,
     fileName: fileName,
+    feedback: feedback,
   });
+  return response.data;
+};
+
+export const getBatchProgress = async () => {
+  const response = await api.get("/batch-progress");
   return response.data;
 };
 

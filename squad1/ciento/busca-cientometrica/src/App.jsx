@@ -9,6 +9,7 @@ import UserRegistrationPage from './pages/UserRegistration';
 import UserManagementPage from './pages/UserManagement';
 import ExtractMetadataPage from './pages/ExtractMetadata';
 import BatchProcessDrivePage from './pages/BatchProcessDrive';
+import HelpPage from './pages/Help';
 import ProtectedRoute from './components/ProtectedRoute';
 import './styles/App.css';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/user-management" element={<UserManagementPage />} />
         <Route path="/extract-metadata" element={<ExtractMetadataPage />} />
         <Route path="/batch-process-drive" element={<BatchProcessDrivePage />} />
+        <Route path="/help" element={<HelpPage />} />
       </Route>
       
       {/* Redirecionamento padrão */}
