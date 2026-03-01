@@ -114,7 +114,7 @@ async function callCustomCuradorApi(pdfBuffer, headers, category = null) {
   };
   try {
     const res = await axios.post(`${API_BASE_URL}/curadoria`, payload, {
-      timeout: 120000,
+      timeout: 600000, // 10 minutos para CPU
       headers: { "Content-Type": "application/json" },
     });
     return res.data;
@@ -135,7 +135,7 @@ async function callCategorizationApi(pdfBuffer) {
   };
   try {
     const res = await axios.post(`${API_BASE_URL}/categorize`, payload, {
-      timeout: 60000, // Categoria deve ser mais rápida
+      timeout: 300000, // 5 minutos para categoria
       headers: { "Content-Type": "application/json" },
     });
     return res.data.category; // Assuming the LLM returns {"category": "CATEGORY_NAME"}

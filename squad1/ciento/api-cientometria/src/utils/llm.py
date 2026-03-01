@@ -122,11 +122,20 @@ def search_similar_docs(text_query: str, limit: int = 3) -> str:
     
     try:
         query_vector = encoder.encode(text_query[:1000]).tolist()
-        hits = client_qdrant.search(
-            collection_name=QDRANT_COLLECTION,
-            query_vector=query_vector,
-            limit=limit
-        )
+        
+        # Tentativa de usar a API mais nova query_points, com fallback para search
+        try:
+            hits = client_qdrant.query_points(
+                collection_name=QDRANT_COLLECTION,
+                query=query_vector,
+                limit=limit
+            ).points
+        except AttributeError:
+            hits = client_qdrant.search(
+                collection_name=QDRANT_COLLECTION,
+                query_vector=query_vector,
+                limit=limit
+            )
         
         context = ""
         for hit in hits:
