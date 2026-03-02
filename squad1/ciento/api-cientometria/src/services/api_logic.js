@@ -28,9 +28,24 @@ const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:8000";
 // --- HELPERS ---
 /**
  * Tenta encontrar um arquivo PDF em várias pastas possíveis (raiz, aprovados, reprovados).
+ * Suporta tanto o nome do arquivo quanto uma URL completa (extraindo o filename).
  */
 function findFileInFolders(fileName) {
   if (!fileName) return null;
+
+  // Se for uma URL completa, extrai apenas o nome do arquivo
+  if (fileName.startsWith("http")) {
+    try {
+      const url = new URL(fileName);
+      const parts = url.pathname.split("/");
+      fileName = decodeURIComponent(parts[parts.length - 1]);
+    } catch (e) {
+      // Fallback simples se URL falhar
+      const parts = fileName.split("/");
+      fileName = decodeURIComponent(parts[parts.length - 1]);
+    }
+  }
+
   const possiblePaths = [
     path.join(DOCUMENTS_DIR, fileName),
     path.join(APROVADOS_DIR, fileName),
@@ -495,6 +510,25 @@ async function executarCategorizacaoLinhaUnica(rowNumber) {
   };
 }
 
+async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Desconhecido") {
+  console.log("    ➜ Calling Categorization API...");
+  const category = await callCategorizationApi(pdfBuffer);
+  
+  console.log("    ➜ Calling Custom Curador API (Extraction)...");
+  const extractedMetadata = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
+
+  const rowData = {};
+  ALL_METADATA_FIELDS.forEach(field => {
+    rowData[field] = extractedMetadata[field] || "N/A";
+  });
+  rowData["CATEGORIA"] = category;
+  rowData["URL DO DOCUMENTO"] = fileName;
+  rowData["Título"] = extractedMetadata["Titulo"] || extractedMetadata["Título"] || fileName.replace(/\.pdf$/i, '');
+  rowData["INSERIDO POR"] = username;
+  
+  return rowData;
+}
+
 async function processLocalFolderForBatchInsert(folderPath, username = "Desconhecido", onProgress = null) {
   console.log(`  > processLocalFolderForBatchInsert: Scanning folder ${folderPath}`);
   const wb = readWorkbook();
@@ -898,60 +932,72 @@ async function manualInsert(data, username = "Desconhecido") {
   const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
   const headers = allData[0] || [];
 
-  const isAlreadyPresent = await isDuplicateLocal(allData, headers, data.DOI, data["Título"]);
+  const title = data["Título"] || data["Titulo"] || "";
+  const doi = data["DOI"] || "";
+
+  const isAlreadyPresent = await isDuplicateLocal(allData, headers, doi, title);
   if (isAlreadyPresent) {
     return {
       status: "error",
-      message: `Erro: O documento '${data["Título"]}' já está cadastrado na planilha local e não pode ser inserido novamente.`,
+      message: `Erro: O documento '${title}' já está cadastrado na planilha local e não pode ser inserido novamente.`,
     };
   }
 
   // Ensure INSERIDO POR header exists
-  let insertedByIndex = headers.indexOf("INSERIDO POR");
-  if (insertedByIndex === -1) {
+  if (headers.indexOf("INSERIDO POR") === -1) {
     headers.push("INSERIDO POR");
-    insertedByIndex = headers.length - 1;
   }
 
-  const rowToUpload = {
-    "Autor(es)": data["Autor(es)"],
-    "Título": data["Título"],
-    "Subtítulo": data["Subtítulo"],
-    "Ano": data.Ano,
-    "Número de citações recebidas (Google Scholar)":
-      data["Número de citações recebidas (Google Scholar)"],
-    "Palavras-chave": data["Palavras-chave"],
-    "Resumo": data.Resumo,
-    "Tipo de documento": data["Tipo de documento"],
-    "Editora": data.Editora,
-    "Instituição": data.Instituição,
-    "Local": data.Local,
-    "Tipo de trabalho": data["Tipo de trabalho"],
-    "Título do periódico": data["Título do periódico"],
-    "Quartil do periódico": data["Quartil do periódico"],
-    "Volume": data.Volume,
-    "Número/fascículo": data["Número/fascículo"],
-    "Páginas": data.Páginas,
-    "DOI": data.DOI,
-    "Numeração": data.Numeração,
-    "Qualis": data.Qualis,
-    "CATEGORIA": data.CATEGORIA,
-    "Caracteristicas do solo e região (escrever)":
-      data["Caracteristicas do solo e região (escrever)"],
-    "ferramentas e técnicas (seleção)":
-      data["ferramentas e técnicas (seleção)"],
-    "nutrientes (seleção)": data["nutrientes (seleção)"],
-    "estratégias de fornecimento de nutrientes (seleção)":
-      data["estratégias de fornecimento de nutrientes (seleção)"],
-    "grupos de culturas (seleção)": data["grupos de culturas (seleção)"],
-    "culturas presentes (seleção)": data["culturas presentes (seleção)"],
-    "FEEDBACK DO CURADOR (escrever)": data["FEEDBACK DO CURADOR (escrever)"],
-    "URL DO DOCUMENTO": data.pub_url,
-    "work_id": data.id || `manual-${Date.now()}`,
-    "INSERIDO POR": username,
-  };
+  let rowToUpload = {};
 
-  const success = await uploadToLocalSheet(wb, allData, headers, [rowToUpload]);
+  // Se houver um arquivo (pub_url), utilizar lógica de processamento em lote
+  if (data.pub_url) {
+    console.log(`  > manualInsert: Processing file ${data.pub_url} with batch logic...`);
+    const filePath = findFileInFolders(data.pub_url);
+    if (filePath) {
+      try {
+        const pdfBuffer = await fs.readFile(filePath);
+        const extractedData = await processSinglePdfForInsert(pdfBuffer, data.pub_url, username);
+        
+        // Inicia com os dados extraídos
+        rowToUpload = { ...extractedData };
+        
+        // Mescla com os dados manuais (manual tem precedência se preenchido e não for N/A)
+        Object.keys(data).forEach(key => {
+          if (data[key] !== undefined && data[key] !== "" && data[key] !== "N/A" && key !== "pub_url") {
+            rowToUpload[key] = data[key];
+          }
+        });
+        
+        // Garantir que o título manual seja usado se fornecido
+        if (title) rowToUpload["Título"] = title;
+        
+      } catch (err) {
+        console.warn(`  > manualInsert: Erro na extração via IA, usando apenas dados manuais: ${err.message}`);
+        rowToUpload = { ...data };
+      }
+    } else {
+      console.warn(`  > manualInsert: Arquivo ${data.pub_url} não encontrado fisicamente.`);
+      rowToUpload = { ...data };
+    }
+  } else {
+    // Apenas dados manuais
+    rowToUpload = { ...data };
+  }
+
+  // Normalização final para garantir que todos os campos esperados existam
+  const finalRow = {};
+  ALL_METADATA_FIELDS.forEach(field => {
+    finalRow[field] = rowToUpload[field] !== undefined ? rowToUpload[field] : (data[field] || "N/A");
+  });
+  
+  // Ajustes de nomes de campos que podem vir diferentes do frontend
+  if (!finalRow["Título"]) finalRow["Título"] = title || "Sem Título";
+  finalRow["URL DO DOCUMENTO"] = data.pub_url || "";
+  finalRow["INSERIDO POR"] = username;
+  if (!finalRow["work_id"]) finalRow["work_id"] = data.id || `manual-${Date.now()}`;
+
+  const success = await uploadToLocalSheet(wb, allData, headers, [finalRow]);
 
   if (success) {
     return {

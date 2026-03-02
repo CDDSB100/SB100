@@ -37,7 +37,7 @@ import {
 const ManualInsertPage = () => {
   const [formData, setFormData] = useState({
     "Autor(es)": "",
-    "Titulo": "",
+    "Título": "",
     "Subtítulo": "",
     "Ano": "",
     "Número de citações recebidas (Google Scholar)": "",
@@ -108,7 +108,7 @@ const ManualInsertPage = () => {
   };
 
   const handleSave = async () => {
-    if (!formData.Titulo || !formData["Autor(es)"]) {
+    if (!formData.Título || !formData["Autor(es)"]) {
       setError("Título e Autor(es) são obrigatórios.");
       return;
     }
@@ -119,7 +119,7 @@ const ManualInsertPage = () => {
       await manualInsertArticle(formData, file);
       setSuccess("Artigo catalogado com sucesso na base de dados!");
       setFormData({
-        "Autor(es)": "", "Titulo": "", "Subtítulo": "", "Ano": "",
+        "Autor(es)": "", "Título": "", "Subtítulo": "", "Ano": "",
         "Número de citações recebidas (Google Scholar)": "", "Palavras-chave": "",
         "Resumo": "", "Tipo de documento": "", "Editora": "", "Instituição": "",
         "Local": "", "Tipo de trabalho": "", "Título do periódico": "",
@@ -222,7 +222,7 @@ const ManualInsertPage = () => {
               <Grid container spacing={2}>
                 {Object.keys(formData).map((key) => {
                   if (key === "pub_url") return null;
-                  const isLarge = ["Titulo", "Autor(es)", "Resumo", "Palavras-chave"].includes(key);
+                  const isLarge = ["Título", "Autor(es)", "Resumo", "Palavras-chave"].includes(key);
                   return (
                     <Grid item xs={12} sm={isLarge ? 12 : 6} key={key}>
                       <TextField
@@ -232,7 +232,7 @@ const ManualInsertPage = () => {
                         onChange={handleInputChange}
                         fullWidth
                         size="small"
-                        multiline={key === "Resumo" || key === "Titulo"}
+                        multiline={key === "Resumo" || key === "Título"}
                         rows={key === "Resumo" ? 4 : 1}
                       />
                     </Grid>
@@ -245,7 +245,7 @@ const ManualInsertPage = () => {
                   variant="contained"
                   size="large"
                   onClick={handleSave}
-                  disabled={loading || !formData.Titulo}
+                  disabled={loading || !formData.Título}
                   startIcon={<SaveIcon />}
                   sx={{ py: 2, px: 10, borderRadius: '50px', fontWeight: 900 }}
                 >

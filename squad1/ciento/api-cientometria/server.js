@@ -34,7 +34,7 @@ const {
   uploadFileToDrive,
 } = require("./src/services/api_logic.js");
 const { pool, initDb, saltRounds } = require("./src/services/database.js"); // Import saltRounds
-const { extractMetadata } = require("./src/controllers/metadata_controller.js"); // Importar o novo controller
+const { extractMetadata, ALL_METADATA_FIELDS } = require("./src/controllers/metadata_controller.js"); // Importar o novo controller e os campos
 const multer = require("multer"); // Importar multer
 
 // Progress tracking for batch processes
@@ -559,24 +559,28 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
 
     // Expected keys as used by manualInsert (source of truth)
     const expectedKeys = [
-      'Autor(es)', 'Título', 'Subtítulo', 'Ano', 'Número de citações recebidas (Google Scholar)',
-      'Palavras-chave', 'Resumo', 'Tipo de documento', 'Editora', 'Instituição', 'Local', 'Tipo de trabalho',
-      'Título do periódico', 'Quartil do periódico', 'Volume', 'Número/fascículo', 'Páginas', 'DOI', 'Numeração', 'Qualis', 'pub_url'
+      ...ALL_METADATA_FIELDS,
+      'pub_url',
+      'id',
+      'work_id'
     ];
 
     // Build finalData with exact expected keys, pulling from incoming using canonical matching
     const finalData = {};
     expectedKeys.forEach((exp) => {
       const key = canonicalMap[canonical(exp)];
-      finalData[exp] = key ? incoming[key] : undefined;
+      if (key) {
+        finalData[exp] = incoming[key];
+      } else if (exp === 'pub_url' && data.pub_url) {
+        finalData[exp] = data.pub_url;
+      }
     });
 
     // Validação simples dos dados recebidos (usando finalData)
-    if (!finalData['Título'] || !finalData['Autor(es)'] || !finalData.Ano || !finalData['Título do periódico'] && !finalData['Título do periódico']) {
-      // Note: some environments may lose accents; also accept 'Titulo' and 'Titulo do periodico' etc.
-      const hasTitle = finalData['Título'] || finalData['Título do periódico'] || finalData['Título do periódico'];
-      if (!finalData['Título'] || !finalData['Autor(es)'] || !finalData.Ano || !hasTitle) {
-        return res.status(400).json({ error: "Campos obrigatórios (Título, Autor(es), Ano, Título do periódico) não preenchidos." });
+    // Se NÃO houver arquivo, validamos campos obrigatórios. Se HOUVER, a IA vai tentar extrair o que faltar.
+    if (!req.file) {
+      if (!finalData['Título'] || !finalData['Autor(es)'] || !finalData.Ano) {
+        return res.status(400).json({ error: "Campos obrigatórios (Título, Autor(es), Ano) não preenchidos." });
       }
     }
 

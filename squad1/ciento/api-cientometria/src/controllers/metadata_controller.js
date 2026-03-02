@@ -4,7 +4,7 @@ const Tesseract = require('tesseract.js');
 
 const ALL_METADATA_FIELDS = [
     "Autor(es)",
-    "Titulo",
+    "Título",
     "Subtítulo",
     "Ano",
     "Número de citações recebidas (Google Scholar)",
@@ -89,7 +89,7 @@ async function getCrossrefMetadata(query) {
 
             return {
                 "Autor(es)": authors,
-                "Titulo": (item.title && item.title.length > 0) ? item.title[0] : "",
+                "Título": (item.title && item.title.length > 0) ? item.title[0] : "",
                 "Subtítulo": (item["subtitle"] && item["subtitle"].length > 0) ? item["subtitle"][0] : "",
                 "Ano": (item.created && item.created["date-parts"] && item.created["date-parts"].length > 0) ? String(item.created["date-parts"][0][0]) : "",
                 "Número de citações recebidas (Google Scholar)": "", // Not available from Crossref
