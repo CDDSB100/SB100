@@ -55,7 +55,7 @@ const upload = multer({ storage: storage });
 
 const app = express();
 // allow the port to be overridden (useful for dev vs prod)
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5173;
 
 // Helper to compute network base URL (http://<ip>:<port>)
 function computeNetworkBaseUrl() {
@@ -115,8 +115,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Se existir uma build do front-end (agora em frontend/dist), servir os arquivos estáticos
-const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+// Se existir uma build do front-end (agora em busca-cientometrica/dist), servir os arquivos estáticos
+const frontendBuildPath = path.join(__dirname, '../busca-cientometrica/dist');
 if (fsSync.existsSync(frontendBuildPath)) {
   console.log(`> Servindo frontend estático de ${frontendBuildPath}`);
   // servir sem cache para evitar antigos conteúdos em browsers
