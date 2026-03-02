@@ -545,9 +545,16 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
       if (!str) return "";
       let s = str.toString();
       
-      // Tenta consertar UTF-8 corrompido (ex: TÃ­tulo -> Título)
+      // Tenta consertar Mojibake comum (UTF-8 lido como ISO-8859-1)
       try {
-        s = Buffer.from(s, 'binary').toString('utf8');
+        if (s.includes('Ã') || s.includes('©') || s.includes('ª') || s.includes('­')) {
+           const b = Buffer.from(s, 'binary');
+           const fixed = b.toString('utf8');
+           // Só usa se a versão fixada for diferente e não parecer conter erros de decodificação massivos
+           if (fixed !== s && !fixed.includes('')) {
+             s = fixed;
+           }
+        }
       } catch (e) { /* ignore */ }
 
       return s
@@ -558,10 +565,13 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
     }
 
     const incoming = req.body || {};
-    const canonicalMap = {}; // canonicalKey -> originalKey
-    Object.keys(incoming).forEach((k) => {
-      canonicalMap[canonical(k)] = k;
+    // Criar um mapa de chaves normalizadas para as chaves originais do body
+    const incomingNormalizedMap = {};
+    Object.keys(incoming).forEach(k => {
+      incomingNormalizedMap[canonical(k)] = k;
     });
+    
+    console.log('[/api/manual-insert] Body keys received:', Object.keys(incoming));
 
     // Expected keys as used by manualInsert (source of truth)
     const expectedKeys = [
@@ -571,26 +581,30 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
       'work_id'
     ];
 
-    // Build finalData with exact expected keys, pulling from incoming using canonical matching
+    // Build finalData with exact expected keys
     const finalData = {};
     expectedKeys.forEach((exp) => {
       const canonExp = canonical(exp);
-      const originalKey = canonicalMap[canonExp];
+      const originalKey = incomingNormalizedMap[canonExp];
       
       if (originalKey && incoming[originalKey] !== undefined && incoming[originalKey] !== "") {
         finalData[exp] = incoming[originalKey];
       } else if (exp === 'pub_url' && data.pub_url) {
         finalData[exp] = data.pub_url;
       } else {
-        finalData[exp] = "N/A"; // Valor padrão para campos ausentes
+        finalData[exp] = "N/A"; // Valor padrão
       }
     });
 
-    // Validação flexível: Se houver arquivo, a IA completa. Se não houver, exigimos o básico.
+    // Fallback para Título se for N/A e tiver arquivo
+    if ((finalData['Título'] === "N/A" || !finalData['Título']) && req.file) {
+       finalData['Título'] = req.file.originalname.replace(/\.[^/.]+$/, "");
+    }
+
+    // Validação flexível
     if (!req.file) {
       const hasTitle = finalData['Título'] && finalData['Título'] !== "N/A";
       const hasAuthors = finalData['Autor(es)'] && finalData['Autor(es)'] !== "N/A";
-      
       if (!hasTitle || !hasAuthors) {
         return res.status(400).json({ error: "Campos obrigatórios (Título, Autor(es)) não preenchidos." });
       }
