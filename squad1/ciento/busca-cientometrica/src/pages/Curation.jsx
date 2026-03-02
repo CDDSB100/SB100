@@ -92,6 +92,8 @@ function CurationPage() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortBy, setSortBy] = useState("__row_number");
+  const [sortOrder, setSortOrder] = useState("desc");
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(9);
@@ -183,7 +185,7 @@ function CurationPage() {
   }, [fetchArticles]);
 
   const filteredArticles = useMemo(() => {
-    return articles.filter((article) => {
+    const filtered = articles.filter((article) => {
       const category = (article.CATEGORIA || article.categoria || "").trim();
       const matchCategory = categoryFilter === "all" || category === categoryFilter;
 
@@ -204,7 +206,26 @@ function CurationPage() {
 
       return matchCategory && matchStatus && matchSearch;
     });
-  }, [articles, categoryFilter, statusFilter, searchQuery]);
+
+    return [...filtered].sort((a, b) => {
+      let valA = a[sortBy];
+      let valB = b[sortBy];
+
+      if (valA === null || valA === undefined) valA = "";
+      if (valB === null || valB === undefined) valB = "";
+
+      if (sortBy === "__row_number") {
+        return sortOrder === "asc" ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
+      }
+
+      valA = String(valA).toLowerCase();
+      valB = String(valB).toLowerCase();
+
+      if (valA < valB) return sortOrder === "asc" ? -1 : 1;
+      if (valA > valB) return sortOrder === "asc" ? 1 : -1;
+      return 0;
+    });
+  }, [articles, categoryFilter, statusFilter, searchQuery, sortBy, sortOrder]);
 
   const stats = useMemo(() => {
     const total = articles.length;
@@ -455,7 +476,7 @@ function CurationPage() {
         {/* Search & Filters */}
         <Paper sx={{ p: 4, mb: 4, borderRadius: 4 }}>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={4}>
               <TextField
                 fullWidth
                 placeholder="Buscar por título, autores ou palavras-chave..."
@@ -466,7 +487,7 @@ function CurationPage() {
                 }}
               />
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} md={2}>
               <FormControl fullWidth>
                 <InputLabel>Status</InputLabel>
                 <Select value={statusFilter} label="Status" onChange={(e) => setStatusFilter(e.target.value)}>
@@ -478,12 +499,31 @@ function CurationPage() {
                 </Select>
               </FormControl>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} md={2}>
               <FormControl fullWidth>
                 <InputLabel>Categoria</InputLabel>
                 <Select value={categoryFilter} label="Categoria" onChange={(e) => setCategoryFilter(e.target.value)}>
                   <MenuItem value="all">Todas as Categorias</MenuItem>
                   {uniqueCategories.map(cat => <MenuItem key={cat} value={cat}>{cat}</MenuItem>)}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6} md={2}>
+              <FormControl fullWidth>
+                <InputLabel>Ordenar por</InputLabel>
+                <Select value={sortBy} label="Ordenar por" onChange={(e) => setSortBy(e.target.value)}>
+                  <MenuItem value="__row_number">Ordem de Inserção</MenuItem>
+                  <MenuItem value="Titulo">Título</MenuItem>
+                  <MenuItem value="Autor(es)">Autores</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6} md={2}>
+              <FormControl fullWidth>
+                <InputLabel>Ordem</InputLabel>
+                <Select value={sortOrder} label="Ordem" onChange={(e) => setSortOrder(e.target.value)}>
+                  <MenuItem value="asc">Crescente</MenuItem>
+                  <MenuItem value="desc">Decrescente</MenuItem>
                 </Select>
               </FormControl>
             </Grid>

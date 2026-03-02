@@ -236,6 +236,15 @@ async function processarUmaLinha(
     if (colCategoriaIndex === -1) colCategoriaIndex = 35; // Fallback para AJ
     const originalCategory = row[colCategoriaIndex] || "";
 
+    // Preservar colunas de metadados administrativos
+    const colInseridoPorIndex = headers.indexOf("INSERIDO POR");
+    const colAprovadoPorIndex = headers.indexOf("APROVADO POR");
+    const colAprovacaoManualIndex = headers.indexOf("APROVAÇÃO MANUAL");
+    
+    const originalInseridoPor = colInseridoPorIndex !== -1 ? row[colInseridoPorIndex] : undefined;
+    const originalAprovadoPor = colAprovadoPorIndex !== -1 ? row[colAprovadoPorIndex] : undefined;
+    const originalAprovacaoManual = colAprovacaoManualIndex !== -1 ? row[colAprovacaoManualIndex] : undefined;
+
     const extractedData = await callCustomCuradorApi(
       pdfBuffer,
       llmOutputHeaders,
@@ -244,8 +253,8 @@ async function processarUmaLinha(
 
     // Prepare data for updating LLM output columns in the local row object
     llmOutputHeaders.forEach((header) => {
-      // JAMAIS sobrescrever a categoria durante a curadoria
-      if (header === "CATEGORIA") return;
+      // JAMAIS sobrescrever metadados administrativos durante a curadoria automática
+      if (header === "CATEGORIA" || header === "INSERIDO POR" || header === "APROVADO POR" || header === "APROVAÇÃO MANUAL") return;
 
       const value =
         extractedData[header] !== undefined ? extractedData[header] : "N/A";
@@ -255,8 +264,11 @@ async function processarUmaLinha(
       }
     });
 
-    // Garantir que a categoria original seja mantida
+    // Garantir que os metadados originais sejam mantidos
     row[colCategoriaIndex] = originalCategory;
+    if (colInseridoPorIndex !== -1) row[colInseridoPorIndex] = originalInseridoPor;
+    if (colAprovadoPorIndex !== -1) row[colAprovadoPorIndex] = originalAprovadoPor;
+    if (colAprovacaoManualIndex !== -1) row[colAprovacaoManualIndex] = originalAprovacaoManual;
 
     const boolAprovado = normalizarBooleano(
       extractedData["APROVAÇÃO CURADOR (marcar)"] || extractedData["aprovacao"],
