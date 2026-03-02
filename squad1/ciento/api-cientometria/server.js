@@ -189,7 +189,7 @@ const authorizeAdmin = (req, res, next) => {
 // --- API ROUTES ---
 
 // Rota dinâmica para servir documentos buscando em múltiplas pastas (raiz, aprovados, reprovados)
-app.get("/documents/:filename", (req, res) => {
+app.get("/api/documents/:filename", (req, res) => {
   const { filename } = req.params;
   const filePath = findFileInFolders(filename);
 
