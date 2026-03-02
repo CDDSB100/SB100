@@ -35,8 +35,8 @@ function LoginPage() {
     }
   }, [isAuthenticated, navigate]);
 
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("password123");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
