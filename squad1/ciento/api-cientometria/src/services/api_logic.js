@@ -32,6 +32,7 @@ const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:8000";
 function findFileInFolders(fileName) {
   if (!fileName) return null;
 
+  // Se for uma URL completa, extrai apenas o nome do arquivo
   if (fileName.startsWith("http")) {
     try {
       const url = new URL(fileName);
@@ -60,6 +61,7 @@ function findFileInFolders(fileName) {
 // --- LOCAL DATA HELPERS ---
 function readWorkbook() {
   if (!fsSync.existsSync(CONSOLIDADO_PATH)) {
+    console.log("  > readWorkbook: Criando nova planilha...");
     const wb = xlsx.utils.book_new();
     const ws = xlsx.utils.aoa_to_sheet([ALL_METADATA_FIELDS]);
     xlsx.utils.book_append_sheet(wb, ws, SHEET_NAME);
@@ -104,7 +106,7 @@ async function callCustomCuradorApi(pdfBuffer, headers, category = null) {
   };
   try {
     const res = await axios.post(`${API_BASE_URL}/curadoria`, payload, {
-      timeout: 600000,
+      timeout: 600000, // 10 min
       headers: { "Content-Type": "application/json" },
     });
     return res.data;
@@ -123,7 +125,7 @@ async function callCategorizationApi(pdfBuffer) {
   };
   try {
     const res = await axios.post(`${API_BASE_URL}/categorize`, payload, {
-      timeout: 300000,
+      timeout: 300000, // 5 min
       headers: { "Content-Type": "application/json" },
     });
     return res.data.category;
@@ -134,15 +136,23 @@ async function callCategorizationApi(pdfBuffer) {
   }
 }
 
-async function listPdfsInLocalFolder(folderPath) {
-  const files = await fs.readdir(folderPath);
-  return files
-    .filter((f) => f.toLowerCase().endsWith(".pdf"))
-    .map((f) => ({
-      name: f,
-      id: f,
-      localPath: path.join(folderPath, f),
-    }));
+/**
+ * Lista PDFs de forma recursiva em uma pasta.
+ */
+async function listPdfsRecursive(dir, fileList = []) {
+  const files = await fs.readdir(dir, { withFileTypes: true });
+  for (const file of files) {
+    const res = path.resolve(dir, file.name);
+    if (file.isDirectory()) {
+      await listPdfsRecursive(res, fileList);
+    } else if (file.name.toLowerCase().endsWith(".pdf")) {
+      fileList.push({
+        name: file.name,
+        localPath: res
+      });
+    }
+  }
+  return fileList;
 }
 
 async function getLocalPdfContent(filePath) {
@@ -291,6 +301,7 @@ async function executarCategorizacaoLinhaUnica(rowNumber) {
 }
 
 async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Desconhecido") {
+  console.log(`    ➜ Processando arquivo: ${fileName}`);
   const category = await callCategorizationApi(pdfBuffer);
   const extractedMetadata = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
   const rowData = {};
@@ -379,12 +390,15 @@ async function manualInsert(data, username = "Desconhecido") {
 }
 
 async function processLocalFolderForBatchInsert(folderPath, username = "Desconhecido", onProgress = null) {
+  console.log(`  > Iniciando processamento da pasta: ${folderPath}`);
   const wb = readWorkbook();
   const ws = wb.Sheets[SHEET_NAME];
   const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
   const headers = allData[0] || [];
 
-  const pdfFiles = await listPdfsInLocalFolder(folderPath);
+  const pdfFiles = await listPdfsRecursive(folderPath);
+  console.log(`  > Encontrados ${pdfFiles.length} arquivos PDF.`);
+  
   let processedCount = 0, errorCount = 0, skippedCount = 0;
 
   for (const [index, file] of pdfFiles.entries()) {
@@ -392,23 +406,39 @@ async function processLocalFolderForBatchInsert(folderPath, username = "Desconhe
       if (onProgress) onProgress({ total: pdfFiles.length, current: index + 1, processed: processedCount, errors: errorCount, skipped: skippedCount });
       
       const currentWb = readWorkbook();
-      const currentData = xlsx.utils.sheet_to_json(currentWb.Sheets[SHEET_NAME], { header: 1 });
+      const currentWs = currentWb.Sheets[SHEET_NAME];
+      const currentData = xlsx.utils.sheet_to_json(currentWs, { header: 1 });
       
-      if (await isDuplicateLocal(currentData, headers, null, file.name.replace(/\.pdf$/i, ""))) {
+      const fileNameClean = file.name.replace(/\.pdf$/i, "");
+      if (await isDuplicateLocal(currentData, headers, null, fileNameClean)) {
+        console.log(`    ➜ Pulando duplicado: ${file.name}`);
         skippedCount++; continue;
       }
 
       const pdfBuffer = await getLocalPdfContent(file.localPath);
       const rowData = await processSinglePdfForInsert(pdfBuffer, file.name, username);
 
+      // Copia para a pasta de documentos definitiva
       const targetPath = path.join(DOCUMENTS_DIR, file.name);
-      if (file.localPath !== targetPath) await fs.copyFile(file.localPath, targetPath);
+      if (file.localPath !== targetPath) {
+        await fs.copyFile(file.localPath, targetPath);
+      }
 
       await uploadToLocalSheet(currentWb, currentData, headers, [rowData]);
       processedCount++;
-    } catch (e) { console.error(e); errorCount++; }
+      console.log(`    ➜ Salvo com sucesso: ${file.name}`);
+    } catch (e) { 
+      console.error(`    ➜ Erro ao processar ${file.name}:`, e.message);
+      errorCount++; 
+    }
   }
-  return { message: `Processamento concluído. Salvos: ${processedCount}, Erros: ${errorCount}, Pulasdos: ${skippedCount}.` };
+  return { 
+    message: `Processamento concluído. Salvos: ${processedCount}, Erros: ${errorCount}, Pulados: ${skippedCount}.`,
+    total: pdfFiles.length,
+    processed: processedCount,
+    errors: errorCount,
+    skipped: skippedCount
+  };
 }
 
 async function getCuratedArticles() {
@@ -510,11 +540,19 @@ module.exports = {
   manualInsert,
   aprovarManualmente: aprovarManualmenteLocal,
   reprovarManualmente: reprovarManualmenteLocal,
-  processZipUpload: async (buf, user) => {
+  processZipUpload: async (buf, user, onProgress = null) => {
     const tmp = path.join(os.tmpdir(), `zip-${Date.now()}`);
-    await fs.mkdir(tmp);
-    new AdmZip(buf).extractAllTo(tmp, true);
-    return await processLocalFolderForBatchInsert(tmp, user);
+    await fs.mkdir(tmp, { recursive: true });
+    try {
+      const zip = new AdmZip(buf);
+      zip.extractAllTo(tmp, true);
+      return await processLocalFolderForBatchInsert(tmp, user, onProgress);
+    } finally {
+      // Limpeza agendada do diretório temporário
+      setTimeout(() => {
+        try { if (fsSync.existsSync(tmp)) fsSync.rmSync(tmp, { recursive: true, force: true }); } catch(e) {}
+      }, 60000);
+    }
   },
   uploadFileToDrive: async (d, p, f) => {
     const t = path.join(DOCUMENTS_DIR, f);
