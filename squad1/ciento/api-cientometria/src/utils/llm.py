@@ -233,6 +233,7 @@ async def curar_documento(payload: PDFPayload):
 Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido e preencher o esquema JSON.
 
 **INSTRUÇÕES DE EXTRAÇÃO DE METADADOS (Siga para todos os campos):**
+- **Título:** Extraia o TÍTULO COMPLETO do artigo. É crucial identificar o título real no início do documento.
 - **Subtítulo:** Extraia o subtítulo do artigo, se houver.
 - **Caracteristicas do solo e região (escrever):** Descreva em um parágrafo as características do solo, clima e localização geográfica mencionadas no estudo. Se não mencionadas, deixe vazio.
 - **ferramentas e técnicas (seleção):** Liste as metodologias científicas, ferramentas de laboratório ou campo. Ex: "Análise granulométrica, Espectroscopia, Difração de Raios-X, Amostragem de solo". Sempre liste pelo menos uma se aplicável.
@@ -270,6 +271,7 @@ ESQUEMA:
 Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido e preencher o esquema JSON.
 
 **INSTRUÇÕES DE EXTRAÇÃO DE METADADOS (Siga para todos os campos):**
+- **Título:** Extraia o TÍTULO COMPLETO do artigo. É crucial identificar o título real no início do documento.
 - **Subtítulo:** Extraia o subtítulo do artigo, se houver.
 - **Caracteristicas do solo e região (escrever):** Descreva em um parágrafo as características do solo, clima e localização geográfica mencionadas no estudo de citros ou cana. Se não mencionadas, deixe vazio.
 - **ferramentas e técnicas (seleção):** Liste, em formato de string separada por vírgulas, as principais ferramentas, equipamentos e metodologias científicas utilizadas. Ex: "Cromatografia gasosa, Fotossíntese líquida, RCBD, ANOVA". Sempre liste pelo menos uma se aplicável.

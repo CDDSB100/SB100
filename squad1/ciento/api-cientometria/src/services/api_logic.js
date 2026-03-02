@@ -304,19 +304,47 @@ async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Descon
   console.log(`    ➜ Processando arquivo: ${fileName}`);
   const category = await callCategorizationApi(pdfBuffer);
   const extractedMetadata = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
+  
   const rowData = {};
+  
+  // Função interna para buscar valor ignorando acentos/case
+  const getVal = (obj, targetKey) => {
+    const normalize = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+    const t = normalize(targetKey);
+    for (let k in obj) {
+      if (normalize(k) === t) return obj[k];
+    }
+    return null;
+  };
+
   ALL_METADATA_FIELDS.forEach(f => { 
-    // Garantir que feedback venha vazio para artigos pendentes
     if (f === "FEEDBACK DO CURADOR (escrever)") {
       rowData[f] = "";
     } else {
-      rowData[f] = extractedMetadata[f] || "N/A";
+      // Tenta buscar no retorno da IA
+      const val = getVal(extractedMetadata, f);
+      rowData[f] = (val !== null && val !== undefined) ? val : "N/A";
     }
   });
+
   rowData["CATEGORIA"] = category;
   rowData["URL DO DOCUMENTO"] = fileName;
-  rowData["Título"] = extractedMetadata["Título"] || extractedMetadata["Titulo"] || fileName.replace(/\.pdf$/i, "");
   rowData["INSERIDO POR"] = username;
+
+  // Lógica Ultra-Robusta para Título: IA -> Nome do Arquivo
+  let finalTitle = getVal(extractedMetadata, "Título") || getVal(extractedMetadata, "Titulo");
+  
+  if (!finalTitle || String(finalTitle).trim().toLowerCase() === "n/a" || String(finalTitle).trim() === "" || String(finalTitle).toLowerCase().includes("sem titulo")) {
+    finalTitle = fileName.replace(/\.pdf$/i, "");
+  }
+  
+  // Garantir que a chave exata esperada pela planilha seja preenchida
+  if (rowData.hasOwnProperty("Título")) rowData["Título"] = finalTitle;
+  if (rowData.hasOwnProperty("Titulo")) rowData["Titulo"] = finalTitle;
+  
+  // Fallback caso nenhuma das chaves exista (o que não deve ocorrer dado ALL_METADATA_FIELDS)
+  rowData["Título"] = finalTitle;
+
   return rowData;
 }
 
