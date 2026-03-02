@@ -27,6 +27,7 @@ const {
   deleteRow,
   deleteUnavailableRows,
   manualInsert,
+  fixMissingTitles,
   aprovarManualmente,
   reprovarManualmente,
   processZipUpload,
@@ -733,6 +734,17 @@ app.get("/api/batch-progress", authenticateToken, (req, res) => {
 
 // --- Nova Rota para Extração de Metadados ---
 app.post("/api/extract-metadata", authenticateToken, upload.single('file'), extractMetadata);
+
+// --- Nova Rota para Corrigir Títulos ---
+app.post("/api/fix-titles", authenticateToken, async (req, res) => {
+  try {
+    const result = await fixMissingTitles();
+    res.json(result);
+  } catch (error) {
+    console.error(`Error in /api/fix-titles: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 

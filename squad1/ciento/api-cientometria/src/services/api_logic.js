@@ -536,6 +536,69 @@ async function reprovarManualmenteLocal(rowNumber, fileName, username = "Desconh
   return { success: true };
 }
 
+/**
+ * Busca e corrige títulos para linhas marcadas como 'Sem Título' ou 'N/A'
+ */
+async function fixMissingTitles() {
+  console.log("  > Iniciando reparo de títulos ausentes...");
+  const wb = readWorkbook();
+  const ws = wb.Sheets[SHEET_NAME];
+  const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
+  const headers = allData[0] || [];
+
+  let titleIdx = headers.indexOf("Título");
+  if (titleIdx === -1) titleIdx = headers.indexOf("Titulo");
+  const urlIdx = headers.indexOf("URL DO DOCUMENTO");
+
+  if (titleIdx === -1 || urlIdx === -1) {
+    throw new Error("Colunas 'Título' ou 'URL DO DOCUMENTO' não encontradas.");
+  }
+
+  let fixedCount = 0;
+  for (let i = 1; i < allData.length; i++) {
+    const row = allData[i];
+    const currentTitle = String(row[titleIdx] || "").trim();
+    const fileName = String(row[urlIdx] || "").trim();
+
+    if ((currentTitle === "Sem Título" || currentTitle === "N/A" || !currentTitle) && fileName) {
+      console.log(`    ➜ Tentando recuperar título para: ${fileName}`);
+      const filePath = findFileInFolders(fileName);
+      
+      if (filePath) {
+        try {
+          const pdfBuffer = await fs.readFile(filePath);
+          // Chamamos a IA apenas para extrair metadados (que inclui o título)
+          const extracted = await callCustomCuradorApi(pdfBuffer, ["Título"]);
+          const newTitle = extracted["Título"] || extracted["Titulo"];
+          
+          if (newTitle && newTitle !== "Sem Título" && newTitle !== "N/A") {
+            row[titleIdx] = newTitle;
+            fixedCount++;
+            console.log(`      ✓ Título encontrado: ${newTitle}`);
+          } else {
+            // Fallback: usar nome do arquivo sem extensão
+            row[titleIdx] = fileName.replace(/\.pdf$/i, "");
+            fixedCount++;
+            console.log(`      ! Usando nome do arquivo como fallback.`);
+          }
+        } catch (e) {
+          console.error(`      ✗ Erro ao processar arquivo ${fileName}: ${e.message}`);
+          // Fallback seguro em caso de erro na IA
+          row[titleIdx] = fileName.replace(/\.pdf$/i, "");
+          fixedCount++;
+        }
+      }
+    }
+  }
+
+  if (fixedCount > 0) {
+    wb.Sheets[SHEET_NAME] = xlsx.utils.aoa_to_sheet(allData);
+    writeWorkbook(wb);
+  }
+
+  return { message: `Reparo concluído. Títulos corrigidos: ${fixedCount}` };
+}
+
 module.exports = {
   getCuratedArticles,
   executarCuradoriaLocalmente,
@@ -545,6 +608,7 @@ module.exports = {
   deleteRow,
   deleteUnavailableRows,
   manualInsert,
+  fixMissingTitles,
   aprovarManualmente: aprovarManualmenteLocal,
   reprovarManualmente: reprovarManualmenteLocal,
   processZipUpload: async (buf, user, onProgress = null) => {

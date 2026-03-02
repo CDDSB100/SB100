@@ -137,6 +137,11 @@ export const extractMetadata = async (extractionData) => {
   return response.data;
 };
 
+export const fixMissingTitles = async () => {
+  const response = await api.post("/fix-titles");
+  return response.data;
+};
+
 export const registerUser = async (username, email, password, role) => {
   const response = await api.post("/register", {
     username,

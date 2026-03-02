@@ -61,6 +61,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import ErrorIcon from "@mui/icons-material/Error";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
+import BuildIcon from "@mui/icons-material/Build";
 import "./Curation.css";
 import { 
   getCuratedArticles, 
@@ -73,7 +74,8 @@ import {
   manualRejectArticle,
   batchUploadZip,
   getLlmLogs,
-  getBatchProgress
+  getBatchProgress,
+  fixMissingTitles
 } from '../api';
 
 function CurationPage() {
@@ -266,12 +268,26 @@ function CurationPage() {
     }
   };
 
+  const handleFixTitles = async () => {
+    setIsTriggering(true);
+    setSnackbar({ open: true, message: "Iniciando reparo de títulos...", severity: "info" });
+    try {
+      const res = await fixMissingTitles();
+      setSnackbar({ open: true, message: res.message, severity: "success" });
+      setTimeout(fetchArticles, 1000);
+    } catch (err) {
+      setSnackbar({ open: true, message: "Erro: " + err.message, severity: "error" });
+    } finally {
+      setIsTriggering(false);
+    }
+  };
+
   const handleZipUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
     setIsTriggering(true);
-    setBatchProgress({ total: 0, current: 0, processed: 0, errors: 0, skipped: 0, status: 'processing', message: 'Enviando arquivo...' });
+    setBatchProgress({ total: 0, current: 0, processed: 0, processed: 0, errors: 0, skipped: 0, status: 'processing', message: 'Enviando arquivo...' });
     setShowProgressDialog(true);
     
     try {
@@ -418,7 +434,7 @@ function CurationPage() {
               </Stack>
               <Typography variant="h6" sx={{ opacity: 0.8, fontWeight: 400 }}>Validação e categorização de evidências científicas.</Typography>
             </Grid>
-            <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' }, gap: 2 }}>
+            <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' }, gap: 2, flexWrap: 'wrap' }}>
               <Button 
                 component="label"
                 variant="contained" 
@@ -439,6 +455,16 @@ function CurationPage() {
                 sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
               >
                 IA em Lote
+              </Button>
+              <Button 
+                variant="outlined" 
+                color="inherit" 
+                startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <BuildIcon />}
+                onClick={handleFixTitles}
+                disabled={isTriggering || loading}
+                sx={{ borderRadius: '50px', px: 3, fontWeight: 800, color: 'white', borderColor: 'rgba(255,255,255,0.5)' }}
+              >
+                Reparar Títulos
               </Button>
               <Tooltip title="Recarregar Artigos">
                 <IconButton onClick={fetchArticles} sx={{ bgcolor: 'rgba(255,255,255,0.1)', color: 'white' }}>
