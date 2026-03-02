@@ -373,9 +373,9 @@ function CurationPage() {
     if (!url) return;
     let finalUrl = url;
     if (!url.startsWith("http")) {
-      // Se não for uma URL absoluta, assume que é um arquivo local servido pelo backend
-      const apiBaseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace(/\/api$/, '') : "";
-      finalUrl = `${apiBaseUrl}/documents/${encodeURIComponent(url)}`;
+      // Usar caminho relativo para evitar erros de Mixed Content (HTTP em HTTPS)
+      // O backend servindo o frontend garante que isso funcione
+      finalUrl = `/api/documents/${encodeURIComponent(url)}`;
     } else if (url.includes("drive.google.com/file/d/")) {
       finalUrl = url.replace("/view", "/preview");
     }
