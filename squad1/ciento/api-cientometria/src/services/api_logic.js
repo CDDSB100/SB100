@@ -305,7 +305,14 @@ async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Descon
   const category = await callCategorizationApi(pdfBuffer);
   const extractedMetadata = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
   const rowData = {};
-  ALL_METADATA_FIELDS.forEach(f => { rowData[f] = extractedMetadata[f] || "N/A"; });
+  ALL_METADATA_FIELDS.forEach(f => { 
+    // Garantir que feedback venha vazio para artigos pendentes
+    if (f === "FEEDBACK DO CURADOR (escrever)") {
+      rowData[f] = "";
+    } else {
+      rowData[f] = extractedMetadata[f] || "N/A";
+    }
+  });
   rowData["CATEGORIA"] = category;
   rowData["URL DO DOCUMENTO"] = fileName;
   rowData["Título"] = extractedMetadata["Título"] || extractedMetadata["Titulo"] || fileName.replace(/\.pdf$/i, "");
