@@ -13,36 +13,42 @@ from openai import OpenAI
 from pypdf import PdfReader
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-from dotenv import load_dotenv
 
-# --- CONFIGURAÇÃO DE LOGS ---
-LOG_FILE = "llm.log"
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler()
+try:
+    from dotenv import load_dotenv
+    # --- CONFIGURAÇÃO DE LOGS ---
+    LOG_FILE = "llm.log"
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(LOG_FILE),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
+
+    # Tenta carregar variáveis de ambiente de múltiplos locais
+    env_locations = [
+        os.path.join(os.getcwd(), ".env"),
+        os.path.join(os.path.dirname(__file__), "..", "..", ".env"),
+        ".env"
     ]
-)
-logger = logging.getLogger(__name__)
 
-# Tenta carregar variáveis de ambiente de múltiplos locais
-env_locations = [
-    os.path.join(os.getcwd(), ".env"),
-    os.path.join(os.path.dirname(__file__), "..", "..", ".env"),
-    ".env"
-]
+    found_env = False
+    for loc in env_locations:
+        if os.path.exists(loc):
+            logger.info(f"Carregando .env de: {loc}")
+            load_dotenv(loc, override=True)
+            found_env = True
 
-found_env = False
-for loc in env_locations:
-    if os.path.exists(loc):
-        logger.info(f"Carregando .env de: {loc}")
-        load_dotenv(loc, override=True)
-        found_env = True
-
-if not found_env:
-    logger.warning("Nenhum arquivo .env encontrado nas localizações padrão.")
+    if not found_env:
+        logger.warning("Nenhum arquivo .env encontrado nas localizações padrão.")
+except ImportError:
+    # Fallback caso python-dotenv não esteja instalado
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+    logger.warning("Aviso: Módulo 'python-dotenv' não encontrado. As variáveis de ambiente devem ser configuradas manualmente.")
 
 # Variáveis de Ambiente
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
