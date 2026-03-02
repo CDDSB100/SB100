@@ -543,8 +543,14 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
     // Normalize incoming keys to match expected headers (tolerant to encoding/acentuação issues)
     function canonical(str) {
       if (!str) return "";
-      return str
-        .toString()
+      let s = str.toString();
+      
+      // Tenta consertar UTF-8 corrompido (ex: TÃ­tulo -> Título)
+      try {
+        s = Buffer.from(s, 'binary').toString('utf8');
+      } catch (e) { /* ignore */ }
+
+      return s
         .normalize('NFD')
         .replace(/\p{Diacritic}/gu, '')
         .toLowerCase()
@@ -568,19 +574,25 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
     // Build finalData with exact expected keys, pulling from incoming using canonical matching
     const finalData = {};
     expectedKeys.forEach((exp) => {
-      const key = canonicalMap[canonical(exp)];
-      if (key) {
-        finalData[exp] = incoming[key];
+      const canonExp = canonical(exp);
+      const originalKey = canonicalMap[canonExp];
+      
+      if (originalKey && incoming[originalKey] !== undefined && incoming[originalKey] !== "") {
+        finalData[exp] = incoming[originalKey];
       } else if (exp === 'pub_url' && data.pub_url) {
         finalData[exp] = data.pub_url;
+      } else {
+        finalData[exp] = "N/A"; // Valor padrão para campos ausentes
       }
     });
 
-    // Validação simples dos dados recebidos (usando finalData)
-    // Se NÃO houver arquivo, validamos campos obrigatórios. Se HOUVER, a IA vai tentar extrair o que faltar.
+    // Validação flexível: Se houver arquivo, a IA completa. Se não houver, exigimos o básico.
     if (!req.file) {
-      if (!finalData['Título'] || !finalData['Autor(es)'] || !finalData.Ano) {
-        return res.status(400).json({ error: "Campos obrigatórios (Título, Autor(es), Ano) não preenchidos." });
+      const hasTitle = finalData['Título'] && finalData['Título'] !== "N/A";
+      const hasAuthors = finalData['Autor(es)'] && finalData['Autor(es)'] !== "N/A";
+      
+      if (!hasTitle || !hasAuthors) {
+        return res.status(400).json({ error: "Campos obrigatórios (Título, Autor(es)) não preenchidos." });
       }
     }
 
