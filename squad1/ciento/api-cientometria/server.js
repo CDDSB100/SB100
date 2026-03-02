@@ -530,9 +530,8 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
       try {
         const localFileName = await uploadFileToDrive(null, tmpPath, originalName);
           if (localFileName) {
-            const base = app.locals.baseNetworkUrl || `http://localhost:${port}`;
-            // ensure filename is safely encoded in URL
-            data.pub_url = `${base}/documents/${encodeURIComponent(localFileName)}`;
+            // Store ONLY the filename in pub_url for local sheet compatibility
+            data.pub_url = localFileName;
           }
       } catch (e) {
         console.error('Error saving file locally:', e.message);
