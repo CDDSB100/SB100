@@ -13,8 +13,9 @@ from openai import OpenAI
 from pypdf import PdfReader
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv
 
-# --- CONFIGURAÇÃO ---
+# --- CONFIGURAÇÃO DE LOGS ---
 LOG_FILE = "llm.log"
 logging.basicConfig(
     level=logging.INFO,
@@ -26,22 +27,22 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-app = FastAPI()
+# Tenta carregar variáveis de ambiente de múltiplos locais
+env_locations = [
+    os.path.join(os.getcwd(), ".env"),
+    os.path.join(os.path.dirname(__file__), "..", "..", ".env"),
+    ".env"
+]
 
-# ========== CONFIGURAÇÃO DE CORS ==========
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "https://sb100cientometria.optin.com.br",  # Domínio de produção
-        "http://localhost:5173",                 # Vite dev server local (Porta padrão)
-        "http://127.0.0.1:5173",                 # Alternativa local
-        "http://localhost:8000",                 # Para testes diretos no backend
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-# ===========================================
+found_env = False
+for loc in env_locations:
+    if os.path.exists(loc):
+        logger.info(f"Carregando .env de: {loc}")
+        load_dotenv(loc, override=True)
+        found_env = True
+
+if not found_env:
+    logger.warning("Nenhum arquivo .env encontrado nas localizações padrão.")
 
 # Variáveis de Ambiente
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
@@ -52,13 +53,28 @@ QDRANT_COLLECTION = "BaseCurador"
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1")
 LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
 
-# Inicialização de Clientes (Lazy Loading Pattern)
-client_groq = None
+# Debug de inicialização (sem vazar a chave completa)
 if GROQ_API_KEY:
-    try:
-        client_groq = Groq(api_key=GROQ_API_KEY)
-    except Exception as e:
-        logger.error(f"Erro ao iniciar Groq: {e}")
+    logger.info(f"GROQ_API_KEY detectada (prefixo: {GROQ_API_KEY[:7]}...)")
+else:
+    logger.error("GROQ_API_KEY NÃO ENCONTRADA no ambiente!")
+
+# Inicialização de Clientes
+def get_groq_client():
+    global client_groq
+    if 'client_groq' not in globals() or client_groq is None:
+        key = os.getenv("GROQ_API_KEY")
+        if key:
+            try:
+                client_groq = Groq(api_key=key)
+                return client_groq
+            except Exception as e:
+                logger.error(f"Erro ao iniciar Groq: {e}")
+                return None
+        return None
+    return client_groq
+
+client_groq = get_groq_client()
 
 client_llm = OpenAI(
     base_url=OLLAMA_BASE_URL,
@@ -75,6 +91,18 @@ if QDRANT_URL and QDRANT_API_KEY:
         encoder = SentenceTransformer("all-MiniLM-L6-v2")
     except Exception as e:
         logger.error(f"Erro ao iniciar Qdrant/Encoder: {e}")
+
+app = FastAPI()
+
+# ========== CONFIGURAÇÃO DE CORS ==========
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # Permitir tudo em produção se necessário, ou restringir
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ===========================================
 
 class PDFPayload(BaseModel):
     encoded_content: str
@@ -126,7 +154,7 @@ def search_similar_docs(text_query: str, limit: int = 3) -> str:
     """Busca fatos científicos existentes para verificar contradições."""
     if not client_qdrant or not encoder:
         return "Nenhum contexto prévio disponível."
-    
+
     try:
         query_vector = encoder.encode(text_query[:1000]).tolist()
         hits = client_qdrant.search(
@@ -134,7 +162,7 @@ def search_similar_docs(text_query: str, limit: int = 3) -> str:
             query_vector=query_vector,
             limit=limit
         )
-        
+
         context = ""
         for hit in hits:
             snippet = hit.payload.get("text", "")[:500]
@@ -160,8 +188,9 @@ def clean_json_string(json_str: str) -> str:
 
 @app.post("/curadoria")
 async def curar_documento(payload: PDFPayload):
-    # 1. Verificação de Saúde
-    if not client_groq:
+    # 1. Verificação de Saúde Reativa
+    groq = get_groq_client()
+    if not groq:
         raise HTTPException(status_code=503, detail="Serviço indisponível: Groq não configurada.")
 
     # 2. Extração de Texto
@@ -287,7 +316,7 @@ Retorne APENAS o objeto JSON preenchido."""
     logger.info(f"Payload Category: {payload.category}")
 
     try:
-        completion = client_groq.chat.completions.create(
+        completion = groq.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
@@ -299,7 +328,7 @@ Retorne APENAS o objeto JSON preenchido."""
 
         raw_response = completion.choices[0].message.content
         logger.info(f"Resposta Bruta da LLM: {raw_response}")
-        
+
         clean_response = clean_json_string(raw_response)
         return json.loads(clean_response)
 
@@ -309,7 +338,8 @@ Retorne APENAS o objeto JSON preenchido."""
 
 @app.post("/categorize")
 async def categorize_article(payload: PDFPayload):
-    if not client_groq:
+    groq = get_groq_client()
+    if not groq:
         raise HTTPException(status_code=503, detail="Serviço indisponível: Groq não configurada.")
 
     document_text = get_document_text(payload.encoded_content, payload.content_type)
@@ -336,7 +366,7 @@ Categorias válidas:
     user_prompt = f"ARTIGO:\n{document_text[:6000]}\n\nCLASSIFICAÇÃO:"
 
     try:
-        completion = client_groq.chat.completions.create(
+        completion = groq.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
@@ -347,7 +377,7 @@ Categorias válidas:
         )
 
         category = completion.choices[0].message.content.strip().lower()
-        
+
         # Normalização de categorias
         if "solo" in category:
             category = "solos"
