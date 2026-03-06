@@ -62,6 +62,8 @@ import TerminalIcon from "@mui/icons-material/Terminal";
 import ErrorIcon from "@mui/icons-material/Error";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import BuildIcon from "@mui/icons-material/Build";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
 import "./Curation.css";
 import { 
   getCuratedArticles, 
@@ -75,7 +77,8 @@ import {
   batchUploadZip,
   getLlmLogs,
   getBatchProgress,
-  fixMissingTitles
+  fixMissingTitles,
+  updateArticle
 } from '../api';
 
 function CurationPage() {
@@ -86,6 +89,8 @@ function CurationPage() {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [openPreview, setOpenPreview] = useState(false);
   const [analysisResult, setAnalysisResult] = useState(null);
+  const [editedResult, setEditedResult] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const [openAnalysisDialog, setOpenAnalysisDialog] = useState(false);
 
   const [allHeaders, setAllHeaders] = useState([]);
@@ -159,7 +164,7 @@ function CurationPage() {
     return () => {
       if (pollInterval) clearInterval(pollInterval);
     };
-  }, [isTriggering, showProgressDialog]);
+  }, [isTriggering, showProgressDialog, fetchArticles]);
 
   const fetchArticles = useCallback(async () => {
     setLoading(true);
@@ -168,7 +173,7 @@ function CurationPage() {
       const data = await getCuratedArticles();
       setArticles(data);
       if (data.length > 0) {
-        const headers = Object.keys(data[0]).filter((h) => !h.startsWith("__"));
+        const headers = Object.keys(data[0]).filter((h) => !h.startsWith("__") && h !== "createdAt" && h !== "updatedAt" && h !== "_id");
         setAllHeaders(headers);
         
         const categories = [...new Set(data.map(a => a.CATEGORIA || a.categoria).filter(Boolean))];
@@ -217,7 +222,9 @@ function CurationPage() {
       if (valB === null || valB === undefined) valB = "";
 
       if (sortBy === "__row_number") {
-        return sortOrder === "asc" ? Number(valA) - Number(valB) : Number(valB) - Number(valA);
+        // Agora __row_number é o _id do MongoDB, então não é numérico sequencial simples
+        // Mas o sortBy __row_number ainda é usado pelo frontend
+        return sortOrder === "asc" ? String(valA).localeCompare(String(valB)) : String(valB).localeCompare(String(valA));
       }
 
       valA = String(valA).toLowerCase();
@@ -287,7 +294,7 @@ function CurationPage() {
     if (!file) return;
 
     setIsTriggering(true);
-    setBatchProgress({ total: 0, current: 0, processed: 0, processed: 0, errors: 0, skipped: 0, status: 'processing', message: 'Enviando arquivo...' });
+    setBatchProgress({ total: 0, current: 0, processed: 0, errors: 0, skipped: 0, status: 'processing', message: 'Enviando arquivo...' });
     setShowProgressDialog(true);
     
     try {
@@ -307,9 +314,10 @@ function CurationPage() {
     setProcessingRow(rowNumber);
     try {
       const response = await triggerSingleCuration(rowNumber);
-      setAnalysisResult(response.updatedArticle);
+      setAnalysisResult(response.updatedArticle || response.article);
       setOpenAnalysisDialog(true);
       setSnackbar({ open: true, message: "Análise concluída!", severity: "success" });
+      fetchArticles();
     } catch (err) {
       setSnackbar({ open: true, message: "Erro na análise: " + err.message, severity: "error" });
     } finally {
@@ -321,9 +329,10 @@ function CurationPage() {
     setProcessingRow(rowNumber);
     try {
       const response = await categorizeArticleRow(rowNumber);
-      setAnalysisResult(response.updatedArticle);
+      setAnalysisResult(response.updatedArticle || response.article);
       setOpenAnalysisDialog(true);
       setSnackbar({ open: true, message: "Categorização concluída!", severity: "success" });
+      fetchArticles();
     } catch (err) {
       setSnackbar({ open: true, message: "Erro: " + err.message, severity: "error" });
     } finally {
@@ -389,15 +398,45 @@ function CurationPage() {
     if (!url) return;
     let finalUrl = url;
     if (!url.startsWith("http")) {
-      // Usar caminho relativo para evitar erros de Mixed Content (HTTP em HTTPS)
-      // O backend servindo o frontend garante que isso funcione
       finalUrl = `/api/documents/${encodeURIComponent(url)}`;
     } else if (url.includes("drive.google.com/file/d/")) {
       finalUrl = url.replace("/view", "/preview");
     }
-    console.log("Previewing document at:", finalUrl);
     setPreviewUrl(finalUrl);
     setOpenPreview(true);
+  };
+
+  const handleEditToggle = () => {
+    if (isEditing) {
+      // Cancelar edição
+      setEditedResult(null);
+      setIsEditing(false);
+    } else {
+      // Iniciar edição
+      setEditedResult({ ...analysisResult });
+      setIsEditing(true);
+    }
+  };
+
+  const handleFieldChange = (header, value) => {
+    setEditedResult(prev => ({
+      ...prev,
+      [header]: value
+    }));
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      const id = analysisResult._id || analysisResult.__row_number;
+      await updateArticle(id, editedResult);
+      setAnalysisResult({ ...editedResult });
+      setIsEditing(false);
+      setEditedResult(null);
+      setSnackbar({ open: true, message: "Metadados atualizados com sucesso!", severity: "success" });
+      fetchArticles();
+    } catch (err) {
+      setSnackbar({ open: true, message: "Erro ao salvar: " + err.message, severity: "error" });
+    }
   };
 
   const getStatusChip = (article) => {
@@ -641,7 +680,7 @@ function CurationPage() {
                           </Tooltip>
                           <Tooltip title="Ver Metadados Completos">
                             <IconButton 
-                              onClick={() => { setAnalysisResult(article); setOpenAnalysisDialog(true); }}
+                              onClick={() => { setAnalysisResult(article); setIsEditing(false); setOpenAnalysisDialog(true); }}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <InfoIcon fontSize="small" />
@@ -733,30 +772,64 @@ function CurationPage() {
       </Modal>
 
       {/* Details Dialog */}
-      <Dialog open={openAnalysisDialog} onClose={() => setOpenAnalysisDialog(false)} maxWidth="md" fullWidth PaperProps={{ sx: { borderRadius: 4 } }}>
+      <Dialog open={openAnalysisDialog} onClose={() => { if(!isEditing) setOpenAnalysisDialog(false); }} maxWidth="md" fullWidth PaperProps={{ sx: { borderRadius: 4 } }}>
         <DialogTitle sx={{ fontWeight: 900, bgcolor: 'primary.main', color: 'white', py: 3 }}>
-          <Stack direction="row" spacing={2} alignItems="center">
-            <InfoIcon />
-            <Typography variant="h5" sx={{ fontWeight: 900 }}>Metadados do Artigo</Typography>
+          <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+            <Stack direction="row" spacing={2} alignItems="center">
+              <InfoIcon />
+              <Typography variant="h5" sx={{ fontWeight: 900 }}>{isEditing ? "Editar Metadados" : "Metadados do Artigo"}</Typography>
+            </Stack>
+            {!isEditing && (
+              <Button 
+                startIcon={<EditIcon />} 
+                variant="contained" 
+                color="secondary" 
+                onClick={handleEditToggle}
+                sx={{ borderRadius: '50px' }}
+              >
+                Editar
+              </Button>
+            )}
           </Stack>
         </DialogTitle>
         <DialogContent sx={{ p: 4, mt: 2 }}>
           {analysisResult && (
             <Grid container spacing={3}>
               {allHeaders.map((header) => (
-                <Grid item xs={12} sm={6} key={header}>
-                  <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 3, height: '100%' }}>
-                    <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{header}</Typography>
-                    <Typography variant="body1" sx={{ fontWeight: 600, mt: 0.5, wordBreak: 'break-word' }}>{analysisResult[header] || "---"}</Typography>
-                  </Box>
+                <Grid item xs={12} sm={header === "Resumo" || header === "Título" ? 12 : 6} key={header}>
+                  {isEditing ? (
+                    <TextField
+                      fullWidth
+                      label={header}
+                      value={editedResult[header] || ""}
+                      onChange={(e) => handleFieldChange(header, e.target.value)}
+                      multiline={header === "Resumo" || header === "Palavras-chave"}
+                      rows={header === "Resumo" ? 4 : 1}
+                      variant="outlined"
+                    />
+                  ) : (
+                    <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 3, height: '100%' }}>
+                      <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{header}</Typography>
+                      <Typography variant="body1" sx={{ fontWeight: 600, mt: 0.5, wordBreak: 'break-word' }}>{analysisResult[header] || "---"}</Typography>
+                    </Box>
+                  )}
                 </Grid>
               ))}
             </Grid>
           )}
         </DialogContent>
         <DialogActions sx={{ p: 3, bgcolor: 'grey.50' }}>
-          <Button onClick={() => handleCategorize(analysisResult.__row_number)} startIcon={<CategoryIcon />} color="secondary" variant="outlined" sx={{ borderRadius: '50px' }}>Recategorizar</Button>
-          <Button onClick={() => setOpenAnalysisDialog(false)} variant="contained" size="large" sx={{ borderRadius: '50px', px: 4 }}>Fechar</Button>
+          {isEditing ? (
+            <>
+              <Button onClick={handleEditToggle} color="inherit">Cancelar</Button>
+              <Button onClick={handleSaveChanges} startIcon={<SaveIcon />} variant="contained" color="success" sx={{ borderRadius: '50px', px: 4 }}>Salvar Alterações</Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => handleCategorize(analysisResult.__row_number)} startIcon={<CategoryIcon />} color="secondary" variant="outlined" sx={{ borderRadius: '50px' }}>Recategorizar</Button>
+              <Button onClick={() => setOpenAnalysisDialog(false)} variant="contained" size="large" sx={{ borderRadius: '50px', px: 4 }}>Fechar</Button>
+            </>
+          )}
         </DialogActions>
       </Dialog>
 

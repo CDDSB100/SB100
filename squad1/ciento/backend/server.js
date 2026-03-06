@@ -30,6 +30,7 @@ const {
   fixMissingTitles,
   aprovarManualmente,
   reprovarManualmente,
+  updateArticle,
   processZipUpload,
   processDriveFolderForBatchInsert,
   uploadFileToDrive,
@@ -742,6 +743,18 @@ app.post("/api/fix-titles", authenticateToken, async (req, res) => {
     res.json(result);
   } catch (error) {
     console.error(`Error in /api/fix-titles: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put("/api/articles/:id", authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = req.body;
+    const result = await updateArticle(id, data);
+    res.json(result);
+  } catch (error) {
+    console.error(`Error in PUT /api/articles/:id: ${error.message}`);
     res.status(500).json({ error: error.message });
   }
 });

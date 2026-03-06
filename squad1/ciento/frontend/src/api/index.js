@@ -142,6 +142,11 @@ export const fixMissingTitles = async () => {
   return response.data;
 };
 
+export const updateArticle = async (id, data) => {
+  const response = await api.put(`/articles/${id}`, data);
+  return response.data;
+};
+
 export const registerUser = async (username, email, password, role) => {
   const response = await api.post("/register", {
     username,
