@@ -16,7 +16,7 @@ const DOCUMENTS_DIR = path.join(__dirname, "../../documents");
 const APROVADOS_DIR = path.join(DOCUMENTS_DIR, "aprovados");
 const REPROVADOS_DIR = path.join(DOCUMENTS_DIR, "reprovados");
 const EMAIL_CONTATO = process.env.EMAIL_CONTATO || "luisgustavobonfim996@gmail.com";
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:8000";
+const API_BASE_URL = process.env.API_BASE_URL || "http://172.28.181.92:8000";
 
 // Ensure directories exist
 [DOCUMENTS_DIR, APROVADOS_DIR, REPROVADOS_DIR].forEach(dir => {
