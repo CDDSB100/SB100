@@ -1,0 +1,34 @@
+ID: 939551f9-7755-41c7-b639-a108d0bca2e7
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz Walter Rieger Hippler; Rodrigo Marcelli Boaretto;  R. A. Azevedo; Dirceu Mattos Jr
+Titulo: Towards soil management with Zn and Mn: estimates of fertilisation efficacy of Citrus trees
+Subtítulo: 
+Ano: 2015
+Número de citações recebidas (Google Scholar): 44
+Palavras-chave: 
+Resumo: Nutrient management recommendations for fruit crops lack the understanding of the efficiency of soil fertilisation with manganese (Mn) and zinc (Zn), which could substitute, in part, the traditional foliar applications. Fruit yield of trees in response to Zn and Mn supply via soil may be limited either by sorption reactions with soil colloids or low solubility of fertilisers. We investigated the effects of fertiliser sources and rates of Mn and Zn applied to soils with different sorption capacities on nutrient uptake, biochemical responses and biomass of Citrus. Two experiments were carried out with 2-year-old sweet orange trees that received applications of Mn or Zn. The first experiment evaluated the application of Mn fertilisers (MnCO3 and MnSO4) at three levels of the nutrient (0, 0.7 and 3.5 g plant−1 of Mn) in two types of soil (18.1% and 64.4% of clay, referred to as sandy loam and clay soils, respectively). The second experiment, likewise, evaluated Zn fertilisers (ZnO and ZnSO4) and nutrient levels (0,01.0 and 5.0 g plant−1 of Zn). Application of Mn and Zn increased nutrient availability in the soils as well as leaf nutrient concentrations in the trees. The lowest rates, 0.7 g plant−1 of Mn and 1.0 g plant−1 of Zn, both as sulphate, were sufficient to supply these micronutrients to sufficient levels in leaves, flowers and fruits. Metal toxicity to plants occurred with higher doses of both nutrients and to a large extent in the sandy soil. In this case, protein bands lower than 25 kDa were observed as well a decrease on leaf chlorophyll content. In the clay soil, despite increased micronutrient concentrations in the plant, responses were less pronounced because of higher adsorption of metals in the soil. Superoxide dismutase (SOD, EC 1.15.1.1) isoenzyme activity was determined by non-denaturing polyacrylamide gel electrophoresis (PAGE). The Cu/Zn-SOD isoenzymes increased with increased Zn rates, but in contrast, when Mn was applied at the highest rate, the activity of Cu/Zn-SODs decreased. The SOD activity pattern observed indicated increased production of superoxide and consequently an oxidative stress condition at the highest rates of Zn and Mn applied. The results demonstrated that the soil application of Mn and Zn can supply nutrient demands of orange trees, however the low solubility of fertilisers and the high sorption capacity of soils limit fertilisation efficiency. On the contrary, application of sulphate source in sandy soils may cause excess uptake of Mn and Zn and oxidative stress, which impairs the photosynthetic apparatus and consequently tree growth.
+Tipo de documento: Trabalho apresentado em evento
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1111/aab.12197
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1kvN69KjR7e_75l_s4xTbQ3PXvQ5Kn17S/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Solo com baixa disponibilidade inerente de Mn e Zn, comum em condições tropicais no Brasil (São Paulo, Cordeirópolis/Campinas). O estudo utilizou dois tipos de solo: Franco-arenoso (18,1% de argila) e Argiloso (64,4% de argila). O solo foi corrigido para saturação de bases de 70%.
+ferramentas e técnicas (seleção): Adubação de solo
+nutrientes (seleção): Manganês (Mn)
+estratégias de fornecimento de nutrientes (seleção): Aplicação no solo (Fertilizantes)
+grupos de culturas (seleção): Citrus/Frutíferas
+culturas presentes (seleção): Laranja Doce (Sweet Orange)
+FEEDBACK DO CURADOR (escrever): Estudo robusto que avalia a eficiência da aplicação via solo de Mn e Zn em citros, comparando fontes (sulfato vs. carbonato/óxido) e tipos de solo (franco-arenoso vs. argiloso). O estudo utiliza análises bioquímicas (SOD, proteínas) para medir o estresse oxidativo, confirmando que MnSO4 e ZnSO4 podem causar fitotoxicidade em solos arenosos (baixa capacidade de adsorção), enquanto a alta adsorção limita a eficiência em solos argilosos.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

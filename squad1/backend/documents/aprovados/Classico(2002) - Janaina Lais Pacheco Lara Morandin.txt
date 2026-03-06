@@ -1,0 +1,34 @@
+ID: 31fecca5-e196-48d3-8adc-42ed022a7075
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): S. MOREIRA;  A.S. COSTA; T.J. GRANT
+Titulo: MÉTODOS PARA IDENTIFICAÇÃO E CONTRÔLE DA TRISTEZA DOS CITROS
+Subtítulo: 
+Ano: 2002
+Número de citações recebidas (Google Scholar): 6
+Palavras-chave: tristeza dos citros, vírus, porta-enxertos, controle, identificação
+Resumo: Algumas regiões citrícolas, especialmente no continente europeu, ainda não foram, ao que parece, atingidas pela moléstia tristeza dos citros. Os conhecimentos adquiridos durante as investigações feitas sôbre a moléstia permitem indicar como identificá-la e prevenir suas desastrosas conseqüências nos laranjais. Os sintomas gerais nas plantas afetadas são semelhantes aos causados pela podridão do pé (gomose), podendo-se distinguí-la da tristeza examinando as raízes. Há combinações cavalo-enxêrto tolerantes e não tolerantes ao vírus. É, porisso, muito importante o reconhecimento da espécie cavalo, o que se pode fazer no pomar examinando a sua brotação ou observando o grau de congenialidade entre cavalo e enxerto. O teste colorimétrico feito com a casca da raiz também auxilia o reconhecimento. Os sintomas chamados "pitting" das limas ácidas e pomelos, permitem identificação da tristeza no pomar. O teste de Schneider, Wallace & Dimitan combinado com observações de campo, pode substituir, nas regiões onde a moléstia já foi constatada, os testes de transmissibilidade, mais rigorosos porém demorados, feitos no viveiro ou em estufas. A transmissão por enxertia ou por insetos vetores é feita da planta suspeita para plantas sadias de combinações não tolerantes ao vírus (laranjeira doce sobre azeda) ou para pés francos do limoeiro galego. É de interesse conhecer qual a estirpe do vírus predominante na região, para orientação dos citricultores quanto aos métodos de contrôle da oléstia. A identificação da espécie de afídios predominante na região permite prever a velocidade da disseminação da tristeza, porquanto umas são vetores muito eficientes, outras pouco. O contrôle da tristeza é obtido por métodos indiretos. Nas novas plantações evitam-se as combinações não tolerantes, empregando-se como variedade-cavalo as laranjeiras doces, as tangerineiras, os limoeiros Cravo (Rangpur) e Rugoso. Ãs vezes é possível o emprego de pés francos provenientes dos embriões celares. Nas plantações já existentes pode-se fazer a substituição total ou parcelada (individual) das plantas, conforme se constate predominância de afídios muito ou pouco eficientes e de estirpes fortes ou fracas do vírus. A sub-enxertia ("inarching"), a sôbre-enxertia ("topworking") e o afrancamento do enxerto são outras tantas modalidades de controle da tristeza, as quais podem ser vantajosamente empregadas em determinadas condições. Medidas de quarentena podem retardar a invasão das zonas ainda livres da tristeza, -sendo de interesse o esclarecimento do público quanto ao perigo representado pela importação de plantas ou suas partes vivas, exceto as sementes.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Laranja
+Quartil do periódico: SQ
+Volume: Instituto Agronômico de Campinas; Instituto Agronômico de Campinas; U.S. Department of Agriculture 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1fRBqj8patyoIrHgvX0-hSWlsd2qeMrZs/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O documento aborda a citricultura em diversas regiões, incluindo Brasil (São Paulo, Campinas), Argentina, África do Sul e Estados Unidos (Califórnia, Flórida), mencionando também regiões de clima árido e semi-árido no contexto de dificuldades de replantação. Sintomas da tristeza podem ser confundidos com causas fisiológicas, como o excesso de umidade no solo.
+ferramentas e técnicas (seleção): Teste de transmissão (enxertia ou insetos vetores), Teste colorimétrico (casca da raiz), Teste de Schneider, Wallace & Dimitan (exame microscópico do floema), Teste do limão galego, Teste da azêda, Sub-enxertia, Sôbre-enxertia, Afrancamento do enxêrto, Medidas de quarentena, Fumigação das covas (com DD).
+nutrientes (seleção): Deficiência de nutrição
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Citros, Cereais, Leguminosas
+culturas presentes (seleção): Laranjeira-doce (Citrus sinensis), Laranjeira-azêda (Citrus aurantium), Limão Cravo (Rangpur lime), Tangerineira (C. reticulata), Pomeleiro (C. paradisi), Limoeiro (C. limon), Limeira ácida (C. aurantifolia), Limão Galego (Mexican, West Indian, Key, Beledy lime), Limoeiro Trifoliado (Poncirus trifoliata), Limoeiro Rugoso, Limoeiro Eureka, Limoeiro Siciliano, Limoeiro Lisboa, Laranja Bahia, Laranja Pera.
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

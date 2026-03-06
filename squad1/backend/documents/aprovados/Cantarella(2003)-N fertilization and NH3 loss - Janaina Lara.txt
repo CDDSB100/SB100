@@ -1,0 +1,34 @@
+ID: 42fdff6d-8567-47b8-9bbf-f2360f2a5c89
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): H. Cantarella; D. Mattos Jr.; J.A. Quaggio; A.T. Rigolin
+Titulo: Fruit yield of Valencia sweet orange fertilized with different N sources and the loss of applied N
+Subtítulo: 
+Ano: 2003
+Número de citações recebidas (Google Scholar): 167
+Palavras-chave: Ammonia_volatilization; Ammonium_nitrate; Nitrogen_leaching; Soil_acidification; Urea
+Resumo: Nutrient management recommendations are needed to increase nitrogen uptake efficiency, minimize nutrient losses and reduce adverse effects on the environment. A study of the effects of nitrogen fertilization on N losses and fruit yield of 6-yr-old Valencia sweet orange (Citrus sinensis (L.) Osb.) on Rangpur lime rootstock (C. limonia Osb.) grove was conducted in an Alfisol in Brazil from 1996 to 2001. Urea (UR) or ammonium nitrate (AN) 21 fertilizers were surface-applied annually at rates of 20, 100, 180, and 260 kg N ha split into three applications from mid-spring to early fall. A semi-open trapping system, using H PO 1 glycerol-soaked plastic foams, was 3 4 used for selected treatments in the field to evaluate NH volatilized from applied N fertilizers. Ammonia 3 volatilization reached 26 to 44% of the N applied as UR at the highest rate of N used. Ammonia volatilization losses with AN were lower (4% of the N applied). On the other hand, AN resulted in greater nitrate leaching and greater soil acidification than UR. A marked effect of AN fertilizer on soil pH (CaCl ) in the 0–20 cm depth layer 2 was observed with a decrease of up to 1.7 pH units at the highest N rate. Acidification was followed by a decrease in exchangeable Ca and Mg; consequently, after 5 yr of fertilization with AN, soil base saturation dropped from 21 21 77% in the plots treated with 20 kg N ha per year, to 24% in those that received 260 kg N ha per year. The effect of N sources on fruit yield varied from year to year. In 2001, for a calculated N application rate of 150 kg 21 ha , the fertilizer efficiency index of UR was 75% of that of AN.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Nutrient Cycling in Agroecosystems
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1023/B:FRES.0000003600.20499.76
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/19zelZl9rtNCJTeL-WLupsRbsbS3bQczj/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em um Alfisol (Argissolo Vermelho-Amarelo) em Matão, São Paulo, Brasil. O solo apresentou baixa capacidade de tamponamento. A fertilização com altas doses de Nitrogênio (especialmente Nitrato de Amônio) resultou em acidificação significativa do solo na camada de 0 a 40 cm, com o pH (CaCl₂) caindo até 1.7 unidades na maior dose de N, e a saturação por bases caindo de 77% para 24% na camada superficial após 5 anos.
+ferramentas e técnicas (seleção): Amostragem de Solo
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertilizantes Minerais
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

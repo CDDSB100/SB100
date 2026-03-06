@@ -1,0 +1,34 @@
+ID: 998f1a9f-bcd6-4d1f-bb03-447d616a1264
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Veronica Lorena Dovis; Franz Walter Rieger Hippler; Karina Iolanda Silva; Rafael Vasconcelos Ribeiro; Eduardo Caruso Machado; Dirceu Mattos Jr.
+Titulo: Optimization of the nitrate reductase activity assay for citrus trees
+Subtítulo: 
+Ano: 2014
+Número de citações recebidas (Google Scholar): 14
+Palavras-chave: Citrus sinensis; Diurnal cycle; In vitro test; In vivo test; Leaf Nitrogen assimilation; Roots
+Resumo: The economical and environmental success of the citrus industry requires improved efficiency of the use of the agricultural inputs. Among those, nitrogen (N) fertilization greatly impacts fruit yield and potentially affects environmental quality. Therefore, N use efficiency by citrus groves has been increasingly required worldwide. Among the Citrus species, lemon trees are more vigorous and show superior nitrogen–use-efficiency (NUE), which highest fruit yields are achieved with 20-24 g kg-1 of N in the leaves, compared to 24-30 g kg-1 of N in the case of orange trees. To access the physiological aspects that explain greater vigor and growth efficiency of the former species, experiments were carried out in 42 L containers with lemon and orange young trees (seven-month-old) supplied with sufficient N for maximum growth. The CO2 assimilation, dry mass partitioning and total soluble carbohydrates and starch in plants were evaluated in autumn and summer. Lemon trees presented higher photosynthetic nitrogen use efficiency (Pn/N), invested relatively more N and biomass in leaf production whereas oranges trees invested more in root-biomass production. This preferential investment in leaf area in lemon trees suggests that the greatest vigor is associated with the fate of assimilates produced by tress.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: brazilian journal of botany
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s40415-014-0083-0
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1YZc1A27euq6c65jdtDepnvPHp1fxOU0J/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Substrato orgânico (80% casca de pinus, 5% materiais carbonizados, 15% vermiculita) em vasos de 7L, cultivado em casa de vegetação (greenhouse) em Campinas, SP, e Cordeirópolis, SP, Brasil. As análises foram realizadas durante o verão, com temperaturas variando entre 20 e 32 °C.
+ferramentas e técnicas (seleção): Medição de Atividade Enzimática (NRA)
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação/Nutrição Líquida
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja Doce (Citrus sinensis 'Valencia')
+FEEDBACK DO CURADOR (escrever): Estudo detalhado sobre a otimização de ensaios in vivo e in vitro para a atividade da nitrato redutase (NRA) em laranjeiras. O trabalho padroniza as condições ótimas de temperatura, tempo de incubação e concentração de substratos (KNO3 e n-propanol) para medição em folhas e raízes de Citrus sinensis. Os resultados são cruciais para a pesquisa em assimilação de nitrogênio e metabolismo em citros.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: e8faa482-1845-4e82-9567-08f250b7bb8a
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Jonas Ruschel; Quirino Augusto de Camargo Carmello; Alberto Carlos de Campos Bernardi; Sérgio Alves de Carvalho; Dirceu Mattos Jr.
+Titulo: LEAF NUTRIENT CONTENTS OF RANGPUR LIME ROOTSTOCK AS AFECTED BY N, P, K, Ca AND S FERTILIZATION
+Subtítulo: 
+Ano: 2004
+Número de citações recebidas (Google Scholar): 10
+Palavras-chave: Citrus limonia; mineral nutrition; leaf analysis; response surface
+Resumo: Analysis of leaf nutrient contents can demonstrate plant nutritional status, identify symptoms of deficiency and toxicity, and evaluate the need to adjust fertilization programs. This research determined N:P:K:Ca:S rates for optimal nutrition of Rangpur lime - RL (Citrus limonia Osb.) rootstock, in an experiment arranged in a fractional factorial design of the (¹/25) 5(4) type, with 25 treatments distributed within five blocks. Seedlings of RL were transplanted into 3.8-dm³ containers filled with commercial growing media, when plant height = 10 cm, in a nursery. Treatments consisted of the following nutrient rates (g per plant): N = 0.31, 0.62, 1.25, 2.5 and 5; K = 0.4, 0.62, 1.25, 2.5 and 5; P = 0.35, 1.0, 2.0, 3.0 and 4.0; and Ca = 3.5, 5.0, 6.0, 7.0 and 8.0. Phosphorus and Ca were applied to the compost before transplant of seedlings, while N and K were applied later and total amounts were split into 20 weekly applications via fertigation. Nutrient sources were triple super phosphate, gypsum, NH4NO3 and KCl. Leaf nutrient concentrations of five-mo-old plants were high or in excess for N, P, K and S. Calcium and Mg concentrations were low. Greater dry mass of plants were observed at nutrient rates of N = 3.5, P = 2.7, K = 2.0, and Ca = 6.5 g per plant.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Scientia Agricola
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0103-90162004000500007
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1qn_LYR9Uz6AjGVdur3xzvFfG69-3x77o/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Nursery in Cordeirópolis - SP, Brasil. The experiment used a commercial growing media (substrate) consisting of Pinus bark, vermiculite, and perlite. The media pH was 5.2, and chemical analysis showed initial levels of P=13.0 mg dm⁻³ and O.M.=731.7 g dm⁻³.
+ferramentas e técnicas (seleção): análise foliar; experimento fatorial; superfície de resposta; análise de variância (ANOVA); absorção atômica; espectrofotometria UV-Vis; fertirrigação
+nutrientes (seleção): N; P; K; Ca; S; Mg
+estratégias de fornecimento de nutrientes (seleção): mistura no substrato; fertirrigação; aplicação foliar (pulverização)
+grupos de culturas (seleção): Citrinos; Frutíferas
+culturas presentes (seleção): Limoeiro 'Cravo' (Rangpur lime); Citrus limonia Osb.
+FEEDBACK DO CURADOR (escrever): Documento de pesquisa agronômica útil e de alta qualidade sobre a otimização da nutrição de macronutrientes (N, P, K, Ca, S) e seus impactos na produção de matéria seca do porta-enxerto de limoeiro 'Cravo', fornecendo diretrizes para a produção de mudas em viveiro.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

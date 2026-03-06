@@ -1,0 +1,34 @@
+ID: 753eac13-bbb0-48fd-b309-51eed0d1d006
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Ana Carolina Costa Arantes; Simone Raposo Cotta; Patrícia Marluci da Conceição; Silvana Perissatto Meneghin; Rodrigo Martinelli; Alexandre Gonçalves Próspero;  Rodrigo Marcelli Boaretto; Fernando Dini Andreote;  Dirceu Mattos Jr.; Fernando Alves de Azevedo
+Titulo: Implication of Urochloa spp. Intercropping and Conservation Agriculture on Soil Microbiological Quality and Yield of Tahiti Acid Lime in Long Term Orchard Experiment
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 11
+Palavras-chave: mulching; cover crops; conservation agriculture; citrus; soil microbial community
+Resumo: Techniques such as intercropping and minimum tillage improve soil quality, including soil crobial activity, which stimulates the e cient use of soil resources by plants. However, the e↵ects of such practices in soil under citrus orchards have not been well characterized. In this study, we aimed to determine the e↵ects of mowing and intercrop species on soil microbiological characteristics beneath a Tahiti acid lime orchard. The orchard was planted using minimum tillage and intercropped with two species of Urochloa species (U. ruziziensis—ruzi grass; U. decumbens—signal grass), with two types of mowers for Urochloa biomass (ecological; conventional) and herbicide applications. The study was conducted over 10 years. The ecological mower made the largest deposition of the intercrop biomass, thus providing the lowest disturbance of soil microbial activity and increasing, on average over all 10 years, the basal soil respiration (45%), microbial biomass carbon (25%), abundance of 16S rRNA (1.5%) and ITS (3.5%) genes, and arbuscular mycorrhizal fungi (30%), and providing a ca. 20% higher fruit yield. U. ruziziensis in combination with ecological mowing stimulated the abundance of the genes nifH (1.5%) and phoD (3.0%). The herbicide showed little influence. We conclude that the use of U. ruziziensis as an intercrop in citrus orchards subjected to ecological mowing can be recommended for improving and sustaining soil quality and citrus fruit production. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Agriculture
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.3390/agriculture10110491
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1yA2FtzRoZp51Cp1759DxDpvNnW_HltsY/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em Mogi Mirim, São Paulo, Brasil (clima Cwa: subtropical com invernos secos e verões quentes e úmidos). O solo foi classificado como Argissolo Vermelho-Amarelo (Red-Yellow Argisol) ou Acrisol Cutanic. As características químicas iniciais (0.0–0.2 m) incluíam: 23.0 g dm⁻³ de matéria orgânica do solo (SOM), pH (CaCl₂) 5.7, e P 41.0 mg dm⁻³.
+ferramentas e técnicas (seleção): Agricultura de Conservação
+nutrientes (seleção): Carbono (C)
+estratégias de fornecimento de nutrientes (seleção): Manutenção de resíduos vegetais (mulching) na entrelinha
+grupos de culturas (seleção): Cítricas
+culturas presentes (seleção): Lima ácida Tahiti (Citrus latifolia)
+FEEDBACK DO CURADOR (escrever): O documento é um estudo de longo prazo (10 anos) focado nos efeitos da Agricultura de Conservação em pomares de citros, especificamente usando consórcio de Urochloa spp. e diferentes manejos de corte (ecológico vs. convencional) na qualidade microbiológica do solo e na produtividade da lima ácida Tahiti. Os resultados indicam que o uso de Urochloa ruziziensis e cortador ecológico (ECO) é altamente benéfico, aumentando a produtividade e a atividade microbiana (BSR, MBC, AMF, e abundância dos genes nifH e phoD). A pesquisa é de alta relevância para práticas agronômicas sustentáveis na citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

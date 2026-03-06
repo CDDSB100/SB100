@@ -1,0 +1,34 @@
+ID: 49e30360-283f-4d61-9570-aefa8224b407
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Geisa Lima Mesquita; Dirceu Mattos Jr.; Francisco A. Ossamo Tanaka; Heitor Cantarella; Fernando C. Bachiega Zambrosi; Eduardo Caruso Machado
+Titulo: Traits Driving Tolerance to Atmospheric Fluoride Pollution in Tree Crops
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: Air pollution; Citrusspp; Coffea spp; Electronic microscopy; Photosynthesis
+Resumo: Air pollution; Citrusspp; Coffea spp; Electronic microscopy; Photosynthesis Increased emissions of fluoride into the atmosphere contribute to reducing the sustainability of agricultural systems worldwide. In order to improve the understanding of the factors behind such phenomenon, varieties of citrus (Citrus spp.), Valencia sweet-orange, Ponkan mandarin, and Lisbon lemon and coffee (Coffea spp.), Obatã, Catuai, and Apoatã, were treated with fluoride nebulization. The trees were exposed to nebulization for 60 min inside a chamber by using médium (0.04 mol L−1) and high (0.16 mol L−1) doses of fluoridic acid (HF) during three nonconsecutive days in a single week, for a total of 26 days of exposure during the experiment. Sixty days after beginning nebulization, we evaluated leaf gas exchange, (ultra)structural organization, tree growth, and fluoride and nutrient concentrations in plant tissue. Photosynthesis and leaf dry mass of citrus and coffee varieties were affected differently by fluoride toxicity, and based on the tolerance index (relative leaf dry mass of control versus leaf dry mass of trees treated with 0.16 mol L−1 HF), the order of sensitivity for the varieties of each species was as follows: for citrus, lemo> mandarin > sweet-orange; and for coffee, Apoatã Catuaí > Obatã. The ability of the trees to control fluoride absorption most likely explained this contrast in sensitivity among varieties because both photosynthesis and leaf growth were negatively correlated with leaf fluoride concentration. Although disorganization of the thylakoids, degeneration of vascular cells, and disruption of the middle lamella occurred in leaves of all varieties exposed to fluoride, the more severe damage was observed in those with greater sensitivity to the pollutant (i.e., lemonand Apoatã coffee). Taken together, these results provided insights into the factors that explain poor performance of citrus and coffee trees under fluoride pollution and also revealed the traits driving the tolerance of these crops such a limiting condition, which included a combination of the following: (i) reduced fluoride absorption, (ii) increased photosynthesis, and (iii) improved mainte-nance of the ultrastructural organization of leaves.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Water, Air, and Soil Pollution
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0100-29452012000400035
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1j9bT1yVRMml9yY4ZPMDmsejp9OOll8qk/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O solo utilizado foi coletado da camada superficial (0-0.25 m) de um Ferralsol (Latossolo) sob pastagem. Características químicas do solo: matéria orgânica = 34 g dm⁻³; pH (CaCl₂) = 5.2; CEC = 87.9 mmol dm⁻³; saturação por bases = 61 %; argila = 300 g kg⁻¹. O experimento foi realizado em casa de vegetação (estufas) não sombreada no Brasil (Institutos Agronômicos em Campinas e Cordeirópolis, SP).
+ferramentas e técnicas (seleção): Microscopia eletrônica (Transmissão e Varredura)
+nutrientes (seleção): Flúor (F)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação/Soluções nutritivas
+grupos de culturas (seleção): Fruticultura (Geral)
+culturas presentes (seleção): Laranjeira (doce-Valência)
+FEEDBACK DO CURADOR (escrever): O documento é um estudo aprofundado sobre os mecanismos de tolerância varietal de citros e café à poluição atmosférica por fluoreto de hidrogênio (HF). O estudo estabelece que a tolerância está ligada à redução da absorção de fluoreto, aumento da fotossíntese e melhor manutenção da ultraestrutura foliar, especialmente em cultivares com maior concentração de Ca nas folhas. É uma pesquisa agronômica relevante e útil.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

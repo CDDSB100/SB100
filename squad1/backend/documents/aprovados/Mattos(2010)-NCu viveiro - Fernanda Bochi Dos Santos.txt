@@ -1,0 +1,34 @@
+ID: e7d94060-6182-423f-a0e4-ea19e88753c3
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): DIRCEU MATTOS Jr.; UIRÁ MANZOLLI RAMOS; JOSÉ ANTÔNIO QUAGGIO; PEDRO ROBERTO FURLANI
+Titulo: NITROGÊNIO E COBRE NA PRODUÇÃO DE MUDAS DE CITROS EM DIFERENTES PORTA-ENXERTOS
+Subtítulo: 
+Ano: 2010
+Número de citações recebidas (Google Scholar): 28
+Palavras-chave: Citrus; nutrição mineral; fertirrigação; micronutrientes; propagação
+Resumo: A citricultura brasileira é uma atividade de destaque na pauta econômica do País. O seu crescimento e manutenção requerem a produção de 15-20 milhões de mudas anualmente. Em vista das características dos viveiros e das variedades porta-enxertos e copas, há a necessidade de se estabelecer um manejo nutricional adequado dessas plantas. O estudo teve o objetivo de avaliar o suprimento de N e Cu e o desenvolvimento e estado nutricional de mudas de laranjeira ‘Pêra’, sobre porta-enxertos de limoeiro ‘Cravo’ e tangerineira ‘Sunki’. Foram aplicados dois níveis de N = 120 e 240 mg L-1, e quatro de Cu = 0, 5, 10 e 20 mg L-1 (Cu-EDTA) via fertirrigação, entre o transplantio de porta-enxertos e a finalização da muda. O porta-enxerto de ‘Cravo’ possui maior vigor comparado à ‘Sunki’ com base na produção de massa seca e tamanho das plantas. O maior desenvolvimento das mudas foi obtido com a solução de fertirrigação com 240 mg L-1 de N e 5 a 10 mg L-1 de Cu. Houve efeito depressivo na concentração de 20 mg L-1 de Cu, associado a teores de Cu das folhas de 20 mg kg-1 e das raízes de 50 mg kg-1. Esse prejuízo foi menor com o maior fornecimento de N. Da mesma forma, o pegamento de borbulhas da laranjeira ‘Pêra’ foi ótimo nas doses intermediárias de Cu. A demanda de Cu foi maior para mudas sobre ‘Sunki’ na maior dose de N e o excesso desse micronutriente reduziu a absorção de Mn. Os teores de Cu foram maiores nas raízes da porção superior do recipiente de produção das muda, o que coincidiu com a maior adsorção do elemento no substrato, com máximo acima de 300 mg kg-1 de Cu. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Bragantia
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0006-87052010000100018
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1_LyFxXpUEpizpfiFxJPceimKThpu8TCW/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi realizado em viveiro comercial de citros em Conchal (SP). O substrato utilizado foi à base de casca de Pinus (Rendimax Citrus®), sem adição de Cu, apresentando pH (CaCl2) = 4,8 e CE = 1,5 dS m⁻¹. A análise química do substrato indicou, entre outros, N = 7,5 mg kg⁻¹, Cu = 18,3 mg kg⁻¹, e Mn = 175,6 mg kg⁻¹.
+ferramentas e técnicas (seleção): Fertirrigação
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação
+grupos de culturas (seleção): Citros (Citrus)
+culturas presentes (seleção): Laranja Pêra
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

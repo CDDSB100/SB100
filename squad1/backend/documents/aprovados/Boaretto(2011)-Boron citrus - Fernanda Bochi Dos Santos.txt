@@ -1,0 +1,34 @@
+ID: fc34cce9-004d-4f9e-9f67-8321b76f6a8c
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Rodrigo Marcelli Boaretto; Jose Antônio Quaggio;  Dirceu Mattos Jr.; Takashi Muraoka; Antonio Enedi Boaretto
+Titulo: Boron uptake and distribution in field grown citrus trees
+Subtítulo: 
+Ano: 2011
+Número de citações recebidas (Google Scholar): 50
+Palavras-chave: sweet orange; isotope technique; fertigation; foliar spray; plant nutrition
+Resumo: In low fertility tropical soils, boron (B) deficiency impairs fruit production. However, little information is available on the efficiency of nutrient application and use by trees. Therefore, this work verified the effects of soil and foliar applications of boron in a commercial citrus orchard. An experiment was conducted with fertigated 4-year-old ‘Valencia’ sweet orange trees on ‘Swingle’ citrumelo rootstock. Boron (isotopically-enriched 10B) was supplied to trees once or twice in the growing season, either dripped in the soil or sprayed on the leaves. Trees were sampled at different periods and separated into different parts for total B contents and 10B/ 11B isotope ratios analyses. Soil B applied via fertigation was more efficient than foliar application for the organs grown after the B fertilization. Recovery of labeled B by fruits was 21% for fertigation and 7% for foliar application. Residual effects of nutrient application in the grove were observed in the year after labeled fertilizer application, which greater proportions  erived from the soil supply.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Journal of Plant Nutrition
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1080/01904167.2011.544353
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1xaGdYJSDVcGc8VBxzh1xWiXlAMp1u6KF/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo conduzido em Reginópolis, São Paulo, Brasil (21°53′ S 49°13′ W). O solo é um Ultisol de textura leve (150 g kg⁻¹ de argila, 850 g kg⁻¹ de areia) e de baixa fertilidade inerente. O teor de B (água quente) no solo era de 0.5 mg dm⁻³, indicando deficiência potencial de B.
+ferramentas e técnicas (seleção): Técnica de Isótopos
+nutrientes (seleção): Boro (B)
+estratégias de fornecimento de nutrientes (seleção): Fertigação
+grupos de culturas (seleção): Cítricos
+culturas presentes (seleção): Laranja Doce (Sweet Orange)
+FEEDBACK DO CURADOR (escrever): O estudo é uma pesquisa agronômica de alta qualidade que compara a eficiência de absorção e distribuição do Boro (B) aplicado via fertirrigação no solo e via pulverização foliar em laranjeiras, utilizando isótopos estáveis ($	ext{10B}$). Os resultados demonstram que a aplicação no solo foi significativamente mais eficiente. Documento altamente relevante para o manejo de micronutrientes em citricultura tropical.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Jinjin Cheng, Changfeng Ding, Xiaogang Li, Taolin Zhang, Xingxiang Wang
+Titulo: Rare Earth Element Transfer from Soil to Navel Orange Pulp (Citrus sinensis Osbeck cv. Newhall) and the Effects on Internal Fruit Quality
+Subtítulo: 
+Ano: 2015
+Número de citações recebidas (Google Scholar): 53
+Palavras-chave: Citrus × sinensis, Navel orange, Chemistry, Cation-exchange capacity, Rare-earth element
+Resumo: The effects of soil rare earth element (REE) on navel orange quality and safety in rare earth ore areas have gained great attention. This study investigated the transfer characteristics of REE from soil to navel orange pulp (Citrus sinensis Osbeck cv. Newhall) and examined the effects of soil REE on internal fruit quality in Xinfeng County, Jiangxi province, China. Path analysis showed that soil REE, pH, cation exchange capacity (CEC), and Fe oxide (Feox) significantly affected pulp REE concentrations. A Freundlich-type prediction model for pulp REE was established: log[REEpulp] = -1.036 + 0.272 log[REEsoil] - 0.056 pH - 0.360 log[CEC] + 0.370 log[Feox] (n = 114, R2 = 0.60). From the prediction model, it was inferred that even when soil REE and Feox were as high as 1038 mg kg-1 and 96.4 g kg-1, respectively, and pH and CEC were as low as 3.75 and 5.08 cmol kg-1, respectively, pulp REE concentrations were much lower than the food limit standard. Additionally, soil REE levels were significantly correlated with selected fruit quality indicators, including titratable acidity (r = 0.52, P < 0.01), total soluble solids (r = 0.48, P < 0.01) and vitamin C (r = 0.56, P < 0.01). Generally, under routine methods of water and fertilization management, the cultivation of navel oranges in rare earth ore areas of south China with soil REE ranging from 38.6 to 546 mg kg-1 had improved in internal fruit quality.
+Tipo de documento: article
+Editora: Public Library of Science
+Instituição: Chinese Academy of Sciences
+Local: CN
+Tipo de trabalho: 
+Título do periódico: PLoS ONE
+Quartil do periódico: 
+Volume: 10
+Número/fascículo: 3
+Páginas: e0120618-e0120618
+DOI: 10.1371/journal.pone.0120618
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1eOKp9e8XpO-R1amxPkrPMRUU5WNIUNhF/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Xinfeng County, Jiangxi province, sul da China. Região de minério de terra rara de adsorção iônica, caracterizada por clima subtropical, úmido e de monções. Os solos são predominantemente Latossolos (Acrisols/Cambosols) derivados de granito, quartzito e rocha argilosa, além de solos roxos calcários e ácidos. O solo tem pH médio de 5.06 (variação 3.75–8.23) e alto teor de REE (concentrações totais de 38.6–546 mg kg⁻¹).
+ferramentas e técnicas (seleção): Análise de Caminho (Path Analysis - PA)
+nutrientes (seleção): Elementos de Terra Rara (REE)
+estratégias de fornecimento de nutrientes (seleção): Adubação rotineira com NPK (fertilizante composto e ureia/K2SO4)
+grupos de culturas (seleção): Frutas
+culturas presentes (seleção): Laranja Naval (Navel Orange, Citrus sinensis Osbeck cv. Newhall)
+FEEDBACK DO CURADOR (escrever): Documento altamente relevante para a pesquisa agronômica, focado na transferência de Elementos de Terra Rara (REE) do solo para a polpa de laranjas naval. O estudo detalha os fatores de controle (pH, CEC, Feox) e as estratégias de manejo de fertilizantes em solos de alto REE, confirmando que as concentrações de REE nos frutos permaneceram seguras para consumo, além de observar uma melhoria na qualidade interna do fruto (TA, TSS, Vc) com o aumento de REE no solo.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

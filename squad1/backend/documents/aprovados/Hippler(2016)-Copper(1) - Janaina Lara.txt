@@ -1,0 +1,34 @@
+ID: 70b9d8e9-fef8-41d5-ab86-37e7493e95de
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz W.R. Hippler; Danilo O. Cipriano; Rodrigo M. Boaretto; José A. Quaggio; Salete A. Gaziola; Ricardo A. Azevedo; Dirceu Mattos Jr
+Titulo: Citrus rootstocks regulate the nutritional status and antioxidant system of trees under copper stress
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 80
+Palavras-chave: 
+Resumo: Copper (Cu) deficiency and toxicity cause stresses in citrus orchards and limited information is available about which rootstocks and associated mechanisms would enhance plant resistance to such nutritional disorders. Therefore, this study evaluated the nutritional status and antioxidant system responses of citrus grafted onto selected rootstocks differing in horticultural performance [Swingle citrumelo (SW) or Rangpur lime (RL)], grown in nutrient solution with varying concentrations of Cu (0.015, 0.60 or 24.0 μM). The experiment was carried out in a greenhouse using young sweet orange trees. Once taken up, Cu mostly accumulated in roots (75% of total plant Cu content). Trees grafted onto RL were more responsive to enzyme activities related to oxidative stress and to nitrogen metabolism in leaves when grown in the presence of either the lowest or the highest Cu concentrations used. Those grown in 24.0 μM Cu displayed decreased overall nutrient uptake and accumulation, with the exception of iron, which was predominantly found in roots. Cu/Zn superoxide dismutase activity in leaves was dependent upon signalling regulated by rootstocks, being lower in SW than in RL. Therefore, the use of appropriate rootstock varieties contributes to alleviate the effects of Cu stress on the metabolism and nutritional status of citrus plants.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Environmental and Experimental Botany
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1016/j.envexpbot.2016.05.007
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Qw9RJBI9oMdVdkMy1S7hVXAMHt-ux5Ml/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo principal foi realizado em solução nutritiva em casa de vegetação. A pesquisa é relevante para a principal região citrícola do Brasil (Estado de São Paulo). O artigo menciona que a deficiência de Cu em pomares jovens ocorre em solos com alto teor de argila e/ou matéria orgânica, e pH alto.
+ferramentas e técnicas (seleção): Ensaio de atividade enzimática (NRase, SOD, CAT, APX, POX), Eletroforese em gel (PAGE), Espectrometria de emissão atômica com plasma indutivamente acoplado (ICP-OES), Medição de Peroxidação Lipídica (MDA), Medição de Peróxido de Hidrogênio (H₂O₂), Cultivo em solução nutritiva, Determinação de Clorofila (SPAD), Enxertia
+nutrientes (seleção): Cobre (Cu), Nitrogênio (N), Ferro (Fe), Zinco (Zn), Manganês (Mn), Potássio (K), Fósforo (P), Cálcio (Ca), Magnésio (Mg), Enxofre (S), Boro (B), Molibdênio (Mo)
+estratégias de fornecimento de nutrientes (seleção): Variação controlada de concentração de nutriente (Cobre), Solução Nutritiva/Cultivo Hidropônico
+grupos de culturas (seleção): Frutíferas (Citrus)
+culturas presentes (seleção): Laranja Doce (Pera), Citrumelo Swingle, Limão Cravo (Rangpur lime)
+FEEDBACK DO CURADOR (escrever): Documento agronômico e útil que detalha a influência de porta-enxertos (Swingle citrumelo e Limão Cravo) na tolerância e mecanismos de defesa antioxidante (como SOD e CAT) de laranjeiras doces sob estresse de Cobre (deficiência e excesso). É relevante para a seleção de porta-enxertos visando melhor manejo nutricional e de estresse.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

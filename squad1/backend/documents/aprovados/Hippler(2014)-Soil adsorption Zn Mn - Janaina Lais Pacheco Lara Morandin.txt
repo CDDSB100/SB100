@@ -1,0 +1,34 @@
+ID: 89ead617-55f6-460f-95a0-332a4da66ebb
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz Walter Rieger Hippler; Iolanda Maria Soares Reis; Rodrigo Marcelli Boaretto; José A. Quaggio; Dirceu Mattos Jr
+Titulo: Características adsortivas de solos e o suprimento de zinco e manganês para os citros
+Subtítulo: 
+Ano: 2014
+Número de citações recebidas (Google Scholar): 10
+Palavras-chave: Citrus; micronutrientes; isotermas de adsorção; energia de ligação; estado nutricional
+Resumo: O trabalho teve como objetivo estudar os efeitos das características adsortivas de solos com teores distintos de argila (181 e 644 g kg-1) no suprimento de Zn e Mn para os citros. Foram realizados dois experimentos em casa de vegetação: o primeiro, com a aplicação via solo de ZnSO4 (0; 1,0 e 5,0 g/planta de Zn), e o segundo, com a aplicação de MnSO4 (0; 0,7 e 3,5 g/ planta de Mn) para plantas jovens de laranjeira-doce. Foram avaliadas curvas de adsorção, por meio de isotermas de Langmuir e Freundlich, e estimadas a energia de ligação de Zn e Mn nos solos, e os teores de nutrientes nas folhas das laranjeiras. Devido à maior capacidade máxima de adsorção do solo muito argiloso para o Zn e o Mn, o suprimento destes micronutrientes via solo para as plantas foi limitado, com base nos menores teores encontrados nas folhas formadas após a adubação, quando comparado com os teores encontrados nas plantas cultivadas no solo arenoso. A cristalinidade da fração argila pouco influenciou o suprimento de Zn e Mn para as plantas, porém o teor de argila e a energia livre da reação de adsorção mostraram-se fatores determinantes, principalmente em baixa concentração dos micronutrientes na solução do solo.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Citrus R&T
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: http://dx.doi.org/10.5935/2236-3122.20140007
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1QzF9NfPKdgbtTMiwFloVhi9gwgYhZI7J/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudos realizados em casa de vegetação utilizando dois tipos de solo com texturas distintas: um franco arenoso (Latossolo Vermelho-Amarelo Ácrico) com baixo teor de argila (181 g kg⁻¹) e um muito argiloso (Latossolo Vermelho Eutroférrico) com alto teor de argila (644 g kg⁻¹). O pH em ambos os solos foi de 5,1 (após calagem para elevar a saturação de bases a 70%). Foram analisadas características adsortivas e mineralógicas (goethita, hematita, caulinita, gibbsita).
+ferramentas e técnicas (seleção): Análise de solo e planta via ICP-OES
+nutrientes (seleção): Zinco (Zn)
+estratégias de fornecimento de nutrientes (seleção): Aplicação via solo
+grupos de culturas (seleção): Frutas
+culturas presentes (seleção): Citros
+FEEDBACK DO CURADOR (escrever): O artigo é altamente relevante, detalhando a influência da textura e mineralogia de solos tropicais na adsorção e disponibilidade de zinco e manganês para citros, com ênfase na aplicação via solo.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

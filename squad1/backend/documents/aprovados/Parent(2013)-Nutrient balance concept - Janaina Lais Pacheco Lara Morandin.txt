@@ -1,0 +1,34 @@
+ID: e3c34c37-13bb-4945-a26b-44baccea6c6f
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Serge-Étienne Parent; Léon Etienne Parent; Juan José Egozcue; Danilo-Eduardo Rozane; Amanda Hernandes; Line Lapointe; Valérie Hébert-Gentile; Kristine Naess; Sébastien Marchand; Jean Lafond; Dirceu Mattos Jr.; Philip Barlow; William Natale
+Titulo: The plant ionome revisited by the nutrient balance concept
+Subtítulo: 
+Ano: 2013
+Número de citações recebidas (Google Scholar): 125
+Palavras-chave: compositional data analysis; ionome classification; nutrient interactions; numerical biases; isometric log-ratio; plant nutrition
+Resumo: Tissue analysis is commonly used in ecology and agronomy to portray plant nutrient signatures. Nutrient concentration data, or ionomes, belong to the compositional data class, i.e., multivariate data that are proportions of some whole, hence carrying important numerical properties. Statistics computed across raw or ordinary log-transformed nutrient data are intrinsically biased, hence possibly leading to wrong inferences. Our objective was to present a sound and robust approach based on a novel nutrient balance concept to classify plant ionomes. We analyzed leaf N, P, K, Ca, and Mg of two wild and six domesticated fruit species from Canada, Brazil, and New Zealand sampled during reproductive stages. Nutrient concentrations were (1) analyzed without transformation, (2) ordinary log-transformed as commonly but incorrectly applied in practice, (3) additive log-ratio (alr) transformed as surrogate to stoichiometric rules, and (4) converted to isometric log-ratios (ilr) arranged as sound nutrient balance variables. Raw concentration and ordinary log transformation both led to biased multivariate analysis due to redundancy between interacting nutrients. The alr- and ilr-transformed data provided unbiased discriminant analyses of plant ionomes, where wild and domesticated species formed distinct groups and the ionomes of species and cultivars were differentiated without numerical bias. The ilr nutrient balance concept is preferable to alr, because the ilr technique projects the most important interactions between nutrients into a convenient Euclidean space. This novel numerical approach allows rectifying historical biases and supervising phenotypic plasticity in plant nutrition studies.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Frontiers in Plant Science
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.3389/fpls.2013.00039
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1zMeFRUYsyGG63qKe8DfjkQviUT-iwZXG/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo analisou espécies de diversas regiões: Nova Zelândia (Ilha Norte, clima subtropical úmido, Andisols vulcânicos); Brasil (Estado de São Paulo, clima subtropical úmido, Oxisols e Ultisols basálticos); e Canadá (Quebec, com climas variando de temperado úmido continental a frio, e solos Spodosols de origem morainica, marinha ou deltaica, além de Histosols em turfeiras ombrotróficas). A amostragem foi realizada durante os estágios reprodutivos das culturas.
+ferramentas e técnicas (seleção): Composição de dados (CoDA)
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Adubação/Fertilização
+grupos de culturas (seleção): Fruteiras
+culturas presentes (seleção): Kiwifruit (Actinidia deliciosa)
+FEEDBACK DO CURADOR (escrever): O artigo apresenta uma metodologia inovadora (ilr, log-ratios isométricos) baseada na Análise de Dados Composicionais para classificar ionomas de plantas em diversas fruteiras. Este método corrige vieses numéricos significativos (redundância, dependência de escala e não-normalidade) inerentes às análises multivariadas tradicionais de dados de concentração. É fundamental para o diagnóstico nutricional e o estudo da plasticidade fenotípica em nutrição de plantas. O documento é de alta qualidade e relevância agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

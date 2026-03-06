@@ -1,0 +1,34 @@
+ID: 3accaef5-3512-4692-9a3e-d7022d04b7d7
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Ali Fares, Haimanote K. Bayabil, Mongi Zekri, Dirceu Mattos-Jr
+Titulo: Potential climate change impacts on citrus water requirement across major producing areas in the world
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 55
+Palavras-chave: citrus, climate change, IManSys, irrigation water requirement
+Resumo: Understanding how potential climate change will affect availability of water resources for citrus production globally is needed. The main goal of this study is to investigate impacts of potential future climate change on citrus irrigation requirements (IRR) in major global citrus producing regions, e.g., Africa, Asia, Australia, Mediterranean, Americas. The Irrigation Management System (IManSys) model was used to calculate optimum IRR for the baseline period (1986–2005) and two future periods (2055s and 2090s) subject to combination of five and seven temperature and precipitation levels, respectively. Predicted IRR show significant spatio-temporal variations across study regions. Future annual IRR are predicted to globally decrease; however, future monthly IRR showed mixed results. Future evapotranspiration and IRR are projected to decrease by up to 12 and 37%, respectively, in response to increases in CO2 concentration. Future citrus canopy interception and drainage below citrus rootzones are expected to slightly increase. Annual rainfall changes are negatively correlated with changes in IRR. These projections should help the citrus industry better understand potential climate change impacts on citrus IRR and major components of the water budget. Further studies are needed to investigate how these potential changes in CO2 concentration, temperature, evapotranspiration, rainfall, and IRR will affect citrus yield and its economic impact on the citrus industry.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Journal of Water and Climate Change
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.2166/wcc.2017.182
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1WV29hXJn5VBjwkpNfMRQDPfnO5kdCld-/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em grandes regiões produtoras de citros globalmente: África (Cape Town), Ásia (Mersin), Austrália (Riverland), Mediterrâneo (Nabeul), América do Norte (Riverside, Fort Pierce, Lake Alfred, Brownsville) e América do Sul (Sao Paulo). As características do solo variam amplamente, com tipos específicos (Laredo, Candler sand, Mayakka, etc.) e propriedades hidráulicas (capacidade de campo, ponto de murcha permanente) utilizadas como entrada para o modelo IManSys.
+ferramentas e técnicas (seleção): Modelo de Simulação, Monitoramento da Água, Modelagem Preditiva, Estudos de Impacto Climático, Análise de Variância/Regressão
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Frutas
+culturas presentes (seleção): Citrus, Milho, Soja, Café, Feijão
+FEEDBACK DO CURADOR (escrever): Estudo agronômico altamente relevante focado no impacto das mudanças climáticas (aumento de CO2 e temperatura) sobre a demanda hídrica (IRR e ET) do citros em importantes regiões produtoras globais, utilizando o modelo hidrológico IManSys. Útil para o planejamento de adaptação e mitigação de recursos hídricos na citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 645010f3-9d97-4822-9a76-124c9ee55fb2
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): DANILO EDUARDO ROZANE; DIRCEU MATTOS JR.; SÉRGE-ÉTIENNE PARENT; WILLIAM NATALE; LÉON ETIENNE PARENT
+Titulo: Compositional meta-analysis of Citrus varieties in the state of São Paulo, Brazil
+Subtítulo: 
+Ano: 2011
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: 
+Resumo: Brazil is the largest orange (Citrus sinensis) producer worldwide. The nutrient management of orange orchards is designed from experiments on a limited number of varieties. This knowledge is transferred to other varieties by diagnosing tissue nutrient composition. Nutrient diagnostic tools are based on nutrient concentration (critical minimum value or CMV) and ratio (Diagnosis and Recommendation Integrated System or DRIS) norms that disregard the compositional nature of analytical data and the limited number of nutrient ratios that can be diagnosed independently in a given composition. The diagnosis of cationic micronutrients is also biased by contamination from fungicides. Compositional data analysis that can avoid such problems has been first applied to tissue analysis of agricultural crops using centered log ratios (Compositional Nutrient Diagnosis – CND-clr). The isometric log ratio (ilr) transformation is a new approach based on binary nutrient ratios and the principle of orthogonality (CND-ilr). Binary partitions can be defined and varietal nutrient profiles classified based on positive and negative nutrient interactions and meta-analysis. We analyzed 11 nutrients (N, S, P, K, Ca, Mg, B, Cu, Zn, Mn, Fe) in tissue samples across 108 orchard areas, i.e. 31 ‘Valencia’, 22 ‘Hamlin’, 20 ‘Pêra’, and 35 ‘Natal’. Nutrients were partitioned between macro- and micro-nutrients as well as anionic and cationic species. The effect size of varieties over ‘Valencia’ was quantified by the mean and standard deviation of ilr values across ilr coordinates. Specific varietal nutrient profiles and ilr norms were defined. To guide correcting nutrient deficiencies by appropriate nutrient management, compositions can be varied by a perturbation vector on nutrients with to the largest and most negative influence on ilr differences from ilr norms until the Aitchison distance falls below critical value.
+Tipo de documento: Trabalho apresentado em evento
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1xeRwgmnL4wkSyBigs9RllBKfCDg8MP65/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em pomares de laranja não irrigados no estado de São Paulo, Brasil. A região apresenta uma ampla variedade de classes de solo (Argilissols, Cambissols, Latossols, Neossols e Nitossols), com grande variação de pH e níveis de oxi-hidróxidos de Al, Fe e Mn.
+ferramentas e técnicas (seleção): Compositional Data Analysis (CDA), Isometric Log Ratio (ilr), Centered Log Ratios (clr), Diagnosis and Recommendation Integrated System (DRIS), Meta-análise, Análise de tecido vegetal, Distância de Aitchison, ANOVA/MANOVA, Teste Cate-Nelson.
+nutrientes (seleção): N, S, P, K, Ca, Mg, B, Cu, Zn, Mn, Fe.
+estratégias de fornecimento de nutrientes (seleção): Diagnóstico nutricional via concentração foliar (análise de tecido vegetal), Monitoramento de reservas de nutrientes no solo, Uso de Aitchison distance e vetor de perturbação para correção de desequilíbrios nutricionais.
+grupos de culturas (seleção): Frutíferas, Cítricas, Culturas de raiz profunda.
+culturas presentes (seleção): Laranja (Citrus sinensis), 'Valencia', 'Hamlin', 'Pêra', 'Natal'.
+FEEDBACK DO CURADOR (escrever): Documento excelente focado na meta-análise composicional de variedades de laranja (Citrus sinensis) no estado de São Paulo. A aplicação de ilr e CND-clr demonstrou ser uma ferramenta poderosa para agrupar variedades com perfis nutricionais semelhantes e diagnosticar desequilíbrios nutricionais (Distância de Aitchison), essencial para otimizar o manejo de nutrientes e a transferência de conhecimento de ensaios de fertilizantes.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Roberto Batista Marques Júnior, Luciano Pasqualoto Canellas, Lúcia Gracinda da Silva, Fábio Lopes Olivares
+Titulo: PROMOÇÃO DE ENRAIZAMENTO DE MICROTOLETES DE CANA-DE-AÇÚCAR PELO USO CONJUNTO DE SUBSTÂNCIAS HÚMICAS E BACTÉRIAS DIAZOTRÓFICAS ENDOFÍTICAS
+Subtítulo: ROOTING OF MICRO SEED PIECES BY COMBINED USE OF HUMIC SUBSTANCES AND ENDOPHYTIC DIAZOTROPHIC BACTERIA IN SUGAR CANE
+Ano: 2008
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Herbaspirillum seropedicae, termoterapia, ácidos húmicos
+Resumo: Além do fornecimento direto de nutrientes por meio da mineralização da matéria orgânica ou pela fixação biológica de N 2, as substâncias húmicas e as bactérias diazotróficas endofíticas podem afetar diretamente o metabolismo vegetal, modificando o padrão de crescimento e desenvolvimento das plantas.
+Tipo de documento: Artigo científico
+Editora: 
+Instituição: Universidade Estadual do Norte Fluminense - Darcy Ribeiro
+Local: Campos dos Goytacazes (RJ)
+Tipo de trabalho: Tese de Mestrado
+Título do periódico: Revista Brasileira de Ciência do Solo
+Quartil do periódico: 
+Volume: 32
+Número/fascículo: 
+Páginas: 1121-1128
+DOI: 
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1sArOy7yx1yhiMuYZ0kKLCnJc3OtT5Sl5/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Cromatografia gasosa, Espectrometria de massa, Análise de variância (ANOVA)
+nutrientes (seleção): Nitrogênio, Fósforo, Potássio, Boro
+estratégias de fornecimento de nutrientes (seleção): Fertilização de cobertura, Adubação foliar, Fertirrigação
+grupos de culturas (seleção): Cereais, Leguminosas, Hortaliças, Frutíferas
+culturas presentes (seleção): Cana-de-açúcar
+FEEDBACK DO CURADOR (escrever): Aprovado: Detalha uma nova técnica de promoção de enraizamento de microtoletes de cana-de-açúcar utilizando substâncias húmicas e bactérias diazotróficas endofíticas.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: N/A

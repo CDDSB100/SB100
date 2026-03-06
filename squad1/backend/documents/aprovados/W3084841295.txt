@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Om Kala Ruchal, Subodh Raj Pandey, Reja Regmi, Rajendra Regmi, Bishnu Bahadur Magrati
+Titulo: EFFECT OF FOLIAR APPLICATION OF MICRONUTRIENT (ZINC AND BORON) IN FLOWERING AND FRUIT SETTING OF MANDARIN (CITRUS RETICULATA BLANCO) IN DAILEKH, NEPAL
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 11
+Palavras-chave: Micronutrient, Mandarin Chinese, Zinc, Horticulture, Boron
+Resumo: A research was conducted in PM-AMP, Project Implementation Unit, Citrus Zone, Dailekh during the spring season 2019 to find out the effect of foliar application of micronutrient in flowering and fruit setting of mandarin (Citrus reticulata Blanco) in Dailekh, Nepal.The experiment was laid out in one factor randomized complete block design (RCBD) with five treatments and four replications.The treatments consist of foliar application of sole and combined application of Zinc and Boron namely: control (water spray), 0.15% Zn, 0.04% B, 0.1% Zn + 0.02% B and 0.05% Zn + 0.04% B. Twenty trees of same age and height were chosen from the north-facing slope.The soil of research orchard was sandy loamy.The solution for spray was made using standard procedures.Foliar application of the micronutrients was done twice, the first application was done before 45 days of the flowering and second application was done after 2 days of full bloom.The data was first entered in MS excel and R-stat was used for further analysis of the parameters.The results revealed that the different combination of micronutrient significantly influenced flowering, fruit setting percentage and the fruit drop percentage.The application of either Boron or Zinc or the combination of both were effective for enhancing flowering and fruit set as well as reducing the fruit drop in mandarin.
+Tipo de documento: article
+Editora: Zibeline International Publishing
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Malaysian Journal of Sustainable Agricultural
+Quartil do periódico: 
+Volume: 4
+Número/fascículo: 2
+Páginas: 94-98
+DOI: 10.26480/mjsa.02.2020.94.98
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1HX8UKrlmR4yWZlxaDA56Ln5Lg2kgt_7Z/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Localizado em Ranukhana, Dailekh, Nepal (1300 masl, 28.86°N e 81.62°E), em clima sub temperado de colina. O solo é franco-arenoso (sandy loam), ligeiramente ácido (pH 6.1), com teor médio de matéria orgânica e nitrogênio, e baixo teor de fósforo, zinco (0.207 ppm) e boro (0.255 ppm).
+ferramentas e técnicas (seleção): Aplicação foliar; Análise laboratorial do solo; RCBD (Randomized Complete Block Design); Análise de Variância (ANOVA); Contagem manual (fenologia/frutos)
+nutrientes (seleção): Zinco (Zn); Boro (B)
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar; Micronutrientes
+grupos de culturas (seleção): Cítricos; Frutíferas
+culturas presentes (seleção): Citrus reticulata (Mandarina/Tangerina)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

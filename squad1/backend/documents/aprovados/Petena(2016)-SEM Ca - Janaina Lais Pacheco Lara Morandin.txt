@@ -1,0 +1,34 @@
+ID: 29e06c93-1585-4b97-af44-7718c362da18
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Guilherme Petená; Francisco André Ossamu Tanaka; Geisa Lima Mesquita; Rodrigo Marcelli Boaretto; Fernando César Bachiega Zambrosi; José Antônio Quaggio; Dirceu Mattos Jr
+Titulo: Scanning electron microscopy of leaf and petal cuts of citrus trees fertigated with two nitrogen sources
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 8
+Palavras-chave: fertigation; calcium; anatomy; disease resistance
+Resumo: Calcium exerts a structural role on cell walls and medium lamellae in plants, which might have implications for tolerance to abiotic and biotic stresses in the field. Based on this later, our work was taken from a long-term field study on fertigation of a citrus orchard that compared the use of ammonium nitrate (AN) and calcium nitrate (CN) fertilizers via fertigation in Valencia sweet orange trees. Sample of leaves and flower petals of trees were collected and observed under scanning electron microscopy, from selected treatments receiving either 80 (N80) or 320 (N320) kg ha-1year-1 of N, which correspond to 100 or 400 kg ha-1year-1 of soluble Ca via CN. Trees fertigated with N320 as CN developed leaves and petals with higher mechanical resistance than those with AN. Results also demonstrated that structured cell walls were associated with higher calcium contents and greater mechanical resistance of the tissue during sample preparation for microscopy. From a more practical point of view, such improved structure of leaves and flower petals of CN-treated trees could contribute to an enhanced plant tolerance to diseases commonly affecting the citrus orchards. Additionally, such finding is important for a more sustainable citrus production, because it raises the possibility of reducing pesticides inputs by adjusting nutritional management of citrus orchards.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Citrus Research and Technology
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: http://dx.doi.org/10.4322/crt.ICC119
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1egJsPz-15CM9P7aYimdnamMYWZHhcUye/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado na região Centro-Sul do estado de São Paulo, Brasil (21°88'S e 49°14'O). O solo é um Entisol de textura média (CEC = 37 mmol dm³). O manejo incluiu a aplicação de calcário dolomítico para manter a saturação de bases (V%) em 70% na camada de 0-20 cm a cada dois anos.
+ferramentas e técnicas (seleção): Fertirrigação
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação por gotejamento
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja Doce (Citrus sinensis L. Osb., cv. Valencia)
+FEEDBACK DO CURADOR (escrever): Estudo relevante que correlaciona o manejo de fontes de nitrogênio (Nitrato de Amônio vs. Nitrato de Cálcio) na fertirrigação de citros com a anatomia celular de folhas e pétalas, destacando o papel estrutural do cálcio e suas implicações na resistência mecânica e tolerância a doenças.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Vasileios Ziogas, Nikos Bravos, Syed Bilal Hussain
+Titulo: Preharvest Foliar Application of Si–Ca-Based Biostimulant Affects Postharvest Quality and Shelf-Life of Clementine Mandarin (Citrus clementina Hort. Ex Tan)
+Subtítulo: 
+Ano: 2022
+Número de citações recebidas (Google Scholar): 19
+Palavras-chave: Preharvest, Postharvest, Shelf life, Horticulture, Clementine (nuclear reactor)
+Resumo: Citriculture and the postharvest industry are in the quest for biostimulants that favour fruit quality and extend shelf-life. Recently, Si has emerged as a biostimulant and its impact on fruit quality and postharvest shelf-life needs to be elucidated. The experiment is conducted for two consecutive years (2019 and 2020) in a commercial citrus orchard. In the present study, a Si–Ca-based product (Gravital® Force SC, AGROLOGY SA, Sindos, Greece) is foliar sprayed upon clementine mandarin (Citrus clementina Hort. Ex Tan cv. SRA 63) trees from August to November, while unsprayed trees are kept as controls. At commercial maturity, both sprayed and unsprayed fruits are harvested and stored for thirty (30) days at 5 °C with 90–95% relative humidity. Afterwards, they are kept at shelf temperature (20 °C) for six (6) days (shelf-life). At different intervals [at harvest, after cold storage (30 d at 5 °C), at the third day of shelf-life (30 d at 5 °C plus 3 d at 20 °C) and sixth day of shelf-life (30 d at 5 °C plus 6 d at 20 °C)], fruits are sampled and analysed for their qualitative characteristics. According to the results, the preharvest foliar application of the Si–Ca-based product delayed fruit maturation, increased peel firmness, total soluble content, total acidity, ascorbic acid, total phenols and antioxidant capacity, and reduced fruit decay during shelf storage. Results suggest that the preharvest foliar spray of Si–Ca products is able to maintain the postharvest quality of mid-ripening mandarin fruit.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Mediterranean Agronomic Institute of Chania
+Local: GR
+Tipo de trabalho: 
+Título do periódico: Horticulturae
+Quartil do periódico: 
+Volume: 8
+Número/fascículo: 11
+Páginas: 996-996
+DOI: 10.3390/horticulturae8110996
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1CRfxaToq1Ar2RKZLcY9LW5QW2YR03oMa/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi realizado em um pomar de citros comercial em Corinto, Grécia, durante dois anos (2019 e 2020). O tipo de solo do pomar era profundo, bem drenado e franco-arenoso. As frutas foram colhidas na maturidade comercial e submetidas a armazenamento refrigerado (30 dias a 5 °C) seguido de vida de prateleira em temperatura ambiente (20 °C).
+ferramentas e técnicas (seleção): Pulverização foliar
+nutrientes (seleção): Silício (Si)
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar
+grupos de culturas (seleção): Frutas cítricas
+culturas presentes (seleção): Tangerina Clementina (Citrus clementina Hort. Ex Tan cv. SRA 63)
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica relevante, focado na aplicação pré-colheita de um bioestimulante à base de Silício e Cálcio para melhorar a qualidade pós-colheita e a vida útil da tangerina Clementina. Os resultados indicaram aumento de firmeza, sólidos solúveis totais (TSS), acidez total (TA), ácido ascórbico e fenólicos totais, além de redução na deterioração dos frutos.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

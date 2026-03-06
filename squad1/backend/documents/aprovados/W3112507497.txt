@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Hassan Ennab, Somaia El-Sayed, Mohammed Mohammed Saad Abo El-Enin
+Titulo: EFFECT OF KAOLIN APPLICATIONS ON FRUIT SUNBURN, YIELD AND FRUIT QUALITY OF BALADY MANDARIN (Citrus reticulata, Blanco)
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 19
+Palavras-chave: Horticulture, Yield (engineering), Orchard, Sunburn, Mandarin Chinese
+Resumo: Sunburn is a major problem caused by high temperature and direct solar radiation, which leads to significant economic losses in Balady mandarin yield. So, a field experiment was conducted during 2014 and 2015 seasons at a private orchard situated in Motobus, Kafr El-Sheikh governorate, Egypt, to study the effect of foliar spray of 0, 2, 3 and 4% kaolin, twice or three times at May, June and July on sunburn percentage and fruit quality of Balady mandarin trees. The obtained results showed that, kaolin foliar applications were effective to control fruit sunburn as well as reducing severity percentage of sunburned fruits as compared to untreated trees. Moreover, Kaolin foliar application at three times was decreased leaf and fruit surface temperature especially at the concentrations of 3 and 4%. In addition, kaolin treatments increased yield and improved fruit quality in terms of fruit size, diameter, weight, peel thickness and vitamin C. Kaolin foliar spray was raising fruit values of SSC%, acidity and SSC/acid ratio compared to control trees, whereas there is no significant variation among kaolin concentrations on this variables. Therefore, it could be recommended that, spraying kaolin at 3 or 4% three times in summer months, because it had a positive effect on preventing fruit sunburn damage and improvement yield and fruit quality of Balady mandarin trees.
+Tipo de documento: article
+Editora: 
+Instituição: Agricultural Genetic Engineering Research Institute
+Local: EG
+Tipo de trabalho: 
+Título do periódico: Menoufia Journal of Plant Production
+Quartil do periódico: 
+Volume: 2
+Número/fascículo: 2
+Páginas: 129-138
+DOI: 10.21608/mjppf.2017.176024
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1JwpkknuF1HOjeVv-zwF_uFA6jDPKRexf/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Experimento de campo conduzido em Motobus, província de Kafr El-Sheikh, Egito (Latitude 31°27N, Longitude 31°32E). O solo é classificado como argiloso, com 57,67% argila, 34,10% silte e 8,23% areia. As características do solo incluem 1,41% de matéria orgânica, condutividade elétrica de 1,75 dSm⁻¹ e pH de 8,21. As árvores foram expostas a altas temperaturas e radiação solar direta, causando queimaduras solares (sunburn).
+ferramentas e técnicas (seleção): Kaolin (Argila de Caulim)
+nutrientes (seleção): Alumínio (Kaolin)
+estratégias de fornecimento de nutrientes (seleção): Pulverização foliar
+grupos de culturas (seleção): Frutas Cítricas
+culturas presentes (seleção): Mandarina (Citrus reticulata, Blanco)
+FEEDBACK DO CURADOR (escrever): O estudo avaliou o efeito da pulverização foliar de caulim (0, 2, 3 e 4%), aplicado duas ou três vezes nos meses de verão, no controle da queimadura solar (sunburn) e na melhoria da produtividade e qualidade do fruto da tangerina Balady. Os resultados demonstraram que o caulim, em concentrações de 3% e 4% aplicado três vezes (T5 e T7), foi o tratamento superior, reduzindo significativamente a temperatura da superfície da folha e do fruto, diminuindo a percentagem e severidade da queimadura solar, e aumentando o rendimento e a qualidade dos frutos (tamanho, peso, espessura da casca e teor de Vitamina C). É uma pesquisa agronômica de alta utilidade para o manejo de estresse térmico em citros.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

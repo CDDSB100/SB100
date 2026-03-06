@@ -1,0 +1,34 @@
+ID: 4d326871-4055-4ea7-b8dd-1cdafb8fe153
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Junior; José Antônio Quaggio; Heitor Cantarella; Sérgio Alves de Carvalho
+Titulo: SUPERFÍCIES DE RESPOSTA DO TANGOR ‘MURCOTT’ À FERTILIZAÇÃO COM N, P E K1
+Subtítulo: 
+Ano: 2004
+Número de citações recebidas (Google Scholar): 43
+Palavras-chave: citros; nutrição; adubação; análises de solo e folhas; qualidade da fruta
+Resumo: O valor de comercialização no mercado de fruta fresca e a maior resistência a doenças, como o declínio e a clorose variegada dos citros, comparado às variedades de laranjas, estimularam a produção de tangerinas e de 'Murcott' na última década. Por outro lado, faltam informações seguras para o diagnóstico das necessidades de adubação para esses cítricos. Assim, o presente trabalho foi planejado com os objetivos de estudar a demanda por nutrientes e estabelecer doses de fertilizantes para maximizar a produtividade e a qualidade dos frutos de tangor 'Murcott' e definir critérios de diagnóstico da análise de folhas para o manejo nutricional dessas plantas. O experimento foi desenvolvido durante seis anos, num pomar comercial da variedade Murcott sobre limoeiro 'Cravo', com 4 anos de idade. Os tratamentos foram arranjados no delineamento fatorial fracionado, do tipo ½ (4³) e constituídos por níveis de N (30; 100; 170 e 240 kg N ha-1), de P (20; 80; 140 e 200 kg ha-1 de P2O5) e de K (30; 110; 190 e 270 kg ha-1 de K2O). O N aumentou a produção média do período, enquanto o efeito do K foi negativo. Não houve efeito significativo para doses de P. A produção máxima de frutos foi obtida com as doses 155; 20 e 30 kg ha-1, respectivamente, de N, P2O5 e K2O, enquanto, para otimizar o tamanho dos frutos, foi necessário elevar a doses de K para 270 kg ha-1 de K2O. Outras características de qualidade dos frutos também foram estudas, bem como critérios para a interpretação de resultados de análises de folhas.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Revista Brasileira de Fruticultura
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1egkb59UeXLnbOvgDTs_MuKzpCwUxjH51/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Latossolo Vermelho-Amarelo, textura arenosa, localizado em Itirapina-SP. Características iniciais: P-resina = 16 mg dm³; K = 1,1 mmol dm³; Ca=4,4 mmol dm³; Mg = 14 mmol dm³, com V = 77% na camada arável.
+ferramentas e técnicas (seleção): Análise de Folha
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertilização Mineral
+grupos de culturas (seleção): Citros
+culturas presentes (seleção): Tangor 'Murcott'
+FEEDBACK DO CURADOR (escrever): Documento técnico detalhado sobre a resposta produtiva e de qualidade do tangor 'Murcott' à fertilização com nitrogênio (N), fósforo (P) e potássio (K), incluindo recomendações de doses e critérios para análise foliar e de solo.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

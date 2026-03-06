@@ -1,0 +1,34 @@
+ID: 1aac43ab-fd1c-4c0a-b24a-e7bb53a48504
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Rodrigo M. Boaretto; Franz W. R. Hippler; Guilherme A. Ferreira; Ricardo A. Azevedo; Jose A. Quaggio; Dirceu Mattos Jr
+Titulo: The possible role of extra magnesium and nitrogen supply to alleviate stress caused by high irradiation and temperature in lemon trees
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 36
+Palavras-chave: Heat stress; Light intensity; Oxidative stress; Photosynthesis; Antioxidants; Plant protection; Photochemical damages; Nutrient protection; Citrus
+Resumo: Aims Citrus trees are subjected to variation of environmental conditions throughout the annual cycle, especially during the flowering and fruit set. Heat waves have affected the environmental conditions required for optimum crop growth and have reduced fruit yield and quality worldwide. This study aimed to evaluate an extra supply of magnesium (Mg) and/or nitrogen (N) to increase citrus tolerance to excessive increased irradiation and consequent air temperature. Methods Young lemon trees were grown in a greenhouse with extra Mg, N and Mg + N supply for five months and then exposed to heat for 12 days. After imposing stress condition, photosynthetic and enzymatic antioxidant system parameters were assessed to evaluate the impact of the extra nutrient supply in alleviating stress induced by combination of elevated irradiance and air temperature. Results Extra nutrient supply increased plant tolerance to the environmental stress, allowing maintenance of high photosynthetic and transpiration rates and low ratio of apparent electron transport rate per photosynthetic carbon assimilated. Enhanced Mg supply also increased activity of the antioxidant enzyme system and decreased the oxidative stress of plants. Trees treated with extra N exhibited increased chlorophyll concentrations and ability to harvest light energy. Conclusions Citrus trees under stressed condition, such as elevated air temperature and radiation, associated to heat waves, exhibited less damage in the photosynthetic mechanism and high activity of the antioxidant enzymatic system when supplied with extra nutrient. It was concluded that extra Mg and N supply are important tools to prevent damages and enhance lemon trees biochemical and physiological responses to alleviate the harmful effects of unfavorable environmental condition.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Plant Soil
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s11104-020-04597-y
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1aeUK63AdIjsCoOGDJIy-Z9O6pjOgYFtQ/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em um substrato (80% casca de pinus, 5% materiais carbonizados e 15% vermiculita) em vasos de 15 L, sob condições controladas em estufa (5 meses de aclimatação sob 50% de sombreamento) e depois expostas a estresse por 12 dias (alta irradiação e temperatura). A região de estudo faz parte da principal região produtora de citros no Brasil (Estado de São Paulo e Triângulo Mineiro - Brazilian Citrus Belt), onde ondas de calor e altas temperaturas são frequentes. O manejo da água manteve aproximadamente 70% da capacidade de campo.
+ferramentas e técnicas (seleção): Análise de Gases (Fotossíntese/Respiração/Trocas Gasosas), Fluorímetro (medição de PSII, qP, qNP, ETR), Espectrofotômetro (medição de pigmentos/enzimas), Análise de Tecido Vegetal (macronutrientes e micronutrientes), Análise Enzimática (SOD, CAT, APX, GR), Medição de Peróxido de Hidrogênio (H2O2)/MDA, Eletroforese em gel de poliacrilamida (PAGE), Análise de Imagem (ImageJ®), LI-6800 LI-COR (IRGA), Multiskant™ Go (Absorção), ANOVA, Teste de Tukey.
+nutrientes (seleção): Nitrogênio (N), Magnésio (Mg), Fósforo (P), Potássio (K), Cálcio (Ca), Enxofre (S), Boro (B), Cobre (Cu), Ferro (Fe), Manganês (Mn), Zinco (Zn).
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação/Aplicação no substrato (Solução de macronutrientes), Aplicação Foliar (Micronutrientes), Suplementação/Aumento de dose (Mg e N).
+grupos de culturas (seleção): Citros/Rutáceas, Frutíferas/Pomares, Culturas Arbóreas.
+culturas presentes (seleção): Limão (Lisbon Limonera 8A lemon), Citrumelo (Swingle citrumelo).
+FEEDBACK DO CURADOR (escrever): O documento é um artigo de pesquisa relevante que detalha o papel da suplementação de Magnésio (Mg) e Nitrogênio (N) na mitigação do estresse por calor e alta irradiação em limoeiros jovens. Os resultados fornecem estratégias de manejo nutricional para aumentar a tolerância de citros em condições ambientais desfavoráveis, com alta relevância para a sustentabilidade da citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

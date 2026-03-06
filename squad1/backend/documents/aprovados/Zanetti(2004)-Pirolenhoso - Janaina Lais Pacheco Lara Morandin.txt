@@ -1,0 +1,34 @@
+ID: a8433a3d-66aa-4944-a51a-9792973008a3
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): MARCELO ZANETTI; JAIRO OSVALDO CAZETTA; DIRCEU DE MATTOS Jr.; SÉRGIO ALVES DE CARVALHO
+Titulo: INFLUÊNCIA DO EXTRATO PIROLENHOSO NA CALDA DE PULVERIZAÇÃO SOBRE O TEOR FOLIAR DE NUTRIENTES EM LIMOEIRO ‘CRAVO’
+Subtítulo: 
+Ano: 2004
+Número de citações recebidas (Google Scholar): 27
+Palavras-chave: Citrus; propagação; pulverização foliar; produção de mudas; micronutrientes
+Resumo: Com o objetivo de avaliar o efeito da presença do extrato pirolenhoso (EP) na calda de pulverização sobre o teor foliar de nutrientes de limoeiro 'Cravo' (Citrus limonia Osbeck), foi desenvolvido um experimento com seis tratamentos e quatro repetições, em blocos ao acaso, em ambiente protegido. Os tratamentos constituíram da pulverização das soluções: T0 = água; T1 = solução de micronutrientes sem EP; T2 = solução de micronutrientes + EP (1cm³ dm-3); T3 = solução de micronutrientes + EP (2 cm³ dm-3); T4 = solução de micronutrientes + EP (5cm³ dm-3); T5 = solução de micronutrientes + EP (10 cm³ dm-3). A solução de micronutrientes foi preparada com sulfatos de Cu, Fe, Mn, Zn (250 mg dm-3 do elemento) e ácido bórico (42,5 mg dm-3 de B). As plantas foram cultivadas em tubetes cônicos de 0,280 dm³, com substrato sem a adição de micronutrientes na formulação. As soluções foram pulverizadas uma única vez, aos 140 dias após o plantio (DAP), momento em que as plantas apresentavam aproximadamente 20 cm de altura. Ao final do experimento (160 DAP), quantificaram-se a massa seca e os teores de macro e micronutrientes da parte aérea e sistema radicular. A presença do extrato pirolenhoso na solução de micronutrientes não interferiu na concentração foliar de B, Fe e Zn em mudas de limoeiro 'Cravo'. Entretanto, na concentração de 10 cm³ dm-3, aumentou a concentração foliar de Cu e Mn. Observou-se também que as plantas pulverizadas com soluções contendo EP (1 a 10 cm³ dm-3) + micronutrientes apresentaram menor teor de Fe e maior teor de Ca no sistema radicular.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Revista Brasileira de Fruticultura
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1bPx-WfkhE6pWJ5eKLxXfMD--7yQR-Sw1/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Viveiro comercial em Rio Claro-SP e na UNESP, Jaboticabal-SP (SP, Brasil). Substrato comercial Plantmax® (Eucatex Ltda) em tubetes cônicos de 0,280 dm³. O substrato apresentava pH 5,0, condutividade elétrica 1,20 dS m⁻¹, e baixo teor de micronutrientes, mas com adição de fertilizante de liberação lenta (Osmocote N-P-K 18-5-9).
+ferramentas e técnicas (seleção): Análise foliar de nutrientes
+nutrientes (seleção): N
+estratégias de fornecimento de nutrientes (seleção): Adubação foliar
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Limoeiro 'Cravo' (Citrus limonia Osbeck)
+FEEDBACK DO CURADOR (escrever): Artigo científico de alta qualidade que avalia a influência do extrato pirolenhoso (EP) como aditivo em pulverizações foliares de micronutrientes (B, Cu, Fe, Mn, Zn) em mudas de limoeiro 'Cravo'. O estudo é relevante para o manejo nutricional em viveiros de citros, especialmente em relação ao aumento da concentração foliar de Cu e Mn na parte aérea.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

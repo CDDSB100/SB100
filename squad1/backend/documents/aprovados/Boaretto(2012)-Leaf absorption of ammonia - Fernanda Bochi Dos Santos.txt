@@ -1,0 +1,34 @@
+ID: 195ceba4-711f-408c-8334-7480b8c71c27
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): R. M. Boaretto; D. Mattos Jr.; J. A. Quaggio : H. Cantarella; P. C. O. Trivelin
+Titulo: Absorption of 15NH3 volatilized from urea by Citrus trees
+Subtítulo: 
+Ano: 2012
+Número de citações recebidas (Google Scholar): 26
+Palavras-chave: 
+Resumo: Background and aims Gaseous losses of ammonia (NH3) have been observed in citrus orchards when urea is surface-applied to the soils, and this loss might significantly limit the effectiveness of the nitrogen (N) fertilizer. However, a portion of the volatilized NH3 might be absorbed by the plants through the leaves. To quantify the contribution ofthe leaf absorption of 15NH3, a study with Sweet oranges was conducted in two field areas where trees were grown at standard (480 trees ha−1) and high densities (617 trees ha−1).Methods Plastic trays were filled with soil, covered with mown grass to simulate field management conditions, fertilized with 15N labeled urea (12atom % excess) and placed under each of three trees in the orchards. This experimental procedure prevented the uptake of N from the labeled urea by the roots. Two weeks after 15N fertilization, the trays were removed from the field, and the soil was homogenized and sampled for chemical analyses. The citrus trees under which the trays were placed were destructively harvested, and the total N concentrations and 15N/14N ratios were determined. Results After urea application, the NH3 losses peaked within three days and subsequently decreased to negligible amounts after 10 days. The total NH3 losses accounted for 55–82 % of the applied N. Although the NH3 absorption by the citrus leaves was proportional to the tree density in the field, only 3–7 % of the 15NH3 volatilized from the soil was recovered by the citrus trees, and the NH3 absorption was also influenced by the proximity of citrus trees to the site of urea application and the leaf areas of the trees. Conclusions The citrus trees can absorb the NH3 volatilized from urea, even though, the amount recovered by the trees is small and does not represent a significant proportion of total gaseous N losses, what demonstrates the importance of enhanced N use efficiency practices in field to reduce losses of NH3 when urea is applied to soil surfaces.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Plant Soil
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s11104-012-1380-7
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/11SgfVhci0OXRE6JNUGAQ1-SZHXw6RdEo/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Experimentos realizados em São Paulo, Brasil (Santa Cruz do Rio Pardo e Descalvado). Solo 1 (Alta Densidade - HPD): Franco-arenoso (sandy loam), 840 g/kg areia, 22 g/dm³ matéria orgânica, pH CaCl2 5.8. Solo 2 (Densidade Padrão - SPD): Argilo-arenoso (clay loam), 233 g/kg areia, 37 g/dm³ matéria orgânica, pH CaCl2 5.5. As condições ambientais incluíram cobertura morta (mulch) de grama.
+ferramentas e técnicas (seleção): Espectrometria de massa, Técnicas de isótopos estáveis (15N, 14N), Medição de volatilização/emissão de gases, Uso de bandejas/câmaras de simulação, Análise de tecidos vegetais, Colheita destrutiva
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Aplicação de fertilizantes em cobertura (superfície), Ureia/Fontes amidicas
+grupos de culturas (seleção): Frutas cítricas
+culturas presentes (seleção): Laranja (Sweet Orange)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

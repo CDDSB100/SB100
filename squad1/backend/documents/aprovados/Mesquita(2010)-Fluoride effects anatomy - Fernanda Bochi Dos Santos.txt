@@ -1,0 +1,34 @@
+ID: 32f346af-5f5d-40ee-9e77-6cb7f98ebf5a
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): G. L. Mesquita; H. Cantarella; F. A. O. Tanaka; D. Mattos Jr
+Titulo: Atmospheric Absorption of Fluoride by Cultivated Species. Leaf Structural Changes and Plant Growth
+Subtítulo: 
+Ano: 2010
+Número de citações recebidas (Google Scholar): 37
+Palavras-chave: Air pollution; Leaf analysis; Anatomy; Bioindicator; Citrus; Coffea
+Resumo: Abstract Fluoride (F) is an air pollutant that causes phytotoxicity. Besides the importance of this, losses of agricultural crops in the vicinity of F polluting industries in Brazil have been recently reported. Injuries caused to plant leaf cell structures by excess F are not well characterized. However, this may contribute to under- standing the ways in which plant physiological and biochemical processes are altered. A study evaluated the effects of the atmospheric F on leaf characteristics and growth of young trees of sweet orange and coffee exposed to low (0.04 mol L−1) or high (0.16 mol L−1) doses of HF nebulized in closed chamber for 28 days plus a control treatment not exposed. Gladiolus and ryegrass were used as bioindicators in the experiment to monitor F exposure levels. Fluoride concentration and dry mass of leaves were evaluated. Leaf anatomy was observed under light and electron microscopy. High concentrations (~180 mg kg−1) were found in leaves of plants exposed at the highest dose of HF. Visual symptoms of F toxicity in leaves of citrus and coffee were observed. Analyses of plant tissue provided evidence that F caused degeneration of cell wall and cytoplasm and disorganization of bundle sheath, which  were more evident in Gladiolus and coffee. Minor changes were observed for sweet orange and rye- grass. Increase on individual stomatal area was also marked for the Gladiolus and coffee, and which were characterized by occurrence of opened ostioles. The increased F absorption by leaves and changes at the structural and ultrastructural level of leaf tissues correlated with reduced plant growth.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Water, Air, and Soil Pollution 
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 10.1007/s11270-010-0694-4
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1NcEkGB09b0jqgN-FYyy6PHkyKsjfS72B/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O solo utilizado foi coletado da camada arável de um Ferralsol (Latossolo Vermelho) sob pastagem. Suas características químicas iniciais eram: MO= 34 g dm⁻³, pH (CaCl₂)=5.2, CEC=87.9 mmolc dm⁻³, saturação por bases (V)=61%, F total=203 mg kg⁻¹ e argila=300 g kg⁻¹. O estudo está inserido no contexto da poluição atmosférica por flúor originada por indústrias poluidoras no Brasil, com autores afiliados a instituições em Campinas, Piracicaba e Cordeirópolis, São Paulo.
+ferramentas e técnicas (seleção): Técnicas de Aplicação/Exposição
+nutrientes (seleção): Flúor (F)
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar/atmosférica
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Cítricos (Laranja doce - Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

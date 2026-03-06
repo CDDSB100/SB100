@@ -1,0 +1,34 @@
+ID: fe4dab9b-fde7-4707-837d-7d31171b4f9f
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): José Antônio QUAGGIO; Dirceu MATTOS Jr.; Heitor CANTARELLA
+Titulo: Fruit yield and quality of sweet oranges affected by nitrogen, phosphorus and potassium fertilization in tropical soils
+Subtítulo: 
+Ano: 2006
+Número de citações recebidas (Google Scholar): 86
+Palavras-chave: Brazil; Citrus sinensis; nutritional requirements; fertilizer application; application rates; yields; quality; fruits
+Resumo: Introduction. The objective of the present paper was to evaluate the effects of N, P and K, and their interactions, on fruit yield and quality of two sweet orange varieties, Valencia and Pêra, grown on tropical soils in the State of São Paulo, Brazil, over four seasons. Materials and methods. Two experiments were set up in a fractional factorial design of the ½ (4 × 4 × 4) type, with four rates of N [(30, 100, 170 and 240) kg·ha–1·year–1], P [(9, 27, 45 and 63) kg·ha–1·year–1)] and K [(24, 91, 158 and 225) kg·ha–1·year–1] applied to the soil surface during the rainy season. Functions of the type y = b0 + b11N + b11N2 + b2P + b22P2 + b3K + b33K2 + b12NP + b13NK +  23PK were fitted for dependent variables: fruit yield and mass, juice content, and total soluble solids and acidity concentrations. Results. Maximum yield of Pêra and Valencia was attained, respectively, with N rates of (189 and 193) kg·ha–1. Fruit yield response to P and K fertilization for both cultivars was dependent on soil nutrient availability. Fruit size of Valencia trees was markedly affected by rates of K over 225 kg·ha–1. Yield of soluble solids per box of fruits (40.8 kg) decreased as leaf K concentration varied from (10 to 12) g·kg–1. Conclusion. Soil testing and leaf analysis play an important role in defining fruit yield and quality for citrus trees. The best nutritional program may vary depending on the destination of fruit to either juice production or the fresh market. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Fruits
+Quartil do periódico: Q4
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: DOI: 10.1051/fruits:2006028
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1xiTbxyM-7DYvcsM0DaUhZxcI3nvxJqgi/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em solos tropicais no Estado de São Paulo, Brasil. Os locais foram Matão (Ultisol, P-resin 9 mg/dm³, K trocável 2.9 mmolc/dm³, saturação de bases 64%) e Pirassununga (Oxissol, P-resin 45 mg/dm³, K trocável 1.2 mmolc/dm³, saturação de bases 71%). A acidez do solo foi corrigida para manter a saturação de bases entre 50% e 70%.
+ferramentas e técnicas (seleção): Análise foliar
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertilização via solo (superfície)
+grupos de culturas (seleção): Frutas cítricas
+culturas presentes (seleção): Laranja Doce (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): Documento agronômico de alta relevância. Apresenta resultados de longo prazo (quatro safras) sobre os efeitos da fertilização com N, P e K no rendimento e qualidade de laranjas em solos tropicais. Destaca a importância da análise de solo e foliar para definir programas nutricionais ótimos, adaptados ao destino da fruta (indústria de suco ou mercado fresco).
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

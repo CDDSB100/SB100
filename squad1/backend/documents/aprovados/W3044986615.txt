@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Victoria Martínez‐Blay, María B. Pérez‐Gago, Beatriz de la Fuente, Rosario Carbó, Lluı́s Palou
+Titulo: Edible Coatings Formulated with Antifungal GRAS Salts to Control Citrus Anthracnose Caused by Colletotrichum gloeosporioides and Preserve Postharvest Fruit Quality
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 35
+Palavras-chave: Postharvest, Chemistry, Methylparaben, Potassium sorbate, Horticulture
+Resumo: The in vitro antifungal activity of various generally recognized as safe (GRAS) salts against Colletotrichum gloeosporioides, the causal agent of citrus postharvest anthracnose, was evaluated as mycelial growth reduction on potato dextrose agar (PDA) dishes amended with salt aqueous solutions at different concentrations. The most effective treatments [0.2% ammonium carbonate (AC), 2% potassium sorbate (PS), 0.2% potassium carbonate (PC), 0.1% sodium methylparaben (SMP), 0.1% sodium ethylparaben (SEP), 2% sodium benzoate (SB) and 2% potassium silicate (PSi)] were selected as antifungal ingredients of composite edible coatings formulated with hydroxypropyl methylcellulose (HPMC)-beeswax (BW) matrixes. Stable coatings containing these salts were applied in in vivo curative experiments to “Nadorcott” mandarins and “Valencia” oranges artificially inoculated with C. gloeosporioides and those containing 2% PS, 2% SB and 2% PSi were the most effective to reduce anthracnose severity with respect to control fruit (up to 70% on mandarins). The effect of these selected coatings on the quality of non-inoculated and cold-stored “Valencia” oranges was determined after 28 and 56 days at 5 °C and 90% RH, followed by 7 days of shelf life at 20 °C. None of the coatings significantly reduced weight loss of coated oranges, but they modified their internal atmosphere, increasing the CO2 content. Overall, the coatings did not adversely affect the physicochemical and sensory attributes of the fruit.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Instituto Valenciano de Investigaciones Agrarias
+Local: ES
+Tipo de trabalho: 
+Título do periódico: Coatings
+Quartil do periódico: 
+Volume: 10
+Número/fascículo: 8
+Páginas: 730-730
+DOI: 10.3390/coatings10080730
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1oHsUJ9eH4sCn2LQP1d3SioMeQ8r7rtBf/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo envolve citros (Citrus spp., Rutaceae) cultivados em regiões tropicais e subtropicais. Os frutos utilizados nos experimentos (laranjas 'Valencia' e tangerinas 'Nadorcott') foram coletados em pomares comerciais na região de Valência, Espanha, uma das principais regiões de cultivo de citros na Espanha.
+ferramentas e técnicas (seleção): Revestimentos Comestíveis Compostos (HPMC-Cera de Abelha)
+nutrientes (seleção): Carbonato de Amônio (AC)
+estratégias de fornecimento de nutrientes (seleção): Incorporação de Sais GRAS em Revestimentos Comestíveis Compósitos (Matriz HPMC-Cera de Abelha)
+grupos de culturas (seleção): Cítricos
+culturas presentes (seleção): Tangerina (híbrido 'Nadorcott')
+FEEDBACK DO CURADOR (escrever): Pesquisa agronômica de alta relevância focada no desenvolvimento de revestimentos comestíveis (HPMC-cera de abelha) contendo sais GRAS como alternativa não poluente para o controle pós-colheita de antracnose (Colletotrichum gloeosporioides) em citros. O estudo avalia a eficácia curativa e o impacto na qualidade sensorial e físico-química das frutas armazenadas a frio.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

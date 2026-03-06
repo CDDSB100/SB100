@@ -1,0 +1,34 @@
+ID: 11c5444c-d25e-45f5-9bcd-b24ecda7f6f7
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; Franz W. R. Hippler; Rodrigo M. Boaretto; Eduardo S. Stuchi; José A. Quaggio
+Titulo: Soil boron fertilization: the role of nutrient sources and rootstocks in citrus production
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 36
+Palavras-chave: boric acid; ulexite; fertilization via soil; leaf analysis; fruit quality; citrus
+Resumo: Boron (B) is a key element for citrus production, especially in tropical regions, where the nutrient availability is commonly low in the soil. In addition, information about doses, fertilizer sources, methods of application and, particularly, differential nutrient demand of scion/rootstock combinations are required for efficient fertilization of commercial groves. In a non-irri-gated sweet orange orchard (cv. Natal), grafted onto Rangpur lime, Swingle citrumelo or Sunki mandarin, we studied the application of two sources of B: boric acid (17% B, soluble in water) and ulexite (12% B, partially soluble in water) at four levels of supply (control without B, and soil application of 2, 4 and 6 kg ha–1 yr–1 of B). The experiment was carried out for three years. Boron availability in the soil and concentration in the leaves, as well as the fruit yield and quality of trees were evaluated. Soil B extracted with hot water and total leaf B positively correlated with doses of the nutrient applied to the trees. Levels of B in the soil and in the leaves did not vary with fertilizer sources. Fruit yield of trees grafted onto Rangpur lime and Swingle citrumelo was more responsive to B doses than those grafted onto Sunki mandarin. Maximum fruit yield of trees grafted onto Swingle was obtained with 3.2 kg ha–1 yr–1 of B, and leaf B level of 280 mg kg–1 what point out to a highest demand for B when this combination was compared with other rootstocks. Furthermore, fertilization with B did not affect the quality of fruits, but correlated with B and potassium (K) concentrations in the leaves. These results also support that the current recommendations for levels of B in leaves should be revisited.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Journal of Integrative Agriculture
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1016/S2095-3119(16)61492-2
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1ofFlLkV-3grvi2MB_USRRc69vHjPs06w/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em Bebedouro-SP, Brasil, região tropical (clima Cwa – inverno seco, verão quente/úmido). O solo é classificado como Oxisol distrófico de textura média. O pH inicial (CaCl₂) era de 5.7, com capacidade de troca catiônica de 55 mmol dm⁻³ e teor inicial de B muito baixo (0.2 mg dm⁻³ na camada de 0-20 cm). Antes do experimento, foi realizada calagem para elevar a saturação por bases para 70%.
+ferramentas e técnicas (seleção): Análise foliar
+nutrientes (seleção): Boro (B)
+estratégias de fornecimento de nutrientes (seleção): Aplicação via solo
+grupos de culturas (seleção): Citrus
+culturas presentes (seleção): Laranja doce (cv. Natal)
+FEEDBACK DO CURADOR (escrever): Documento de pesquisa agronômica altamente relevante, focado na otimização da fertilização de boro (B) em citros, comparando fontes (ácido bórico e ulexita) e avaliando a interação com porta-enxertos (Limão Rangpur, Citrumelo Swingle, Mandarina Sunki) em um Oxisol. O artigo fornece dados importantes sobre doses ótimas e diagnóstico foliar para diferentes combinações copa/porta-enxerto.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

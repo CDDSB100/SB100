@@ -1,0 +1,34 @@
+ID: ac5896d8-2325-4319-8744-c398aad2c0eb
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Jefferson Rangel da Silva, Rodrigo Marcelli Boaretto, Jéssica Aparecida Lara Lavorenti, Bruna Castriani Ferreira dos Santos, Helvecio Della Coletta-Filho and Dirceu Mattos Jr.
+Titulo: Effects of Deficit Irrigation and Huanglongbing on Sweet Orange Trees
+Subtítulo: 
+Ano: 2021
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: starch metabolism; photosynthesis; leaf respiration; photorespiration; leaf water potential; greening; oxidative stress
+Resumo: This study addresses the interactive effects of deficit irrigation and huanglongbing (HLB) infection on the physiological, biochemical, and oxidative stress responses of sweet orange trees. We sought to answer: (i) What are the causes for the reduction in water uptake in HLB infected plants? (ii) Is the water status of plants negatively affected by HLB infection? (iii) What are the key physiological traits impaired in HLB-infected plants? and (iv) What conditions can mitigate both disease severity and physiological/biochemical impairments in HLB-infected plants? Two water management treatments were applied for 11 weeks to 1-year-old-trees that were either healthy (HLB–) or infected with HLB (+) and grown in 12-L pots. Half of the trees were fully irrigated (FI) to saturation, whereas half were deficit-irrigated (DI) using 40% of the water required to saturate the substrate. Our results demonstrated that: reduced water uptake capacity in HLB+ plants was associated with reduced root growth, leaf area, stomatal conductance, and transpiration. Leaf water potential was not negatively affected by HLB infection. HLB increased leaf respiration rates (ca. 41%) and starch synthesis, downregulated starch breakdown, blocked electron transport, improved oxidative stress, and reduced leaf photosynthesis (ca. 57%) and photorespiration (ca.57%). Deficit irrigation reduced both leaf respiration (ca. 45%) and accumulation of starch (ca.53%) by increasing maltose (ca. 20%), sucrose, glucose, and fructose contents in the leaves, decreasing bacterial population (ca. 9%) and triggering a series of protective measures against further impairments in the physiology and biochemistry of HLB-infected plants. Such results provide a more complete physiological and biochemical overview of HLB-infected plants and can guide future studies to screen genetic tolerance to HLB and improve management strategies under field orchard conditions.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Frontiers in Plant Science
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 10.3389/fpls.2021.731314
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1oRRZJeucmOfi5-wtFGd_EcwIHSe1rRnX/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em estufa no Centro de Citricultura Sylvio Moreira, em Cordeirópolis, São Paulo, Brasil. As plantas foram cultivadas em vasos de 12 litros preenchidos com um substrato comercial à base de casca de pinus bem drenado (Terra do Paraíso®). O clima na estufa era monitorado, apresentando flutuações naturais, com temperatura média de 22,6 °C e umidade relativa média de 67,6 %.
+ferramentas e técnicas (seleção): qPCR
+nutrientes (seleção): N
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): O documento é uma pesquisa agronômica original e útil. Ele aborda os efeitos interativos da irrigação por déficit (DI) e da infecção por Huanglongbing (HLB) em laranjeiras, fornecendo insights detalhados sobre as respostas fisiológicas e bioquímicas das plantas. Os resultados indicam que o DI pode mitigar os impactos negativos do HLB, como a redução da população bacteriana (CLas), a diminuição da respiração foliar e a atenuação do estresse oxidativo e acúmulo de amido. É altamente relevante para o manejo de pomares de citros afetados por HLB.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

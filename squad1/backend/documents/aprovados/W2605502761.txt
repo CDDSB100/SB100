@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Bharat Bhushan Bhatt
+Titulo: Influence of Foliar Application of Bio-Regulators and Nutrients on the Fruit Quality of Lemon (Citrus limon Burma.) Cv. Pant Lemon-1
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 6
+Palavras-chave: Citrus limon, Horticulture, Randomized block design, Lemon juice, Nutrient
+Resumo: An experiment was conducted to study the Influence of foliar application of Bio-Regulators and Nutrients on the fruit Quality of Lemon (Citrus Limon Burma.) Cv. Pant Lemon-1 during 2009-10 at HRC (Horticultural Research Centre), Chauras Campus. H.N.B. Garhwal University Srinagar, Garhwal Uttarakhand, India. The experiment was conducted in Randomized Block Design with sixteen treatments and replicated in three, considering one plant as a unit. On the basis of overall performance of treatments on quality characters of fruits, it can be concluded that the values for fruit length, fruit juice, total soluble solids, total sugars, shelf-life of fruits, have been obtained maximum, while the maximum fruit weight, fruit volume, acidity were recorded with NAA (50 ppm).
+Tipo de documento: article
+Editora: Excellent Publishers
+Instituição: Hemwati Nandan Bahuguna Garhwal University
+Local: IN
+Tipo de trabalho: 
+Título do periódico: International Journal of Current Microbiology and Applied Sciences
+Quartil do periódico: 
+Volume: 6
+Número/fascículo: 4
+Páginas: 2451-2458
+DOI: 10.20546/ijcmas.2017.604.286
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1gtbfvZbDW8NetsTE1SrltqCSCjC0irO_/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido no Centro de Pesquisa Hortícola (HRC), Campus Chauras, Universidade H.N.B. Garhwal, Srinagar, Garhwal, Uttarakhand, Índia. A área está localizada no Vale de Alaknanda, na região de Garhwal, a uma altitude de 540 m acima do MSL, na região do Himalaia Menor, caracterizada como subtropical/semi-árida. As temperaturas média variam de 6,44°C a 34,7°C, e a precipitação média é de 2,60 a 245,46 mm.
+ferramentas e técnicas (seleção): Aplicação Foliar, Reguladores de Crescimento/Fito-hormônios, Delineamento Experimental/Estatística
+nutrientes (seleção): Nitrogênio (Ureia), Zinco (Sulfato de Zinco), Boro (Bórax)
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar
+grupos de culturas (seleção): Citrinos/Citricultura, Frutíferas Temperadas/Subtropicais
+culturas presentes (seleção): Limão, Laranja, Tangerina/Mandarin, Goiaba, Romã, Lichia
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa focado na otimização da qualidade do fruto de limão (Citrus limon Burma. cv. Pant Lemon-1) através da aplicação foliar de biorreguladores (NAA, GA3) e nutrientes (Ureia, Sulfato de Zinco, Bórax) em condições subtropicais na Índia. O estudo é metodologicamente sólido, utiliza Delineamento em Blocos Casualizados (RBD) e fornece dados detalhados sobre características físicas e químicas dos frutos e vida útil. Excelente relevância agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

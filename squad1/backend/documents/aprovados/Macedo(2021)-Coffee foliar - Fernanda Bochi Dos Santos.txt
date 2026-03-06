@@ -1,0 +1,34 @@
+ID: 89b4de59-d499-4ceb-b803-dae2fe76eb46
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Luiza Oliveira Macedo; Dirceu Mattos Jr; Rodrigo Candido Jacobassi; Guilherme Petená; José Antonio Quaggio; Rodrigo Marcelli Boaretto
+Titulo: Characterization and use efficiency of sparingly soluble fertilizer of boron and zinc for foliar application in coffee plants
+Subtítulo: 
+Ano: 2021
+Número de citações recebidas (Google Scholar): 8
+Palavras-chave: micronutrients; microparticles; nutrient sources; leaf spraying
+Resumo: Deficiencies of boron and zinc occur in coffee plantations despite the many fertilizer sources offered by the industry for the agriculture. Sparingly soluble fertilizers (SSF) have been used in several countries for many years. However, their effectiveness when applied to leaves is highly contested, and information about their use efficiency is still lacking. Experiments were set up to characterize the SSF of B and Zn according to particle size of fertilizers, and the spreading and retention of the particles in the leaf, comparing SSF (calcium borate, Zn oxide, and Zn borate) with soluble sources (boric acid and Zn sulfate) in four doses (mg.L-1): Experiment I (B 0, 130, 260, and 520), Experiment II (Zn 0, 200, 600, and 1,800), and experiment III (B 0, 43, 129, and 387, and Zn 0, 200, 600, and 1,800), to supply B and Zn for coffee plants. Microparticles of the SSF were found adhered to coffee leaves, and the Zn oxide was the one with the smallest particle size. SSFs were effective at increasing the Zn and B leaf concentrations in coffee. Dry matter of coffee increased 15% with applications of 270 mg.L-1 of B as calcium borate and 384 mg.L-1 of B as boric acid. Foliar application of Zn oxide at the dose of 1,800 mg.L-1 of Zn increased the leaf areas of the plants. High doses of Zn sulfate caused toxicity to coffee plants due to high saline concentrations. The microparticles found retained on the surface of the coffee leaves increased leaf concentration of B and Zn, which explained variations in the dry matter measurements and show the potential of the SSF for the development of fertilizers to improve the availability of micronutrients to coffee.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Bragantia
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/1678-4499.20200329
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1UjYLV6Xy8lgWwiZMTGp--gv9BDaBBOHf/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudos realizados em ambiente de estufa em Campinas, São Paulo, Brasil, utilizando plantas em vasos (12-L) preenchidos com substrato de casca de pinus e vermiculita. O contexto regional lida com deficiências de Boro (B) e Zinco (Zn) em cafezais. Condições ambientais de orvalho foram simuladas por nebulização para favorecer a solubilização das micropartículas na superfície foliar.
+ferramentas e técnicas (seleção): Análise de tamanho de partículas por difração a laser (Mastersizer 3,000), Microscopia Eletrônica de Varredura (SEM), Medição de ângulo de contato (Tensiômetro Dataphysics), Aplicação foliar, Análise química de material vegetal (Método Bataglia et al. 1983), Análise de Variância (Sisvar).
+nutrientes (seleção): Boro (B), Zinco (Zn), Ferro (Fe), Cálcio (Ca).
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar, Solução Nutriente (via substrato).
+grupos de culturas (seleção): Bebidas, Frutas Tropicais.
+culturas presentes (seleção): Café (Coffea arabica L. cv. Catuaí Amarelo).
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica de alta qualidade que detalha a caracterização e a eficiência de uso de fertilizantes microparticulados de Boro (B) e Zinco (Zn) para aplicação foliar em cafeeiros, comparando-os com fontes solúveis. O estudo fornece dados importantes sobre retenção foliar, tamanho de partícula e impacto na matéria seca e área foliar, sendo extremamente útil.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

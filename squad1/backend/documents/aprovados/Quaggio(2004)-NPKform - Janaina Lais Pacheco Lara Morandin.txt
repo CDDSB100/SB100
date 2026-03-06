@@ -1,0 +1,34 @@
+ID: b4521bd9-a062-4553-838b-7b0e1f902974
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): José A. Quaggio;Thais R. Souza; Fernando C.B. Zambrosi; Dirceu Mattos Jr.; Rodrigo M. Boaretto; Guilherme Silva
+Titulo: Sweet orange trees grafted on selected rootstocks fertilized with nitrogen, phosphorus and potassium
+Subtítulo: 
+Ano: 2004
+Número de citações recebidas (Google Scholar): 47
+Palavras-chave: citrus; growth; yields; canopy
+Resumo: The majority of citrus trees in Brazil are grafted on 'Rangpur lime' (Citrus limonia Osb.) rootstock. Despite its good horticultural performance, search for disease tolerant rootstock varieties to improve yield and longevity of citrus groves has increased. The objective of this work was to evaluate yield efficiency of sweet oranges on different rootstocks fertilized with N, P, and potassium. Tree growth was affected by rootstock varieties; trees on 'Swingle' citrumelo [Poncirus trifoliata (L.) Raf. × C. paradisi Macf.] presented the smallest canopy (13.3 m³ in the fifth year after tree planting) compared to those on 'Rangpur lime' and 'Cleopatra' mandarin [C. reshni (Hayata) hort. ex Tanaka] grown on the same grove. Although it was observed an overall positive relationship between canopy volume and fruit yield (R² = 0.95**), yield efficiency (kg m-3) was affected by rootstocks, which demonstrated 'Rangpur lime' superiority in relation to Cleopatra. Growth of citrus trees younger than 5-yr-old might be improved by K fertilization rates greater than currently recommended in Brazil, in soils with low K and subjected to nutrient leaching losses.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Pesquisa Agropecuária Brasileira
+Quartil do periódico: Q3
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0100-204X2004000100008
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1uQQ2bDcCr5xtyHTjvXa_7tllyOotrBlE/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Três pomares experimentais localizados no Estado de São Paulo, Brasil. Um pomar (Pêra) em Alfisol, região Sudeste (CEC alta, 117.9 mmol dm⁻³), com alta precipitação (1.760 mm/ano) e sem déficit hídrico. Outros dois pomares (Valencia e Natal) em regiões Norte (CEC moderada), com temperatura média de 23°C e precipitação de 1.350 mm/ano, sujeitos a períodos de seca no inverno. O pomar Natal estava em Oxisol e sofreu estresse hídrico mais severo. Solos receberam calagem dolomítica para atingir 70% de saturação de bases.
+ferramentas e técnicas (seleção): Enxertia; Medição de copa (volume, diâmetro, altura); Medição de produtividade de frutos; Modelagem de regressão; Fertilização (NPK); Aplicação foliar de micronutrientes; Análise de dados estatísticos (Fatorial fracionário, GLM, SAS).
+nutrientes (seleção): Nitrogênio (N); Fósforo (P); Potássio (K); Zinco (Zn); Manganês (Mn); Boro (B).
+estratégias de fornecimento de nutrientes (seleção): Fertilização via solo (NPK); Aplicação de calcário dolomítico; Pulverização foliar de micronutrientes.
+grupos de culturas (seleção): Cítricos; Laranjeiras; Mandarinas.
+culturas presentes (seleção): Laranja-doce 'Pêra' (C. sinensis); Laranja-doce 'Valencia' (C. sinensis); Laranja-doce 'Natal' (C. sinensis); Limão 'Cravo' ('Rangpur lime', C. limonia); Tangerina 'Cleópatra' (C. reshni); Citrumelo 'Swingle' (P. trifoliata x C. paradisi).
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica relevante sobre a eficiência de diferentes porta-enxertos e o impacto da fertilização com NPK no crescimento e produtividade de laranjeiras-doce no estado de São Paulo.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

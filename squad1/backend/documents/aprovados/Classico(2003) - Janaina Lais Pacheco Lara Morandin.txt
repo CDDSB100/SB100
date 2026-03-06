@@ -1,0 +1,34 @@
+ID: cb2e7c6b-42eb-4126-96db-5edc8e9ff8b5
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): PHELIPPE WESTIN CABRAL DE VASCONCELLOS
+Titulo: Classics of the Brazilian Citrus Industry Presentation
+Subtítulo: 
+Ano: 2003
+Número de citações recebidas (Google Scholar): 3
+Palavras-chave: Citricultura; Adubação
+Resumo: NaN
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Classics of the Brazilian Citrus Industry Presentation
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1TlFY-lV5pygad4AbYWqoNGA7b3HTc3f4/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Piracicaba (SP), Brasil. Os estudos foram realizados em pomares estabelecidos em "terra roxa das melhores" com grande profundidade. Menciona a deficiência geral de fósforo em solos tropicais. Em um experimento separado, foi utilizado um "terreno xistoso" para testar o cloreto de potássio.
+ferramentas e técnicas (seleção): Balanço de nutrientes (exportação vs. fornecimento)
+nutrientes (seleção): Nitrogênio (Azoto) (N)
+estratégias de fornecimento de nutrientes (seleção): Fertilizantes minerais (Sulfato de Amônio)
+grupos de culturas (seleção): Frutíferas (Citrus)
+culturas presentes (seleção): Laranja doce 'Baianinha de Piracicaba'
+FEEDBACK DO CURADOR (escrever): O documento resgata um artigo clássico de citricultura, abordando de forma detalhada o manejo nutricional (NPK), a importância do equilíbrio na adubação, os efeitos de diferentes fontes de potássio na qualidade do fruto e a utilização de adubos verdes em solos de São Paulo. Altamente relevante para pesquisa agronômica.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false
