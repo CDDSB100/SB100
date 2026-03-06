@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pydantic
-openai
-pypdf
-httpx
-groq
-qdrant-client
-sentence-transformers
