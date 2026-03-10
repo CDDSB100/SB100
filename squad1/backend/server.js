@@ -221,8 +221,10 @@ app.get('/api/base-url', (req, res) => {
 // --- Rota de Login ---
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
+  console.log(`[LOGIN] Tentativa de login para usuário: ${username}`);
 
   if (!username || !password) {
+    console.log("[LOGIN] Falha: Usuário ou senha não fornecidos.");
     return res.status(400).json({ error: "Usuário e senha são obrigatórios." });
   }
 
@@ -233,15 +235,18 @@ app.post("/api/login", async (req, res) => {
     const user = rows[0];
 
     if (!user) {
+      console.log(`[LOGIN] Falha: Usuário '${username}' não encontrado no banco.`);
       return res.status(401).json({ error: "Credenciais inválidas." });
     }
 
     // Compara a senha fornecida com o hash armazenado
     const match = await bcrypt.compare(password, user.password_hash);
     if (!match) {
+      console.log(`[LOGIN] Falha: Senha incorreta para o usuário '${username}'.`);
       return res.status(401).json({ error: "Credenciais inválidas." });
     }
 
+    console.log(`[LOGIN] Sucesso: Usuário '${username}' autenticado.`);
     // Gerar o Token JWT
     const userPayload = { username: user.username, id: user.id_str, role: user.role };
     const accessToken = jwt.sign(userPayload, JWT_SECRET, {
@@ -250,7 +255,7 @@ app.post("/api/login", async (req, res) => {
 
     res.json({ accessToken: accessToken });
   } catch (err) {
-    console.error("Erro no login (db):", err.message);
+    console.error("[LOGIN] Erro no banco de dados:", err.message);
     return res.status(500).json({ error: "Erro interno do servidor." });
   }
 });
