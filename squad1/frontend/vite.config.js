@@ -29,12 +29,12 @@ export default defineConfig({
       // 1. Roteamento para o FastAPI (Inteligência Artificial)
       // Redireciona endpoints específicos de IA para a porta 8000
       '/api/curadoria': {
-        target: 'http://172.28.181.92:8000',
+        target: 'http://localhost:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
       '/api/categorize': {
-        target: 'http://172.28.181.92:8000',
+        target: 'http://localhost:8000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
@@ -42,7 +42,7 @@ export default defineConfig({
       // 2. Roteamento para o Node.js (Gerenciamento/Banco de Dados)
       // Tudo que sobrar em /api vai para a porta 5001
       '/api': {
-        target: 'http://172.28.181.92:5001',
+        target: 'http://localhost:5001',
         changeOrigin: true,
         // O Node.js já espera o prefixo /api no server.js, então não fazemos rewrite aqui
       },
