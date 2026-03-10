@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Silézio Ferreira da Silva, Fábio Lopes Olivares e Luciano Pasqualoto Canellas
+Titulo: The biostimulant manufactured using_bioinsumos
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Field response, Humic acids, Diazotrophic endophytic bacteria, Ecological intensification of crops
+Resumo: 
+Tipo de documento: RESEARCH
+Editora: 
+Instituição: Universidade Estadual do Norte Fluminense Darcy Ribeiro
+Local: Campos Dos Goytacazes
+Tipo de trabalho: 
+Título do periódico: Chem. Biol. Technol. Agric.
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 10.1186/s40538-017-0106-8
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: The biostimulant manufactured using_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Cultivo de bactérias endofíticas diazotróficas, Análise de compostos orgânicos, Cromatografia gasosa
+nutrientes (seleção): Nitrogênio, Fósforo, Potássio
+estratégias de fornecimento de nutrientes (seleção): Foliar spray, Aplicação em sulco
+grupos de culturas (seleção): Grandes Culturas
+culturas presentes (seleção): Cana-de-açúcar
+FEEDBACK DO CURADOR (escrever): Aprovado: Detalha a resposta da cana-de-açúcar à adubação nitrogenada.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: citros e cana

@@ -1,0 +1,28 @@
+Com base nos critérios de produtividade acima de 60 t ha⁻¹ e níveis de N foliar entre 20-24 g kg⁻¹, a dose recomendada de N deve ser calculada para atingir a concentração desejada na folhagem da lima Tahiti.  A formulação é:
+
+**Dose de N = N foliar (g kg⁻¹) * Área da folha (m² kg⁻¹) * Eficiência de absorção de N (kg kg⁻¹)**
+
+Para obter uma resposta técnica e objetiva, precisamos considerar os seguintes pontos e fazer algumas suposições:
+
+1.  **Área da folha:**  A área da folha de lima Tahiti varia dependendo da variedade, idade da planta e condições de crescimento. Para fins de cálculo, vamos estimar uma área da folha efetiva para absorção de nutrientes em **2 m²/kg**. Este valor é uma média e pode ser ajustado com base em estudos específicos da cultura.
+
+2.  **Eficiência de absorção de N:**  A eficiência de absorção de N (EA) representa a porcentagem de N aplicada que é efetivamente absorvida pela planta. A EA de limas Tahiti pode variar entre 50% e 70%, dependendo de fatores como disponibilidade de água, temperatura e outros nutrientes.  Para esta resposta, utilizaremos uma EA de **60% (0,6)**.
+
+**Cálculo:**
+
+*   **N foliar:** 20 g kg⁻¹
+*   **Área da folha:** 2 m²/kg
+*   **Eficiência de absorção de N:** 0,6
+
+**Dose de N = 20 g kg⁻¹ * 2 m²/kg * 0,6 = 24 g kg⁻¹**
+
+**Portanto, a dose recomendada de N é de 24 g kg⁻¹ na folhagem.**
+
+**Observações Importantes:**
+
+*   **Monitoramento:** É crucial o monitoramento regular do N foliar para ajustar a dose de N aplicada, garantindo que o teor esteja dentro da faixa recomendada (20-24 g kg⁻¹).
+*   **Outros Nutrientes:** A suplementação de N deve ser acompanhada da correção e balanceamento de outros nutrientes essenciais para a lima Tahiti, como P, K, Ca, Mg, B, Zn, etc.
+*   **Aplicação:** A aplicação de N folar deve ser feita em condições de clima favoráveis, com baixa evaporação e umidade adequada para garantir a absorção eficiente pelos folíolos.
+*   **Considerações Regionais:** As estimativas da área da folha e da eficiência de absorção de N podem variar de acordo com as condições climáticas, solo e práticas de manejo da cultura na região de cultivo.
+
+**Aviso:** Esta resposta é baseada em estimativas e suposições. A dose de N recomendada pode variar dependendo de análises de solo, avaliação do teor de N foliar e de outros fatores específicos da cultura e do ambiente de cultivo. É fundamental consultar um engenheiro agrônomo ou técnico agrícola para determinar a dose de N ideal para a sua lavoura de lima Tahiti.

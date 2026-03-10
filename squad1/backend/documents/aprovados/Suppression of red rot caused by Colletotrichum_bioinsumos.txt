@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Muhammad Nadeem Hassan, Shahid Afghan, Fauzia Yusuf Hafeez
+Titulo: Suppression of red rot caused by Colletotrichum_bioinsumos
+Subtítulo: 
+Ano: 2010
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Erratum
+Editora: International Organization for Biological Control (IOBC)
+Instituição: National Institute for Biotechnology and Genetic Engineering (NIBGE)
+Local: Faisalabad, Pakistan
+Tipo de trabalho: 
+Título do periódico: BioControl
+Quartil do periódico: 
+Volume: 55
+Número/fascículo: 
+Páginas: 531–542
+DOI: 10.1007/s10526-010-9268-z
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Suppression of red rot caused by Colletotrichum_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): 
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): 
+culturas presentes (seleção): Sugarcane
+FEEDBACK DO CURADOR (escrever): Aprovado: Estudo sobre o controle de Colletotrichum falcatum em cana-de-açúcar utilizando bactérias promotoras de crescimento vegetal.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: solos

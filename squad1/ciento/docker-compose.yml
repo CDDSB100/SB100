@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./api-cientometria
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+      - "8000:8000"
+    volumes:
+      - ./api-cientometria:/app
+      - /app/node_modules
+      - /app/venv
+    environment:
+      - PORT=5001
+      - JWT_SECRET=3u4Lsp/bXSWoc5zoAfEJAku6aa1GRFWqIn32zhHJgVs=
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    restart: always
+
+  frontend:
+    build:
+      context: ./busca-cientometrica
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./busca-cientometrica:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_TARGET=http://backend:8000
+    depends_on:
+      - backend
+    restart: always

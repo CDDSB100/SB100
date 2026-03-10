@@ -1,5 +1,5 @@
 from qdrant_client import QdrantClient
-url_qdrant = "http://10.147.20.52:6333"
+url_qdrant = "http://127.0.0.1:6333"
 api_key_qdrant = "fwaoNYhMTH3vf2QfzrxajQ=="
 try:
     print(f"Tentando conectar ao Qdrant em {url_qdrant}...")

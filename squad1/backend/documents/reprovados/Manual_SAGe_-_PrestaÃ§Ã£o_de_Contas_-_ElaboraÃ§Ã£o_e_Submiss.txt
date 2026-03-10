@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): 
+Titulo: 
+Subtítulo: 
+Ano: 
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Manual
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Manual_SAGe_-_PrestaÃ§Ã£o_de_Contas_-_ElaboraÃ§Ã£o_e_Submiss.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): 
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): 
+culturas presentes (seleção): 
+FEEDBACK DO CURADOR (escrever): N/A
+APROVAÇÃO CURADOR (marcar): FALSE
+ARTIGOS REJEITADOS: TRUE
+APROVAÇÃO MANUAL: 
+CATEGORIA: solos

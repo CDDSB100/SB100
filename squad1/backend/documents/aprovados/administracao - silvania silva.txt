@@ -1,0 +1,36 @@
+ID: 58f2abe6-2ab0-4a8f-97de-5814dc24f524
+NOME DO RESPONSÁVEL: izaias silva
+Autor(es): 
+Titulo: administracao - silvania silva
+Subtítulo: 
+Ano: 2018
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Questão Discursiva
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: administracao - silvania silva.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): 
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): 
+culturas presentes (seleção): 
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a importância da defesa dos direitos humanos e os prejuízos da produção de notícias falsas para a sociedade democrática.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: solos

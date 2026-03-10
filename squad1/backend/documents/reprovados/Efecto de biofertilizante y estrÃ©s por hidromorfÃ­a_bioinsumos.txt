@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): N/A
+Titulo: N/A
+Subtítulo: N/A
+Ano: N/A
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: N/A
+Resumo: N/A
+Tipo de documento: N/A
+Editora: N/A
+Instituição: N/A
+Local: N/A
+Tipo de trabalho: N/A
+Título do periódico: N/A
+Quartil do periódico: N/A
+Volume: N/A
+Número/fascículo: N/A
+Páginas: N/A
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: Efecto de biofertilizante y estrÃ©s por hidromorfÃ­a_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): N/A
+nutrientes (seleção): N/A
+estratégias de fornecimento de nutrientes (seleção): N/A
+grupos de culturas (seleção): N/A
+culturas presentes (seleção): N/A
+FEEDBACK DO CURADOR (escrever): Rejeitado: Texto insuficiente para análise científica.
+APROVAÇÃO CURADOR (marcar): FALSE
+ARTIGOS REJEITADOS: TRUE
+APROVAÇÃO MANUAL: 
+CATEGORIA: 

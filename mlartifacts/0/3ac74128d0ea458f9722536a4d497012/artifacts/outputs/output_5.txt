@@ -1,0 +1,63 @@
+## Procedimento de Amostragem Foliar para Citros: Descrição Técnica e Objetiva
+
+A amostragem foliar para citros é uma técnica essencial para o monitoramento da saúde das plantas, detecção precoce de deficiências nutricionais e fitotoxicidade, e avaliação da eficiência da fertilização. O procedimento correto visa garantir a representatividade da amostra e, consequentemente, a confiabilidade dos resultados.
+
+**1. Objetivos da Amostragem:**
+
+*   **Deficiências Nutricionais:** Identificar a presença e a severidade de deficiências de micronutrientes (Zn, Fe, Mn, Cu, B, Mo) ou macronutrientes (N, P, K).
+*   **Fitotoxicidade:** Avaliar os efeitos de produtos fitossanitários, aditivos ou excesso de nutrientes nas folhas.
+*   **Monitoramento da Saúde da Planta:** Acompanhar a dinâmica da saúde da planta em relação à sua nutrição e ao ambiente.
+
+**2. Materiais Necessários:**
+
+*   **Fita Métrica:** Para registrar o tamanho da folha.
+*   **Estabelecimento de Amostras:** Utilizar um sistema de estabelecimento de amostras alfabético (A, B, C...) para garantir a distribuição espacial da amostra.
+*   **Recipiente de Coleta:** Sacos plásticos ou caixas de coleta individuais, preferencialmente com etiquetas para identificação.
+*   **Luvas:** Para proteção pessoal.
+*   **Álcool 70%:** Para desinfecção das ferramentas e folhas.
+*   **Régua:** Para auxiliar na medição do tamanho da folha.
+*   **Marcador Permanente:** Para anotações e identificação.
+
+**3. Procedimento:**
+
+*   **Seleção das Áreas de Amostragem:**
+    *   **Representatividade:** Selecione áreas do pomar que representem a variabilidade natural do local (exposição solar, tipo de solo, histórico de fertilização).
+    *   **Distribuição Espacial:** Utilize o sistema de estabelecimento de amostras, distribuindo as amostras de forma uniforme em toda a área de estudo.
+    *   **Número de Amostras:** O número ideal de amostras depende da área de estudo e da variabilidade esperada. Recomenda-se, no mínimo, 10 amostras por área.
+
+*   **Coleta das Folhas:**
+    *   **Localização:**  Colete folhas de ramos de 1 a 2 anos de idade, evitando o contato com frutos e outras partes da planta.
+    *   **Seleção das Folhas:**
+        *   **Folhas Vivas:** Colete folhas verdes vibrantes (sem sinais de deficiência ou fitotoxicidade).
+        *   **Folhas Danificadas:** Se houver sinais visíveis de dano, selecione folhas próximas para evitar influências de folhagem saudável.
+        *   **Tamanho da Folha:** Selecione folhas de tamanho uniforme (preferencialmente de 5 a 15 cm de comprimento).
+    *   **Número de Folhas:** Colete pelo menos 5 folhas por cada área de amostragem dentro do sistema de estabelecimento.
+
+*   **Preparação das Amostras:**
+    *   **Limpeza:** Limpe as folhas com álcool 70% para remover a cera superficial e facilitar a análise.
+    *   **Registro:**
+        *   **Número da Amostra:** Identifique cada folha com o número da amostra e o número de folha dentro da amostra (ex: A1, A2, A3...).
+        *   **Localização:** Anote a localização da folha dentro da árvore (ex: ramo 1, folha 3) e a área de amostragem.
+        *   **Tamanho:** Meça o comprimento da folha com a fita métrica e registre a medição.
+
+*   **Armazenamento:**
+    *   **Embalagem:** Coloque as folhas em recipientes de coleta individuais, bem identificados.
+    *   **Transporte:** Transporte as amostras para o laboratório o mais rápido possível.
+    *   **Armazenamento:** Armazene as amostras em local fresco e seco, protegidas da luz, até a realização da análise.
+
+**4. Análises Laboratoriais:**
+
+As amostras coletadas são submetidas a análises laboratoriais como:
+
+*   **Análise Química:** Determinação das concentrações de nutrientes nas folhas.
+*   **Espectrofotometria:** Para identificar a presença de sintomas de deficiências nutricionais.
+*   **Microscopia:** Análise da estrutura celular das folhas para identificar danos.
+
+
+**Observações:**
+
+*   Este procedimento é um guia geral. Adapte-o às necessidades específicas da sua pesquisa ou avaliação.
+*   A frequência da amostragem deve ser definida com base no histórico da cultura, na fertilização e nos objetivos do monitoramento.
+*   A padronização do método de amostragem é crucial para a comparação dos resultados obtidos em diferentes estudos e áreas geográficas.
+
+Este documento fornece uma descrição técnica e objetiva do procedimento de amostragem foliar para citros. Para informações mais detalhadas e específicas, consulte a literatura científica e as recomendações de especialistas.

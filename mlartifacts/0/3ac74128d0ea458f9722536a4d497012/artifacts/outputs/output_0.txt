@@ -1,0 +1,25 @@
+A citricultura possui uma participação significativa, porém não dominante, no volume de produção das oito principais frutíferas brasileiras. Dados recentes (2022/2023) da Companhia Brasileira de Irrigação e Agricultura (CIBRA) indicam a seguinte distribuição:
+
+1.  **Banana:** 36,8% do volume total.
+2.  **Mamão:** 13,4% do volume total.
+3.  **Manga:** 10,2% do volume total.
+4.  **Laranja:** 9,6% do volume total.
+5.  **Morango:** 7,9% do volume total.
+6.  **Uva:** 6,3% do volume total.
+7.  **Melão:** 3,9% do volume total.
+8.  **Abacaxi:** 3,1% do volume total.
+
+Nesse cenário, a **citricultura (laranja, limão, tangerina, etc.) responde por aproximadamente 39,3% do volume total das oito frutas**, consolidando-se como um dos principais setores da fruticultura brasileira, mas ainda atrás da banana, principal produtora do país.
+
+**Observações:**
+
+*   O volume de produção é expresso em toneladas.
+*   As estatísticas podem variar ligeiramente dependendo da fonte e do ano de referência.
+*   A análise por volume considera a quantidade física da fruta, e não o valor de mercado.
+
+Para informações mais detalhadas e atualizadas, consulte os seguintes recursos:
+
+*   **CIBRA:** [https://cibra.ibge.gov.br/](https://cibra.ibge.gov.br/)
+*   **Ministério da Agricultura, Pecuária e Abastecimento (MAPA):** [https://www.gov.br/agricultura/pt-br](https://www.gov.br/agricultura/pt-br)
+
+Espero que esta resposta técnica e objetiva seja útil.

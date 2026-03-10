@@ -1,0 +1,18 @@
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# primeiro passo
+uv init nome-do-repositorio
+# segundo passo
+cd "nome-do-repositorio"
+# terceiro passo - criar ambiente isolado
+uv venv --python 3.12.4
+# se tiver requirements.txt
+uv add -r requirements.txt
+# quarto passo - ativar# add pacotes
+add pacotes - uv add pacote
+uv add jupyter-notebook
+uv add ipykernel
+
+
+para relembrar - https://www.youtube.com/watch?v=FXa3e6vliCI
+

@@ -1,0 +1,37 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Gomathi Raju, Nori Sri Sailaja, Vengavasi Krishnapriya & Prakash M
+Titulo: Ameliorating drought stress in sugarcane (Saccharum spp.) using biostimulants
+Subtítulo: Eficácia de formulário líquido de biostimulante de algas em condições de campo
+Ano: 2022
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Estresse abiótico, Gracilaria, Kappaphycus, Bioformulação de algas, Cana-de-açúcar
+Resumo: O estudo avaliou a eficácia de um formulário líquido de biostimulante de algas (LBS6) em condições de campo para mitigar o estresse de seca em cana-de-açúcar (Saccharum spp.).
+Tipo de documento: Artigo científico
+Editora: 
+Instituição: ICAR-Sugarcane Breeding Institute, Coimbatore, Tamil Nadu, Índia
+Local: Coimbatore, Tamil Nadu, Índia
+Tipo de trabalho: Pesquisa
+Título do periódico: Indian Journal of Experimental Biology
+Quartil do periódico: 
+Volume: 60
+Número/fascículo: 
+Páginas: 456-462
+DOI: 
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Ameliorating drought stress in sugarcane_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Cromatografia gasosa, Fotossíntese líquida, RCBD, ANOVA
+nutrientes (seleção): Nitrogênio, Potássio, Sacarose
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação, Aplicação foliar, Controle de pragas
+grupos de culturas (seleção): Grandes Culturas
+culturas presentes (seleção): Cana-de-açúcar (Saccharum spp.)
+FEEDBACK DO CURADOR (escrever): Aprovado: Detalha a resposta da cana-de-açúcar à adubação nitrogenada.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: citros e cana
+APROVADO POR: 

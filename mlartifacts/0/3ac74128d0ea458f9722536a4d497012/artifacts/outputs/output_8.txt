@@ -1,0 +1,27 @@
+A meta de saturação por bases na calagem para citros, considerando as recomendações técnicas e objetivas, varia de acordo com diversos fatores, sendo a principal delas a análise do solo e as necessidades específicas da cultura. No entanto, as metas geralmente aceitas são:
+
+**1. Calagem (Ca²⁺):**
+
+*   **Meta Ideal:** 1,5 - 2,5 meq/kg (1,5 - 2,5 cm³ de CaCO₃/100g de solo)
+*   **Justificativa:** A calagem adequada é crucial para corrigir a acidez do solo, elevando o pH e permitindo uma melhor absorção de nutrientes, especialmente fósforo e micronutrientes como ferro, zinco e manganês. A saturação ideal proporciona o equilíbrio necessário para evitar a toxicidade de micronutrientes e garantir a disponibilidade do fósforo.
+*   **Monitoramento:** O pH do solo deve ser monitorado regularmente (a cada 6-12 meses) e a calagem deve ser aplicada quando o pH estiver abaixo de 6,0, ajustando a dose com base na análise do solo e no acompanhamento do crescimento da planta.
+
+**2. Alcali (Na⁺ e K⁺):**
+
+*   **Meta Ideal:** Menos de 0,3 meq/kg (0,3 cm³ de CaCO₃/100g de solo)
+*   **Justificativa:** A presença de excesso de sais alcalinos (Na⁺ e K⁺) em solos cítricos é um dos principais fatores que limitam a absorção de nutrientes, especialmente cálcio e cloreto. A redução da saturação alcalina permite que o citrus absorva o cálcio necessário para o desenvolvimento adequado e a resistência a doenças.
+*   **Monitoramento:** A concentração de Na⁺ e K⁺ no solo deve ser monitorada, principalmente em áreas com histórico de uso de fertilizantes fosfatados ou salins.
+
+**Observações Importantes:**
+
+*   **Análise do Solo:** A análise do solo é a etapa fundamental para determinar a quantidade exata de cal necessária, considerando o pH inicial, a presença de sais alcalinos e a capacidade de troca catiônica (CTC).
+*   **Tipo de Cal:** O tipo de cal utilizada (carbonato de cálcio, calcítico ou dolomítico) influencia na sua eficácia. O carbonato de cálcio é o mais comum, mas o dolomítico, que contém magnésio, pode ser benéfico em solos deficientes nesse nutriente.
+*   **Ajuste da Dose:** A dose de cal deve ser ajustada considerando a taxa de crescimento da planta, a idade e a variedade do citrus.
+*   **Reaplicação:** A calagem é um processo contínuo, pois o pH do solo tende a diminuir com o tempo devido à lixiviação e à decomposição da matéria orgânica.
+
+**Recursos Adicionais:**
+
+*   **Embrapa:** [https://www.embrapa.br/](https://www.embrapa.br/)
+*   **Manuais e Guias Técnicos:** Consulte manuais de citricultura e guias técnicos de órgãos de pesquisa agropecuária para obter informações mais detalhadas sobre calagem para citros.
+
+**Disclaimer:** As informações fornecidas são de caráter geral e devem ser complementadas com a análise do solo e as recomendações de um engenheiro agrônomo ou técnico especializado.
