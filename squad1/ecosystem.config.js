@@ -6,11 +6,9 @@ module.exports = {
       cwd: "./backend",
       instances: 1,
       autorestart: true,
-      watch: false,
-      max_memory_restart: "1G",
       env: {
         NODE_ENV: "production",
-        PORT: 5173,
+        PORT: 5001,
         MONGODB_URI: "mongodb://localhost:27017/cientometria",
         API_BASE_URL: "http://localhost:8000"
       }
@@ -22,9 +20,19 @@ module.exports = {
       interpreter: "./backend/venv/bin/python",
       instances: 1,
       autorestart: true,
-      watch: false,
       env: {
         PORT: 8000
+      }
+    },
+    {
+      name: "frontend",
+      script: "npm",
+      args: "run dev -- --port 5173 --host 0.0.0.0",
+      cwd: "./frontend",
+      instances: 1,
+      autorestart: true,
+      env: {
+        NODE_ENV: "development"
       }
     }
   ]
