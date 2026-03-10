@@ -358,11 +358,11 @@ app.post("/api/trigger-curation-single", authenticateToken, async (req, res) => 
     try {
         const { row_number } = req.body;
 
-        if (!row_number || isNaN(parseInt(row_number, 10))) {
-            return res.status(400).json({ error: "Parâmetro 'row_number' é obrigatório e deve ser um número." });
+        if (!row_number) {
+            return res.status(400).json({ error: "Parâmetro 'row_number' é obrigatório." });
         }
 
-        const result = await executarCuradoriaLinhaUnica(parseInt(row_number, 10));
+        const result = await executarCuradoriaLinhaUnica(row_number);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/trigger-curation-single: ${error.message}`);
@@ -373,10 +373,10 @@ app.post("/api/trigger-curation-single", authenticateToken, async (req, res) => 
 app.post("/api/categorize-single", authenticateToken, async (req, res) => {
   try {
     const { row_number } = req.body;
-    if (!row_number || isNaN(parseInt(row_number, 10))) {
-      return res.status(400).json({ error: "Parâmetro 'row_number' é obrigatório e deve ser um número." });
+    if (!row_number) {
+      return res.status(400).json({ error: "Parâmetro 'row_number' é obrigatório." });
     }
-    const result = await executarCategorizacaoLinhaUnica(parseInt(row_number, 10));
+    const result = await executarCategorizacaoLinhaUnica(row_number);
     res.json(result);
   } catch (error) {
     console.error(`Error in /api/categorize-single: ${error.message}`);
