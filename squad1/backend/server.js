@@ -795,31 +795,15 @@ app.get("/api/llm-logs", authenticateToken, async (req, res) => {
 // --- SERVER START ---
 
 app.listen(port, "0.0.0.0", () => {
-  // Start the local LLM server (FastAPI) in background
-  console.log("Iniciando servidor LLM local (FastAPI)...");
-  const venvUvicorn = path.join(__dirname, 'venv', 'bin', 'uvicorn');
-  const uvicornCmd = fsSync.existsSync(venvUvicorn) ? venvUvicorn : 'uvicorn';
+  console.log(`\n  API SERVER READY`);
+  console.log(`  ➜  Local:   http://localhost:${port}/`);
   
-  console.log(`Usando comando uvicorn: ${uvicornCmd}`);
-    
-  // Alterado para usar o main.py da raiz conforme solicitado
-  const llmServer = spawn(uvicornCmd, ['main:app', '--host', '0.0.0.0', '--port', '8000'], {
-    stdio: 'inherit',
-    env: process.env,
-    shell: true
-  });
-
-  llmServer.on('error', (err) => {
-    console.error('Falha ao iniciar servidor LLM:', err.message);
-  });
-
   const networkInterfaces = os.networkInterfaces();
   let networkUrl = process.env.NETWORK_IP ? `http://${process.env.NETWORK_IP}:${port}` : "";
 
   if (!networkUrl) {
     for (const interfaceName in networkInterfaces) {
       for (const iface of networkInterfaces[interfaceName]) {
-        // No Node.js 18+, 'family' pode ser 'IPv4' ou 4.
         if ((iface.family === "IPv4" || iface.family === 4) && !iface.internal) {
           networkUrl = `http://${iface.address}:${port}`;
           break;
@@ -828,21 +812,17 @@ app.listen(port, "0.0.0.0", () => {
       if (networkUrl) break;
     }
   }
-
-  console.log("\n  API SERVER READY");
-  console.log(`  ➜  Local:   http://localhost:${port}/`);
   
   const displayNetworkUrl = process.env.NETWORK_IP 
     ? `http://${process.env.NETWORK_IP}:${port}` 
     : networkUrl;
 
-  // refresh app.locals.baseNetworkUrl so runtime handlers can build absolute URLs
   app.locals.baseNetworkUrl = displayNetworkUrl || `http://localhost:${port}`;
 
   if (displayNetworkUrl) {
     console.log(`  ➜  Network: ${displayNetworkUrl}/`);
   }
-  console.log("\n  Servidor pronto. Usando banco de dados TiDB para autenticação.\n");
+  console.log("\n  Servidor pronto e servindo Frontend + API.\n");
 });
 
 // Exportar o app para compatibilidade correta com Vercel
