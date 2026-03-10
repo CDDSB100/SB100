@@ -10,7 +10,7 @@ module.exports = {
       max_memory_restart: "1G",
       env: {
         NODE_ENV: "production",
-        PORT: 5001,
+        PORT: 5173,
         MONGODB_URI: "mongodb://localhost:27017/cientometria",
         API_BASE_URL: "http://localhost:8000"
       }
@@ -25,16 +25,6 @@ module.exports = {
       watch: false,
       env: {
         PORT: 8000
-      }
-    },
-    {
-      name: "frontend",
-      script: "serve",
-      env: {
-        PM2_SERVE_PATH: "./frontend/dist",
-        PM2_SERVE_PORT: 5173,
-        PM2_SERVE_SPA: "true",
-        PM2_SERVE_HOMEPAGE: "/index.html"
       }
     }
   ]

@@ -117,8 +117,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Se existir uma build do front-end (agora em busca-cientometrica/dist), servir os arquivos estáticos
-const frontendBuildPath = path.join(__dirname, '../busca-cientometrica/dist');
+// Se existir uma build do front-end (agora em frontend/dist), servir os arquivos estáticos
+const frontendBuildPath = path.join(__dirname, '../frontend/dist');
 if (fsSync.existsSync(frontendBuildPath)) {
   console.log(`> Servindo frontend estático de ${frontendBuildPath}`);
   // servir sem cache para evitar antigos conteúdos em browsers
