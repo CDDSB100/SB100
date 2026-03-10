@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
-const CONSOLIDADO_PATH = path.join(__dirname, '../../Consolidado - Respostas Gerais.xlsx');
+const CONSOLIDADO_PATH = path.join(__dirname, '../Consolidado - Respostas Gerais.xlsx');
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cientometria';
 
 // Define the Article Schema based on ALL_METADATA_FIELDS and additional fields
