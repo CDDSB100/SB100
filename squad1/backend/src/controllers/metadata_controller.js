@@ -2,6 +2,9 @@ const axios = require('axios');
 const pdf = require('pdf-parse');
 const Tesseract = require('tesseract.js');
 
+// --- CONFIGURATION ---
+const API_BASE_URL = process.env.API_BASE_URL || 'http://localhost:8000';
+
 const ALL_METADATA_FIELDS = [
     "Autor(es)",
     "Título",

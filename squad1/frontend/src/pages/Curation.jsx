@@ -124,6 +124,27 @@ function CurationPage() {
   const [batchProgress, setBatchProgress] = useState(null);
   const [showProgressDialog, setShowProgressDialog] = useState(false);
 
+  const fetchArticles = useCallback(async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const data = await getCuratedArticles();
+      setArticles(data);
+      if (data.length > 0) {
+        const headers = Object.keys(data[0]).filter((h) => !h.startsWith("__") && h !== "createdAt" && h !== "updatedAt" && h !== "_id");
+        setAllHeaders(headers);
+        
+        const categories = [...new Set(data.map(a => a.CATEGORIA || a.categoria).filter(Boolean))];
+        setUniqueCategories(categories);
+      }
+    } catch (err) {
+      console.error("Fetch error:", err);
+      setError("Falha ao carregar artigos da curadoria.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     let interval;
     if (openLogs) {
@@ -165,27 +186,6 @@ function CurationPage() {
       if (pollInterval) clearInterval(pollInterval);
     };
   }, [isTriggering, showProgressDialog, fetchArticles]);
-
-  const fetchArticles = useCallback(async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const data = await getCuratedArticles();
-      setArticles(data);
-      if (data.length > 0) {
-        const headers = Object.keys(data[0]).filter((h) => !h.startsWith("__") && h !== "createdAt" && h !== "updatedAt" && h !== "_id");
-        setAllHeaders(headers);
-        
-        const categories = [...new Set(data.map(a => a.CATEGORIA || a.categoria).filter(Boolean))];
-        setUniqueCategories(categories);
-      }
-    } catch (err) {
-      console.error("Fetch error:", err);
-      setError("Falha ao carregar artigos da curadoria.");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   useEffect(() => {
     fetchArticles();
