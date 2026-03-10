@@ -796,33 +796,11 @@ app.get("/api/llm-logs", authenticateToken, async (req, res) => {
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`\n  API SERVER READY`);
-  console.log(`  ➜  Local:   http://localhost:${port}/`);
+  console.log(`  ➜  PORT:    ${port}`);
   
-  const networkInterfaces = os.networkInterfaces();
-  let networkUrl = process.env.NETWORK_IP ? `http://${process.env.NETWORK_IP}:${port}` : "";
-
-  if (!networkUrl) {
-    for (const interfaceName in networkInterfaces) {
-      for (const iface of networkInterfaces[interfaceName]) {
-        if ((iface.family === "IPv4" || iface.family === 4) && !iface.internal) {
-          networkUrl = `http://${iface.address}:${port}`;
-          break;
-        }
-      }
-      if (networkUrl) break;
-    }
-  }
-  
-  const displayNetworkUrl = process.env.NETWORK_IP 
-    ? `http://${process.env.NETWORK_IP}:${port}` 
-    : networkUrl;
-
-  app.locals.baseNetworkUrl = displayNetworkUrl || `http://localhost:${port}`;
-
-  if (displayNetworkUrl) {
-    console.log(`  ➜  Network: ${displayNetworkUrl}/`);
-  }
-  console.log("\n  Servidor pronto e servindo Frontend + API.\n");
+  const displayNetworkUrl = app.locals.baseNetworkUrl || `http://localhost:${port}`;
+  console.log(`  ➜  Network: ${displayNetworkUrl}`);
+  console.log("\n  Servidor pronto e servindo Frontend + API na porta 5173.\n");
 });
 
 // Exportar o app para compatibilidade correta com Vercel
