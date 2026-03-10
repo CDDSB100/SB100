@@ -1,23 +1,42 @@
-# Ignorar TUDO que começa com ponto
-.*
-!.gitignore
+# Ignorar pastas de configuração do sistema (sem o .* genérico)
+.ssh/
+.pm2/
+.nvm/
+.snap/
+.dotnet/
+.copilot/
+.cache/
 
-# Ignorar pastas de sistema e ambientes
-ssh/
-snap/
-nvm/
-pm2/
-dotnet/
-copilot/
+# Ambientes virtuais e Python
 venv/
+.venv/
 __pycache__/
 mlflow-env/
+*.pyc
+
+# Logs e Processos
+nohup.out
+*.log
+npm-debug.log*
+
+# Serviços e Banco de Dados (SB100)
 qdrant_service/
 milvus_service/
+*.db
+*.sqlite
+
+# Arquivos de Sistema e Backup
+.DS_Store
 info_tailscale_bkp
 banner.jpg
-*.db
-*.log
-!.gitkeep
-ssh
+
+# Nodes
 node_modules/
+
+# Manter o .gitignore e arquivos de configuração importantes
+!.gitignore
+!.github/
+
+package-lock.json
+cloudflared/
+.cloudflared/
