@@ -19,19 +19,10 @@ export default defineConfig({
     },
     allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1', '172.28.181.92', '0.0.0.0'],
     proxy: {
-      '/api/curadoria': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
-      '/api/categorize': {
-        target: 'http://localhost:8000',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-      },
       '/api': {
         target: 'http://localhost:5001',
         changeOrigin: true,
+        secure: false,
       },
     },
   },
