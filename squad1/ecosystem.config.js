@@ -3,7 +3,6 @@ module.exports = {
     {
       name: "api-node",
       script: "./backend/server.js",
-      cwd: "./backend",
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
@@ -16,8 +15,7 @@ module.exports = {
     },
     {
       name: "api-python",
-      script: "main.py",
-      cwd: "./backend",
+      script: "./backend/main.py",
       interpreter: "./backend/venv/bin/python",
       instances: 1,
       autorestart: true,
