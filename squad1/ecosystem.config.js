@@ -26,6 +26,19 @@ module.exports = {
       env: {
         PORT: 8000
       }
+    },
+    {
+      name: "frontend",
+      script: "npm",
+      args: "run dev",
+      cwd: "./frontend",
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      env: {
+        NODE_ENV: "development",
+        VITE_API_URL: "http://localhost:5001"
+      }
     }
   ]
 };
