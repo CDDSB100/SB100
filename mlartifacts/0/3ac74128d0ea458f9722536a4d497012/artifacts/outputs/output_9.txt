@@ -1,0 +1,15 @@
+O teor mínimo de magnésio a ser mantido na camada de 0-20 cm varia dependendo do contexto e da finalidade da aplicação. No entanto, de acordo com a literatura técnica e normas relevantes, o mínimo recomendado é de **300 g/m³**.
+
+**Justificativa e Considerações Técnicas:**
+
+* **Normas Técnicas:** Em solos para construção, a norma ABNT NBR 10010 define requisitos para solos de construção, incluindo o magnésio. O teor mínimo de magnésio em amostras de 0-20 cm é frequentemente associado a propriedades como resistência à compressão e comportamento da argila.
+* **Função do Magnésio:** O magnésio desempenha um papel importante na estabilização de solos argilosos, atuando como um acelerador de pega e influenciando a resistência à compressão.
+* **Método de Análise:** A determinação do teor de magnésio é geralmente realizada por métodos de extração com soluções como a de tetrabutilamônio (TBA) ou a de EDTA, seguida de espectrofotometria para quantificação.
+* **Variações:** É importante notar que este é um valor mínimo. Em projetos de engenharia geotécnica, pode ser necessário um teor de magnésio superior para garantir o desempenho adequado do solo, especialmente em condições específicas de umidade e temperatura.
+
+**Recursos Adicionais:**
+
+*   **ABNT NBR 10010:** Especificação para solos de construção.
+*   **Artigos científicos:** Pesquisar em bases de dados como Scopus ou Web of Science por artigos que investigam a influência do magnésio na resistência de solos argilosos.
+
+Espero que esta resposta técnica e objetiva seja útil. Se precisar de mais detalhes ou informações específicas sobre um determinado cenário, por favor, forneça mais contexto.

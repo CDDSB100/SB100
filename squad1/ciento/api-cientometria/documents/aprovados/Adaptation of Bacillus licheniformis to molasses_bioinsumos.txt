@@ -1,0 +1,37 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Luis E. Mota-Pacheco, Paula C. Guadarrama-Mendoza, Raúl Salas-Coronado, Adelfo Escalante, Thomas J. Montville, Rogelio Valadez-Blanco
+Titulo: ADAPTATION OF Bacillus licheniformis TO MOLASSES FOR IMPROVED PRODUCTION OF A BIOFERTILIZER STRAIN
+Subtítulo: Adaptación de Bacillus licheniformis a melazas para la producción mejorada de una cepa biofertilizante
+Ano: 2019
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: agricultura sustentável, rizósfera, biofertilizantes bacterianos, Bacillus licheniformis, melazas de cana de açúcar, adaptação bacteriana induzida, produção de biomassa
+Resumo: O uso de biofertilizantes pode reduzir a dependência de fertilizantes químicos, que não são renováveis, são caros para importar e degradam tanto a rizósfera quanto o ecosistema em geral.
+Tipo de documento: Artigo
+Editora: Agrociencia
+Instituição: Universidade Tecnológica da Mixteca
+Local: Huajuapan de León, Oaxaca, México
+Tipo de trabalho: Pesquisa
+Título do periódico: Agrociencia
+Quartil do periódico: 
+Volume: 53
+Número/fascículo: 81184
+Páginas: 1183-1201
+DOI: 
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Adaptation of Bacillus licheniformis to molasses_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Análise de crescimento celular, espectroscopia, difração de raios-X, amostragem de solo
+nutrientes (seleção): Nitrogênio, Fósforo, Carbono orgânico
+estratégias de fornecimento de nutrientes (seleção): Adubação de base, incorporação de resíduos
+grupos de culturas (seleção): Culturas de milho
+culturas presentes (seleção): Milho
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a adaptação de Bacillus licheniformis a melazas de cana de açúcar para a produção de biofertilizantes.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: solos
+APROVADO POR: 

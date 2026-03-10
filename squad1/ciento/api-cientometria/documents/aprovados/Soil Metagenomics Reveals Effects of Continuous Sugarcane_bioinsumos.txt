@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Ziqin Pang, Fei Dong, Qiang Liu, Wenxiong Lin, Chaohua Hu, Zhaonian Yuan
+Titulo: Soil Metagenomics Reveals Effects of Continuous Sugarcane Cropping on the Structure and Functional Pathway of Rhizospheric Microbial Community
+Subtítulo: Soil Metagenomics Reveals Effects of Continuous Sugarcane Cropping on the Structure and Functional Pathway of Rhizospheric Microbial Community
+Ano: 2021
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: sugarcane, continuous cropping, rhizosphere soil, metagenome, community structure, bacterial and fungal communities, functional genes
+Resumo: 
+Tipo de documento: Artigo Científico
+Editora: Frontiers in Microbiology
+Instituição: Fujian Agriculture and Forestry University
+Local: Fuzhou, China
+Tipo de trabalho: Pesquisa Original
+Título do periódico: Frontiers in Microbiology
+Quartil do periódico: 
+Volume: 12
+Número/fascículo: 
+Páginas: 
+DOI: 10.3389/fmicb.2021.627569
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Soil Metagenomics Reveals Effects of Continuous Sugarcane_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Illumina Miseq high-throughput sequencing, metagenômica
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Cana-de-açúcar
+culturas presentes (seleção): 
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia da metagenômica em estudar a comunidade microbiana do solo e suas funções em diferentes anos de cultivo contínuo de cana-de-açúcar.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: BIOINSUMOS

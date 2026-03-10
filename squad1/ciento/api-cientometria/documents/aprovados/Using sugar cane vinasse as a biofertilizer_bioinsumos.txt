@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Daniella Senatore, Agustina Queirolo, Jorge Monza, Natalia Bajsa
+Titulo: 
+Subtítulo: Efeitos do vinagre de cana-de-açúcar como biofertilizante: efeitos na comunidade microbiana do solo devido à aplicação periódica
+Ano: 2023
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Fertirrigação, Resíduo industrial, Melhoria do solo, Qualidade do solo, Biocombustíveis
+Resumo: O estudo avaliou os efeitos da aplicação periódica de vinagre de cana-de-açúcar no solo e na comunidade microbiana de solos utilizados para a cultura de cana-de-açúcar.
+Tipo de documento: Artigo original
+Editora: Society for Environmental Sustainability
+Instituição: Instituto de Investigaciones Biológicas Clemente Estable, Universidad de la República
+Local: Montevideo, Uruguay
+Tipo de trabalho: Pesquisa
+Título do periódico: Environmental Sustainability
+Quartil do periódico: 
+Volume: 6
+Número/fascículo: 1
+Páginas: 173–182
+DOI: 10.1007/s42398-023-00262-z
+Numeração: N/A
+Qualis: 
+URL DO DOCUMENTO: Using sugar cane vinasse as a biofertilizer_bioinsumos.pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Análise de comunidades microbianas, Irrigação controlada, Coleta de amostras de solo
+nutrientes (seleção): Potássio, Carbono orgânico, Nitrogênio
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação
+grupos de culturas (seleção): Cultura de cana-de-açúcar
+culturas presentes (seleção): Cana-de-açúcar
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia os efeitos da aplicação periódica de vinagre de cana-de-açúcar no solo e na comunidade microbiana de solos utilizados para a cultura de cana-de-açúcar.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: solos

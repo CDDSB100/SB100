@@ -1,0 +1,25 @@
+A dose recomendada de K₂O para laranjas com a produtividade especificada (41-50 t ha⁻¹) e K trocável entre 1,6-3,0 mmolc dm⁻³ deve ser calculada com base em modelos de adubação e nas necessidades nutricionais da cultura. No entanto, podemos fornecer uma estimativa técnica e objetiva, considerando as seguintes informações:
+
+**1. Necessidades de Potássio (K):**
+
+*   O K trocável (KT) é um indicador da disponibilidade de potássio no solo. Valores entre 1,6 e 3,0 mmolc dm⁻³ indicam que o solo tem uma disponibilidade moderada a alta de K.
+*   Laranjas com alta produtividade geralmente apresentam maiores necessidades de K.
+*   As necessidades específicas de K variam conforme o ciclo da cultura, estágio de desenvolvimento da fruta e características do solo.
+
+**2. Cálculos e Recomendações:**
+
+*   **Modelo de Adubação:** Uma abordagem comum para determinar a dose de K₂O é utilizando modelos de adubação de referência, que levam em conta a produtividade, o K trocável e outros fatores como o tipo de solo.
+*   **Recomendação Inicial:** Em solos com KT entre 1,6 e 3,0 mmolc dm⁻³, uma dose inicial de **30-50 kg de K₂O por hectare** é frequentemente recomendada para laranjas de alta produtividade.
+*   **Ajustes:** É crucial realizar uma análise de solo detalhada para determinar o nível exato de K e outros nutrientes. Os resultados da análise devem ser utilizados para ajustar a dose de K₂O, considerando:
+    *   **Estágio de Desenvolvimento:** A demanda por K aumenta significativamente durante a floração e frutificação.
+    *   **Tipo de Solo:** Solos arenosos tendem a perder K mais rapidamente, exigindo doses maiores.
+    *   **Histórico da Área:** Culturas anteriores podem ter alterado os níveis de nutrientes no solo.
+
+**3. Considerações Técnicas:**
+
+*   **Forma de Aplicação:** A forma de aplicação do K₂O (ex: calcário K, sal de potássio) pode influenciar a eficiência da utilização.
+*   **Monitoramento:** É importante monitorar a saúde das plantas (ex: sintomas de deficiência de K, como amarelecimento das folhas) e ajustar a adubação conforme necessário.
+
+**Observação:** Esta é uma recomendação geral baseada nas informações fornecidas. A dose ideal de K₂O pode variar dependendo das condições específicas da propriedade e da cultura. Recomenda-se consultar um engenheiro agrônomo para obter uma recomendação personalizada.
+
+**Disclaimer:** *As informações fornecidas são de caráter técnico e objetivo e não substituem a avaliação de um profissional qualificado.*

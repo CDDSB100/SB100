@@ -1,0 +1,23 @@
+A faixa adequada de fósforo foliar em citros, considerando aspectos técnicos e objetivos, varia de acordo com a idade da planta, o ciclo de desenvolvimento e as condições de solo. No entanto, as seguintes diretrizes são geralmente aceitas:
+
+**Faixas Recomendadas (Concentração em ppm):**
+
+* **Plantas Jovens (até 3 anos):** 250 - 400 ppm. Em estágios iniciais, a demanda por fósforo é maior para o desenvolvimento da raiz e da estrutura da planta.
+* **Plantas em Produção (3 - 8 anos):** 150 - 250 ppm. Durante a fase de frutificação, o fósforo é crucial para a qualidade dos frutos, como o tamanho, a cor e o teor de açúcar.
+* **Plantas Maduras (acima de 8 anos):** 100 - 180 ppm. Em citros maduros, a demanda por fósforo diminui, mas ainda é importante para a manutenção da floração e da frutificação.
+
+**Considerações Adicionais:**
+
+* **Formulação:** A solução de fósforo deve ser balanceada com outros nutrientes para evitar interrupções no equilíbrio nutricional.
+* **Frequência:** A aplicação foliar de fósforo deve ser feita em intervalos regulares, geralmente a cada 15-30 dias, ajustando a frequência com base na avaliação do crescimento da planta e nas condições do solo.
+* **Condições Climáticas:** Em dias nublados ou chuvosos, a aplicação foliar de fósforo pode ser menos eficaz devido à lavagem rápida do nutriente.
+* **Análise de Solo:** A determinação do teor de fósforo no solo é fundamental para identificar a necessidade real de suplementação foliar. Uma análise de solo inadequada pode levar à super ou sub-aplicação do nutriente.
+
+**Importante:** As concentrações acima são valores de referência. É crucial realizar monitoramentos regulares da planta (observação visual, avaliação da folhagem) e, se possível, realizar análises foliares para determinar as necessidades específicas de fósforo da cultura.
+
+**Recursos Adicionais:**
+
+* **Embrapa:** [https://www.embrapa.br/citricultura](https://www.embrapa.br/citricultura)
+* **Artigos científicos:**  Pesquisar em bases de dados como o Google Scholar por termos como “foliar phosphorus citrus” pode fornecer informações mais detalhadas e específicas.
+
+**Disclaimer:** As informações fornecidas são de caráter geral e podem variar dependendo das condições locais e da cultivar do citrus. Consulte um agrônomo ou especialista em nutrição de citrus para obter recomendações personalizadas.

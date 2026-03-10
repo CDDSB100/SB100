@@ -1,0 +1,14 @@
+Com base nos dados fornecidos, a dose recomendada de N (nitrogênio) foliar para laranjas com produtividade de 51-60 t ha⁻¹ e N foliar entre 25-30 g kg⁻¹ é de **25-30 g kg⁻¹**.
+
+**Justificativa:**
+
+A informação sobre a produtividade (51-60 t ha⁻¹) e a concentração de N foliar (25-30 g kg⁻¹) serve como um benchmark.  O objetivo da aplicação de N foliar é atingir uma concentração similar à encontrada naturalmente nas folhas da planta (25-30 g kg⁻¹).  Portanto, a dose de N foliar a ser aplicada deve ser ajustada para manter esse intervalo, garantindo que a planta receba a quantidade de N necessária para atingir a produtividade desejada.
+
+**Observações:**
+
+*   Esta é uma recomendação baseada em dados específicos. A dose ideal pode variar dependendo de fatores como:
+    *   Variedade da laranja
+    *   Condições do solo (pH, textura, capacidade de retenção de água)
+    *   Clima (temperatura, umidade, radiação solar)
+    *   Estágio de desenvolvimento da planta
+*   É fundamental realizar análises foliares periódicas para monitorar os níveis de N na planta e ajustar a dose da aplicação conforme necessário.

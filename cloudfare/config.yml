@@ -1,0 +1,8 @@
+tunnel: 59ccd5b3-94d1-42c7-b9e6-10fd721018dd
+credentials-file: /home/sb100/.cloudflared/59ccd5b3-94d1-42c7-b9e6-10fd721018dd.json
+
+ingress:
+  - hostname: tunnel.optin.com.br
+    service: http://172.28.181.92:5173
+  - service: http_status:404
+
