@@ -17,6 +17,12 @@ export default defineConfig({
     dedupe: ['react', 'react-dom', '@emotion/react', '@emotion/styled', '@mui/material']
   },
   server: {
+    host: true,
+    hmr: {
+      host: 'sb100cientometria.optin.com.br',
+      protocol: 'wss',
+      clientPort: 443
+    },
     allowedHosts: ['sb100cientometria.optin.com.br', 'localhost', '127.0.0.1', '172.28.181.92', '0.0.0.0'],
     middlewareMode: false,
     proxy: {
