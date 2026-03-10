@@ -29,15 +29,12 @@ module.exports = {
     },
     {
       name: "frontend",
-      script: "npm",
-      args: "run dev",
-      cwd: "./frontend",
-      instances: 1,
-      autorestart: true,
-      watch: false,
+      script: "serve",
       env: {
-        NODE_ENV: "development",
-        VITE_API_URL: "http://localhost:5001"
+        PM2_SERVE_PATH: "./frontend/dist",
+        PM2_SERVE_PORT: 5173,
+        PM2_SERVE_SPA: "true",
+        PM2_SERVE_HOMEPAGE: "/index.html"
       }
     }
   ]
