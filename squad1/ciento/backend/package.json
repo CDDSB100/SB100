@@ -1,9 +1,0 @@
-{
-  "name": "backend-wrapper",
-  "private": true,
-  "version": "1.0.0",
-  "scripts": {
-    "start": "npm --prefix ../api-cientometria run start",
-    "dev": "npm --prefix ../api-cientometria run dev"
-  }
-}

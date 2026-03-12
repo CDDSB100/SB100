@@ -64,6 +64,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import BuildIcon from "@mui/icons-material/Build";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
+import DownloadIcon from "@mui/icons-material/Download";
 import "./Curation.css";
 import { 
   getCuratedArticles, 
@@ -78,7 +79,9 @@ import {
   getLlmLogs,
   getBatchProgress,
   fixMissingTitles,
-  updateArticle
+  updateArticle,
+  downloadAllDocuments,
+  downloadDocument
 } from '../api';
 
 function CurationPage() {
@@ -111,6 +114,7 @@ function CurationPage() {
     severity: "info",
   });
   const [isTriggering, setIsTriggering] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
   const [processingRow, setProcessingRow] = useState(null);
 
   const [logs, setLogs] = useState("");
@@ -144,6 +148,63 @@ function CurationPage() {
       setLoading(false);
     }
   }, []);
+
+  const handleDownloadAll = async () => {
+    setIsDownloading(true);
+    try {
+      const blob = await downloadAllDocuments();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'documentos_curadoria.zip');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      setSnackbar({
+        open: true,
+        message: "Download iniciado com sucesso!",
+        severity: "success",
+      });
+    } catch (err) {
+      console.error("Download error:", err);
+      setSnackbar({
+        open: true,
+        message: "Falha ao baixar documentos: " + (err.message || "Erro desconhecido"),
+        severity: "error",
+      });
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const handleDownloadSingle = async (fileName) => {
+    if (!fileName) return;
+    setProcessingRow(fileName);
+    try {
+      const blob = await downloadDocument(fileName);
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', fileName);
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      setSnackbar({
+        open: true,
+        message: `Download de "${fileName}" iniciado!`,
+        severity: "success",
+      });
+    } catch (err) {
+      console.error("Download error:", err);
+      setSnackbar({
+        open: true,
+        message: "Falha ao baixar documento: " + (err.message || "Erro desconhecido"),
+        severity: "error",
+      });
+    } finally {
+      setProcessingRow(null);
+    }
+  };
 
   useEffect(() => {
     let interval;
@@ -510,6 +571,15 @@ function CurationPage() {
                   <RefreshIcon />
                 </IconButton>
               </Tooltip>
+              <Tooltip title="Baixar Todos os Documentos Aprovados">
+                <IconButton 
+                  onClick={handleDownloadAll} 
+                  disabled={isDownloading}
+                  sx={{ bgcolor: 'rgba(255,255,255,0.1)', color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.2)' } }}
+                >
+                  {isDownloading ? <CircularProgress size={24} color="inherit" /> : <DownloadIcon />}
+                </IconButton>
+              </Tooltip>
               <Tooltip title="Ver Console da LLM">
                 <IconButton onClick={() => setOpenLogs(true)} sx={{ bgcolor: 'rgba(255,255,255,0.2)', color: 'white', '&:hover': { bgcolor: 'rgba(255,255,255,0.3)' } }}>
                   <TerminalIcon />
@@ -676,6 +746,16 @@ function CurationPage() {
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <PictureAsPdfIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Baixar PDF">
+                            <IconButton 
+                              color="primary" 
+                              onClick={() => handleDownloadSingle(article["URL DO DOCUMENTO"])}
+                              disabled={!article["URL DO DOCUMENTO"] || processingRow === article["URL DO DOCUMENTO"]}
+                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                            >
+                              {processingRow === article["URL DO DOCUMENTO"] ? <CircularProgress size={20} /> : <DownloadIcon fontSize="small" />}
                             </IconButton>
                           </Tooltip>
                           <Tooltip title="Ver Metadados Completos">

@@ -2,9 +2,24 @@ const mongoose = require('mongoose');
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cientometria';
 
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('✅ Conectado ao MongoDB'))
-  .catch(err => console.error('❌ Erro ao conectar ao MongoDB:', err));
+// Conexão com tratamento de erro resiliente
+const connectDB = async () => {
+  try {
+    await mongoose.connect(MONGODB_URI, {
+      serverSelectionTimeoutMS: 5000, // Tenta por 5 segundos no máximo
+    });
+    console.log('✅ Conectado ao MongoDB');
+  } catch (err) {
+    console.error('⚠️ ATENÇÃO: Falha ao conectar ao MongoDB. Algumas funcionalidades de persistência podem não estar disponíveis.');
+    // No ambiente de teste/dev, não encerramos o processo para permitir rodar apenas partes do sistema.
+    if (process.env.NODE_ENV === 'production') {
+      console.error('❌ Erro crítico em produção. Encerrando...');
+      process.exit(1);
+    }
+  }
+};
+
+connectDB();
 
 const articleSchema = new mongoose.Schema({
   "Autor(es)": String,

@@ -289,6 +289,35 @@ async function updateArticle(id, data) {
   return { success: true, article };
 }
 
+async function downloadCuratedDocuments() {
+  const articles = await Article.find({
+    $or: [
+      { "APROVAÇÃO MANUAL": { $in: ["Sim", "sim", "Aprovado", true, "1", "TRUE", "true"] } },
+      { "APROVAÇÃO CURADOR (marcar)": { $in: ["Aprovado por IA", "Aprovado Manualmente", "TRUE", "true", "Sim", "sim"] } }
+    ]
+  });
+
+  const zip = new AdmZip();
+  let count = 0;
+
+  for (const article of articles) {
+    const fileName = article["URL DO DOCUMENTO"] || article["url_do_documento"];
+    if (fileName) {
+      const filePath = findFileInFolders(fileName);
+      if (filePath && fsSync.existsSync(filePath)) {
+        zip.addLocalFile(filePath);
+        count++;
+      }
+    }
+  }
+
+  if (count === 0) {
+    throw new Error("Nenhum documento encontrado para download.");
+  }
+
+  return zip.toBuffer();
+}
+
 module.exports = {
   getCuratedArticles,
   executarCuradoriaLocalmente,
@@ -299,6 +328,7 @@ module.exports = {
   aprovarManualmente,
   reprovarManualmente,
   updateArticle,
+  downloadCuratedDocuments,
   processZipUpload: async (buf, user) => {
     const tmp = path.join(os.tmpdir(), `zip-${Date.now()}`);
     await fs.mkdir(tmp, { recursive: true });

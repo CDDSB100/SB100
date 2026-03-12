@@ -6,10 +6,16 @@ module.exports = {
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
+      // Logs config
+      error_file: "./backend/logs/err.log",
+      out_file: "./backend/logs/out.log",
+      log_date_format: "YYYY-MM-DD HH:mm:ss",
+      combine_logs: true,
+      merge_logs: true,
       env: {
         NODE_ENV: "production",
-        PORT: 5173,
-        MONGODB_URI: "mongodb://localhost:27017/cientometria",
+        PORT: 5001,
+        MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria",
         API_BASE_URL: "http://172.28.181.92:8000"
       }
     },
@@ -19,6 +25,10 @@ module.exports = {
       interpreter: "./backend/venv/bin/python",
       instances: 1,
       autorestart: true,
+      // Logs config
+      error_file: "./backend/logs/python-err.log",
+      out_file: "./backend/logs/python-out.log",
+      log_date_format: "YYYY-MM-DD HH:mm:ss",
       env: {
         PORT: 8000,
         GROQ_API_KEY: process.env.GROQ_API_KEY,

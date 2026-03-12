@@ -147,6 +147,16 @@ export const updateArticle = async (id, data) => {
   return response.data;
 };
 
+export const downloadAllDocuments = async () => {
+  const response = await api.get("/download-all", { responseType: 'blob' });
+  return response.data;
+};
+
+export const downloadDocument = async (fileName) => {
+  const response = await api.get(`/documents/${encodeURIComponent(fileName)}`, { responseType: 'blob' });
+  return response.data;
+};
+
 export const registerUser = async (username, email, password, role) => {
   const response = await api.post("/register", {
     username,

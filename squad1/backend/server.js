@@ -34,6 +34,7 @@ const {
   processZipUpload,
   processDriveFolderForBatchInsert,
   uploadFileToDrive,
+  downloadCuratedDocuments,
 } = require("./src/services/api_logic.js");
 const { pool, initDb, saltRounds } = require("./src/services/database.js"); // Import saltRounds
 const { extractMetadata, ALL_METADATA_FIELDS } = require("./src/controllers/metadata_controller.js"); // Importar o novo controller e os campos
@@ -57,7 +58,7 @@ const upload = multer({ storage: storage });
 
 const app = express();
 // allow the port to be overridden (useful for dev vs prod)
-const port = process.env.PORT || 5173;
+const port = process.env.PORT || 5001;
 
 // Helper to compute network base URL (http://<ip>:<port>)
 function computeNetworkBaseUrl() {
@@ -425,6 +426,18 @@ app.get("/api/curation", authenticateToken, async (req, res) => {
   } catch (error) {
     console.error(`Error in /api/curation: ${error.message}`);
     res.status(500).json({ error: "Erro ao carregar artigos da curadoria: " + error.message });
+  }
+});
+
+app.get("/api/download-all", authenticateToken, async (req, res) => {
+  try {
+    const zipBuffer = await downloadCuratedDocuments();
+    res.set('Content-Type', 'application/zip');
+    res.set('Content-Disposition', 'attachment; filename=documentos_curadoria.zip');
+    res.send(zipBuffer);
+  } catch (error) {
+    console.error(`Error in /api/download-all: ${error.message}`);
+    res.status(500).json({ error: error.message });
   }
 });
 
