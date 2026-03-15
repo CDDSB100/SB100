@@ -204,10 +204,17 @@ async def curar_documento(payload: PDFPayload):
 
     # 3. Guardrail: Texto Vazio ou Insuficiente
     if len(document_text) < 150:
-        if not ("APROVAÇÃO CURADOR (marcar)" in payload.headers or "FEEDBACK DO CURADOR (escrever)" in payload.headers):
+        if not ("APROVAÇÃO CURADOR (marcar)" in payload.headers or "FEEDBACK DA IA" in payload.headers):
             raise HTTPException(status_code=400, detail="Texto insuficiente para análise.")
         else:
-             return {"APROVAÇÃO CURADOR (marcar)": False, "FEEDBACK DO CURADOR (escrever)": "Rejeitado: Texto insuficiente para análise científica."}
+             return {
+                 "APROVAÇÃO CURADOR (marcar)": False, 
+                 "FEEDBACK DA IA": {
+                     "technical_summary": "Rejeitado: Texto insuficiente para análise científica.",
+                     "climate_insights": "N/A",
+                     "relevance_score": 0.0
+                 }
+             }
 
     # 4. RAG: Busca de Contexto
     referencia_rag = search_similar_docs(document_text[:1000])
@@ -218,12 +225,30 @@ async def curar_documento(payload: PDFPayload):
     if "CATEGORIA" in current_headers:
         current_headers.remove("CATEGORIA")
 
+    # Garante que os novos campos estruturados estejam no esquema, substituindo os legados para a IA
     if "APROVAÇÃO CURADOR (marcar)" not in current_headers:
         current_headers.append("APROVAÇÃO CURADOR (marcar)")
-    if "FEEDBACK DO CURADOR (escrever)" not in current_headers:
-        current_headers.append("FEEDBACK DO CURADOR (escrever)")
+    
+    # Removemos o feedback do curador humano do prompt da IA, pois ela gera o seu próprio
+    if "FEEDBACK DO CURADOR (escrever)" in current_headers:
+        current_headers.remove("FEEDBACK DO CURADOR (escrever)")
+    if "FEEDBACK DO CURADOR" in current_headers:
+        current_headers.remove("FEEDBACK DO CURADOR")
+    if "FEEDBACK SOBRE IA" in current_headers:
+        current_headers.remove("FEEDBACK SOBRE IA")
+    
+    # Adicionamos o campo de feedback estruturado da IA
+    if "FEEDBACK DA IA" not in current_headers:
+        current_headers.append("FEEDBACK DA IA")
 
     json_skeleton = {header: "" for header in current_headers}
+    # Definimos a estrutura interna do Feedback da IA
+    json_skeleton["FEEDBACK DA IA"] = {
+        "technical_summary": "Resumo técnico detalhado da fisiologia/manejo/descobertas.",
+        "climate_insights": "Insights sobre clima, temperatura ou anomalias térmicas mencionadas.",
+        "relevance_score": 0.0 # Pontuação de 0 a 10
+    }
+    
     schema_str = json.dumps(json_skeleton, indent=2)
 
     # 6. Prompt Engineering
@@ -242,9 +267,8 @@ Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido 
 - **grupos de culturas (seleção):** Liste os grandes grupos de culturas agrícolas investigados no solo. Sempre liste pelo menos um se aplicável.
 - **culturas presentes (seleção):** Liste os nomes específicos das culturas ou plantas estudadas. Sempre liste pelo menos uma se aplicável.
 
-**CONTEXTO DE CURADORIA (se aplicável):**
-Se os campos "APROVAÇÃO CURADOR (marcar)" e "FEEDBACK DO CURADOR (escrever)" estiverem presentes no esquema,
-você TAMBÉM atuará como um Curador Científico especializado em SOLOS, seguindo estes critérios:
+**CONTEXTO DE CURADORIA E ANÁLISE:**
+Você atuará como um Curador Científico especializado em SOLOS, seguindo estes critérios:
 
 **CRITÉRIOS DE VALIDAÇÃO (OBRIGATÓRIOS - TODOS devem ser atendidos para aprovação):**
 1.  **Tópico Principal:** O FOCO PRINCIPAL do artigo deve ser o estudo do SOLO (manejo, conservação, fertilidade, física ou biologia do solo).
@@ -252,15 +276,15 @@ você TAMBÉM atuará como um Curador Científico especializado em SOLOS, seguin
 2.  **Formato:** Deve ser um artigo científico, tese ou estudo de caso detalhado com Metodologia e Resultados claros.
 3.  **Consistência:** Não deve contradizer fatos do 'EXISTING DATABASE KNOWLEDGE'.
 
-**REGRAS DE SAÍDA (Siga rigorosamente):**
+**REGRAS DE FEEDBACK E SAÍDA (Siga rigorosamente):**
 1.  Sua saída completa deve ser um único objeto JSON válido.
-2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento. Garanta que os campos específicos (Caracteristicas do solo e região, ferramentas e técnicas, nutrientes, estratégias de fornecimento de nutrientes, grupos de culturas, culturas presentes) sejam sempre respondidos com informações relevantes, inferindo do contexto se necessário. Se um campo não puder ser encontrado ou não for aplicável, deixe vazio.
-3.  Se os campos de curadoria estiverem presentes:
-    -   Preencha o campo **'FEEDBACK DO CURADOR (escrever)'** com a razão explícita para sua decisão:
-        -   Se aprovando: Comece com "Aprovado:" e declare a contribuição específica para a ciência do solo (ex: "Aprovado: Avalia a compactação do solo sob diferentes sistemas de plantio.").
-        -   Se rejeitando: Comece com "Rejeitado:" e declare qual critério de validação falhou.
-    -   Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` or `false`.
-4.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
+2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento.
+3.  **FEEDBACK DA IA (Objeto Estruturado):**
+    -   **technical_summary:** Um resumo técnico conciso destacando a relevância do estudo para a ciência do solo.
+    -   **climate_insights:** Identifique se o texto menciona anomalias climáticas, impacto de chuvas, temperatura ou previsões agrícolas.
+    -   **relevance_score:** Atribua uma nota de 0.0 a 10.0 baseada no rigor científico e aplicabilidade prática.
+4.  Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` or `false` baseada nos critérios de validação.
+5.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
 
 ESQUEMA:
 {schema_str}
@@ -280,9 +304,8 @@ Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido 
 - **grupos de culturas (seleção):** Liste "Frutíferas" para citros ou "Grandes Culturas" para cana, conforme o caso.
 - **culturas presentes (seleção):** Liste os nomes específicos das culturas estudadas (ex: Laranja Hamlin, Cana-de-açúcar RB867515). Sempre liste pelo menos uma se aplicável.
 
-**CONTEXTO DE CURADORIA (se aplicável):**
-Se os campos "APROVAÇÃO CURADOR (marcar)" e "FEEDBACK DO CURADOR (escrever)" estiverem presentes no esquema,
-você TAMBÉM atuará como um Curador Científico especializado em CITROS E CANA, seguindo estes critérios:
+**CONTEXTO DE CURADORIA E ANÁLISE:**
+Você atuará como um Curador Científico especializado em CITROS E CANA, seguindo estes critérios:
 
 **CRITÉRIOS DE VALIDAÇÃO (OBRIGATÓRIOS - TODOS devem ser atendidos para aprovação):**
 1.  **Tópico Principal:** O FOCO PRINCIPAL do artigo deve ser CITROS (laranja, limão, tangerina, etc.) ou CANA-DE-AÇÚCAR (produção, manejo, doenças, nutrição).
@@ -290,15 +313,15 @@ você TAMBÉM atuará como um Curador Científico especializado em CITROS E CANA
 2.  **Formato:** Deve ser um artigo científico, tese ou estudo de caso detalhado com Metodologia e Resultados claros.
 3.  **Consistência:** Não deve contradizer fatos do 'EXISTING DATABASE KNOWLEDGE'.
 
-**REGRAS DE SAÍDA (Siga rigorosamente):**
+**REGRAS DE FEEDBACK E SAÍDA (Siga rigorosamente):**
 1.  Sua saída completa deve ser um único objeto JSON válido.
 2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento.
-3.  Se os campos de curadoria estiverem presentes:
-    -   Preencha o campo **'FEEDBACK DO CURADOR (escrever)'** com a razão explícita para sua decisão:
-        -   Se aprovando: Comece com "Aprovado:" e depois declare brevemente a contribuição específica (ex: "Aprovado: Detalha a resposta da cana-de-açúcar à adubação nitrogenada.").
-        -   Se rejeitando: Comece com "Rejeitado:" e depois declare qual critério falhou.
-    -   Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` ou `false`.
-4.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
+3.  **FEEDBACK DA IA (Objeto Estruturado):**
+    -   **technical_summary:** Um resumo técnico conciso destacando a contribuição científica (ex: adubação nitrogenada em cana).
+    -   **climate_insights:** Identifique menções a fenômenos climáticos (El Niño, geadas), anomalias térmicas ou necessidades hídricas.
+    -   **relevance_score:** Atribua uma nota de 0.0 a 10.0 baseada no rigor científico e utilidade prática para o produtor.
+4.  Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` ou `false` baseada nos critérios de validação.
+5.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
 
 ESQUEMA:
 {schema_str}

@@ -33,7 +33,9 @@ const ALL_METADATA_FIELDS = [
     "estratégias de fornecimento de nutrientes (seleção)",
     "grupos de culturas (seleção)",
     "culturas presentes (seleção)",
-    "FEEDBACK DO CURADOR (escrever)",
+    "FEEDBACK DA IA",
+    "FEEDBACK DO CURADOR",
+    "FEEDBACK SOBRE IA",
 ];
 
 /**
@@ -273,13 +275,32 @@ async function runExtractionAgent(query, documentText = null, file = null) {
                     combinedData["Qualis"] = llmResult["Qualis"];
                 }
 
-                // If LLM returned "APROVAÇÃO CURADOR (marcar)" and "FEEDBACK DO CURADOR (escrever)", include them
+                // If LLM returned "APROVAÇÃO CURADOR (marcar)" and "FEEDBACK DA IA", include them
                 if (llmResult["APROVAÇÃO CURADOR (marcar)"] !== undefined) {
                     combinedData["APROVAÇÃO CURADOR (marcar)"] = llmResult["APROVAÇÃO CURADOR (marcar)"];
                 }
-                if (llmResult["FEEDBACK DO CURADOR (escrever)"] !== undefined) {
-                    combinedData["FEEDBACK DO CURADOR (escrever)"] = llmResult["FEEDBACK DO CURADOR (escrever)"];
+                
+                // Mapeamento Rigoroso de Feedback da IA
+                if (llmResult["FEEDBACK DA IA"]) {
+                    combinedData["FEEDBACK DA IA"] = llmResult["FEEDBACK DA IA"];
+                } else if (llmResult["FEEDBACK DO CURADOR (escrever)"]) {
+                    // Fallback para quando o campo legado ainda vem da IA
+                    combinedData["FEEDBACK DA IA"] = {
+                        technical_summary: llmResult["FEEDBACK DO CURADOR (escrever)"],
+                        climate_insights: "N/A",
+                        relevance_score: 5.0
+                    };
                 }
+
+                // PROTEÇÃO: Garante que os campos HUMANOS nunca sejam preenchidos pela IA
+                combinedData["FEEDBACK DO CURADOR"] = "";
+                combinedData["FEEDBACK SOBRE IA"] = {
+                    is_accurate: true,
+                    is_useful: true,
+                    human_correction_notes: "",
+                    ai_performance_rating: 0,
+                    adjustment_required: false
+                };
 
             } else {
                 console.warn(`LLM service call failed: ${llmResult.error}`);

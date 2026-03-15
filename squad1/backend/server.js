@@ -604,6 +604,12 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
     // Build finalData with exact expected keys
     const finalData = {};
     expectedKeys.forEach((exp) => {
+      // PROTEÇÃO: Campos exclusivos de humanos não devem ser preenchidos por normalização automática
+      if (exp === "FEEDBACK DO CURADOR" || exp === "FEEDBACK SOBRE IA") {
+        finalData[exp] = ""; 
+        return;
+      }
+
       const canonExp = canonical(exp);
       const originalKey = incomingNormalizedMap[canonExp];
       
@@ -612,7 +618,12 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
       } else if (exp === 'pub_url' && data.pub_url) {
         finalData[exp] = data.pub_url;
       } else {
-        finalData[exp] = "N/A"; // Valor padrão
+        // Inicialização padrão para campos estruturados se necessário
+        if (exp === "FEEDBACK DA IA") {
+            finalData[exp] = { technical_summary: "N/A", climate_insights: "N/A", relevance_score: 0.0 };
+        } else {
+            finalData[exp] = "N/A"; 
+        }
       }
     });
 
@@ -646,14 +657,16 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
 
 app.post("/api/manual-approval", authenticateToken, async (req, res) => {
     try {
-        const { row_number, fileName, feedback } = req.body; // Use fileName for local
+        const { row_number, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback } = req.body;
 
         if (!row_number || !fileName) {
             return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
         }
 
         const username = req.user ? req.user.username : "Desconhecido";
-        const result = await aprovarManualmente(parseInt(row_number, 10), fileName, username, feedback);
+        // Convert row_number string to integer if it's numeric, otherwise pass as is (for MongoDB ObjectId)
+        const id = isNaN(row_number) ? row_number : parseInt(row_number, 10);
+        const result = await aprovarManualmente(id, fileName, username, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-approval: ${error.message}`);
@@ -663,14 +676,15 @@ app.post("/api/manual-approval", authenticateToken, async (req, res) => {
 
 app.post("/api/manual-rejection", authenticateToken, async (req, res) => {
     try {
-        const { row_number, fileName, feedback } = req.body;
+        const { row_number, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback } = req.body;
 
         if (!row_number || !fileName) {
             return res.status(400).json({ error: "Parâmetros 'row_number' e 'fileName' são obrigatórios." });
         }
 
         const username = req.user ? req.user.username : "Desconhecido";
-        const result = await reprovarManualmente(parseInt(row_number, 10), fileName, username, feedback);
+        const id = isNaN(row_number) ? row_number : parseInt(row_number, 10);
+        const result = await reprovarManualmente(id, fileName, username, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-rejection: ${error.message}`);

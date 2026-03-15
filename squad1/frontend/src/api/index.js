@@ -86,11 +86,13 @@ export const manualInsertArticle = async (dataToSave, file) => {
   return response.data;
 };
 
-export const manualApproveArticle = async (rowNumber, fileName, feedback) => {
+export const manualApproveArticle = async (rowNumber, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback) => {
   const response = await api.post("/manual-approval", {
     row_number: rowNumber,
     fileName: fileName,
-    feedback: feedback,
+    feedbackCurador: feedbackCurador,
+    feedbackSobreIA: feedbackSobreIA,
+    aiAnalysisFeedback: aiAnalysisFeedback,
   });
   return response.data;
 };
@@ -104,11 +106,13 @@ export const batchUploadZip = async (file) => {
   return response.data;
 };
 
-export const manualRejectArticle = async (rowNumber, fileName, feedback) => {
+export const manualRejectArticle = async (rowNumber, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback) => {
   const response = await api.post("/manual-rejection", {
     row_number: rowNumber,
     fileName: fileName,
-    feedback: feedback,
+    feedbackCurador: feedbackCurador,
+    feedbackSobreIA: feedbackSobreIA,
+    aiAnalysisFeedback: aiAnalysisFeedback,
   });
   return response.data;
 };

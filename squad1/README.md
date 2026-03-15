@@ -84,20 +84,8 @@ O comando abaixo utiliza o arquivo `ecosystem.config.js` para orquestrar os serv
 npm run start:prod
 ```
 
-### 3. Monitoramento de Logs
-Os logs em produção são organizados automaticamente na pasta `backend/logs/`. Você pode acompanhá-los via PM2:
-
-- **Logs Gerais (Sucesso/Info):**
-```bash
-pm2 logs --out
-```
-
-- **Logs de Erro:**
-```bash
-pm2 logs --err
-```
-
-- **Logs Combinados em Tempo Real:**
+### 3. Monitoramento
+Acompanhe os logs em tempo real:
 ```bash
 pm2 logs
 ```
@@ -117,3 +105,4 @@ node scripts/migrate_to_mongodb.js
 - [Guia de Integração de API](./docs/API_INTEGRATION_GUIDE.md)
 - [Guia de Deployment Detalhado](./docs/DEPLOYMENT_GUIDE.md)
 - [Fluxo de Trabalho (WORKFLOW)](./README.md)
+

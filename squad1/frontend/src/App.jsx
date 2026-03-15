@@ -1,6 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import MainLayout from './layouts/MainLayout';
 import LoginPage from './pages/Login';
-import LandingPage from './pages/Landing'; // Nova página de Landing
+import LandingPage from './pages/Landing';
+import AboutPage from './pages/About';
+import TermsPage from './pages/Terms';
+import SupportPage from './pages/Support';
 import HomePage from './pages/Home';
 import SearchPage from './pages/Search';
 import CurationPage from './pages/Curation';
@@ -19,8 +23,15 @@ function App() {
       {/* Rota pública inicial */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      
+      {/* Rotas públicas informativas com Layout */}
+      <Route element={<MainLayout />}>
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/support" element={<SupportPage />} />
+      </Route>
 
-      {/* Rotas protegidas */}
+      {/* Rotas protegidas (MainLayout já está dentro de ProtectedRoute) */}
       <Route element={<ProtectedRoute />}>
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
