@@ -1,0 +1,21 @@
+{
+  "name": "ciento-monorepo",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "cross-env NODE_ENV=development npm --prefix backend run dev",
+    "dev:python": "cd backend && ./venv/bin/python main.py",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:python\"",
+    "build:frontend": "npm --prefix frontend run build",
+    "start:prod": "cross-env NODE_ENV=production pm2 start ecosystem.config.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3"
+  }
+}

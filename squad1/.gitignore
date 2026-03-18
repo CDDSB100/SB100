@@ -1,0 +1,3 @@
+backend/documents/
+backend/*.xlsx
+backend/api.db

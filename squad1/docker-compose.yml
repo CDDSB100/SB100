@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend-node
+      - backend-python
+      - mongodb
+    restart: always
+
+  backend-node:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.node
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongodb
+    volumes:
+      - ./backend/documents:/app/documents
+      - ./backend/api.db:/app/api.db
+      - "./backend/Consolidado - Respostas Gerais.xlsx:/app/Consolidado - Respostas Gerais.xlsx"
+    environment:
+      - PORT=5001
+      - API_BASE_URL=http://backend-python:8000
+      - MONGODB_URI=mongodb://mongodb:27017/cientometria
+    env_file:
+      - ./backend/.env
+    restart: always
+
+  backend-python:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.python
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    env_file:
+      - ./backend/.env
+    restart: always
+
+volumes:
+  mongodb_data:

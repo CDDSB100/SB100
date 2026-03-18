@@ -1,0 +1,42 @@
+# Ignorar pastas de configuração do sistema (sem o .* genérico)
+.ssh/
+.pm2/
+.nvm/
+.snap/
+.dotnet/
+.copilot/
+.cache/
+
+# Ambientes virtuais e Python
+venv/
+.venv/
+__pycache__/
+mlflow-env/
+*.pyc
+
+# Logs e Processos
+nohup.out
+*.log
+npm-debug.log*
+
+# Serviços e Banco de Dados (SB100)
+qdrant_service/
+milvus_service/
+*.db
+*.sqlite
+
+# Arquivos de Sistema e Backup
+.DS_Store
+info_tailscale_bkp
+banner.jpg
+
+# Nodes
+node_modules/
+
+# Manter o .gitignore e arquivos de configuração importantes
+!.gitignore
+!.github/
+
+package-lock.json
+cloudflared/
+.cloudflared/
