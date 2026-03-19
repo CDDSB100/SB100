@@ -2,31 +2,33 @@ module.exports = {
   apps: [
     {
       name: "api-node",
-      script: "./backend/server.js",
+      script: "server.js",
+      cwd: "./backend",
       interpreter: "/home/sb100/squad1/.nvm/versions/node/v20.20.1/bin/node",
       exec_mode: "fork",
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
-      error_file: "./backend/logs/err.log",
-      out_file: "./backend/logs/out.log",
+      error_file: "./logs/err.log",
+      out_file: "./logs/out.log",
       log_date_format: "YYYY-MM-DD HH:mm:ss",
       env: {
         NODE_ENV: "production",
         PORT: 5173,
         NETWORK_IP: "172.28.181.92",
         MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria",
-        API_BASE_URL: "http://127.0.0.1:8000"
+        API_BASE_URL: "http://172.28.181.92:8000"
       }
     },
     {
       name: "api-python",
-      script: "./backend/main.py",
-      interpreter: "./backend/venv/bin/python",
+      script: "main.py",
+      cwd: "./backend",
+      interpreter: "./venv/bin/python",
       instances: 1,
       autorestart: true,
-      error_file: "./backend/logs/python-err.log",
-      out_file: "./backend/logs/python-out.log",
+      error_file: "./logs/python-err.log",
+      out_file: "./logs/python-out.log",
       log_date_format: "YYYY-MM-DD HH:mm:ss",
       env: {
         PORT: 8000,
@@ -39,3 +41,4 @@ module.exports = {
     }
   ]
 };
+
