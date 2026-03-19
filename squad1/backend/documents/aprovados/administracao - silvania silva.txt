@@ -1,36 +1,29 @@
-ID: 58f2abe6-2ab0-4a8f-97de-5814dc24f524
-NOME DO RESPONSÁVEL: izaias silva
-Autor(es): 
-Titulo: administracao - silvania silva
-Subtítulo: 
+Autor(es): Desconhecido
+Título: Questão Discursiva 01: Marielle Franco e a Defesa dos Direitos Humanos
+Subtítulo: O tensionamento entre a defesa dos Direitos Humanos realizada por Marielle Franco e a produção de notícias falsas após o assassinato da vereadora
 Ano: 2018
-Número de citações recebidas (Google Scholar): 
-Palavras-chave: 
-Resumo: 
+Número de citações recebidas (Google Scholar): Desconhecido
+Palavras-chave: Marielle Franco, Direitos Humanos, Notícias Falsas
+Resumo: O texto aborda a tensão entre a defesa dos Direitos Humanos realizada por Marielle Franco e a produção de notícias falsas após o assassinato da vereadora.
 Tipo de documento: Questão Discursiva
-Editora: 
-Instituição: 
-Local: 
-Tipo de trabalho: 
-Título do periódico: 
-Quartil do periódico: 
-Volume: 
-Número/fascículo: 
-Páginas: 
-DOI: 
+Editora: Desconhecido
+Instituição: Desconhecido
+Local: Desconhecido
+Tipo de trabalho: Desconhecido
+Título do periódico: Desconhecido
+Quartil do periódico: Desconhecido
+Volume: Desconhecido
+Número/fascículo: Desconhecido
+Páginas: Desconhecido
+DOI: Desconhecido
 Numeração: N/A
-Qualis: 
-URL DO DOCUMENTO: administracao - silvania silva.pdf
-CURADOR (seleção): 
-EMAIL CURADOR (seleção): 
-Caracteristicas do solo e região (escrever): N/A
-ferramentas e técnicas (seleção): 
-nutrientes (seleção): 
-estratégias de fornecimento de nutrientes (seleção): 
-grupos de culturas (seleção): 
-culturas presentes (seleção): 
-FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a importância da defesa dos direitos humanos e os prejuízos da produção de notícias falsas para a sociedade democrática.
-APROVAÇÃO CURADOR (marcar): TRUE
-ARTIGOS REJEITADOS: FALSE
-APROVAÇÃO MANUAL: 
+Qualis: Desconhecido
 CATEGORIA: solos
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Desconhecido
+nutrientes (seleção): Desconhecido
+estratégias de fornecimento de nutrientes (seleção): Desconhecido
+grupos de culturas (seleção): Desconhecido
+culturas presentes (seleção): Desconhecido
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a importância da defesa dos Direitos Humanos e a produção de notícias falsas após o assassinato de Marielle Franco.
+FEEDBACK SOBRE IA: Desconhecido
