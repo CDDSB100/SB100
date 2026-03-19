@@ -2,7 +2,8 @@ module.exports = {
   apps: [
     {
       name: "organize-docs",
-      script: "./backend/scripts/organize_documents.js",
+      script: "npx",
+      args: "node ./backend/scripts/organize_documents.js",
       autorestart: false,
       watch: false,
       env: {
@@ -11,7 +12,8 @@ module.exports = {
     },
     {
       name: "api-node",
-      script: "./backend/server.js",
+      script: "npx",
+      args: "node ./backend/server.js",
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
