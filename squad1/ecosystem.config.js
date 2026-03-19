@@ -1,31 +1,19 @@
 module.exports = {
   apps: [
     {
-      name: "organize-docs",
-      script: "npx",
-      args: "node ./backend/scripts/organize_documents.js",
-      autorestart: false,
-      watch: false,
-      env: {
-        MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria"
-      }
-    },
-    {
       name: "api-node",
-      script: "npx",
-      args: "node ./backend/server.js",
+      script: "./backend/server.js",
+      interpreter: "node",
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
-      // Logs config
       error_file: "./backend/logs/err.log",
       out_file: "./backend/logs/out.log",
       log_date_format: "YYYY-MM-DD HH:mm:ss",
-      combine_logs: true,
-      merge_logs: true,
       env: {
-        NODE_ENV: "development",
-        PORT: 5001,
+        NODE_ENV: "production",
+        PORT: 5173, // Usa a única porta liberada
+        NETWORK_IP: "172.28.181.92",
         MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria",
         API_BASE_URL: "http://172.28.181.92:8000"
       }
@@ -36,7 +24,6 @@ module.exports = {
       interpreter: "./backend/venv/bin/python",
       instances: 1,
       autorestart: true,
-      // Logs config
       error_file: "./backend/logs/python-err.log",
       out_file: "./backend/logs/python-out.log",
       log_date_format: "YYYY-MM-DD HH:mm:ss",
