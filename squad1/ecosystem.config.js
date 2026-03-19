@@ -4,6 +4,7 @@ module.exports = {
       name: "api-node",
       script: "./backend/server.js",
       interpreter: "/home/sb100/squad1/.nvm/versions/node/v20.20.1/bin/node",
+      exec_mode: "fork",
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
@@ -12,10 +13,10 @@ module.exports = {
       log_date_format: "YYYY-MM-DD HH:mm:ss",
       env: {
         NODE_ENV: "production",
-        PORT: 5173, // Usa a única porta liberada
+        PORT: 5173,
         NETWORK_IP: "172.28.181.92",
         MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria",
-        API_BASE_URL: "http://172.28.181.92:8000"
+        API_BASE_URL: "http://127.0.0.1:8000"
       }
     },
     {
