@@ -20,6 +20,8 @@ const {
   searchOpenAlex,
   saveData,
   getCuratedArticles,
+  getArticlesByStatus,
+  getArticleByName,
   executarCuradoriaLocalmente,
   executarCuradoriaLinhaUnica,
   executarCategorizacaoLinhaUnica,
@@ -39,6 +41,7 @@ const {
 const { pool, initDb, saltRounds } = require("./src/services/database.js"); // Import saltRounds
 const { extractMetadata, ALL_METADATA_FIELDS } = require("./src/controllers/metadata_controller.js"); // Importar o novo controller e os campos
 const multer = require("multer"); // Importar multer
+const { swaggerUi, specs, swaggerOptions } = require('./swagger'); // Importar Swagger
 
 // Progress tracking for batch processes
 let batchProgress = {
@@ -118,6 +121,63 @@ app.use((req, res, next) => {
   next();
 });
 
+// Configurar rota do Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, swaggerOptions));
+
+// Rota personalizada para o JS do Swagger que carrega o token automaticamente
+app.get('/api-docs/custom.js', (req, res) => {
+  res.type('application/javascript');
+  res.send(`
+    (function() {
+      console.log("SB100 Swagger: Script carregado.");
+      
+      const applyToken = () => {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+          console.log("SB100 Swagger: Token encontrado no localStorage. Aplicando...");
+          if (window.ui && window.ui.authActions) {
+            window.ui.authActions.authorize({
+              bearerAuth: {
+                name: 'bearerAuth',
+                schema: { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+                value: token
+              }
+            });
+          }
+        } else {
+          console.warn("SB100 Swagger: Nenhum token encontrado no localStorage desta porta (5001).");
+          console.info("Dica: Se você logou na porta 5173, o localStorage não é compartilhado. Use o botão Authorize manualmente ou acesse o sistema pela porta 5001.");
+        }
+      };
+
+      // Interceptar a criação do SwaggerUI para garantir que o interceptor de requisição seja aplicado
+      const originalSwaggerUIBundle = window.SwaggerUIBundle;
+      if (originalSwaggerUIBundle) {
+        window.SwaggerUIBundle = function(config) {
+          console.log("SB100 Swagger: Configurando interceptor de requisição...");
+          const originalInterceptor = config.requestInterceptor;
+          config.requestInterceptor = function(req) {
+            const token = localStorage.getItem('accessToken');
+            if (token && !req.headers.Authorization) {
+              req.headers.Authorization = "Bearer " + token;
+            }
+            return originalInterceptor ? originalInterceptor(req) : req;
+          };
+          
+          const ui = originalSwaggerUIBundle(config);
+          window.ui = ui;
+          // Tenta aplicar o token assim que a UI estiver pronta
+          setTimeout(applyToken, 500);
+          return ui;
+        };
+        Object.assign(window.SwaggerUIBundle, originalSwaggerUIBundle);
+      }
+
+      window.addEventListener('load', () => setTimeout(applyToken, 1000));
+    })();
+  `);
+});
+
 // Se existir uma build do front-end (agora em frontend/dist), servir os arquivos estáticos
 const frontendBuildPath = path.join(__dirname, '../frontend/dist');
 if (fsSync.existsSync(frontendBuildPath)) {
@@ -130,7 +190,7 @@ if (fsSync.existsSync(frontendBuildPath)) {
   }}));
   // Qualquer rota não-API deve retornar index.html para roteamento do React
   app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/api')) return next();
+    if (req.path.startsWith('/api') || req.path.startsWith('/api-docs')) return next();
     res.sendFile(path.join(frontendBuildPath, 'index.html'));
   });
 }
@@ -139,7 +199,8 @@ if (fsSync.existsSync(frontendBuildPath)) {
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1]; // Bearer TOKEN
+  // Tenta pegar o token do header ou da query string (útil para iframes/previews)
+  const token = (authHeader && authHeader.split(" ")[1]) || req.query.token;
 
   if (token == null) {
     return res.status(401).json({ error: "Token não fornecido." }); // Unauthorized
@@ -189,10 +250,40 @@ const authorizeAdmin = (req, res, next) => {
   }
 };
 
+// Middleware para verificar se o usuário tem permissão para modificar dados (bloqueia 'visualizador')
+const authorizeModify = (req, res, next) => {
+  const nonModifyingRoles = ['visualizador'];
+  if (req.user && !nonModifyingRoles.includes(req.user.role)) {
+    next();
+  } else {
+    res.status(403).json({ error: "Acesso negado. Seu perfil tem permissão apenas de visualização." }); // Forbidden
+  }
+};
+
 // --- API ROUTES ---
 
-// Rota dinâmica para servir documentos buscando em múltiplas pastas (raiz, aprovados, reprovados)
-app.get("/api/documents/:filename", (req, res) => {
+/**
+ * @swagger
+ * /api/documents/{filename}:
+ *   get:
+ *     summary: Serve um documento PDF
+ *     tags: [Documentos]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: filename
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Nome do arquivo PDF
+ *     responses:
+ *       200:
+ *         description: Arquivo PDF enviado com sucesso
+ *       404:
+ *         description: Arquivo não encontrado
+ */
+app.get("/api/documents/:filename", authenticateToken, (req, res) => {
   const { filename } = req.params;
   const filePath = findFileInFolders(filename);
 
@@ -208,18 +299,66 @@ app.get("/", (req, res) => {
   res.send("Node.js API server is running. Use /api/login para autenticar.");
 });
 
-// --- Rota de Health Check ---
+/**
+ * @swagger
+ * /api/health:
+ *   get:
+ *     summary: Verifica o status da API
+ *     tags: [Sistema]
+ *     responses:
+ *       200:
+ *         description: API está online
+ */
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
 
-// Rota que retorna a URL base de rede que o backend está usando (útil para o frontend montar links)
+/**
+ * @swagger
+ * /api/base-url:
+ *   get:
+ *     summary: Retorna a URL base do servidor
+ *     tags: [Sistema]
+ *     responses:
+ *       200:
+ *         description: URL base retornada
+ */
 app.get('/api/base-url', (req, res) => {
   const base = app.locals.baseNetworkUrl || `http://localhost:${port}`;
   res.json({ baseUrl: base });
 });
 
 // --- Rota de Login ---
+/**
+ * @swagger
+ * /api/login:
+ *   post:
+ *     summary: Autentica um usuário e retorna um token JWT
+ *     tags: [Autenticação]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login realizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 accessToken:
+ *                   type: string
+ *       401:
+ *         description: Credenciais inválidas
+ */
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   console.log(`[LOGIN] Tentativa de login para usuário: ${username}`);
@@ -262,6 +401,33 @@ app.post("/api/login", async (req, res) => {
 });
 
 // --- Rota de Registro de Usuário (Apenas para Admin) ---
+/**
+ * @swagger
+ * /api/register:
+ *   post:
+ *     summary: Registra um novo usuário (Apenas Admin)
+ *     tags: [Usuários]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Usuário registrado com sucesso
+ */
 app.post("/api/register", authenticateToken, authorizeAdmin, async (req, res) => {
   const { username, email, password, role } = req.body;
 
@@ -270,7 +436,7 @@ app.post("/api/register", authenticateToken, authorizeAdmin, async (req, res) =>
   }
 
   // Validação simples de role
-  const validRoles = ['admin', 'cientometria', 'curadoria_citros_cana', 'curadoria_solos'];
+  const validRoles = ['admin', 'cientometria', 'curadoria_citros_cana', 'curadoria_solos', 'visualizador'];
   if (!validRoles.includes(role)) {
     return res.status(400).json({ error: `Role inválida. Roles permitidas: ${validRoles.join(', ')}.` });
   }
@@ -300,6 +466,18 @@ app.post("/api/register", authenticateToken, authorizeAdmin, async (req, res) =>
 });
 
 // --- Rota para Listar Usuários (Admin) ---
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: Lista todos os usuários (Apenas Admin)
+ *     tags: [Usuários]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de usuários
+ */
 app.get("/api/users", authenticateToken, authorizeAdmin, async (req, res) => {
   try {
     const [rows] = await pool.execute("SELECT id, username, email, role, is_active, allowed_categories FROM users");
@@ -311,6 +489,25 @@ app.get("/api/users", authenticateToken, authorizeAdmin, async (req, res) => {
 });
 
 // --- Rota para Excluir Usuário (Admin) ---
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     summary: Exclui um usuário (Apenas Admin)
+ *     tags: [Usuários]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário excluído com sucesso
+ */
 app.delete("/api/users/:id", authenticateToken, authorizeAdmin, async (req, res) => {
   const { id } = req.params;
   try {
@@ -323,12 +520,44 @@ app.delete("/api/users/:id", authenticateToken, authorizeAdmin, async (req, res)
 });
 
 // --- Rota para Atualizar Permissões do Usuário (Admin) ---
+/**
+ * @swagger
+ * /api/users/{id}/permissions:
+ *   put:
+ *     summary: Atualiza permissões de um usuário (Apenas Admin)
+ *     tags: [Usuários]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID do usuário
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               role:
+ *                 type: string
+ *               allowed_categories:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Permissões atualizadas com sucesso
+ */
 app.put("/api/users/:id/permissions", authenticateToken, authorizeAdmin, async (req, res) => {
   const { id } = req.params;
   const { role, allowed_categories } = req.body;
 
   try {
-    // allowed_categories deve ser um array ou string (vamos converter para string JSON se for array)
+    // allowed_categories deve ser um array or string (vamos converter para string JSON se for array)
     const categoriesStr = Array.isArray(allowed_categories) ? JSON.stringify(allowed_categories) : (allowed_categories || null);
     
     await pool.execute(
@@ -344,7 +573,19 @@ app.put("/api/users/:id/permissions", authenticateToken, authorizeAdmin, async (
 
 // --- Rotas Protegidas ---
 
-app.post("/api/trigger-curation", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/trigger-curation:
+ *   post:
+ *     summary: Inicia o processo de curadoria em lote
+ *     tags: [Curadoria]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Processo iniciado
+ */
+app.post("/api/trigger-curation", authenticateToken, authorizeModify, async (req, res) => {
   try {
     // Aponte para a nova função de curadoria local
     const result = await executarCuradoriaLocalmente();
@@ -355,7 +596,28 @@ app.post("/api/trigger-curation", authenticateToken, async (req, res) => {
   }
 });
 
-app.post("/api/trigger-curation-single", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/trigger-curation-single:
+ *   post:
+ *     summary: Inicia a curadoria para uma linha específica
+ *     tags: [Curadoria]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               row_number:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Processo iniciado
+ */
+app.post("/api/trigger-curation-single", authenticateToken, authorizeModify, async (req, res) => {
     try {
         const { row_number } = req.body;
 
@@ -371,7 +633,28 @@ app.post("/api/trigger-curation-single", authenticateToken, async (req, res) => 
     }
 });
 
-app.post("/api/categorize-single", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/categorize-single:
+ *   post:
+ *     summary: Categoriza uma linha específica via IA
+ *     tags: [Curadoria]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               row_number:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Categorização concluída
+ */
+app.post("/api/categorize-single", authenticateToken, authorizeModify, async (req, res) => {
   try {
     const { row_number } = req.body;
     if (!row_number) {
@@ -385,6 +668,18 @@ app.post("/api/categorize-single", authenticateToken, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/curation:
+ *   get:
+ *     summary: Retorna todos os artigos da curadoria
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Lista de artigos
+ */
 app.get("/api/curation", authenticateToken, async (req, res) => {
   console.log(`[/api/curation] Request received from user: ${req.user ? req.user.username : 'unknown'}`);
   try {
@@ -429,6 +724,107 @@ app.get("/api/curation", authenticateToken, async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/articles/search-by-name:
+ *   get:
+ *     summary: Busca artigos pelo nome (título)
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: name
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Nome ou parte do título do artigo
+ *     responses:
+ *       200:
+ *         description: Lista de artigos encontrados com título, classificação e nome do arquivo
+ *       400:
+ *         description: Parâmetro name ausente
+ */
+app.get("/api/articles/search-by-name", authenticateToken, async (req, res) => {
+  try {
+    const { name } = req.query;
+    if (!name) {
+      return res.status(400).json({ error: "O parâmetro 'name' é obrigatório." });
+    }
+    const results = await getArticleByName(name);
+    res.json(results);
+  } catch (error) {
+    console.error(`Error in /api/articles/search-by-name: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+/**
+ * @swagger
+ * /api/articles/status/{status}:
+ *   get:
+ *     summary: Busca artigos filtrados por status
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: status
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [pending, approved_ia, approved_manual, rejected]
+ *         description: Status do artigo
+ *     responses:
+ *       200:
+ *         description: Lista de artigos filtrados
+ */
+app.get("/api/articles/status/:status", authenticateToken, async (req, res) => {
+  const { status } = req.params;
+  console.log(`[/api/articles/status/${status}] Request received from user: ${req.user ? req.user.username : 'unknown'}`);
+  try {
+    let articles = await getArticlesByStatus(status);
+    
+    // Filtrar por categoria se o usuário tiver permissões restritas (e não for admin)
+    if (req.user && req.user.role !== 'admin' && req.user.allowed_categories) {
+      const allowedCategories = req.user.allowed_categories;
+      const allowed = (Array.isArray(allowedCategories) ? allowedCategories : [allowedCategories])
+        .filter(c => c !== null && c !== undefined)
+        .map(c => String(c).trim().toLowerCase());
+      
+      if (allowed.length > 0) {
+        articles = articles.filter(article => {
+          if (!article) return false;
+          const category = String(article["CATEGORIA"] || article["categoria"] || "").trim().toLowerCase();
+          return allowed.some(a => a === category);
+        });
+      }
+    }
+    
+    res.json(articles);
+  } catch (error) {
+    console.error(`Error in /api/articles/status/${status}: ${error.message}`);
+    res.status(500).json({ error: `Erro ao carregar artigos com status ${status}: ` + error.message });
+  }
+});
+
+/**
+ * @swagger
+ * /api/download-all:
+ *   get:
+ *     summary: Faz download de todos os documentos da curadoria em um ZIP
+ *     tags: [Documentos]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Arquivo ZIP com os documentos
+ *         content:
+ *           application/zip:
+ *             schema:
+ *               type: string
+ *               format: binary
+ */
 app.get("/api/download-all", authenticateToken, async (req, res) => {
   try {
     const zipBuffer = await downloadCuratedDocuments();
@@ -448,7 +844,34 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Ocorreu um erro interno no servidor." });
 });
 
-app.post("/api/search", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/search:
+ *   post:
+ *     summary: Busca artigos no OpenAlex
+ *     tags: [Busca]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               search_terms:
+ *                 type: string
+ *               start_year:
+ *                 type: integer
+ *               end_year:
+ *                 type: integer
+ *               sort_option:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Lista de resultados da busca
+ */
+app.post("/api/search", authenticateToken, authorizeModify, async (req, res) => {
   try {
     const { search_terms, start_year, end_year, sort_option } = req.body;
 
@@ -482,7 +905,30 @@ app.post("/api/search", authenticateToken, async (req, res) => {
   }
 });
 
-app.post("/api/save", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/save:
+ *   post:
+ *     summary: Salva artigos selecionados no banco de dados
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               selected_rows:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *     responses:
+ *       200:
+ *         description: Resultado da operação de salvamento
+ */
+app.post("/api/save", authenticateToken, authorizeModify, async (req, res) => {
   try {
     const { selected_rows } = req.body;
 
@@ -503,7 +949,28 @@ app.post("/api/save", authenticateToken, async (req, res) => {
   }
 });
 
-app.post("/api/delete-row", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/delete-row:
+ *   post:
+ *     summary: Exclui uma linha (artigo) específica
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               row_number:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Linha excluída com sucesso
+ */
+app.post("/api/delete-row", authenticateToken, authorizeModify, async (req, res) => {
     try {
         const { row_number } = req.body;
         if (!row_number) {
@@ -517,7 +984,19 @@ app.post("/api/delete-row", authenticateToken, async (req, res) => {
     }
 });
 
-app.post("/api/delete-unavailable", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/delete-unavailable:
+ *   post:
+ *     summary: Exclui todos os artigos sem arquivo PDF disponível
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Limpeza concluída
+ */
+app.post("/api/delete-unavailable", authenticateToken, authorizeModify, async (req, res) => {
     try {
         const result = await deleteUnavailableRows();
         res.json(result);
@@ -528,7 +1007,32 @@ app.post("/api/delete-unavailable", authenticateToken, async (req, res) => {
 });
 
 // --- Rota para Inserção Manual (suporta upload de PDF) ---
-app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (req, res) => {
+/**
+ * @swagger
+ * /api/manual-insert:
+ *   post:
+ *     summary: Insere um artigo manualmente (suporta upload de PDF)
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *               Titulo:
+ *                 type: string
+ *               Autor(es):
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Artigo inserido com sucesso
+ */
+app.post("/api/manual-insert", authenticateToken, authorizeModify, upload.single('file'), async (req, res) => {
   try {
     // req.body contains form fields; req.file is optional
     const data = req.body || {};
@@ -620,7 +1124,7 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
       } else {
         // Inicialização padrão para campos estruturados se necessário
         if (exp === "FEEDBACK DA IA") {
-            finalData[exp] = { technical_summary: "N/A", climate_insights: "N/A", relevance_score: 0.0 };
+            finalData[exp] = { technical_summary: "N/A", agronomic_insights: "N/A", relevance_score: 0.0 };
         } else {
             finalData[exp] = "N/A"; 
         }
@@ -655,7 +1159,32 @@ app.post("/api/manual-insert", authenticateToken, upload.single('file'), async (
   }
 });
 
-app.post("/api/manual-approval", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/manual-approval:
+ *   post:
+ *     summary: Aprova um artigo manualmente
+ *     tags: [Curadoria]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               row_number:
+ *                 type: string
+ *               fileName:
+ *                 type: string
+ *               feedbackCurador:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Artigo aprovado com sucesso
+ */
+app.post("/api/manual-approval", authenticateToken, authorizeModify, async (req, res) => {
     try {
         const { row_number, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback } = req.body;
 
@@ -674,7 +1203,32 @@ app.post("/api/manual-approval", authenticateToken, async (req, res) => {
     }
 });
 
-app.post("/api/manual-rejection", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/manual-rejection:
+ *   post:
+ *     summary: Rejeita um artigo manualmente
+ *     tags: [Curadoria]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               row_number:
+ *                 type: string
+ *               fileName:
+ *                 type: string
+ *               feedbackCurador:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Artigo rejeitado com sucesso
+ */
+app.post("/api/manual-rejection", authenticateToken, authorizeModify, async (req, res) => {
     try {
         const { row_number, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback } = req.body;
 
@@ -692,7 +1246,28 @@ app.post("/api/manual-rejection", authenticateToken, async (req, res) => {
     }
 });
 
-app.post("/api/batch-upload-zip", authenticateToken, upload.single('file'), async (req, res) => {
+/**
+ * @swagger
+ * /api/batch-upload-zip:
+ *   post:
+ *     summary: Faz upload de um ZIP com PDFs para inserção em lote
+ *     tags: [Lote]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Upload e processamento iniciados
+ */
+app.post("/api/batch-upload-zip", authenticateToken, authorizeModify, upload.single('file'), async (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ error: "Nenhum arquivo ZIP foi enviado." });
@@ -726,7 +1301,28 @@ app.post("/api/batch-upload-zip", authenticateToken, upload.single('file'), asyn
     }
 });
 
-app.post("/api/batch-process-local-folder", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/batch-process-local-folder:
+ *   post:
+ *     summary: Processa uma pasta local para inserção em lote
+ *     tags: [Lote]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               folder_path:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Processamento iniciado
+ */
+app.post("/api/batch-process-local-folder", authenticateToken, authorizeModify, async (req, res) => {
   try {
     const { folder_path } = req.body;
     if (!folder_path) {
@@ -761,15 +1357,62 @@ app.post("/api/batch-process-local-folder", authenticateToken, async (req, res) 
   }
 });
 
+/**
+ * @swagger
+ * /api/batch-progress:
+ *   get:
+ *     summary: Retorna o progresso do processamento em lote
+ *     tags: [Lote]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Progresso atual
+ */
 app.get("/api/batch-progress", authenticateToken, (req, res) => {
   res.json(batchProgress);
 });
 
 // --- Nova Rota para Extração de Metadados ---
-app.post("/api/extract-metadata", authenticateToken, upload.single('file'), extractMetadata);
+/**
+ * @swagger
+ * /api/extract-metadata:
+ *   post:
+ *     summary: Extrai metadados de um PDF ou título
+ *     tags: [Metadados]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *               title:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Metadados extraídos
+ */
+app.post("/api/extract-metadata", authenticateToken, authorizeModify, upload.single('file'), extractMetadata);
 
 // --- Nova Rota para Corrigir Títulos ---
-app.post("/api/fix-titles", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/fix-titles:
+ *   post:
+ *     summary: Corrige títulos ausentes na curadoria
+ *     tags: [Sistema]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Títulos corrigidos
+ */
+app.post("/api/fix-titles", authenticateToken, authorizeModify, async (req, res) => {
   try {
     const result = await fixMissingTitles();
     res.json(result);
@@ -779,7 +1422,32 @@ app.post("/api/fix-titles", authenticateToken, async (req, res) => {
   }
 });
 
-app.put("/api/articles/:id", authenticateToken, async (req, res) => {
+/**
+ * @swagger
+ * /api/articles/{id}:
+ *   put:
+ *     summary: Atualiza um artigo existente
+ *     tags: [Artigos]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID do artigo
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     responses:
+ *       200:
+ *         description: Artigo atualizado com sucesso
+ */
+app.put("/api/articles/:id", authenticateToken, authorizeModify, async (req, res) => {
   try {
     const { id } = req.params;
     const data = req.body;
@@ -803,6 +1471,18 @@ app.get("/api/test-no-auth", async (req, res) => {
   }
 });
 
+/**
+ * @swagger
+ * /api/llm-logs:
+ *   get:
+ *     summary: Retorna os logs do serviço LLM
+ *     tags: [Sistema]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Logs retornados
+ */
 app.get("/api/llm-logs", authenticateToken, async (req, res) => {
     const logPath = path.join(__dirname, "llm.log");
     try {

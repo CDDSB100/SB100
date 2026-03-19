@@ -211,7 +211,7 @@ async def curar_documento(payload: PDFPayload):
                  "APROVAÇÃO CURADOR (marcar)": False, 
                  "FEEDBACK DA IA": {
                      "technical_summary": "Rejeitado: Texto insuficiente para análise científica.",
-                     "climate_insights": "N/A",
+                     "agronomic_insights": "N/A",
                      "relevance_score": 0.0
                  }
              }
@@ -245,7 +245,7 @@ async def curar_documento(payload: PDFPayload):
     # Definimos a estrutura interna do Feedback da IA
     json_skeleton["FEEDBACK DA IA"] = {
         "technical_summary": "Resumo técnico detalhado da fisiologia/manejo/descobertas.",
-        "climate_insights": "Insights sobre clima, temperatura ou anomalias térmicas mencionadas.",
+        "agronomic_insights": "Insights agronômicos sobre a cultura, solo ou manejos mencionados.",
         "relevance_score": 0.0 # Pontuação de 0 a 10
     }
     
@@ -281,7 +281,7 @@ Você atuará como um Curador Científico especializado em SOLOS, seguindo estes
 2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento.
 3.  **FEEDBACK DA IA (Objeto Estruturado):**
     -   **technical_summary:** Um resumo técnico conciso destacando a relevância do estudo para a ciência do solo.
-    -   **climate_insights:** Identifique se o texto menciona anomalias climáticas, impacto de chuvas, temperatura ou previsões agrícolas.
+    -   **agronomic_insights:** Identifique se o texto menciona manejos agrícolas, produtividade, pragas ou recomendações técnicas.
     -   **relevance_score:** Atribua uma nota de 0.0 a 10.0 baseada no rigor científico e aplicabilidade prática.
 4.  Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` or `false` baseada nos critérios de validação.
 5.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
@@ -318,7 +318,7 @@ Você atuará como um Curador Científico especializado em CITROS E CANA, seguin
 2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento.
 3.  **FEEDBACK DA IA (Objeto Estruturado):**
     -   **technical_summary:** Um resumo técnico conciso destacando a contribuição científica (ex: adubação nitrogenada em cana).
-    -   **climate_insights:** Identifique menções a fenômenos climáticos (El Niño, geadas), anomalias térmicas ou necessidades hídricas.
+    -   **agronomic_insights:** Identifique menções a manejos de solo, desenvolvimento da cultura ou necessidades técnicas.
     -   **relevance_score:** Atribua uma nota de 0.0 a 10.0 baseada no rigor científico e utilidade prática para o produtor.
 4.  Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` ou `false` baseada nos critérios de validação.
 5.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.

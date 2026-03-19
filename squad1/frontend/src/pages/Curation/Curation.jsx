@@ -154,7 +154,7 @@ function CurationPage() {
   });
   const [aiAnalysis, setAiAnalysis] = useState({
     technical_summary: "",
-    climate_insights: "",
+    agronomic_insights: "",
     relevance_score: 8
   });
 
@@ -503,7 +503,7 @@ function CurationPage() {
     if (typeof currentAiAnalysis === 'object' && currentAiAnalysis !== null) {
       setAiAnalysis(currentAiAnalysis);
     } else {
-      setAiAnalysis({ technical_summary: article["FEEDBACK DA IA"] || "", climate_insights: "", relevance_score: 7 });
+      setAiAnalysis({ technical_summary: article["FEEDBACK DA IA"] || "", agronomic_insights: "", relevance_score: 7 });
     }
 
     setFeedbackDialogOpen(true);
@@ -528,7 +528,7 @@ function CurationPage() {
     if (typeof currentAiAnalysis === 'object' && currentAiAnalysis !== null) {
       setAiAnalysis(currentAiAnalysis);
     } else {
-      setAiAnalysis({ technical_summary: article["FEEDBACK DA IA"] || "", climate_insights: "", relevance_score: 3 });
+      setAiAnalysis({ technical_summary: article["FEEDBACK DA IA"] || "", agronomic_insights: "", relevance_score: 3 });
     }
     
     setFeedbackDialogOpen(true);
@@ -589,7 +589,8 @@ function CurationPage() {
     if (!url) return;
     let finalUrl = url;
     if (!url.startsWith("http")) {
-      finalUrl = `/api/documents/${encodeURIComponent(url)}`;
+      const token = localStorage.getItem("accessToken");
+      finalUrl = `/api/documents/${encodeURIComponent(url)}${token ? `?token=${token}` : ""}`;
     } else if (url.includes("drive.google.com/file/d/")) {
       finalUrl = url.replace("/view", "/preview");
     }
@@ -1301,9 +1302,9 @@ function CurationPage() {
                 />
                 <TextField
                   fullWidth
-                  label="Insights Climáticos"
-                  value={aiAnalysis.climate_insights}
-                  onChange={(e) => setAiAnalysis({...aiAnalysis, climate_insights: e.target.value})}
+                  label="Insights Agronômicos"
+                  value={aiAnalysis.agronomic_insights}
+                  onChange={(e) => setAiAnalysis({...aiAnalysis, agronomic_insights: e.target.value})}
                 />
                 <Box>
                   <Typography gutterBottom variant="caption" sx={{ fontWeight: 700 }}>Pontuação de Relevância (0-10): {aiAnalysis.relevance_score}</Typography>

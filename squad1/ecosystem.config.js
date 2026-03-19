@@ -1,6 +1,15 @@
 module.exports = {
   apps: [
     {
+      name: "organize-docs",
+      script: "./backend/scripts/organize_documents.js",
+      autorestart: false,
+      watch: false,
+      env: {
+        MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria"
+      }
+    },
+    {
       name: "api-node",
       script: "./backend/server.js",
       instances: 1,
@@ -13,7 +22,7 @@ module.exports = {
       combine_logs: true,
       merge_logs: true,
       env: {
-        NODE_ENV: "production",
+        NODE_ENV: "development",
         PORT: 5001,
         MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria",
         API_BASE_URL: "http://172.28.181.92:8000"
