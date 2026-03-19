@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "api-node",
       script: "server.js",
-      cwd: "./backend",
+      cwd: "/home/sb100/squad1/backend",
       interpreter: "/home/sb100/squad1/.nvm/versions/node/v20.20.1/bin/node",
       exec_mode: "fork",
       instances: 1,
@@ -23,8 +23,8 @@ module.exports = {
     {
       name: "api-python",
       script: "main.py",
-      cwd: "./backend",
-      interpreter: "./venv/bin/python",
+      cwd: "/home/sb100/squad1/backend",
+      interpreter: "/home/sb100/squad1/backend/venv/bin/python",
       instances: 1,
       autorestart: true,
       error_file: "./logs/python-err.log",
