@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Qiang‐Sheng Wu, A. K. Srivastava, Ying‐Ning Zou, S.K. Malhotra
+Titulo: Mycorrhizas in citrus : Beyond soil fertility and plant nutrition
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 30
+Palavras-chave: Biology, Glomalin, Agronomy, Rhizosphere, Glomus
+Resumo: Citrus, one of the important fruit trees grown in tropical and subtropical regions of the world, has less and shorter root hairs in the field, thus, highly dependent on arbuscular mycorrhizas. Citrus rhizosphere inhabits 45 species of arbuscular mycorrhizal fungi (AMF), belonging to seven genera like Acaulospora, Entrophospora, Gigaspora, Glomus, Pacispora, Sclerocystis and Scutellospora. These AMF can be associated with the roots for the formation of arbuscular mycorrhizal symbiosis, who would enlarge the contacted areas of roots to soil and be regarded as a potential soil biofertilizer, thereby promoting citrus nutrients. In addition to the vital function, mycorrhizas in citrus display other roles in soils and plants. Most AMF species usually significantly increase plant growth and fruit quality of citrus plants, but occasionally inhibit or did not impact plant growth. The inoculation with AMF obviously improved root system architecture of citrus, thereby conferring greater ability of the host plant to obtain soil resources. Mycorrhizas can develop an extensive common mycorrhizal network to colonize neighbouring citrus or other plants for underground communication. AMF release a special glycoprotein, glomalin, into the soils, which can improve soil structure and contribute soil carbon pools, thus, providing better soil fertility and soil physical-chemical traits. Mycorrhizas enhance tolerance of citrus plants to drought stress, salt stress, high temperature but not low temperature, flooding, elevated [CO2], diseases, and insect pests in terms of various physiological and molecular approaches. Based on the mycorrhizal functionings, citrus production will consider mycorrhizal management of citrus orchard and new perspectives are also outlined.
+Tipo de documento: article
+Editora: Indian Council of Agricultural Research
+Instituição: Yangtze University
+Local: CN
+Tipo de trabalho: 
+Título do periódico: The Indian Journal of Agricultural Sciences
+Quartil do periódico: 
+Volume: 87
+Número/fascículo: 4
+Páginas: None-None
+DOI: 10.56093/ijas.v87i4.69308
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1DNOhEA8WGonss-EQP-OqkNcf1D7rfVnz/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Tropical e subtropical, com incidência de estresses abióticos (seca, salinidade, alta temperatura, inundação). Os estudos focam em solos com baixa fertilidade, especialmente baixos teores de Fósforo (P), e incluem análises em solos de textura grossa, solos arenosos e a relação entre o pH do solo (ácido/alcalino) e a absorção de Ferro (Fe). A gestão do solo (preparo, cultivo de cobertura e não-cultivo) é um fator importante na diversidade e função das micorrizas em pomares de citros.
+ferramentas e técnicas (seleção): Inoculação de micorrizas arbusculares (AMF)
+nutrientes (seleção): Fósforo (P)
+estratégias de fornecimento de nutrientes (seleção): Otimização de doses de fertilizantes (redução de P)
+grupos de culturas (seleção): Frutíferas / Citros
+culturas presentes (seleção): Trifoliata (Poncirus trifoliata)
+FEEDBACK DO CURADOR (escrever): Revisão abrangente sobre os efeitos benéficos das micorrizas arbusculares (AMF) no cultivo de citros. O documento detalha como as AMF melhoram a absorção de nutrientes (especialmente P, Zn e Cu), a estrutura do solo via glomalina, a arquitetura radicular e a tolerância a múltiplos estresses abióticos (seca, salinidade, temperatura e inundação), sendo altamente relevante para práticas de citricultura sustentável.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

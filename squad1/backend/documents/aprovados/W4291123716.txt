@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Christopher Vincent, Faraj Hijaz, Myrtho O. Pierre, Nabil Killiny
+Titulo: Systemic Uptake of Oxytetracycline and Streptomycin in Huanglongbing-Affected Citrus Groves after Foliar Application and Trunk Injection
+Subtítulo: 
+Ano: 2022
+Número de citações recebidas (Google Scholar): 31
+Palavras-chave: Oxytetracycline, Streptomycin, Antibiotics, Horticulture, Biology
+Resumo: Huanglongbing (HLB), which is caused by the phloem-limited bacterium ‘Candidatus Liberibacter asiaticus,’ is an economically important disease of citrus in many regions of the world. Due to the significant damage caused by the HLB disease in recent years, the use of antibiotics was recommended for the therapy of this destructive disease. Products with active ingredients oxytetracycline and streptomycin have been approved for the control of the HLB via foliar application. However, previous work raised questions about the efficacy of foliar delivery of antibiotics in the field. In this study, we examined the effects of a variety of adjuvants on the uptake of oxytetracycline and streptomycin using the foliar application. We also compared the efficiency of foliar application of oxytetracycline and streptomycin with trunk injection. The ‘Ca. L. asiaticus’ titers in citrus plants were measured using quantitative PCR, and the levels of antibiotics were determined using the ELISA assay. Our results include extremely low levels of oxytetracycline and streptomycin in leaves that were covered during foliar application, indicating that neither streptomycin nor oxytetracycline was successfully systemically delivered by foliar application even after being mixed with adjuvants. Likewise, the ‘Ca. L. asiaticus’ titer0 was not affected by any of the foliar applications. High levels of streptomycin were detected in leaves that were exposed to direct foliar application, indicating that streptomycin was adsorbed or bound to citrus leaves. On the other hand, the trunk injection of oxytetracycline resulted in high levels of this antibiotic in leaves and significantly reduced the level of ‘Ca. L. asiaticus’ titer in citrus trees. Unfortunately, the trunk injection of streptomycin resulted in low levels of streptomycin in citrus leaves and did not affect the ‘Ca. L. asiaticus’ titer, indicating that streptomycin was either bound in the xylem of citrus trees or it was not applied in sufficient quantity required for the inhibition of ‘Ca. L. asiaticus.’ Taken together, our current results demonstrated that foliar application of oxytetracycline and streptomycin did not effectively deliver antibiotics in citrus despite using adjuvants. Our results also suggested that oxytetracycline could be more effective against the HLB pathogen than streptomycin, which is possibly due to differences between the two in systemic movement in citrus trees.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Florida Department of Citrus
+Local: US
+Tipo de trabalho: 
+Título do periódico: Antibiotics
+Quartil do periódico: 
+Volume: 11
+Número/fascículo: 8
+Páginas: 1092-1092
+DOI: 10.3390/antibiotics11081092
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1jD13plB0qgm9yG7jKruXZEqZez9iiVht/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Cultura de citros (laranja doce 'Hamlin' em porta-enxerto citrumelo Swingle) em Lake Alfred, FL, EUA, em solo arenoso. O estudo aborda o tratamento da doença Huanglongbing (HLB), endêmica na Flórida, Texas e Brasil.
+ferramentas e técnicas (seleção): Aplicação foliar (Pulverização)
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar
+grupos de culturas (seleção): Frutas Cítricas
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

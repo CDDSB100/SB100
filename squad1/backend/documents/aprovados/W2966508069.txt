@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Hassan Ennab
+Titulo: Effect of Organic Manures, Biofertilizers and NPK on Vegetative Growth, Yield, Fruit Quality and Soil Fertility of Eureka Lemon Trees (Citrus limon (L.) Burm).
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 37
+Palavras-chave: Biofertilizer, Randomized block design, Soil fertility, Nutrient, Vegetative reproduction
+Resumo: A field experiment was carried out during the years 2013, 2014 and 2015 on Eureka lemon at El-Nubaria region, El-Beheira governorate, to study the effect of farmyard manure and biofertilizers with NPK dose on soil fertility, growth, yield, fruit quality and leaf nutrient content of Eureka lemon trees. Eleven treatments were arranged in a randomized complete block design with three replicates. Results revealed significant differences amongst various growth attributes, fruit yield, fruit quality, leaf mineral content and soil nutrients availability due to farmyard manure and biofertilizers application. Also, farmyard manure and biofertilizers could compensate for the 50% reduction of chemical fertilizers, and increasing yield compared to chemical fertilizers with significant differences. Therefore, treatment of 50% NPK + 55 kg farmyard manure + biofertilizers is recommended for growers. This treatment gave the best growth, yield and fruit quality of Eureka lemon trees. Moreover, this treatment improved the nutritional status of the trees, through the beneficial effects of organic and biofertilizers which enhanced the availability of most nutrients in the soil.
+Tipo de documento: article
+Editora: Egypts Presidential Specialized Council for Education and Scientific Research
+Instituição: Agricultural Genetic Engineering Research Institute
+Local: EG
+Tipo de trabalho: 
+Título do periódico: Journal of Soil Sciences and Agricultural Engineering /Journal of Soil Sciences and Agricultural Engineering
+Quartil do periódico: 
+Volume: 7
+Número/fascículo: 10
+Páginas: 767-774
+DOI: 10.21608/jssae.2016.40472
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1f-Pjp6zstwGUWJCenxUvBz12G3VJTYsq/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): A região do experimento é El-Nubaria, El-Beheira, Egito. O experimento foi realizado em um pomar privado. O solo é de textura arenosa (88,47% areia). A irrigação foi realizada por gotejamento usando água do Nilo.
+ferramentas e técnicas (seleção): Análise química de tecidos vegetais
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertilização Integrada (INM)
+grupos de culturas (seleção): Citrícos
+culturas presentes (seleção): Limão (Citrus limon, cv. Eureka)
+FEEDBACK DO CURADOR (escrever): O estudo é altamente relevante para o manejo de nutrientes em citros, especialmente em solos arenosos. A principal recomendação é a aplicação de 50% NPK combinada com esterco (farmyard manure) e biofertilizantes, o que compensou a redução do fertilizante químico sem perda de produtividade e qualidade do fruto.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

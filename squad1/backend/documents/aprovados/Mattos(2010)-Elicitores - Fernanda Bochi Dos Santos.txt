@@ -1,0 +1,34 @@
+ID: a4740e35-6e0a-4bd5-9113-c264b974e6d1
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; José Antônio Quaggio; Rodrigo Marcelli Boaretto
+Titulo: Uso de elicitores para defesa em plantas cítricas
+Subtítulo: 
+Ano: 2010
+Número de citações recebidas (Google Scholar): 9
+Palavras-chave: manejo nutricional; doenças e plantas; resistência sistêmica adquirida; huanglongbing; controle de doenças de plantas
+Resumo: A ocorrência do huanglongbing (HLB, ex-greening) na citricultura tem causado sérios prejuízos ao setor devido à severidade da doença e à dificuldade de controle. O diagnóstico, controle do inseto vetor e erradicação de plantas afetadas têm-se apresentado como medidas mais eficientes para redução do inóculo no pomar e manutenção da produção de frutos. Contudo estratégias como aplicação de nutrientes e uso de outras substâncias, denominadas elicitores, que possam induzir a sinalização e a expressão da resistência adquirida das plantas ao HLB, têm sido estudadas. Dada a importância do assunto, o presente trabalho tem o objetivo de revisar as principais informações relacionadas às interações entre estado nutricional, manejo e ocorrência de doenças, características e mecanismos de resistência das plantas. Também, discute resultados obtidos com o uso de aplicações de nutrientes e Outros compostos elicitores sobre o desenvolvimento do HLB nos pomares cítricos na Flórida (EUA). As informações acerca destes estudos são recentes e bastante limitadas, embora reportem a melhoria do desenvolvimento vegetativo de plantas tratadas com o uso foliar de nutrientes e elicitores, evidências de efeitos positivos dessas sobre o controle da doença no campo não foram observadas.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Citrus Research and Technology
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: http://dx.doi.org/10.5935/2236-3122.20100006
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Zx4Mr-UibX5Gi9RECiTHcYh_BpDCT6An/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): A pesquisa aborda o uso de elicitores e nutrientes no manejo do Huanglongbing (HLB) na citricultura brasileira (mencionado o Estado de São Paulo) e na Flórida (EUA). O texto discute a interação entre estado nutricional, manejo e ocorrência de doenças, e desordens nutricionais relacionadas às condições ambientais e manejo cultural.
+ferramentas e técnicas (seleção): Elicitores de resistência, Aplicação foliar, Controle do inseto vetor (psilídeo), Erradicação de plantas, Diagnóstico (PCR quantitativo), Manejo nutricional, Resistência Sistêmica Adquirida (SAR)
+nutrientes (seleção): N, P, K, Ca, Mg, S, B, Cu, Fe, Mn, Mo, Ni, Zn, Al, Ácido Salicílico (SA), Ácido Jasmônico (JA), Etileno (ET), Fosfito, Imidacloprid
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar, Fertirrigação, Manejo nutricional
+grupos de culturas (seleção): Frutíferas (Cítricas)
+culturas presentes (seleção): Laranja, Tangerina (Mandarina), Citrumelo Swingle
+FEEDBACK DO CURADOR (escrever): Artigo de revisão agronômica altamente relevante, focado na interação entre manejo nutricional, elicitores e a resistência sistêmica adquirida (SAR) em citros, especialmente contra o huanglongbing (HLB). O documento detalha mecanismos de defesa e resultados de campo, destacando que as estratégias alternativas de elicitores ainda não comprovaram a cura das plantas infectadas, reforçando a importância do controle do vetor e da erradicação.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

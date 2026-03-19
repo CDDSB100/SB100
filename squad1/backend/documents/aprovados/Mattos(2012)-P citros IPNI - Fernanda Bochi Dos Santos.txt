@@ -1,0 +1,34 @@
+ID: 67003797-f6a8-4af1-bc3f-c25b20d7f40e
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; Fernando Cesar Bachiega Zambrosi; Rodrigo Marcelli Boaretto; José Antonio Quaggio; Heitor Cantarella
+Titulo: ADUBAÇÃO FOSFATADA EM POMARES DE CITROS: AVANÇOS DA PESQUISA
+Subtítulo: 
+Ano: 2012
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Informações Agronômicas
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Z9KXZ8l3FsTDjZjSrDUnOgR_t3pvTY1R/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Cultivo em São Paulo (Brasil). Solos tropicais predominantemente ácidos, com baixa reserva de nutrientes. Solos podem apresentar textura muito arenosa e baixa capacidade de retenção de Potássio trocável. A pesquisa visa a correção de solos pobres em fósforo.
+ferramentas e técnicas (seleção): Manejo de Nutrientes
+nutrientes (seleção): Fósforo (P)
+estratégias de fornecimento de nutrientes (seleção): Aplicação no sulco de plantio
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Citros
+FEEDBACK DO CURADOR (escrever): Documento agronômico de alta relevância, focado na otimização da adubação fosfatada em citros. Aborda a calibração do P no solo (P-resina), a influência de diferentes porta-enxertos (Cravo, Cleópatra, Swingle) na absorção de P, a dinâmica de remobilização do nutriente na planta e a avaliação da eficiência do fosfito como fonte nutricional, concluindo pela sua ineficácia para esse fim.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

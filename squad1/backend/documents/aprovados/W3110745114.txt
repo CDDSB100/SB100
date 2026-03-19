@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Zihan Fan, Huaye Xiong, Yayin Luo, Yuheng Wang, Huanyu Zhao, Wenli Li, Xinhua He, Jie Wang, Xiaojun Shi, Yueqiang Zhang
+Titulo: Fruit Yields Depend on Biomass and Nutrient Accumulations in New Shoots of Citrus Trees
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 26
+Palavras-chave: Shoot, Nutrient, Phosphorus, Biology, Biomass (ecology)
+Resumo: New shoots (including newly formed leaves and twigs) and fruits of citrus tree are key organs for present yield formation and flower differentiation in the next season, but the relationship between yield fluctuation and accumulations of major nutrients in new shoots and fruits of citrus tree is still unclear. Thus, to quantify the biomass and mineral nutrient accumulation in new shoots and fruits of citrus trees under varied yield levels has essential significance for rational fertilization and pruning management for citrus orchards. The purpose of this study was, therefore, to investigate the accumulation of nitrogen (N), phosphorus (P), potassium (K), calcium (Ca) and magnesium (Mg), and the distribution of biomass in new shoots and fruits of citrus trees under low, medium and high-yield levels in each of eight orchards located in Chongqing, China. The results showed that substantial variation of fruit yield was observed in all eight orchards with an average yield of 15.0 (low), 30.9 (medium) and 60.1 (high) kg/plant. The averaged biomass of new shoots ranged from 1.59 to 2.51 kg/plant, which was significantly and positively correlated with fruit yield. Nutrient accumulation in leaves was generally highest among new organs, while more than half of N (52.70–71.4%), P (66.5–80.4%) and K (68.9–85.9%) accumulated in fruit. Fruit yields closely correlated with total amounts of major nutrients in new shoots. Furthermore, the nutrient requirements per unit of newly developed shoots and fruits were gradually decreased with increased yield, but the removed nutrients per ton of fresh fruit were almost stable, indicating that more nutrients were distributed into fruit tissues. Taken together, these findings are valuable for optimizing nutrient and pruning management in citrus orchards in China and other similar countries.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Southwest University
+Local: CN
+Tipo de trabalho: 
+Título do periódico: Agronomy
+Quartil do periódico: 
+Volume: 10
+Número/fascículo: 12
+Páginas: 1988-1988
+DOI: 10.3390/agronomy10121988
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1utoLyNyXVXTRxPVSyIUmSnob4WUeOSyI/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em um pomar comercial em Changshou, Chongqing City, China (clima subtropical de monção, pluviosidade média anual de 1000 mm, temperatura média anual entre 15 e 21 °C). As árvores (tangerina W. Murcott) tinham cerca de 8 anos. O solo (0-20 cm) apresentava pH ácido (5.16–5.38) e teores variados de matéria orgânica total (18.9–22.3 g/kg), N total (1.11–1.90 g/kg), P disponível (21.4–27.9 mg/kg), K disponível (217–244 mg/kg), Ca trocável (1.83–2.13 g/kg) e Mg trocável (0.16–0.29 g/kg).
+ferramentas e técnicas (seleção): Análise de Variância (ANOVA)
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Otimização da fertilização
+grupos de culturas (seleção): Fruteiras
+culturas presentes (seleção): Tangerina W. Murcott (Citrus reticulate L.)
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa altamente relevante para o manejo nutricional e de poda em citricultura. O estudo correlaciona o acúmulo de nutrientes e biomassa nos brotos novos com o nível de rendimento, fornecendo dados cruciais para a otimização da fertilização racional e sustentável, especialmente em regiões com problemas de baixa produtividade e excesso de adubação.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

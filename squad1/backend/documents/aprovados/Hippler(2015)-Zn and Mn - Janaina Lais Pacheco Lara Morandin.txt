@@ -1,0 +1,30 @@
+Autor(es): F. W. R. Hippler, R. M. Boaretto, J. A. Quaggio, R. A. Azevedo & D. Mattos Jr
+Título: Towards soil management with Zn and Mn: estimates of fertilisation efficacy of Citrus trees
+Subtítulo: 
+Ano: 2015
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Antioxidant enzyme, fertilisers, micronutrients, oxidative stress, soil application, soil texture
+Resumo: O artigo discute a eficácia da aplicação de zinco (Zn) e manganês (Mn) no solo para a produção de laranja.
+Tipo de documento: Artigo de pesquisa
+Editora: Annals of Applied Biology
+Instituição: Instituto Agronômico
+Local: Cordeirópolis, São Paulo, Brasil
+Tipo de trabalho: Pesquisa
+Título do periódico: Annals of Applied Biology
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 10.1111/aab.12197
+Numeração: 
+Qualis: 
+CATEGORIA: citros e cana
+Caracteristicas do solo e região (escrever): Solo com baixa disponibilidade inerente de Mn e Zn, comum em condições tropicais no Brasil (São Paulo, Cordeirópolis/Campinas). O estudo utilizou dois tipos de solo: Franco-arenoso (18,1% de argila) e Argiloso (64,4% de argila). O solo foi corrigido para saturação de bases de 70%.
+ferramentas e técnicas (seleção): Cromatografia gasosa, Fotossíntese líquida, RCBD, ANOVA
+nutrientes (seleção): Zinco (Zn), Manganês (Mn)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação, Aplicação foliar
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja
+FEEDBACK DA IA: [object Object]
+FEEDBACK DO CURADOR: 
+FEEDBACK SOBRE IA: [object Object]

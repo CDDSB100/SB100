@@ -1,0 +1,34 @@
+ID: 1d0be4cb-060e-4872-b740-de44047d0148
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Franz Walter Rieger Hippler; Rodrigo Marcelli Boaretto;  José A. Quaggio;  Antonio Enedi Boaretto; Cassio Hamilton Abreu Junior; Cassio Hamilton Abreu Junior; Dirceu Mattos Jr
+Titulo: Uptake and Distribution of Soil Applied Zinc by Citrus Trees—Addressing Fertilizer Use Efficiency with 68Zn Labeling
+Subtítulo: 
+Ano: 2015
+Número de citações recebidas (Google Scholar): 62
+Palavras-chave: 
+Resumo: Increasing the nitrogen (N) use efficiency of fruit trees to enhance fruit yield and decrease N rate and fertilization losses in the field is intensively discussed. Noteworthy, molybdenum (Mo) demand is likely to increase in high yielding citrus orchards. However, supply of this micronutrient through fertilization practices is not well-known. Thus, two experiments were carried out under greenhouse conditions to evaluate the nitrate reductase (NRase) activity and the Mo mobility in sweet orange plants (1-yr-old) after foliar application of Mo. For both experiments, the plants were supplied with two N levels via fertigation over 7-mo (totaling 2.8 and 17.5 g of N per plant), with Mo treatments applied in the final month. The first experiment consisted of leaf sprays to the whole plant canopy at 0 (control), 0.12, 0.60 and 1.20 g L−1 Mo. In the second experiment, the 0.60 g L−1 Mo spray was limited to one side of the canopy. The Mo supply enhanced the NRase activity either in leaves or roots and increased the nitrate uptake by roots. Consequently, the N content in the roots, twigs and leaves of plants increased. When the Mo was sprayed on one side of the canopy, the nutrient was translocated (30 − 40% from the absorbed) from the leaves to the roots, but at a lower percentage in plants grown with the highest N supply. Although the Mo concentration did not increase in leaves that did not directly receive the micronutrient spray, the NRase increased in both parts of the canopy, as well as in the roots, enhancing the N content in Citrus.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Plos One 
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: http://dx.doi.org/10.5935/2236-3122.20140007
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Uu6RpRFUVOv_GHYzPhIXzW9mBuDmYrCm/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Solos altamente intemperizados, típicos dos trópicos (Brasil). Os solos utilizados foram franco-arenoso (18,1% argila, predominância de caolinita) e argiloso (64,4% argila, predominância de gibbsita e hematita). O pH (CaCl₂) foi ajustado para aproximadamente 5,2. O solo argiloso demonstrou maior capacidade de adsorção de Zn (b₁ = 1220 mg kg⁻¹).
+ferramentas e técnicas (seleção): Rastreamento isotópico com ${}^{68}\text{Zn}$ (isótopo estável), Espectrometria de Massa com Plasma Indutivamente Acoplado (ICP-MS) para determinação isotópica, Espectrometria de Emissão Atômica com Plasma Indutivamente Acoplado (ICP-OES) para concentração de nutrientes, Curvas de adsorção (isotermas de Langmuir), Eletroforese em gel de poliacrilamida (PAGE) para atividade de Superóxido Dismutase (SOD), Espectrofotometria para atividade de Catalase (CAT).
+nutrientes (seleção): Zinco (Zn), Cobre (Cu), Ferro (Fe), Manganês (Mn), Potássio (K), Fósforo (P), Cálcio (Ca), Magnésio (Mg), Enxofre (S), Boro (B), Molibdênio (Mo).
+estratégias de fornecimento de nutrientes (seleção): Aplicação de fertilizante via solo (superfície), Fontes de Zinco solúveis em água (ZnSO₄) e pouco solúveis (ZnO), Fertilização para manutenção de nutrientes (aplicação de solução), Comparação com a estratégia tradicional de pulverizações foliares.
+grupos de culturas (seleção): Frutíferas (cítricas e tropicais), Culturas de grãos (arroz, feijão), Culturas industriais (cana-de-açúcar, café).
+culturas presentes (seleção): Laranjeira doce (Citrus sinensis L. Osbeck cv. Tobias) enxertada em Mandarina 'Sunki' (C. sunki), Cana-de-açúcar, Café, Seringueira, Pistache, Noz, Maçã, Pêssego, Feijão, Arroz, Trigo, Milho.
+FEEDBACK DO CURADOR (escrever): Excelente pesquisa agronômica que utiliza técnicas de rastreamento isotópico avançadas para quantificar a eficiência de uso de fertilizantes de Zinco aplicados ao solo (ZnSO₄ vs. ZnO). Demonstra claramente a dependência da eficiência da fertilização em relação à fonte de Zn e à textura do solo. Os resultados são cruciais para o desenvolvimento de diretrizes de manejo de micronutrientes em citros, especialmente em solos tropicais.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Maiara Curtolo, Mariângela Cristofani–Yaly, Rodrigo Gazaffi, Marco Aurélio Takita, Antônio Figueira, Marcos Antônio Machado
+Titulo: QTL mapping for fruit quality in Citrus using DArTseq markers
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 55
+Palavras-chave: Quantitative trait locus, Biology, Germplasm, Genetics, Citrus × sinensis
+Resumo: 
+Tipo de documento: article
+Editora: BioMed Central
+Instituição: Universidade de São Paulo
+Local: BR
+Tipo de trabalho: 
+Título do periódico: BMC Genomics
+Quartil do periódico: 
+Volume: 18
+Número/fascículo: 1
+Páginas: 289-289
+DOI: 10.1186/s12864-017-3629-2
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1FtleFaDtJZ45waqLLSIKpjvfihKyu_Tr/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em Cordeirópolis, SP, Brasil, no Centro de Citricultura Sylvio Moreira (IAC). O experimento avaliou híbridos de citros enxertados em limoeiro 'Rangpur' (C. limonia Osbeck).
+ferramentas e técnicas (seleção): Mapeamento Genético, Sequenciamento de Nova Geração, Mapeamento de QTL, DArTseq
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Citros
+culturas presentes (seleção): Murcott tangor, Pera sweet orange, Rangpur lime
+FEEDBACK DO CURADOR (escrever): Documento agronômico de alta relevância, detalhando o mapeamento de QTLs para características complexas de qualidade de frutos em citros (laranja doce e tangor), utilizando marcadores moleculares avançados (DArTseq). As descobertas são cruciais para programas de melhoramento genético.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

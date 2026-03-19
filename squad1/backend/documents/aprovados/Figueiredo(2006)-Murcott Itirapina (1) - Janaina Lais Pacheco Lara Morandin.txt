@@ -1,0 +1,34 @@
+ID: 611b3764-5aa2-4078-b402-250ee027bfb6
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): JOSÉ ORLANDO DE FIGUEIREDO; JOSÉ DAGOBERTO DE NEGRI; DIRCEU DE MATTOS JUNIOR; ROSE MARY PIO; FRANCISCO FERRAZ LARANJEIRA; VALÉRIA XAVIER PAULA GARCIA
+Titulo: COMPORTAMENTO DE 16 PORTA-ENXERTOS PARA O TANGOR MURCOTT NA REGIÃO DE ITIRAPINA-SP
+Subtítulo: 
+Ano: 2006
+Número de citações recebidas (Google Scholar): 16
+Palavras-chave: melhoramento, seleção, qualidade de fruto
+Resumo: Foi monitorado o comportamento de 16 porta-enxertos para o tangor Murcott [Citrus reticulata Blanco x C. sinensis (L.) Osbeck], do clone nucelar J, em experimento instalado em 1990, na Fazenda Raio de Sol, Itirapina-SP. Os porta-enxertos foram: tangelo ‘Orlando’ (C. reticulata Blanco x C. paradisi Macf.), laranja ‘Caipira DAC’ [C. sinensis (L.) Osbeck], limão ‘Cravo’(C. limonia Osbeck), os trifoliatas ‘Kryder 8-5’e ‘EEL’[Poncirus trifoliata (L.) Raf.] e as tangerinas ‘Cleópatra’ (C. reshni hort. ex. Tanaka), ‘Sunki’ [C. sunki (Hayata) hort. ex. Tanaka], ‘Batangas’, ‘Oneco’, ‘Swatow’, ‘Szinkon’, ‘Satsuma’, ‘Cravo’, ‘Dancy’, ‘Suen Kat’ e ‘Pook Ling Ming’ (C. reticulata Blanco). As produções foram avaliadas de 1996 a 2003 e as maiores médias foram proporcionadas pelas plantas enxertadas nas tangerinas ‘Cleópatra’,  ́Suen Kat’, ‘Pook Ling Ming’ e ‘Sunki’ (>40 kg planta-1). Dentre os porta-enxetos que induziram as mais baixas produções, estão os dois trifoliatas, a ‘Caipira DAC’ e a tangerina ‘Cravo’ (<25 kg planta-1). As características de qualidade apresentadas pelos frutos, referentes aos anos de 1998 e 2002, indicaram não existir diferenças expressivas entre os tratamentos. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Revista Brasileira de Fruticultura
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0100-29452006000100022
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1TBoZ_XgKKTLFfejZiYcj8Eh_cbPg2wtN/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Experimento realizado na Fazenda Raio de Sol, Itirapina-SP. O solo do local foi classificado como Neossolo Quartzarênico. O clima apresentou médias anuais de: temperatura de 20 °C, umidade relativa de 80% e precipitação pluvial de 1.600 mm.
+ferramentas e técnicas (seleção): Delineamento em blocos ao acaso
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Citros (Citrus)
+culturas presentes (seleção): Tangor Murcott (Clone J)
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica muito relevante, focado na avaliação de 16 porta-enxertos para o tangor Murcott na região de Itirapina-SP. Apresenta dados de produção de 7 anos e análise de qualidade de frutos. Útil para a seleção de porta-enxertos na citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

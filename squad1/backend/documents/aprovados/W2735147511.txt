@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Jing Hu, Huiyuan Guo, Junli Li, Yunqiang Wang, Xiao Lian, Baoshan Xing
+Titulo: Interaction of γ-Fe2O3 nanoparticles with Citrus maxima leaves and the corresponding physiological effects via foliar application
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 97
+Palavras-chave: Nanoparticle, Chemistry, Nanotechnology, Materials science
+Resumo: 
+Tipo de documento: article
+Editora: BioMed Central
+Instituição: Wuhan University of Technology
+Local: CN
+Tipo de trabalho: 
+Título do periódico: Journal of Nanobiotechnology
+Quartil do periódico: 
+Volume: 15
+Número/fascículo: 1
+Páginas: 51-51
+DOI: 10.1186/s12951-017-0286-1
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1XoKLaKhqPWe03q-bB2Yyeytgw1XtN-HP/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em laboratório, utilizando um sistema hidropônico com solução nutritiva de Hoagland modificada (sem ferro) para o cultivo de Citrus maxima. As condições ambientais controladas foram 28/18 °C (dia/noite) com ciclo de luz de 16 h/8 h e intensidade luminosa de 2000 lx. O contexto agronômico visa superar a deficiência de ferro em plantas, um problema generalizado, especialmente em solos calcários, onde os fertilizantes inorgânicos de ferro são ineficazes.
+ferramentas e técnicas (seleção): Nanomateriais (y-Fe2O3 NPs); Aplicação Foliar (Foliar spray); RT-PCR para expressão gênica (FRO2, Nramp3, WIN1, ABCG12); Espectrofotometria de Absorção Atômica (Conteúdo de Fe); Análise de Cera Cuticular; Análise Bioquímica (Clorofila, Proteína Solúvel, Atividade Enzimática, Peroxidação Lipídica - MDA).
+nutrientes (seleção): Ferro (Fe)
+estratégias de fornecimento de nutrientes (seleção): Nanofertilizante; Aplicação Foliar; Quelato (Fe(II)-EDTA); Aplicação Iônica (Fe³⁺)
+grupos de culturas (seleção): Fruticultura; Horticultura
+culturas presentes (seleção): Citrus maxima (Pomelo/Shaddock)
+FEEDBACK DO CURADOR (escrever): Estudo de alta relevância agronômica, focado na aplicação foliar de nanofertilizantes de óxido de ferro (y-Fe2O3 NPs) em Citrus maxima. O trabalho compara a eficácia dos NPs com íons Fe³⁺ e quelato Fe(II)-EDTA, analisando a absorção, translocação de ferro, estresse oxidativo e expressão gênica relacionada à captação de ferro e formação de cera. Os resultados destacam a capacidade dos NPs de reduzir a perda de nutrientes devido à sua forte capacidade de adsorção, justificando o potencial como nanofertilizante foliar.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

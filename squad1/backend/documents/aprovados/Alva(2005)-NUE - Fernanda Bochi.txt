@@ -1,0 +1,34 @@
+ID: dd594b1f-d1fe-4d9f-81e2-304be1d681a9
+NOME DO RESPONSÁVEL: Fernanda
+Autor(es): Ashok Kumar Alva; Sivapatham Paramasivam; A. Fares; J. A. Delgado; K. Sajwan; Dirceu Mattos Jr.
+Titulo: Nitrogen and Irrigation Management Practices to Improve Nitrogen Uptake Efficiency and Minimize Leaching Losses
+Subtítulo: 
+Ano: 2005
+Número de citações recebidas (Google Scholar): 129
+Palavras-chave: Best management practices; cover crops; drinking water quality; fertigation, groundwater nitrate pollution; irrigation manage- ment; monitoring crop N status; nitrification; non-point source pollu- tion; precision farming; volatilization
+Resumo: Nitrogen (N) is the most important nutrient for plant growth and production. Nitrogen uptake efficiency is dependent on a number of factors. Water management influences the transformation of N sources applied to the soil and transport of the nitrate form of N in the soil. Nitrate-N is the final product of N transformations and is quite mobile in soils with the water front. Leaching of nitrate below the rootzone is an economic loss and contributes to non-point source pollution of groundwater. In this chapter we summarize the factors influencing the N uptake efficiencies for various crops and production systems, and chemical and biological processes that influence the N transformation or losses. Recent advances leading to development of N and irrigation best management practices that support sustainable crop production and net returns while minimizing the non-point source nitrate pollution of ground water are also discussed.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Journal of Crop Improvement
+Quartil do periódico: Q2
+Volume: NAN
+Número/fascículo: NAN
+Páginas: NAN
+DOI: https://doi.org/10.1300/J411v15n02_11
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1ChHp8CjysCA6BXJnlR7yJcw4xI-U--Bz/view?usp=drivesdk
+CURADOR (seleção): Boaretto
+EMAIL CURADOR (seleção): rmboaretto@gmail.com
+Caracteristicas do solo e região (escrever): A ênfase principal do estudo é em solos arenosos (sandy soils), como Tavares fine sand e Wabasso sand (Entisols e Spodosols), típicos das principais regiões de produção de citros na Flórida, EUA. Esses solos são notáveis pelo alto teor de areia (>96%), baixa capacidade de retenção de água, baixa capacidade de troca catiônica (CTC) e baixo teor de matéria orgânica. O documento também menciona estudos em solos alcalinos, solos argilosos de drenagem ruim e áreas de cultivo como Pacific Northwest, Nebraska e Texas Central.
+ferramentas e técnicas (seleção): Manejo de irrigação
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação (Fertigation)
+grupos de culturas (seleção): Frutas e árvores
+culturas presentes (seleção): Laranja (Orange)
+FEEDBACK DO CURADOR (escrever): 
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

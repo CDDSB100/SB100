@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Rajinder Pal, Onkar Singh, Gulzar S Sanghera, R K Gupta
+Titulo: Influence of INM on sugarcane productivity and soil fertility under Indo-Gangetic plain
+Subtítulo: Desenvolvimento de estratégias de manejo integrado de nutrientes para o cultivo de cana-de-açúcar em condições subtropicais do Punjab
+Ano: 2021
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: Cana-de-açúcar, Manejo integrado de nutrientes, Fertilidade do solo, Produtividade da cana-de-açúcar
+Resumo: O estudo teve como objetivo desenvolver estratégias de manejo integrado de nutrientes para o cultivo de cana-de-açúcar em condições subtropicais do Punjab. Foram realizados experimentos em campo com diferentes combinações de adubos orgânicos, biofertilizantes e níveis de fertilizantes químicos. Os resultados mostraram que a aplicação de adubo orgânico (FYM) em 20 t/ha, junto com a aplicação de nutrientes baseada no teste de solo, resultou em maior número de canas comerciais e maior produtividade da cana-de-açúcar.
+Tipo de documento: Artigo científico
+Editora: Indian Journal of Agricultural Sciences
+Instituição: Punjab Agricultural University
+Local: Kapurthala, Punjab, Índia
+Tipo de trabalho: Experimento em campo
+Título do periódico: Indian Journal of Agricultural Sciences
+Quartil do periódico: N/A
+Volume: 91
+Número/fascículo: 5
+Páginas: 703-707
+DOI: https://doi.org/10.56093/ijas.v91i5.112987
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/15HhELHqmmE_Xg4SP5eWVu4hkNbFV11AB/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): N/A
+nutrientes (seleção): N/A
+estratégias de fornecimento de nutrientes (seleção): N/A
+grupos de culturas (seleção): N/A
+culturas presentes (seleção): N/A
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia de diferentes estratégias de manejo integrado de nutrientes para o cultivo de cana-de-açúcar em condições subtropicais do Punjab.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: Agricultura

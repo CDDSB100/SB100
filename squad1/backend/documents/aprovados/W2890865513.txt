@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Narendra Vasure, A.K. Barholia, Rohit Kumar Bajpai, Raju Jatav, Rahul Pippal
+Titulo: Effect of Foliar Application of Growth Regulators and Micronutrients on Fruit Yield Attributes of Acid Lime (Citrus aurantifolia Swingle)
+Subtítulo: 
+Ano: 2018
+Número de citações recebidas (Google Scholar): 3
+Palavras-chave: Lime, Hectare, Randomized block design, Micronutrient, Yield (engineering)
+Resumo: The present study was conducted at the Agrotechnology Park, Krishi Vigyan Kendra, College of Agriculture, Gwalior, Rajmata Vijyaraje Scindia Krishi Vishwa Vidyalaya, Gwalior (M.P.) during the year 2015-16 and 2016-17. The experiment was laid out in Randomized Block Design (RBD). Seventy four uniform healthy acid lime trees, planted at 6 x 6 m distance were selected under the present study. The experiment consisted of 24 treatment combinations out of six the combination of growth regulators and micronutrients with control and four acid lime varieties. In this manuscript various yield parameters such as number of fruits per tree, fruits yield per tree and fruits yield per hectare have discussed here in respect of foliar application of growth regulators and micronutrients on acid lime varieties.
+Tipo de documento: article
+Editora: Excellent Publishers
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: International Journal of Current Microbiology and Applied Sciences
+Quartil do periódico: 
+Volume: 7
+Número/fascículo: 09
+Páginas: 213-219
+DOI: 10.20546/ijcmas.2018.709.027
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1pEUG5nmeAlWd1ZrE4juDhXoWBGKoIGl2/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi conduzido em Gwalior (M.P.), Índia, uma região de planícies do norte e planaltos centrais com eco-região semi-árida quente. Os solos típicos na área de cultivo de limão-ácido são solos pretos e vermelhos.
+ferramentas e técnicas (seleção): Aplicação Foliar
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Aplicação Foliar
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Limão Ácido (Citrus aurantifolia Swingle)
+FEEDBACK DO CURADOR (escrever): Artigo científico focado no efeito da aplicação foliar de reguladores de crescimento (GA3, Cycocel) e micronutrientes (KNO3, ZnSO4, Boro) no aumento da produtividade e parâmetros de rendimento do Limão Ácido (Acid Lime).
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

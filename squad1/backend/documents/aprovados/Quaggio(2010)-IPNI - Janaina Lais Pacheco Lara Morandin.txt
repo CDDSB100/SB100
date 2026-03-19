@@ -1,0 +1,34 @@
+ID: 6e807ab5-b80f-4fa8-b96d-9260ec1a5077
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): José Antônio QUAGGIO; Dirceu MATTOS Jr.; Rodrigo Marcelli Boaretto
+Titulo: Citros
+Subtítulo: 
+Ano: 2010
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: Adubação; Citros; Nutrição
+Resumo: O parque citrícola brasileiro produziu 20 milhões t de frutos em 2007, tendo sido dois terços deste total destinados à indústria de suco de laranja concentrado e congelado e o restante ao mercado de fruta fresca. A manutenção de níveis elevados de produção requer, entre Outros fatores, o manejo nutricional adequado dos pomares. Para isso, é necessário estabelecer informações que correlacionam o desenvolvimento da planta (produção e qualidade de frutos) com a disponibilidade de nutrientes no solo, o teor de nutriente na planta e o suprimento pela adubação. Neste capítulo, são fornecidas informações científicas consolidadas, publicadas em diversos meios sobre nutrição, adubação e produção de citros, que visam melhorar a produtividade e a qualidade dos frutos dentro dos novos sistemas de produção e nos diferentes ambientes agrícolas. Assim, são abordados assuntos sobre amostragem e análise de solo e planta, além das recomendações de calagem e adubação (incluindo fertirrigação) para a implantação, a formação do pomar e a produção de frutos destinados para a indústria e o consumo in natura. Os padrões de fertilidade do solo e da nutrição mineral da planta apresentados foram estabelecidos em experimentos por meio de curvas de calibração das análises de macro e micronutrientes no solo e na planta especificamente para citros. 
+Tipo de documento: Capítulo de livro
+Editora: 
+Instituição: Centro de Solos e Recursos Agroambientais, Instituto Agronômico de Campinas;  Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas; Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1HRRW0PWKH8ZPrqAC9B0T2sVPfdU3Ei67/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Solos brasileiros para citricultura caracteristicamente ácidos, de baixa fertilidade natural e alta capacidade de fixação de fósforo. Menciona solos tropicais e subtropicais, com foco na concentração da produção no Estado de São Paulo. O manejo deve ser aprimorado em solos rasos, muito argilosos (dificultam drenagem e favorecem compactação) ou muito arenosos (baixa capacidade de retenção de água).
+ferramentas e técnicas (seleção): Análise de solo
+nutrientes (seleção): N
+estratégias de fornecimento de nutrientes (seleção): Adubação de base (plantio/formação)
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Laranja
+FEEDBACK DO CURADOR (escrever): Documento técnico e científico altamente relevante para o manejo de citros, consolidando informações sobre nutrição, adubação (incluindo fertirrigação) e diagnóstico de fertilidade de solos e plantas cítricas no contexto brasileiro, com foco no Estado de São Paulo.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

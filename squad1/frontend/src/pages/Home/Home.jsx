@@ -23,8 +23,9 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import FolderIcon from "@mui/icons-material/Folder";
 import GroupIcon from "@mui/icons-material/Group";
 import HubIcon from "@mui/icons-material/Hub";
+import DescriptionIcon from "@mui/icons-material/Description";
 import { useAuth } from "../../hooks/useAuth";
-import { checkApiHealth } from "../../api";
+import { checkApiHealth, getApiBaseUrl } from "../../api";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -43,6 +44,13 @@ function HomePage() {
     };
     checkHealth();
   }, []);
+
+  const handleOpenSwagger = () => {
+    const baseUrl = getApiBaseUrl();
+    const token = localStorage.getItem('accessToken');
+    const swaggerUrl = `${baseUrl}/api-docs${token ? `?token=${token}` : ''}`;
+    window.open(swaggerUrl, '_blank');
+  };
 
   const menuItems = [
     {
@@ -89,6 +97,13 @@ function HomePage() {
       icon: <PersonAddIcon sx={{ fontSize: 32 }} />,
       path: "/register-user",
       color: "#9c27b0",
+    });
+    menuItems.push({
+      title: "Documentação API",
+      description: "Acesse a documentação interativa via Swagger UI.",
+      icon: <DescriptionIcon sx={{ fontSize: 32 }} />,
+      action: handleOpenSwagger,
+      color: "#ff5722",
     });
   }
 
@@ -190,7 +205,7 @@ function HomePage() {
                   }}
                 >
                   <CardActionArea 
-                    onClick={() => navigate(item.path)}
+                    onClick={item.action ? item.action : () => navigate(item.path)}
                     sx={{ p: 1, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
                   >
                     <CardContent sx={{ flexGrow: 1, width: '100%', pt: 3 }}>

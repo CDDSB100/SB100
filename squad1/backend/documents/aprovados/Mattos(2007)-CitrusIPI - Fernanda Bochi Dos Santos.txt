@@ -1,0 +1,34 @@
+ID: 51e3ec63-6d71-4314-a65c-74342c99618e
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; José Antônio Quaggio; Heitor Cantarella
+Titulo: No. 18: Fruteiras Tropicais do Brasil: Citrus (ingles)
+Subtítulo: No. 18: Fruteiras Tropicais do Brasil
+Ano: 2007
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Boletim
+Editora: 
+Instituição: Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas; Centro de Pesquisa e Desenvolvimento de Solos e Recursos Ambientais, Instituto Agronômico de Campinas; Centro de Pesquisa e Desenvolvimento de Solos e Recursos Ambientais, Instituto Agronômico de Campinas
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1zs_nZD3xErck2wJ3AGd7SHhtLUFoZLZ1/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Cultivo em diversas regiões do mundo, principalmente subtropicais e tropicais (Japão, Sudeste Asiático, Índia, Brasil). As recomendações estão fortemente baseadas em estudos realizados no Estado de São Paulo, Brasil. Os solos são variados, sendo citados solos menos férteis (rasos, argilosos, arenosos, ácidos ou salinos), e é destacada a deficiência de Fósforo (P) comum em solos tropicais. É utilizado o Sistema IAC de Análise de Solo.
+ferramentas e técnicas (seleção): Análise de solo, Análise foliar, Calagem, Fertilização, Enxertia, Manejo hídrico, Irrigação, Uso de herbicidas
+nutrientes (seleção): N, P, K, Ca, Mg, S, B, Cu, Fe, Mn, Zn, Mo
+estratégias de fornecimento de nutrientes (seleção): Aplicação de fertilizantes em covas profundas (plantio), Incorporação profunda de calcário e P, Aplicação superficial de N e K, Fracionamento da dose de N e K (3 a 4 vezes ao ano), Aplicação foliar de micronutrientes (Zn, Mn, B, Cu), Aplicação de ácido bórico dissolvido em solução herbicida
+grupos de culturas (seleção): Frutíferas, Cítricos
+culturas presentes (seleção): Laranja (Orange), Tangerina (Tangerine), Limão (Lemon), Lima (Lime), Toranja (Grapefruit), Cidra (Citron), Tangerina Cleopatra (porta-enxerto), Limão Rangpur (porta-enxerto), Citrumelo Swingle (porta-enxerto)
+FEEDBACK DO CURADOR (escrever): Documento altamente relevante para o manejo nutricional de citros, incluindo recomendações específicas de adubação e calagem baseadas em análise de solo e foliar para condições brasileiras (Estado de São Paulo). Contém dados calibrados para P e K em citros.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

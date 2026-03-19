@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Komalpreet Kaur, Monika Gupta, H. S. Rattanpal, Tanjeet Singh Chahal, Gurteg Singh
+Titulo: Impact of foliar application of growth regulators on fruit splitting, yield and quality of daisy mandarin (Citrus reticulata)
+Subtítulo: 
+Ano: 2024
+Número de citações recebidas (Google Scholar): 13
+Palavras-chave: Mandarin Chinese, Yield (engineering), Horticulture, Quality (philosophy), Biology
+Resumo: The experiment was conducted during 2021 and 2022 at the Fruit Research Station, Jallowal-Lesriwal, Jalandhar (Punjab Agricultural University), Punjab to study the effect of foliar application of growth regulators on fruit splitting, yield and quality of Daisy mandarin (Citrus reticulata Blanco). The different concentrations of gibberellic acid (GA3) (10, 20 and 30 ppm), naphthalene acetic acid (NAA) (10, 20 and 30 ppm), ethephon (10, 20 and 30 ppm) and salicylic acid (SA) (100 and 200 ppm) along with control were applied at different developmental stages of Daisy mandarin. The results revealed that the application of salicylic acid at 100 ppm effectively mitigated the severity of fruit splitting in Daisy mandarin during both the seasons and highest fruit weight, number of fruits and maximum fruit yield were observed with foliar application of GA3 at 10 ppm. Regarding the fruit quality attributes including total soluble solids, ascorbic acid, juice and flavonoid content, exhibited superior results with the application of 10 ppm GA3 as compared to untreated plants. The results suggested that application of 10 ppm GA3 and 100 ppm salicylic was effective in enhancing fruit quality attributes and reducing the incidence of fruit splitting in Daisy mandarin.
+Tipo de documento: article
+Editora: Indian Council of Agricultural Research
+Instituição: Punjab Agricultural University
+Local: IN
+Tipo de trabalho: 
+Título do periódico: The Indian Journal of Agricultural Sciences
+Quartil do periódico: 
+Volume: 94
+Número/fascículo: 2
+Páginas: 181-186
+DOI: 10.56093/ijas.v94i2.143183
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/19OmVHseMJJPGKirSP2MV75lc91Difhty/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi conduzido na Fruit Research Station, Jallowal-Lesriwal, Jalandhar, Punjab, Índia (31° 29′ 38″ N e 75° 37′ 40″ E). O solo do local foi caracterizado como franco arenoso (sandy loamy).
+ferramentas e técnicas (seleção): Aplicação Foliar
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): Aplicar via Foliar
+grupos de culturas (seleção): Frutas Cítricas
+culturas presentes (seleção): Mandarina
+FEEDBACK DO CURADOR (escrever): Artigo relevante focado na mitigação da rachadura de frutos (fruit splitting) em mandarina Daisy usando reguladores de crescimento vegetal. Os resultados indicam que a aplicação de ácido salicílico (SA) a 100 ppm e ácido giberélico (GA3) a 10 ppm são eficazes para reduzir o splitting e melhorar significativamente a qualidade e o rendimento do fruto.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

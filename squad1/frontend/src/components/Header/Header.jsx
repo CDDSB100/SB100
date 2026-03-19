@@ -18,7 +18,7 @@ import {
   Avatar,
   Tooltip
 } from '@mui/material';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ScienceIcon from '@mui/icons-material/Science';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -29,7 +29,9 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import DescriptionIcon from '@mui/icons-material/Description';
 import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
+import { getApiBaseUrl } from '../../api';
 
 const Header = () => {
   const { isAuthenticated, logout, userRole, user } = useAuth();
@@ -58,12 +60,20 @@ const Header = () => {
     navigate('/');
   };
 
+  const handleOpenSwagger = () => {
+    const baseUrl = getApiBaseUrl();
+    const token = localStorage.getItem('accessToken');
+    const swaggerUrl = `${baseUrl}/api-docs${token ? `?token=${token}` : ''}`;
+    window.open(swaggerUrl, '_blank');
+  };
+
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon />, path: '/home', show: isAuthenticated },
     { text: 'Busca', icon: <SearchIcon />, path: '/search', show: isAuthenticated },
     { text: 'Inserção Manual', icon: <PlaylistAddIcon />, path: '/manual-insert', show: isAuthenticated },
     { text: 'Curadoria', icon: <ArticleIcon />, path: '/curation', show: isAuthenticated },
     { text: 'Usuários', icon: <GroupIcon />, path: '/user-management', show: isAuthenticated && userRole === 'admin' },
+    { text: 'Swagger', icon: <DescriptionIcon />, onClick: handleOpenSwagger, show: isAuthenticated && userRole === 'admin' },
     { text: 'Ajuda', icon: <HelpOutlineIcon />, path: '/help', show: isAuthenticated },
   ];
 
@@ -109,14 +119,18 @@ const Header = () => {
           {menuItems.filter(item => item.show).map((item) => (
             <ListItem 
               key={item.text} 
-              component={RouterLink} 
-              to={item.path}
-              onClick={handleDrawerToggle}
+              component={item.onClick ? 'div' : RouterLink} 
+              to={item.onClick ? undefined : item.path}
+              onClick={() => {
+                if (item.onClick) item.onClick();
+                handleDrawerToggle();
+              }}
               sx={{ 
                 borderRadius: 2, 
                 mb: 0.5,
                 bgcolor: location.pathname === item.path ? 'primary.light' : 'transparent',
                 color: location.pathname === item.path ? 'white' : 'text.primary',
+                cursor: 'pointer',
                 '&:hover': { bgcolor: location.pathname === item.path ? 'primary.light' : 'rgba(0,0,0,0.04)' }
               }}
             >
@@ -219,8 +233,9 @@ const Header = () => {
                 {menuItems.filter(item => item.show).map((item) => (
                   <Button 
                     key={item.text} 
-                    component={RouterLink} 
-                    to={item.path}
+                    component={item.onClick ? 'button' : RouterLink} 
+                    to={item.onClick ? undefined : item.path}
+                    onClick={item.onClick}
                     sx={{ 
                       px: 2,
                       fontWeight: 600,

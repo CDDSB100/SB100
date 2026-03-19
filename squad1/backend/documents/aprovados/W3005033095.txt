@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Jae Wook Hyun, Rok Yeon Hwang, Cheol Choi, Kyung Eun Jung, Seung Gab Han
+Titulo: Symptomatology of Citrus mosaic sadwavirus (CiMV) in Some Citrus Cultivars and Effect of CiMV Infection on Citrus Fruit Quality
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 13
+Palavras-chave: Citrus unshiu, Flesh, Horticulture, Biology, Orange (colour)
+Resumo: <i>Citrus mosaic sadwavirus</i> (CiMV) is a closely related virus with the <i>Satsuma dwarf virus</i> (SDV) along with <i>Navel orange infectious mottling virus</i> (NIMV), <i>Natsudaidai dwarf virus</i> (NDV), and <i>Hyugagatsu virus</i> (HV). The present study found that the typical symptoms of CiMV-infected citrus fruits include the appearance of dark blue speckles or ringspots on fruit rinds and the browning of oil glands in the spots as rind coloring began. As rind coloring progressed, the spots gradually faded, whereas the browning of the oil glands worsened to the point that the tissues surrounding the oil glands became necrotic. In very early satsuma mandarins (<i>Citrus unshiu</i> 'Miyamoto Wase') and 'Setoka' cultivar (<i>C. hybrid</i> 'Setoka') of late-maturity citrus, the symptomatic fruits were eventually dropped. And in early satsuma mandarin (<i>C. unshiu</i> 'Miyakawa Wase'), the peel hardness of the virus-infected fruit (1,618.3 ± 305.5, g-force) was more than twice as hard as that of the healthy fruit (636.5 ± 39.1, g-force). The ratio of flesh weight to total fruit weight was higher for the healthy fruit (77.3 ± 1.7%) than for the infected fruit (70.7 ± 0.6) and peel puffing was more severe in the infected fruit (2.9 ± 0.4 mm) than in the healthy fruit (0.9 ± 0.2 mm). The soluble solids content in infected citrus fruits was less values than the healthy fruit by 0.5-1.5 °Brix. These findings reveal that CiMV infection on citrus trees reduces the fruit quality of citrus.
+Tipo de documento: article
+Editora: Hanrimwon Publishing Company
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: The Plant Pathology Journal
+Quartil do periódico: 
+Volume: 36
+Número/fascículo: 1
+Páginas: 106-110
+DOI: 10.5423/ppj.nt.07.2019.0192
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1MAb8J3GtwKO01ZQICfEhxzsK2zgO2lwt/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado na Ilha de Jeju, Coreia do Sul, focado em citros, incluindo o uso de porta-enxerto de laranjeira trifoliada.
+ferramentas e técnicas (seleção): PCR/RT-PCR (técnicas moleculares), Análise de textura/firmeza (TA-XT2), Refractometria (para °Brix), Titulação/Acidez
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Fruticultura, Citros
+culturas presentes (seleção): Citrus unshiu 'Miyamoto Wase', Citrus hybrid 'Setoka', Citrus unshiu 'Miyakawa Wase', Citrus hybrid 'Kanpei', Citrus hybrid 'Ehime kashi No. 28', Citrus hybrid 'Shiranuhi', 'Kiyomi'
+FEEDBACK DO CURADOR (escrever): Documento agronômico focado em fitopatologia e qualidade de frutos cítricos. Analisa como a infecção por Citrus mosaic sadwavirus (CiMV) reduz a qualidade comercial do fruto (dureza da casca, teor de sólidos solúveis e peso da polpa) em diversas cultivares de citros, como a satsuma mandarin e a 'Setoka', na Coreia. Relevante para o manejo de doenças virais em citricultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

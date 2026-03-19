@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { CircularProgress, Box } from '@mui/material';
-import { useAuth } from '../hooks/useAuth';
-import MainLayout from '../layouts/MainLayout';
+import { useAuth } from '../../hooks/useAuth';
+import MainLayout from '../../layouts/MainLayout';
 
 function ProtectedRoute() {
     const { isAuthenticated, isLoading } = useAuth();

@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Nabil Killiny, Faraj Hijaz, Pedro Gonzalez-Blanco, Shelley E. Jones, Myrtho O. Pierre, Christopher Vincent
+Titulo: Effect of Adjuvants on Oxytetracycline Uptake upon Foliar Application in Citrus
+Subtítulo: 
+Ano: 2020
+Número de citações recebidas (Google Scholar): 31
+Palavras-chave: Oxytetracycline, Adjuvant, Chemistry, Agronomy, Horticulture
+Resumo: Recently in Florida, foliar treatments using products with the antibiotics oxytetracycline and streptomycin have been approved for the treatment of citrus Huanglongbing (HLB), which is caused by the putative bacterial pathogen ‘Candidatus Liberibacter asiaticus’. Herein, we assessed the levels of oxytetracycline and ‘Ca. L. asiaticus’ titers in citrus trees upon foliar applications with and without a variety of commercial penetrant adjuvants and upon trunk injection. The level of oxytetracycline in citrus leaves was measured using an oxytetracycline ELISA kit and ‘Ca. L. asiaticus’ titer was measured using quantitative PCR. Low levels of oxytetracycline were taken up by citrus leaves after foliar sprays of oxytetracycline in water. Addition of various adjuvants to the oxytetracycline solution showed minimal effects on its uptake by citrus leaves. The level of oxytetracycline in leaves from trunk-injected trees was higher than those treated with all foliar applications. The titer of ‘Ca. L. asiaticus’ in the midrib of leaves from trees receiving oxytetracycline by foliar application was not affected after four days and thirty days of application, whereas the titer was significantly reduced in oxytetracycline-injected trees thirty days after treatment. Investigation of citrus leaves using microscopy showed that they are covered by a thick lipidized cuticle. Perforation of citrus leaf cuticle with a laser significantly increased the uptake of oxytetracycline, decreasing the titer of ‘Ca. L. asiaticus’ in citrus leaves upon foliar application. Taken together, our findings indicate that trunk injection is more efficient than foliar spray even after the use of adjuvants. Our conclusion could help in setting useful recommendations for the application of oxytetracycline in citrus to improve tree health, minimize the amount of applied antibiotic, reduce environmental exposure, and limit off-target effects.
+Tipo de documento: article
+Editora: Multidisciplinary Digital Publishing Institute
+Instituição: Florida Department of Citrus
+Local: US
+Tipo de trabalho: 
+Título do periódico: Antibiotics
+Quartil do periódico: 
+Volume: 9
+Número/fascículo: 10
+Páginas: 677-677
+DOI: 10.3390/antibiotics9100677
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Mf1w4dsM1KVFtCQn5v03rDxPVOZwMOB7/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Florida, EUA (Lake Alfred), em solo arenoso. O principal desafio estudado é a cutícula foliar espessa e lipídica das folhas de citros, que atua como barreira principal para a absorção foliar do antibiótico.
+ferramentas e técnicas (seleção): Spray foliar, Injeção no tronco (trunk injection), ELISA (para Oxitetraciclina), qPCR (para 'Ca. L. asiaticus'), Microscopia (TEM, LM, Fluorescência), Perforação/Gravação a Laser da cutícula foliar.
+nutrientes (seleção): Não são o foco principal (foco em antibióticos), mas são mencionados Urea, sais minerais e nitrato de amônio (como ingredientes ativos de alguns adjuvantes).
+estratégias de fornecimento de nutrientes (seleção): Aplicação foliar (com adjuvantes), Injeção no tronco, Soaking (imersão de folhas), Perfuração da cutícula para melhorar a absorção.
+grupos de culturas (seleção): Frutas Cítricas.
+culturas presentes (seleção): Laranja Doce (Sweet Orange 'Hamlin' e 'Valencia').
+FEEDBACK DO CURADOR (escrever): Estudo agronômico de alta relevância focado na eficácia da entrega de antibióticos (oxitetraciclina) para o tratamento da doença Huanglongbing (HLB) em citros. A principal conclusão é que a injeção no tronco é drasticamente mais eficiente para a entrega de oxitetraciclina do que a aplicação foliar, devido à baixa permeabilidade da cutícula foliar. Os adjuvantes testados tiveram efeito mínimo na melhoria da absorção foliar.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

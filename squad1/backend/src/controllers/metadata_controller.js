@@ -287,7 +287,7 @@ async function runExtractionAgent(query, documentText = null, file = null) {
                     // Fallback para quando o campo legado ainda vem da IA
                     combinedData["FEEDBACK DA IA"] = {
                         technical_summary: llmResult["FEEDBACK DO CURADOR (escrever)"],
-                        climate_insights: "N/A",
+                        agronomic_insights: "N/A",
                         relevance_score: 5.0
                     };
                 }

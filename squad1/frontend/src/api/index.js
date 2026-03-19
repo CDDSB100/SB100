@@ -193,3 +193,12 @@ export const updateUserPermissions = async (id, role, allowed_categories) => {
   });
   return response.data;
 };
+
+export const getApiBaseUrl = () => {
+  // Em desenvolvimento, o proxy do Vite redireciona /api para o backend.
+  // Em produção, geralmente é o mesmo domínio ou configurado via env.
+  // Como o Swagger está em /api-docs (fora do prefixo /api do backend se não for mapeado),
+  // precisamos saber onde o backend está rodando.
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+  return window.location.origin; // Assume que o backend está no mesmo host
+};

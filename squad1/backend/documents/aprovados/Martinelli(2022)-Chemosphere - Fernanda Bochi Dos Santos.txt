@@ -1,0 +1,34 @@
+ID: 21e0f387-1d41-45c8-9d53-792661220205
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Rodrigo Martinelli; Luiz Renato Rufino Jr.; Ana Caroline de Melo;  Ricardo Alcántara-de la Cruz; Maria Fátima das Graças Fernandes da Silva; Jefferson Rangel da Silva; Rodrigo Marcelli Boaretto; Patricia Andrea Monquero; Dirceu Mattos Jr.; Fernando Alves de Azevedo 
+Titulo: Glyphosate excessive use chronically disrupts the shikimate pathway and can affect photosynthesis and yield in citrus trees
+Subtítulo: 
+Ano: 2022
+Número de citações recebidas (Google Scholar): 14
+Palavras-chave: Citrus sinensis; CO2 assimilation; Chlorophyll fluorescence; Gas Exchange; Shikimic acid; Yield drop
+Resumo: Glyphosate excessive use is reported in Brazilian citrus orchards, whereas there is speculation about its consequences and the published studies are contradictory and inconclusive. This study aimed to describe the possible harmful effects by simulating glyphosate drift directly to the leaves of ∼4-yr-old citrus plants. As major results, glyphosate doses >360 g ae ha−1 increased the shikimate accumulation in leaves (up to 2.3-times above control), which was increased after a second glyphosate application (up to 3.5-times above control), even after a 240-d interval. Interestingly, shikimate accumulation was occasionally related to a dose-response of the herbicide at specific times; however, the doses had their accumulation peak on determined dates. These accumulations were directly correlated to reduced net photosynthesis even months after the glyphosate sprays. Quantum productivity based on electron transport through the photosystem II and apparent electron transport reductions up to 17% were also observed during the entire experiment course. Similarly, quantum productivity based on CO2 assimilation of glyphosate sprayed leaves decreased up to four times compared to the control after the second application. Glyphosate doses >360 g ae ha−1 increased stomatal conductance and transpiration as the carboxylation efficiency decreased, evidencing a carbon drainage in the Calvin-Benson cycle. These metabolic and physiological disturbances suggest possible photooxidative damage and an increase in photorespiration, which may be a mitigation strategy by the citrus plants to glyphosate effects, by the cost of reducing the citrus fruit yield (up to 57%). It is concluded that glyphosate phytotoxicity damages citrus plants over time due to chronic disturbances in the shikimate pathway and photosynthesis, even when there are no symptoms. This study is the first report to demonstrate how glyphosate damages citrus trees beyond the shikimate pathway.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Chemosphere
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1016/j.chemosphere.2022.136468
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/119cjcCvWBuH5M9WUJZB5dHrJ0kNyIEay/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em estufa no Instituto Agronômico (IAC), Centro de Citricultura Sylvio Moreira, Cordeirópolis, São Paulo, Brasil (22°27′37.8″S e 47°24′02.8″W). O meio de cultivo nos vasos era composto por 80% de casca de pinus, 15% de vermiculita e 5% de substrato.
+ferramentas e técnicas (seleção): Quantificação de Shikimate (Shk)
+nutrientes (seleção): Carbono (CO2)
+estratégias de fornecimento de nutrientes (seleção): Fertilização com solução completa de nutrientes
+grupos de culturas (seleção): Frutas Cítricas
+culturas presentes (seleção): Citrus sinensis (L.) Osbeck (Laranja Valencia)
+FEEDBACK DO CURADOR (escrever): O documento é um estudo agronômico de alta relevância que investiga os efeitos crônicos do uso excessivo de glifosato (simulando deriva) na cultura da laranja Valência, detalhando os impactos negativos na via do shikimate, na fotossíntese (mesmo sem sintomas visíveis) e na queda de produtividade de frutas. Os dados são robustos e úteis para o manejo integrado de plantas daninhas.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

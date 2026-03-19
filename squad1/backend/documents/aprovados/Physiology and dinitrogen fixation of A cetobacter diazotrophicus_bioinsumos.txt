@@ -1,0 +1,36 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): M.P. Stephan, M. Oliveira, K.R.S. Teixeira, G. Martinez-Drets e J. D/Sbereiner
+Titulo: Physiology and dinitrogen fixation of A cetobacter diazotrophicus
+Subtítulo: N2-dependent growth; N2-fixation, in sugar cane; Acetobacter diazotrophicus
+Ano: 1991
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: N2-dependent growth, N2-fixation, sugar cane, Acetobacter diazotrophicus
+Resumo: O artigo descreve as características fisiológicas de Acetobacter diazotrophicus, um diazotrófico isolado de raízes de cana-de-açúcar. O bactério é capaz de crescer em pH 3,0 e apresenta alta atividade de nitrogenase até pH 2,5. A extração de oxidação de glicose seguida pela formação de ácido gluconico é necessária para iniciar o crescimento logarítmico, que ocorre com N2 como fonte de nitrogênio.
+Tipo de documento: Artigo científico
+Editora: FEMS Microbiology Letters
+Instituição: CNPBS/EMBRAPA
+Local: Seropédica, Rio de Janeiro, Brasil
+Tipo de trabalho: Estudo de caso
+Título do periódico: FEMS Microbiology Letters
+Quartil do periódico: N/A
+Volume: 77
+Número/fascículo: 1
+Páginas: 67-72
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/1NpUeM0z6s88sWEQNNGfUjAZOEEwLO8xX/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O solo da região de cultivo da cana-de-açúcar é caracterizado por pH ácido, com valores entre 3,0 e 5,5. A região é localizada no Brasil, mais especificamente no estado do Rio de Janeiro.
+ferramentas e técnicas (seleção): Cromatografia gasosa, Espectrometria de massa, Análise de variância (ANOVA)
+nutrientes (seleção): Nitrogênio, Fósforo, Potássio
+estratégias de fornecimento de nutrientes (seleção): Fertilização de cobertura, Adubação foliar, Fertirrigação
+grupos de culturas (seleção): Cereais, Leguminosas, Hortaliças, Frutíferas
+culturas presentes (seleção): Cana-de-açúcar
+FEEDBACK DO CURADOR (escrever): Aprovado: Detalha as características fisiológicas de Acetobacter diazotrophicus e sua capacidade de fixação de nitrogênio.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: 
+CATEGORIA: Agronomia

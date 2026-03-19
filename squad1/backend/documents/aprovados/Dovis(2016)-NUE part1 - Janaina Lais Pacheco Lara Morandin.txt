@@ -1,0 +1,30 @@
+Autor(es): Veronica Lorena Dovis, Juliana Martinatti, Rodrigo Marcelli Boaretto, Eduardo Caruso Machado, Norma de Magalhães Erismann & Dirceu Mattos-Jr
+Título: Eficiência de uso do nitrogênio em C. limon e C. sinensis: análisis do crescimento e alocação dos recursos
+Subtítulo: 
+Ano: 2016
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: carbohidratos reservas, fotossíntese, limão, laranjeira
+Resumo: O sucesso econômico e ambiental da indústria citrícola requer de uma melhora constante na eficiência de uso dos insumos agrícolas, dentre eles a fertilização com nitrogênio (N) impacta não apenas no potencial produtivo como também afeta a qualidade do meio ambiente.
+Tipo de documento: Artigo
+Editora: Citrus Research & Technology
+Instituição: Instituto Agronômico de Campinas – IAC
+Local: Campinas, SP, Brasil
+Tipo de trabalho: Experimento
+Título do periódico: Citrus Research & Technology
+Quartil do periódico: 
+Volume: 37
+Número/fascículo: 2
+Páginas: 165-172
+DOI: 10.4322/crt.ICC140
+Numeração: 
+Qualis: 
+CATEGORIA: citros e cana
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em casa de vegetação (screenhouse) no Brasil (Campinas, SP, no Centro APTA de Citros Sylvio Moreira, IAC). As plantas foram cultivadas em vasos de 42 L preenchidos com uma mistura de areia e substrato de casca de pinus, sob regime de irrigação por gotejamento.
+ferramentas e técnicas (seleção): IRGA (LI-6400), LI-Cor, Inc. Lincoln, EUA
+nutrientes (seleção): Nitrogênio (N), Fósforo (P), Potássio (K), Magnésio (Mg), Enxofre (S)
+estratégias de fornecimento de nutrientes (seleção): Fertilização via solução nutritiva completa
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Limão (C. limon), Laranjeira (C. sinensis)
+FEEDBACK DA IA: [object Object]
+FEEDBACK DO CURADOR: 
+FEEDBACK SOBRE IA: [object Object]

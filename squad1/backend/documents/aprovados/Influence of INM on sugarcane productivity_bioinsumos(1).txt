@@ -1,0 +1,39 @@
+--- METADADOS DO ARTIGO ---
+
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Rajinder Pal, Onkar Singh, Gulzar S Sanghera, R K Gupta
+Titulo: Influence of INM on sugarcane productivity and soil fertility under Indo-Gangetic plain
+Subtítulo: Desenvolvimento de estratégias de manejo integrado de nutrientes para o cultivo de cana-de-açúcar em condições subtropicais do Punjab
+Ano: 2021
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: Cana-de-açúcar, Manejo integrado de nutrientes, Fertilidade do solo, Produtividade
+Resumo: O estudo teve como objetivo desenvolver estratégias de manejo integrado de nutrientes para o cultivo de cana-de-açúcar em condições subtropicais do Punjab.
+Tipo de documento: Artigo científico
+Editora: Indian Journal of Agricultural Sciences
+Instituição: Punjab Agricultural University
+Local: Kapurthala, Punjab, Índia
+Tipo de trabalho: Pesquisa experimental
+Título do periódico: Indian Journal of Agricultural Sciences
+Quartil do periódico: N/A
+Volume: 91
+Número/fascículo: 5
+Páginas: 703-707
+DOI: https://doi.org/10.56093/ijas.v91i5.112987
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: Influence of INM on sugarcane productivity_bioinsumos(1).pdf
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): N/A
+nutrientes (seleção): N/A
+estratégias de fornecimento de nutrientes (seleção): N/A
+grupos de culturas (seleção): N/A
+culturas presentes (seleção): N/A
+FEEDBACK DO CURADOR (escrever): Aprovado: Avalia a eficácia de diferentes estratégias de manejo integrado de nutrientes para o cultivo de cana-de-açúcar em condições subtropicais do Punjab.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false
+APROVAÇÃO MANUAL: 
+CATEGORIA: solos
+APROVADO POR: admin

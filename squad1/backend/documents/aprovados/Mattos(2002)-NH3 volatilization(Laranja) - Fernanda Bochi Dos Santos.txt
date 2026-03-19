@@ -1,0 +1,34 @@
+ID: 5b7088fa-6243-45ce-8a54-83adfcf75f86
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): DIRCEU MATTOS JR.; HEITOR CANTARELLA; JOSÉ A. QUAGGIO 
+Titulo: PERDAS POR VOLATILIZAÇÃO DO NITROGÊNIO FERTILIZANTE APLICADO EM POMARES DE CITROS
+Subtítulo: 
+Ano: 2002
+Número de citações recebidas (Google Scholar): 15
+Palavras-chave: amônia, uréia; nitrato de amônio; fertilização
+Resumo: A produção dos citros é bastante influenciada pela fertilização nitrogenada. O manejo adequado do pomar está associado ao uso eficiente dos fertilizantes. Contudo, em vista das características das diferentes fontes de nitrogênio (N), podem ser bastante significativas perdas do N aplicado por volatilizacão de amônia (NH3). Resultados de pesquisas desenvolvidos em pomares de citros na Flórida e no Brasil demonstram o potencial de perda de NH3 após a aplicação de uréia e nitrato de amônio na superfície do solo.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Laranja
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1NpKUF_sEcr5sxdcck67vA97xKLbNGn30/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Regiões citrícolas na Flórida (EUA) e no Brasil. Os estudos foram realizados em solo arenoso (97% de areia) com pH 6,9 na Flórida, e em solo de textura média com pH 5,4 no Brasil. O documento aponta que solos ácidos são predominantes na região citrícola brasileira, mas a volatilização é intensificada em solos arenosos com menor poder tampão (CTC) e pH alto após a aplicação de uréia.
+ferramentas e técnicas (seleção): Câmaras semi-abertas (Coletor de Nômmik), Coletores de NH3, Isótopo estável (15N), Análise micrometeorológica
+nutrientes (seleção): Nitrogênio (N)
+estratégias de fornecimento de nutrientes (seleção): Aplicação de fertilizante na superfície do solo, Incorporação do fertilizante no solo, Uso de fontes de nitrogênio alternativas (Nitrato de Amônio)
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Citros, Laranja
+FEEDBACK DO CURADOR (escrever): Artigo técnico relevante que detalha as perdas significativas de nitrogênio (até 44% para uréia) por volatilização de amônia em pomares de citros, comparando as fontes uréia e nitrato de amônio em diferentes condições de solo no Brasil e na Flórida. Oferece insights cruciais para o manejo eficiente da fertilização nitrogenada.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

@@ -235,7 +235,7 @@ async function processarUmArtigo(articleId) {
     if (!aiFeedbackObj && extractedData["FEEDBACK DO CURADOR (escrever)"]) {
       aiFeedbackObj = {
         technical_summary: extractedData["FEEDBACK DO CURADOR (escrever)"],
-        climate_insights: "N/A",
+        agronomic_insights: "N/A",
         relevance_score: boolAprovado ? 7.0 : 3.0
       };
     }
@@ -245,7 +245,7 @@ async function processarUmArtigo(articleId) {
       const summary = `Análise automática: O documento apresenta estudos sobre ${article["Palavras-chave"] || "temas técnicos"} relacionados a ${article["CATEGORIA"] || "agricultura"}.`;
       aiFeedbackObj = {
         technical_summary: summary,
-        climate_insights: "Análise climática não extraída explicitamente.",
+        agronomic_insights: "Análise agronômica não extraída explicitamente.",
         relevance_score: boolAprovado ? 6.0 : 4.0
       };
     }
@@ -274,7 +274,7 @@ async function processarUmArtigo(articleId) {
     // Mesmo em erro crítico, mantemos a estrutura de objeto obrigatória
     article["FEEDBACK DA IA"] = { 
       technical_summary: `Falha no processamento: ${e.message}`, 
-      climate_insights: "Erro", 
+      agronomic_insights: "Erro", 
       relevance_score: 0 
     };
     
@@ -358,6 +358,50 @@ async function manualInsert(data, username = "Desconhecido") {
   const article = new Article(articleData);
   await article.save();
   return { status: "success", message: "Inserido com sucesso!", article };
+}
+
+async function getArticlesByStatus(status) {
+  const truthyValues = ["true", "TRUE", "sim", "Sim", true, "1"];
+  let query = {};
+
+  switch (status) {
+    case "approved_manual":
+      query = { "APROVAÇÃO MANUAL": { $in: truthyValues } };
+      break;
+    case "approved_ia":
+      query = { 
+        "APROVAÇÃO CURADOR (marcar)": { $in: truthyValues },
+        "APROVAÇÃO MANUAL": { $nin: truthyValues }
+      };
+      break;
+    case "rejected":
+      query = { 
+        "ARTIGOS REJEITADOS": { $in: truthyValues },
+        "APROVAÇÃO MANUAL": { $nin: truthyValues },
+        "APROVAÇÃO CURADOR (marcar)": { $nin: truthyValues }
+      };
+      break;
+    case "pending":
+      query = { 
+        "APROVAÇÃO MANUAL": { $nin: truthyValues },
+        "APROVAÇÃO CURADOR (marcar)": { $nin: truthyValues },
+        "ARTIGOS REJEITADOS": { $nin: truthyValues }
+      };
+      break;
+    default:
+      // Se não for um status específico, retorna todos (mesmo que getCuratedArticles)
+      query = {};
+  }
+
+  const articles = await Article.find(query).sort({ createdAt: -1 });
+  return articles.map(a => {
+    const obj = a.toObject();
+    obj.__row_number = obj._id;
+    obj["FEEDBACK DA IA"] = safelyParseJSON(obj["FEEDBACK DA IA"]);
+    obj["FEEDBACK SOBRE IA"] = safelyParseJSON(obj["FEEDBACK SOBRE IA"]);
+    obj["FEEDBACK DO CURADOR"] = safelyParseJSON(obj["FEEDBACK DO CURADOR"]);
+    return obj;
+  });
 }
 
 async function getCuratedArticles() {
@@ -696,8 +740,22 @@ async function executarCategorizacaoLinhaUnica(articleId) {
   return { success: true, article };
 }
 
+async function getArticleByName(name) {
+  const articles = await Article.find({
+    "Título": { $regex: new RegExp(name, "i") }
+  });
+  
+  return articles.map(a => ({
+    titulo: a["Título"],
+    classificacao: a["CATEGORIA"] || "N/A",
+    nome_arquivo: a["URL DO DOCUMENTO"] || "N/A"
+  }));
+}
+
 module.exports = {
+  getArticleByName,
   getCuratedArticles,
+  getArticlesByStatus,
   executarCuradoriaLocalmente,
   executarCuradoriaLinhaUnica: processarUmArtigo,
   executarCategorizacaoLinhaUnica,

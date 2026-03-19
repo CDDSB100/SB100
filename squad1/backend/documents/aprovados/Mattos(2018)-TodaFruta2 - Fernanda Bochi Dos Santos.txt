@@ -1,0 +1,34 @@
+ID: 152c062c-ce84-49b7-8af9-6d789270a171
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): DIRCEU MATTOS Jr; FRANZ W. R. HIPPLER; LOHANNE N. HUBER; RODRIGO M. BOARETTO; JOSÉ A. QUAGGIO; FRANKLIN BEHLAU; GERALDO DA SILVA Jr.; GUSTAVO BRUNETTO
+Titulo: OS BENEFÍCIOS E OS DANOS DO COBRE NA PRODUÇÃO DAS FRUTEIRAS
+Subtítulo: 
+Ano: 2018
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: 
+Resumo: 
+Tipo de documento: Outros
+Editora: 
+Instituição: Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas; Yara Brasil; Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas; Centro de Citricultura Sylvio Moreira, Instituto Agronômico de Campinas; Centro de Solos e Recursos Ambientais, Instituto Agronômico de Campinas; Fundecitrus; Fundecitrus; Departamento de Solos, UFSM
+Local: 
+Tipo de trabalho: 
+Título do periódico: 
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1YPZgNMotW8YCor0kFm64XLGvj-nbn06S/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Clima temperado e tropical. Regiões produtoras de fruteiras, como a região Sul do Brasil (vitivinícolas, Bioma Pampa, Rio Grande do Sul e Santa Catarina) e o cinturão citrícola (Estado de São Paulo e Triângulo Mineiro). Solos com baixa fertilidade, solos com altos teores de argila e matéria orgânica (maior adsorção de Cu), e solos arenosos com baixos teores de matéria orgânica (maior disponibilidade e risco de toxicidade de Cu). Solos alcalinos (em citros, onde o excesso de Cu pode induzir deficiência de Fe).
+ferramentas e técnicas (seleção): Aplicação foliar
+nutrientes (seleção): Cobre (Cu)
+estratégias de fornecimento de nutrientes (seleção): Manejo da deficiência (correção)
+grupos de culturas (seleção): Fruteiras
+culturas presentes (seleção): Laranja (Citros)
+FEEDBACK DO CURADOR (escrever): Documento excelente e altamente relevante. Analisa detalhadamente o papel do cobre como nutriente essencial (deficiência) e como defensivo (acúmulo e toxicidade) em fruteiras, oferecendo informações cruciais sobre o manejo sustentável, especialmente em citros e videiras.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

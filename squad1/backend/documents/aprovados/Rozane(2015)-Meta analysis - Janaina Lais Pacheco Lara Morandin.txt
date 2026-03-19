@@ -1,0 +1,34 @@
+ID: a7f0bba4-9725-470d-8eaf-c16e85017bff
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): DANILO EDUARDO ROZANE; DIRCEU MATTOS JR.; SÉRGE-ÉTIENNE PARENT; WILLIAM NATALE; LÉON ETIENNE PARENT
+Titulo: Meta-analysis in the Selection of Groups in Varieties of Citrus
+Subtítulo: 
+Ano: 2015
+Número de citações recebidas (Google Scholar): 19
+Palavras-chave: Compositional nutrient diagnosis; fruit, nutrition; oranges
+Resumo: Brazil is the largest producer of oranges (Citrus sinensis) in the world. The nutrient management of tree orchards is designed from experiments with a limited number of varieties. This knowledge is transferred to other varieties by diagnosing tissue nutrient composition and tree demand. Compositional data analysis has been first applied to tissue analysis of agricultural crops using centered log ratios with compositional nutrient diagnosis (CND-clr). The isometric log ratio (ilr) transformation is a new approach based on binary nutrient ratios and the principle of orthogonality (CND-ilr). We analyzed eleven nutrients: nitrogen (N), sulfur (S), phosphorus (P), potassium (K), calcium (Ca), magnesium (Mg), boron (B), copper (Cu), zinc (Zn), manganese (Mn), and iron (Fe) in leaf tissue samples across 108 commercial plots (thirty-one grow Valencia, twenty-two Hamlim, twenty Pera, and thirty-five Natal). Nutrients were partitioned between macro- and micronutrients as well as anionic and cationic species. The effect size of varieties over Valencia was quantified by the mean and standard deviation of ilr values across ilr coordinates. Specific varietal nutrient profiles and ilr norms were defined. The nutrient profile of orange varieties could be classified into homogeneous groups to take advantage of fertilizer trials conducted on varieties of the same group. The Aitchison distance and a perturbation vector could be instrumental for diagnostic purposes and nutrient management.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Meta-analysis in the Selection of Groups in Varieties of Citrus
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1080/00103624.2015.1069307
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1jdaZQy4sJ2PBV1abYhpBoInsRgm_Bev_/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Estudo realizado em pomares de laranja não irrigados no estado de São Paulo, Brasil. Os solos são diversos, incluindo Oxisols (Ustox) e Ultisols (Udults e Ustults), com variações de pH e níveis de óxi-hidróxidos de Al, Fe e Mn.
+ferramentas e técnicas (seleção): Análise de Dados Composicionais (CDA)
+nutrientes (seleção): N
+estratégias de fornecimento de nutrientes (seleção): Diagnóstico foliar
+grupos de culturas (seleção): Fruticultura
+culturas presentes (seleção): Laranja (Citrus sinensis)
+FEEDBACK DO CURADOR (escrever): Documento de pesquisa agronômica altamente relevante. Utiliza meta-análise e a análise de dados composicionais (ilr) para classificar o perfil nutricional de variedades de laranja no Brasil, permitindo o agrupamento de variedades para um manejo de nutrientes mais uniforme e eficiente. A metodologia é robusta e a aplicação é direta para o diagnóstico nutricional de pomares.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

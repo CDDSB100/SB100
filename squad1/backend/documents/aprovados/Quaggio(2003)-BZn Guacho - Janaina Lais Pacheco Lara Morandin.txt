@@ -1,0 +1,34 @@
+ID: cd2f80eb-3c6d-4b47-88f4-bc97f86b2752
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): José Antônio Quaggio; Dirceu Mattos Junior; Heitor Cantarella; Aprigio Tank Junior
+Titulo: Fertilização com boro e zinco no solo em complementação à aplicação via foliar em laranjeira Pêra
+Subtítulo: 
+Ano: 2003
+Número de citações recebidas (Google Scholar): 55
+Palavras-chave: citro; micronutriente; aplicação de fertilizante; fertilidade do solo; rendimento
+Resumo: As deficiências de boro (B) e zinco (Zn) são as mais freqüentes na citricultura brasileira e há escassez de conhecimento sobre critérios de diagnóstico e manejo desses nutrientes nessa cultura. A aplicação foliar tem sido a forma tradicional de fornecimento desses nutrientes, a despeito da baixa redistribuição na planta cítrica. O objetivo deste trabalho foi avaliar a eficiência da aplicação complementar de B e Zn no solo em comparação com a aplicação via foliar e estabelecer curvas de calibração de análises de solo e de folhas com a produtividade da laranjeira Pêra. Os tratamentos foram arranjados em delineamento fatorial 42, com três repetições. Foram aplicadas no solo as doses anuais de 0, 2, 4 e 6 kg ha-1 de B (ácido bórico) e Zn (sulfato de zinco), em complemento à adubação foliar. A produção de frutos aumentou significativamente com a aplicação de B no solo até a dose de 4 kg ha-1, enquanto a aplicação de Zn no solo mostrou-se pouco eficiente. As doses de B afetaram a qualidade dos frutos. A produtividade máxima foi obtida com teor de B no solo de 1,0 mg dm-3, e na folha de cerca de 300 mg kg-1. A aplicação foliar de B, apesar de evitar os sintomas típicos de deficiência, não otimizou a produtividade e a qualidade dos frutos, enquanto a aplicação foliar de Zn mostrou-se eficiente. Curvas de calibração de análises de solo e de folhas mostraram a necessidade de rever as classes de interpretação desses micronutrientes na citricultura. 
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Pesquisa Agropecuária Brasileira
+Quartil do periódico: Q3
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1590/S0100-204X2003000500011
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1Lds0xGqLAE2G8AoGF5inn49OwufZPdsb/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi instalado na Agropecuária Guacho, região Sul do Estado de São Paulo. O solo é classificado como Latossolo Vermelho-Escuro, de textura média, ácido e de baixa fertilidade natural. O clima da região é do tipo CFa (Köppen), com verão quente e úmido, inverno mais acentuado e sem estação seca. A temperatura média anual é de 21,6°C.
+ferramentas e técnicas (seleção): Análise de solo, Análise de folhas, Curvas de calibração, Delineamento fatorial (4x2), Análise de variância, Análise de regressão
+nutrientes (seleção): Boro (B), Zinco (Zn), Potássio (K), Fósforo (P), Nitrogênio (N), Cálcio (Ca), Magnésio (Mg), Manganês (Mn), Ferro (Fe), Cobre (Cu)
+estratégias de fornecimento de nutrientes (seleção): Aplicação no solo (ácido bórico, sulfato de zinco), Aplicação via foliar (sulfato de zinco, ácido bórico, ureia), Adubação complementar, Aplicações anuais parceladas (três aplicações anuais: primavera e verão)
+grupos de culturas (seleção): Citricultura, Frutíferas
+culturas presentes (seleção): Laranjeira Pêra, Limoeiro Cravo
+FEEDBACK DO CURADOR (escrever): Artigo de pesquisa agronômica de alta relevância, focado na comparação da eficiência da aplicação via solo e foliar de boro e zinco em laranjeira Pêra. O estudo fornece dados concretos sobre doses ideais, impacto na produtividade e qualidade dos frutos, e apresenta curvas de calibração de análise de solo e folha.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

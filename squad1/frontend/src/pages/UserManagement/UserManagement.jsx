@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUsers, updateUserPermissions, deleteUser } from '../../api';
+import { getUsers, updateUserPermissions, deleteUser, getApiBaseUrl } from '../../api';
 import { 
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, 
   Button, Typography, Box, Select, MenuItem, FormControl, InputLabel, 
@@ -14,6 +14,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import GroupIcon from '@mui/icons-material/Group';
 import PersonIcon from '@mui/icons-material/Person';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const CATEGORIES_OPTIONS = [
   "solos",
@@ -87,20 +88,44 @@ const UserManagement = () => {
     }
   };
 
+  const handleOpenSwagger = () => {
+    const baseUrl = getApiBaseUrl();
+    const token = localStorage.getItem('accessToken');
+    const swaggerUrl = `${baseUrl}/api-docs${token ? `?token=${token}` : ''}`;
+    window.open(swaggerUrl, '_blank');
+  };
+
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 10 }}>
       
       
       <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 6, mb: 4 }}>
         <Container maxWidth="lg">
-          <Stack direction="row" spacing={2} alignItems="center">
-            <IconButton onClick={() => navigate(-1)} sx={{ color: 'white', bgcolor: 'rgba(255,255,255,0.1)' }}>
-              <ArrowBackIcon />
-            </IconButton>
-            <Box>
-              <Typography variant="h3" sx={{ fontWeight: 900 }}>Gestão de Usuários</Typography>
-              <Typography variant="h6" sx={{ opacity: 0.8, fontWeight: 400 }}>Controle de acesso e permissões da equipe</Typography>
-            </Box>
+          <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+            <Stack direction="row" spacing={2} alignItems="center">
+              <IconButton onClick={() => navigate(-1)} sx={{ color: 'white', bgcolor: 'rgba(255,255,255,0.1)' }}>
+                <ArrowBackIcon />
+              </IconButton>
+              <Box>
+                <Typography variant="h3" sx={{ fontWeight: 900 }}>Gestão de Usuários</Typography>
+                <Typography variant="h6" sx={{ opacity: 0.8, fontWeight: 400 }}>Controle de acesso e permissões da equipe</Typography>
+              </Box>
+            </Stack>
+            
+            <Button 
+              variant="contained" 
+              color="secondary" 
+              startIcon={<DescriptionIcon />}
+              onClick={handleOpenSwagger}
+              sx={{ 
+                borderRadius: '50px', 
+                fontWeight: 800, 
+                px: 3,
+                boxShadow: '0 4px 14px 0 rgba(0,0,0,0.3)'
+              }}
+            >
+              Documentação API
+            </Button>
           </Stack>
         </Container>
       </Box>

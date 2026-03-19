@@ -1,0 +1,30 @@
+Autor(es): Sérgio Alves de Carvalho, Dirceu de Mattos Júnior, Maurício de Souza
+Título: Efeito do KNO3 nos teores de macronutrientes na matéria seca total de porta-enxertos cítricos produzidos em bandejas
+Subtítulo: 
+Ano: 2000
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: citros, propagação, adubação nitrogenada e potássica, nutrição mineral
+Resumo: O objetivo deste trabalho foi avaliar o efeito de diferentes doses e freqüências de aplicação do nitrato de potássio em cobertura, nos teores de macronutrientes, na matéria seca de diferentes porta-enxertos cítricos cultivados em bandejas.
+Tipo de documento: Artigo científico
+Editora: Bragantia
+Instituição: Universidade Federal de Lavras (UFLA)
+Local: Lavras, MG
+Tipo de trabalho: Experimento
+Título do periódico: Bragantia
+Quartil do periódico: 
+Volume: 59
+Número/fascículo: 1
+Páginas: 89-94
+DOI: 
+Numeração: 
+Qualis: 
+CATEGORIA: citros e cana
+Caracteristicas do solo e região (escrever): O experimento foi realizado em condições de casa de vegetação (Cordeirópolis, SP). O substrato comercial ('Plantmax') consistiu de vermiculita, solo orgânico e casca de pinus, fertilizado inicialmente com superfosfato simples (fonte de P2O5, CaO e S). As sementes eram oriundas de plantas sadias do pomar de Lavras, Minas Gerais.
+ferramentas e técnicas (seleção): Cromatografia gasosa, Fotossíntese líquida, RCBD, ANOVA
+nutrientes (seleção): N, P, K, Ca, Mg, S
+estratégias de fornecimento de nutrientes (seleção): Fertirrigação, Aplicação foliar
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Limoeiro 'Cravo' (Citrus limonia Osbeck), Tangerineira 'Cleópatra' (Citrus reshni Hort. ex Tanaka)
+FEEDBACK DA IA: [object Object]
+FEEDBACK DO CURADOR: 
+FEEDBACK SOBRE IA: [object Object]

@@ -1,0 +1,34 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Atsushi Imai, Takeshi Kuniga, Terutaka Yoshioka, Keisuke Nonaka, Nobuhito Mitani, Hiroshi Fukamachi, Naofumi Hiehata, Masashi Yamamoto, Takeshi Hayashi
+Titulo: Single-step genomic prediction of fruit-quality traits using phenotypic records of non-genotyped relatives in citrus
+Subtítulo: 
+Ano: 2019
+Número de citações recebidas (Google Scholar): 22
+Palavras-chave: Best linear unbiased prediction, Biology, Genetics, Selection (genetic algorithm), Genotype
+Resumo: The potential of genomic selection (GS) is currently being evaluated for fruit breeding. GS models are usually constructed based on information from both the genotype and phenotype of population. However, information from phenotyped but non-genotyped relatives can also be used to construct GS models, and this additional information can improve their accuracy. In the present study, we evaluated the utility of single-step genomic best linear unbiased prediction (ssGBLUP) in citrus breeding, which is a genomic prediction method that combines the kinship information from genotyped and non-genotyped relatives into a single relationship matrix for a mixed model to apply GS. Fruit weight, sugar content, and acid content of 1,935 citrus individuals, of which 483 had genotype data of 2,354 genome-wide single nucleotide polymorphisms, were evaluated from 2009-2012. The prediction accuracy of ssGBLUP for genotyped individuals was similar to or higher than that of usual genomic best linear unbiased prediction method using only genotyped individuals, especially for sugar content. Therefore, ssGBLUP could yield higher accuracy in genotyped individuals by adding information from non-genotyped relatives. The prediction accuracy of ssGBLUP for non-genotyped individuals was also slightly higher than that of conventional best linear unbiased prediction method using pedigree information. This indicates that ssGBLUP can enhance prediction accuracy of breeding values for non-genotyped individuals using genomic information of genotyped relatives. These results demonstrate the potential of ssGBLUP for fruit breeding, including citrus.
+Tipo de documento: article
+Editora: Public Library of Science
+Instituição: Institute of Fruit Tree and Tea Science
+Local: JP
+Tipo de trabalho: 
+Título do periódico: PLoS ONE
+Quartil do periódico: 
+Volume: 14
+Número/fascículo: 8
+Páginas: e0221880-e0221880
+DOI: 10.1371/journal.pone.0221880
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1m-qHhzNRpLWYVDx_Pq20uZxqW5pQeQfI/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado com indivíduos obtidos da Estação de Pesquisa de Citros de Kuchinotsu, NARO, Nagasaki, Japão. Os pomares eram mantidos em campos de melhoramento, com espaçamento de 0,3 m entre plantas e 5 m entre linhas. O manejo seguia o protocolo padrão do Japão, incluindo aplicações anuais de fertilizante e de 10-20 aplicações de agroquímicos.
+ferramentas e técnicas (seleção): Seleção Genômica (GS), single-step Genomic Best Linear Unbiased Prediction (ssGBLUP), GBLUP, Conventional BLUP (ABLUP), Genotyping-by-sequencing (GBS), SNPs, Modelos Lineares Mistos, Cross-validation (CV).
+nutrientes (seleção): Fertilizante (mencionado genericamente).
+estratégias de fornecimento de nutrientes (seleção): Quatro aplicações de fertilizante por ano.
+grupos de culturas (seleção): Frutíferas (Citros/Árvores Frutíferas).
+culturas presentes (seleção): Citrus (geral), Poncirus trifoliata L. (Laranja trifoliada, usada como porta-enxerto), Citrus unshiu Marcow. (Satsuma mandarin, usado como porta-enxerto).
+FEEDBACK DO CURADOR (escrever): Documento agronômico focado em melhoramento genético de citros, utilizando técnicas avançadas de predição genômica (ssGBLUP) para características de qualidade de fruto (peso, teor de açúcar e acidez). É altamente útil para a pesquisa em fruticultura.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

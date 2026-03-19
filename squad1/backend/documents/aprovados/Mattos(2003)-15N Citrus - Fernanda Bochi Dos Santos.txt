@@ -1,0 +1,34 @@
+ID: fae8c39c-fcbd-43ae-af08-bad586b94c02
+NOME DO RESPONSÁVEL: Fernanda Bochi
+Autor(es): Dirceu Mattos Jr.; Donald A. Graetz; Ashok K. Alva
+Titulo: Biomass Distribution and Nitrogen-15 Partitioning in Citrus Trees on a Sandy Entisol
+Subtítulo: 
+Ano: 2003
+Número de citações recebidas (Google Scholar): 114
+Palavras-chave: 
+Resumo: The area under citrus production in Florida is 332 000 ha, with a production of 10 to 12 million metric tonnes of fruit annually. Nutrient management recommendations are needed to increase N uptake efficiency and to minimize nitrate leaching below the root zone. The objectives of this study were (i) to evaluate biomass distribution of 6-yr-old ‘Hamlin’ orange trees [Citrus sinensis (L.) Osbeck] on ‘Swingle citrumelo’ [Poncirus trifoliata (L.) Raf. × C. × paradisi Macfad.] rootstock grown in a sandy soil under low volume irrigation, and (ii) to estimate partitioning of 15N fertilizer applied to the soil during early spring into different tree components. We evaluated biomass of tree components (leaves, twigs, trunk, taproot, roots, and fruit), and N recovery and distribution of 15NH415NO3 (AN) and 15N-urea (UR) (10 atom % 15N) applied to the soil surface. About 70% of dry matter biomass of trees was aboveground (AG). Length density of feeder roots was concentrated at a depth of 0 to 15 cm below the soil surface and varied from 1.87 to 0.88 cm cm−3 at 0.5- and 1.5-m distance from the trunk, respectively. Total recoveries of 15N by trees were 25.5% for UR and 39.5% for AN at fruit harvest, 280 d after fertilization. Mean accumulation of applied 15N in recent leaf flush was 4.2% and that of older leaves was 2.5%. Accumulation of 15N was low in woody tissue. Since fruit represented a large sink for N (10.2 and 18.4% recovery of 15N applied as UR and AN, respectively), we confirmed the importance of N fertilization before fruit development.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Soil Science Society of America Journal
+Quartil do periódico: Q2
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.2136/sssaj2003.5550
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1LYZ30HPRXl-SVd3yGcOEBj4ZUGRnb3sF/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O estudo foi realizado em um pomar de citros na Flórida. O solo é classificado como areia fina Candler (Entisol, Typic Quartzipsamments), com 967 g kg⁻¹ de areia nos primeiros 15 cm. Apresenta pH de aproximadamente 7.0 e baixa Capacidade de Troca Catiônica (CEC) de 2.2 cmol kg⁻¹ na profundidade de 0 a 30 cm. A região é caracterizada pelo uso de irrigação de baixo volume em solos profundos e arenosos.
+ferramentas e técnicas (seleção): Irrigação de baixo volume, Sondas de umidade/capacitância (Enviro-SCAN), Traçadores isotópicos (Nitrogênio-15 ou 15N), Análise de proporção isotópica de massa, Determinação de densidade radicular por contagem em sistema de grade.
+nutrientes (seleção): Nitrogênio (N), Fósforo (P), Potássio (K).
+estratégias de fornecimento de nutrientes (seleção): Fertilizantes granulares secos aplicados na superfície do solo, Nitrato de Amônio (AN), Ureia (UR), Aplicação de N fracionada (três aplicações anuais).
+grupos de culturas (seleção): Frutas Cítricas, Perenes (Árvores frutíferas).
+culturas presentes (seleção): Laranja 'Hamlin' (Citrus sinensis), Citrumelo 'Swingle' (Poncirus trifoliata × C. × paradisi Macfad.) (porta-enxerto).
+FEEDBACK DO CURADOR (escrever): Excelente estudo agronômico e técnico, focado na dinâmica do Nitrogênio (N) e distribuição de biomassa em citros. Os resultados, que mostram baixa recuperação de N aplicado (25.5% para UR e 39.5% para AN) e a importância da fertilização antes do desenvolvimento dos frutos, são cruciais para refinar as Melhores Práticas de Manejo (BMPs) em solos arenosos de baixa retenção.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

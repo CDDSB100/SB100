@@ -1,0 +1,30 @@
+Autor(es): Ali Fares, Haimanote K. Bayabil, Mongi Zekri, Dirceu Mattos-Jr e Ripendra Awal
+Título: Potential climate change impacts on citrus water requirement across major producing areas in the world
+Subtítulo: 
+Ano: 2017
+Número de citações recebidas (Google Scholar): 
+Palavras-chave: citrus, mudanças climáticas, IManSys, exigência de água de irrigação
+Resumo: O estudo investiga os impactos das mudanças climáticas futuras na exigência de água de irrigação para a produção de citros em regiões produtoras importantes do mundo.
+Tipo de documento: Artigo científico
+Editora: 
+Instituição: Prairie View A&M University, Universidade da Flórida, Instituto Agronômico
+Local: Prairie View, TX, EUA; LaBelle, FL, EUA; Cordeiropolis, SP, Brasil
+Tipo de trabalho: Estudo de caso
+Título do periódico: Journal of Water and Climate Change
+Quartil do periódico: 
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+CATEGORIA: citros e cana
+Caracteristicas do solo e região (escrever): Estudo realizado em grandes regiões produtoras de citros globalmente: África (Cape Town), Ásia (Mersin), Austrália (Riverland), Mediterrâneo (Nabeul), América do Norte (Riverside, Fort Pierce, Lake Alfred, Brownsville) e América do Sul (Sao Paulo). As características do solo variam amplamente, com tipos específicos (Laredo, Candler sand, Mayakka, etc.) e propriedades hidráulicas (capacidade de campo, ponto de murcha permanente) utilizadas como entrada para o modelo IManSys.
+ferramentas e técnicas (seleção): Irrigation Management System (IManSys)
+nutrientes (seleção): 
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Frutíferas
+culturas presentes (seleção): Citros
+FEEDBACK DA IA: [object Object]
+FEEDBACK DO CURADOR: 
+FEEDBACK SOBRE IA: [object Object]

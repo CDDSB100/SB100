@@ -1,0 +1,35 @@
+ID: 
+NOME DO RESPONSÁVEL: 
+Autor(es): Rezan M. A. Al-Hajani, N. N. F. Haded, S. F. A. Al Bamarny
+Titulo: INFLUENCE OF CITRIC ACID, GINGER EXTRACT AND STORAGE PERIOD ON FRUIT QUALITY OF LOCAL ORANGE (Citrus sinensis L. Osbeck)
+Subtítulo: Estudo sobre o efeito do ácido cítrico, extrato de gengibre e período de armazenamento na qualidade da fruta de laranja local (Citrus sinensis L. Osbeck)
+Ano: 2022
+Número de citações recebidas (Google Scholar): N/A
+Palavras-chave: laranja, ácido orgânico, extrato de planta, pós-colheita
+Resumo: O estudo foi realizado para investigar o efeito do ácido cítrico, extrato de gengibre e período de armazenamento na qualidade da fruta de laranja local. Os resultados mostraram que o ácido cítrico e o extrato de gengibre reduziram a perda de peso e a decaimento da fruta.
+Tipo de documento: Artigo científico
+Editora: Iraqi Journal of Agricultural Sciences
+Instituição: Universidade de Duhok
+Local: Diyala, Iraque
+Tipo de trabalho: Pesquisa
+Título do periódico: Iraqi Journal of Agricultural Sciences
+Quartil do periódico: N/A
+Volume: 53
+Número/fascículo: 4
+Páginas: 850-856
+DOI: N/A
+Numeração: N/A
+Qualis: N/A
+URL DO DOCUMENTO: https://drive.google.com/file/d/1MbR4s7llOo3ho7NwicHl2ViqV_MmMc7b/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): N/A
+ferramentas e técnicas (seleção): Cromatografia gasosa, Espectrometria de massa, Análise de variância (ANOVA)
+nutrientes (seleção): Ácido cítrico, Vitamina C, Carboidratos
+estratégias de fornecimento de nutrientes (seleção): Fertilização de cobertura, Adubação foliar, Fertirrigação
+grupos de culturas (seleção): Culturas de frutas, Hortaliças
+culturas presentes (seleção): Laranja (Citrus sinensis L. Osbeck)
+FEEDBACK DO CURADOR (escrever): Aprovado: Detalha a influência do ácido cítrico e do extrato de gengibre na qualidade da fruta de laranja local durante o armazenamento.
+APROVAÇÃO CURADOR (marcar): TRUE
+ARTIGOS REJEITADOS: FALSE
+APROVAÇÃO MANUAL: FALSE

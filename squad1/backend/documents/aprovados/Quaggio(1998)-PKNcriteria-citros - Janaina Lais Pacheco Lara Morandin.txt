@@ -1,0 +1,34 @@
+ID: 153af6ca-1bc1-4744-9a92-a03d276362c5
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): J. A. Quaggio; H. Cantarella; B. van Raij
+Titulo: Phosphorus and potassium soil test and nitrogen leaf analysis as a base for citrus fertilization
+Subtítulo: 
+Ano: 1998
+Número de citações recebidas (Google Scholar): 119
+Palavras-chave: citrus; soil analysis; leaf analysis; calibration; fertilizer response; fertilizer recommendation
+Resumo: A network of six NPK long-term field trials was carried out on different soils of citrus-producing regions of Sao Paulo state, Brazil, in order to estimate quantitative relations of fruit yield to NPK fertilization and to determine parameters for fertilizer recommendation based on soil testing and leaf analysis. The experiments were set up in an incomplete factorial design 1=2 43 with 32 treatments, with four yearly rates of N (30, 100, 170 and 240 kg N/ha), P (9, 27, 45 and 63 kg P/ha) and K (25, 91, 157 and 223 kg K/ha). Four to seven harvests were recorded for the six experiments. Response surfaces of the type y = bo + b1N + b11N2 + b2P + b22P2 + b3K + b33K2 + b12NP + b13NK + b23PK were adjusted to the average yields of each trial. Correlation were established for yield increases, expressed as relative yields, and results of soil analysis of P and K, and leaf analysis of N. Soil samples taken at 0-20 cm depth in the beginning of each experiment were analyzed for resin extractable P and exchangeable K using an ion-exchange resin procedure. Yield responses for phosphorus and potassium applications were observed respectively in soils with less than 20 mg dm􀀀3 of P and 20 mmolc dm􀀀3 of K+. Yield responses to nitrogen were related to the total content of nitrogen in leaves, being largest for N values of 23 g kg􀀀1 and smallest for N of 28 kg􀀀1. With these field information, a practical approach for fertilizer recommendation for citrus, based on soil analysis for P and K and leaf analysis for N, was developed.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Nutrient Cycling in Agroecosystems
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1023/A:1009763027607
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1_HgmUNV8FhyH8fUHy2JII6DFvV5b7wib/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Experimentos realizados em diferentes solos (seis locais: Monte Azul, Matão, Pirassununga, Olímpia, Botucatu, Araraquara) da região produtora de citros do Estado de São Paulo, Brasil. Os solos apresentavam pH inicial entre 4.5 e 5.8, com valores de P-resina (0-20 cm) de 4 a 45 mg dm⁻³ e K trocável de 0.7 a 3.1 mmol dm⁻³. As áreas foram caladas (calagem) para aumentar a saturação por bases para 70% antes dos experimentos e mantidas a cada três anos.
+ferramentas e técnicas (seleção): Análise de solo, Análise foliar, Calibração, Ensaio de campo de longo prazo, Extração de P e K via resina de troca iônica, Análise de N total em folhas, Modelos de função de resposta quadrática
+nutrientes (seleção): Nitrogênio (N), Fósforo (P), Potássio (K), Cálcio (Ca), Magnésio (Mg), Zinco (Zn), Manganês (Mn), Boro (B)
+estratégias de fornecimento de nutrientes (seleção): Aplicação anual de NPK em 4 doses distintas, fracionadas em 3 aplicações durante a estação chuvosa, Aplicação de fertilizantes NPK em faixas laterais (bandas), Calagem para manter saturação de bases em 70%, Aplicação foliar de micronutrientes (Zn, Mn, B)
+grupos de culturas (seleção): Culturas perenes, Frutíferas (Citros)
+culturas presentes (seleção): Citros, Laranja Pera, Laranja Valência, Laranja Natal, Limão (Lemon), Milho (comparação), Algodão (comparação), Feijão (comparação), Cana-de-açúcar (comparação)
+FEEDBACK DO CURADOR (escrever): Artigo científico fundamental para o estabelecimento de critérios de recomendação de fertilizantes NPK para citros em solos tropicais (São Paulo, Brasil). O estudo calibra a análise de solo (P e K via resina) e a análise foliar (N) com a resposta de produtividade, fornecendo classes de disponibilidade de nutrientes e faixas ótimas de concentração foliar de N.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

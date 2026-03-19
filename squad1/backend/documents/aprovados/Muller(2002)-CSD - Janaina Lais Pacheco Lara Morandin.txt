@@ -1,0 +1,34 @@
+ID: 5feafe49-a4b5-454e-aada-bc64f4beb42f
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): GERD WALTER MÜLLER; JOSÉ DAGOBERTO DE NEGRI; CARLOS IVAN AGUILAR-VILDOSO; DIRCEU MATTOS Jr.; JORGINO POMPEU JUNIOR; JOAQUIM TEÓFILO SOBRINHO; SÉRGIO ALVES CARVALHO; LUIZ FERNANDO GIROTTO; MARCOS ANTÔNIO MACHADO
+Titulo: MORTE SÚBITA DOS CITROS: UMA NOVA DOENÇA NA CITRICULTURA BRASILEIRA
+Subtítulo: 
+Ano: 2002
+Número de citações recebidas (Google Scholar): 23
+Palavras-chave: sweet oranges; ‘Rangpur’ lime; cambial yellowing; lack of feeder roots
+Resumo: Uma nova doença afetando laranjeiras-doces [Citrus sinensis (L.) Osb.] enxertadas em limão ‘Cravo’ (C. limonia Osb.), e denominada morte súbita dos citros (MSC), foi detectada em 1999 no sudoeste de Minas Gerais e no norte de São Paulo. Essas plantas apresentam, inicialmente, folhagem verde-pálidas e desfolha, morte apical de ramos e, ocasionalmente, desenvolvimento de pequeno número de ramos “ladrões” na copa. No estádio final, todas as folhas caem e a árvore morre, permanecendo, não raro, alguns frutos presos aos galhos. Pode-se observar um amarelecimento no câmbio do porta-enxerto, sendo esse o principal sintoma diagnóstico da MSC. Não há incompatibilidade de tecidos na região de enxertia. Os sintomas já foram encontrados em plantas com dois anos e dois meses; no entanto, são mais freqüentes em árvores além de seis anos e mais pronunciados durante a primavera. O sistema radicular apresenta perda acentuada de radicelas e podridão de raízes. A evolução espacial sugere que a doença seja causada por um vírus transmitido por vetor alado. Ensaios visando determinar a natureza da moléstia envolvendo testes biológicos e moleculares estão sendo realizados, bem como os de controle e convivência.
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Laranja
+Quartil do periódico: SQ
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: 
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1sDX_toDe0jnbPCTszOqZNwtx3uN7I-LT/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): Sudoeste de Minas Gerais e Norte de São Paulo. A doença é mais pronunciada na primavera. Análise do solo indicou altos níveis de fósforo e micronutrientes. As áreas afetadas estão nas regiões mais quentes dos dois estados.
+ferramentas e técnicas (seleção): Análise foliar, Análise de solo, Testes de controle químico, Teste de amido de iodo, Microscopia eletrônica, Análise biomolecular, Testes de absorção de água (seringa), Ensaio de transmissão por enxertia, Inoculação com vetores (afídeos e mosca branca).
+nutrientes (seleção): Fósforo (P), Micronutrientes.
+estratégias de fornecimento de nutrientes (seleção): 
+grupos de culturas (seleção): Fruticultura, Citros.
+culturas presentes (seleção): Laranja Doce (Sweet Orange), Limão Cravo (Rangpur lime), Mandarina Cleópatra (Cleopatra mandarin), Citrumelo Swingle (Swingle citrumelo), Laranja Trifolia (Trifoliate orange), Valencia, Hamlin, Natal, Pera.
+FEEDBACK DO CURADOR (escrever): Documento altamente relevante, descrevendo o surgimento e as características iniciais da 'Morte Súbita dos Citros' (CSD) no Brasil. O estudo detalha os sintomas, a especificidade do porta-enxerto (Limão Cravo), a exclusão de patógenos conhecidos (fungos, nematoides, CTV) como causa primária e o início de estudos de transmissão e análise nutricional. Fundamental para a pesquisa em citricultura brasileira.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false

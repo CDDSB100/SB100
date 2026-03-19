@@ -1,0 +1,34 @@
+ID: 9f60d0f4-4bed-48e9-9fdc-2330dc82a402
+NOME DO RESPONSÁVEL: Janaina Morandin
+Autor(es): Fernando C. Bachiega Zambrosi; Dirceu Mattos Jr.; Rodrigo M. Boaretto; José A. Quaggio; Takashi Muraoka; James P. Syvertsen
+Titulo: Contribution of phosphorus (32P) absorption and remobilization for citrus growth
+Subtítulo: 
+Ano: 2012
+Número de citações recebidas (Google Scholar): 59
+Palavras-chave: Nutritional stress; Nutrient solution; Rootstock varieties; Root growth; Uptake efficiency
+Resumo: Background and aims Phosphorus (P) is a mobile nutrient in the plant so growth depends on its internal remobilization and a plant’s ability to respond to its availability in the growing media. This study was conducted to evaluate the influence of P status and rootstocks on the patterns of P uptake and remobilization in orange trees. Methods Sweet orange trees on Cleopatra mandarin (CM) or Rangpur lime (RL) rootstocks were grown for nine months in nutrient solution (NS) that was either P-deficient (DNS) or was P-sufficient (SNS). After this period, half of the trees were reciprocally transferred between DNS and SNS (from D to S and S to D), while the others remained in their initial P availability. Results Trees on RL had more shoot and root growth, accumulated more P and had greater efficiency of P absorption and transport to the shoot (PAE) than those on CM. The major source of P for growth was previously stored P even with an adequate current P supply to the roots. This suggested the dominance of P remobilization over P uptake and the requirement that trees had sufficient stored P to meet P demand of new growth. Trees on CM had greater concentrations of remobilized P in new shoots than trees on RL. Conclusion Trees grafted on rootstocks less able to take up P (CM) were more dependent on the internal reserves of P for new growth than rootstocks with higher PAE (RL).
+Tipo de documento: Artigo
+Editora: 
+Instituição: 
+Local: 
+Tipo de trabalho: 
+Título do periódico: Plant and Soil
+Quartil do periódico: Q1
+Volume: 
+Número/fascículo: 
+Páginas: 
+DOI: https://doi.org/10.1007/s11104-011-1107-1
+Numeração: 
+Qualis: 
+URL DO DOCUMENTO: https://drive.google.com/file/d/1z-nMzl5QloFuEWUjDRA9ftmzOfSm7N8U/view?usp=drivesdk
+CURADOR (seleção): 
+EMAIL CURADOR (seleção): 
+Caracteristicas do solo e região (escrever): O experimento foi conduzido em casa de vegetação sem sombreamento. As plantas foram cultivadas em solução nutritiva (hidroponia) com níveis controlados de fósforo (P-deficiente ou P-suficiente) para avaliar a absorção e remobilização de P. A pesquisa é relevante para regiões produtoras de citros no Brasil e nos EUA.
+ferramentas e técnicas (seleção): Hidroponia/Cultura sem solo
+nutrientes (seleção): Fósforo (P)
+estratégias de fornecimento de nutrientes (seleção): Nutrição controlada/Solução Nutritiva
+grupos de culturas (seleção): Frutas/Frutíferas (Perenes)
+culturas presentes (seleção): Citrus sinensis (L.) Osbeck (Laranja Doce)
+FEEDBACK DO CURADOR (escrever): Artigo científico de alta relevância sobre a dinâmica de absorção e remobilização de Fósforo (P) em laranjeiras doces enxertadas em porta-enxertos contrastantes (Limão Cravo e Mandarina Cleopatra). Utiliza a técnica de radioisótopo (32P) para diferenciar P absorvido de P remobilizado, fornecendo dados cruciais para o manejo nutricional de citros em solos de baixa fertilidade.
+APROVAÇÃO CURADOR (marcar): true
+ARTIGOS REJEITADOS: false
