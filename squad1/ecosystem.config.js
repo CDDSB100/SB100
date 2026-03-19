@@ -3,7 +3,7 @@ module.exports = {
     {
       name: "api-node",
       script: "./backend/server.js",
-      interpreter: "node",
+      interpreter: "/home/sb100/squad1/.nvm/versions/node/v20.20.1/bin/node",
       instances: 1,
       autorestart: true,
       max_memory_restart: "1G",
