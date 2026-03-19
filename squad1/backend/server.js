@@ -59,9 +59,23 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 const app = express();
 // allow the port to be overridden (useful for dev vs prod)
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5173;
+
+// Proxy para o Backend Python (API de IA/Extração) na porta 8000
+app.use('/api-python', createProxyMiddleware({
+  target: process.env.API_BASE_URL || 'http://127.0.0.1:8000',
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api-python': '', // remove /api-python ao enviar para o python
+  },
+  onProxyReq: (proxyReq, req, res) => {
+    console.log(`[PROXY] Forwarding ${req.method} ${req.url} to Python API`);
+  }
+}));
 
 // Helper to compute network base URL (http://<ip>:<port>)
 function computeNetworkBaseUrl() {
