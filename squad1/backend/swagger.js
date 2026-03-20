@@ -14,6 +14,10 @@ const options = {
         url: 'https://sb100cientometria.optin.com.br',
         description: 'Servidor de Produção',
       },
+      {
+        url: 'http://172.28.181.92:5173',
+        description: 'Servidor Local (IP)',
+      },
     ],
     components: {
       securitySchemes: {
