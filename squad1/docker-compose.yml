@@ -12,8 +12,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.combined
-    ports:
-      - "5173:5173"
     depends_on:
       - mongodb
       - backend-python
@@ -33,12 +31,23 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.python
-    ports:
-      - "8000:8000"
     environment:
       - PORT=8000
     env_file:
       - ./backend/.env
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - backend-node
     restart: always
 
 volumes:
