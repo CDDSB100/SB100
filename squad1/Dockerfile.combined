@@ -1,0 +1,42 @@
+# Stage 1: Build Frontend
+FROM node:20-bookworm AS frontend-builder
+WORKDIR /app/frontend
+COPY frontend/package*.json ./
+RUN npm install
+COPY frontend/ .
+RUN npm run build
+
+# Stage 2: Backend & Final Image
+FROM node:20-bookworm
+WORKDIR /app
+
+# Instala ferramentas de compilação para o sqlite3
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copia arquivos de dependências do backend
+COPY backend/package*.json ./backend/
+WORKDIR /app/backend
+RUN npm install --production
+
+# Copia o código do backend
+COPY backend/ .
+
+# Copia o build do frontend para a pasta que o backend espera
+COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
+
+# Caso a pasta node_modules local tenha sido copiada acidentalmente,
+# forçamos a recompilação de módulos nativos (como sqlite3)
+RUN npm rebuild sqlite3
+
+EXPOSE 5001
+
+# Variável de ambiente para o backend encontrar o frontend
+# No server.js ele usa path.join(__dirname, '../frontend/dist')
+# Como estamos em /app/backend, o caminho está correto.
+
+CMD ["node", "server.js"]
