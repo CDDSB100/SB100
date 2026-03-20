@@ -8,3 +8,4 @@ groq
 qdrant-client
 sentence-transformers
 python-dotenv
+numpy<2.0.0
