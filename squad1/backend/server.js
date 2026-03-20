@@ -135,8 +135,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Configurar rota do Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, swaggerOptions));
 
 // Rota personalizada para o JS do Swagger que carrega o token automaticamente
 app.get('/api-docs/custom.js', (req, res) => {
@@ -159,8 +157,7 @@ app.get('/api-docs/custom.js', (req, res) => {
             });
           }
         } else {
-          console.warn("SB100 Swagger: Nenhum token encontrado no localStorage desta porta (5001).");
-          console.info("Dica: Se você logou na porta 5173, o localStorage não é compartilhado. Use o botão Authorize manualmente ou acesse o sistema pela porta 5001.");
+          console.warn("SB100 Swagger: Nenhum token encontrado no localStorage.");
         }
       };
 
@@ -191,6 +188,9 @@ app.get('/api-docs/custom.js', (req, res) => {
     })();
   `);
 });
+
+// Configurar rota do Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, swaggerOptions));
 
 // Se existir uma build do front-end (agora em frontend/dist), servir os arquivos estáticos
 const frontendBuildPath = path.join(__dirname, '../frontend/dist');

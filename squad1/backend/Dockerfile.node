@@ -1,19 +1,28 @@
-FROM node:20-slim
+FROM node:20-bookworm
 
 WORKDIR /app
 
-# Instala dependências de sistema mínimas se necessário
-RUN apt-get update && apt-get install -y libsqlite3-dev && rm -rf /var/lib/apt/lists/*
+# Instala ferramentas de compilação
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# Instala dependências do Node.js
+# Copia arquivos de dependências
 COPY package*.json ./
+
+# Instala dependências limpas
 RUN npm install --production
 
-# Copia o restante do código
+# Copia o código
 COPY . .
 
-# Expõe a porta do Node.js (5001)
+# FORÇA a remoção do sqlite3 possivelmente copiado do host e reinstala do zero
+# compilando dentro do container para garantir compatibilidade com a GLIBC do Debian
+RUN rm -rf node_modules/sqlite3 && npm install sqlite3 --build-from-source
+
 EXPOSE 5001
 
-# Inicia apenas o Node.js
 CMD ["node", "server.js"]

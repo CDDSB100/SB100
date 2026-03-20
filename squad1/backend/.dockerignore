@@ -1,0 +1,14 @@
+node_modules
+venv
+.env
+.git
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+api.db
+documents
+llm.log
+logs
+Dockerfile*
+docker-compose*
