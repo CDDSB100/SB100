@@ -1,6 +1,7 @@
 # Stage 1: Build Frontend
 FROM node:20-bookworm AS frontend-builder
 WORKDIR /app/frontend
+# Garantir que não existam resquícios locais
 COPY frontend/package*.json ./
 RUN npm install
 COPY frontend/ .
@@ -18,25 +19,29 @@ RUN apt-get update && apt-get install -y \
     libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copia arquivos de dependências do backend
-COPY backend/package*.json ./backend/
+# Prepara a pasta do backend
 WORKDIR /app/backend
+
+# Copia arquivos de dependências do backend
+COPY backend/package*.json ./
+# Instala as dependências limpas no ambiente do container
 RUN npm install --production
 
-# Copia o código do backend
+# Copia o código do backend (o .dockerignore deve ignorar o node_modules local)
 COPY backend/ .
 
+# GARANTIA: Remove qualquer binário de sqlite3 que possa ter vindo do host
+# e compila DO ZERO dentro do container
+RUN rm -rf node_modules/sqlite3 && npm install sqlite3 --build-from-source
+
 # Copia o build do frontend para a pasta que o backend espera
+# No server.js ele usa path.join(__dirname, '../frontend/dist')
+# O WORKDIR atual é /app/backend, então ../frontend/dist mapeia para /app/frontend/dist
 COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
-# Caso a pasta node_modules local tenha sido copiada acidentalmente,
-# forçamos a recompilação de módulos nativos (como sqlite3)
-RUN npm rebuild sqlite3
+EXPOSE 5173
 
-EXPOSE 5001
-
-# Variável de ambiente para o backend encontrar o frontend
-# No server.js ele usa path.join(__dirname, '../frontend/dist')
-# Como estamos em /app/backend, o caminho está correto.
+# Variável de ambiente padrão
+ENV PORT=5173
 
 CMD ["node", "server.js"]
