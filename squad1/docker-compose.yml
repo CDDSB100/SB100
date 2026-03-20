@@ -2,8 +2,7 @@ services:
   mongodb:
     image: mongo:4.4
     container_name: mongodb
-    ports:
-      - "27017:27017"
+    # Banco de dados fica apenas na rede interna do Docker
     volumes:
       - mongodb_data:/data/db
     restart: always
@@ -12,6 +11,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.combined
+    ports:
+      # MAPEAMENTO DIRETO: Host 5173 -> Container 5173 (HTTP)
+      - "5173:5173"
     depends_on:
       - mongodb
       - backend-python
@@ -31,23 +33,11 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile.python
+    # Backend Python fica apenas na rede interna, acessado via proxy do Node
     environment:
       - PORT=8000
     env_file:
       - ./backend/.env
-    restart: always
-
-  nginx:
-    image: nginx:alpine
-    container_name: nginx-proxy
-    ports:
-      - "8080:80"
-      - "8443:443"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-    depends_on:
-      - backend-node
     restart: always
 
 volumes:
