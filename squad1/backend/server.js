@@ -1208,12 +1208,16 @@ app.post("/api/manual-approval", authenticateToken, authorizeModify, async (req,
 
         const username = req.user ? req.user.username : "Desconhecido";
         // Convert row_number string to integer if it's numeric, otherwise pass as is (for MongoDB ObjectId)
-        const id = isNaN(row_number) ? row_number : parseInt(row_number, 10);
+        const id = (typeof row_number === 'string' && /^\d+$/.test(row_number)) ? parseInt(row_number, 10) : row_number;
+        
+        console.log(`[Manual Approval] Request by ${username} for ID: ${id}, File: ${fileName}`);
         const result = await aprovarManualmente(id, fileName, username, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-approval: ${error.message}`);
-        res.status(500).json({ error: error.message });
+        if (error.stack) console.error(error.stack);
+        const status = error.message === "Artigo não encontrado." ? 404 : 500;
+        res.status(status).json({ error: error.message });
     }
 });
 
@@ -1251,12 +1255,17 @@ app.post("/api/manual-rejection", authenticateToken, authorizeModify, async (req
         }
 
         const username = req.user ? req.user.username : "Desconhecido";
-        const id = isNaN(row_number) ? row_number : parseInt(row_number, 10);
+        // Convert row_number string to integer if it's numeric, otherwise pass as is (for MongoDB ObjectId)
+        const id = (typeof row_number === 'string' && /^\d+$/.test(row_number)) ? parseInt(row_number, 10) : row_number;
+        
+        console.log(`[Manual Rejection] Request by ${username} for ID: ${id}, File: ${fileName}`);
         const result = await reprovarManualmente(id, fileName, username, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback);
         res.json(result);
     } catch (error) {
         console.error(`Error in /api/manual-rejection: ${error.message}`);
-        res.status(500).json({ error: error.message });
+        if (error.stack) console.error(error.stack);
+        const status = error.message === "Artigo não encontrado." ? 404 : 500;
+        res.status(status).json({ error: error.message });
     }
 });
 

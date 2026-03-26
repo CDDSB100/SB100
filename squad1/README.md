@@ -58,9 +58,19 @@ GROQ_API_KEY=sua_chave_groq
 API_BASE_URL=http://localhost:8000
 ```
 
-### 4. Execução
-Para iniciar o Frontend, Backend Node e Backend Python simultaneamente:
+### 4. Execução (Docker - Recomendado)
+Para iniciar toda a stack (Frontend, Backend Node, Backend Python e MongoDB) utilizando Docker:
+
 ```bash
+docker-compose up --build -d
+```
+
+O frontend estará disponível em `http://localhost:5173`.
+
+### 5. Desenvolvimento Local (Sem Docker)
+Caso prefira rodar localmente sem containers:
+```bash
+npm install
 npm run dev
 ```
 - **Frontend:** [http://localhost:5173](http://localhost:5173)

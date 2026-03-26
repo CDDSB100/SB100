@@ -430,16 +430,18 @@ async function aprovarManualmente(id, fileName, username = "Desconhecido", feedb
 
   const cleanName = path.basename(fileName);
   const sourcePath = findFileInFolders(cleanName);
-  if (!sourcePath) throw new Error("Arquivo não encontrado no sistema de arquivos.");
   
-  const targetPath = path.join(APROVADOS_DIR, cleanName);
-  
-  try {
-    if (sourcePath !== targetPath) {
-      await fs.rename(sourcePath, targetPath);
+  if (sourcePath) {
+    const targetPath = path.join(APROVADOS_DIR, cleanName);
+    try {
+      if (sourcePath !== targetPath) {
+        await fs.rename(sourcePath, targetPath);
+      }
+    } catch (e) {
+      console.error(`[aprovarManualmente] Erro ao mover arquivo: ${e.message}`);
     }
-  } catch (e) {
-    console.error(`[aprovarManualmente] Erro ao mover arquivo: ${e.message}`);
+  } else {
+    console.warn(`[aprovarManualmente] Arquivo não encontrado no sistema: ${cleanName}. Prosseguindo apenas com atualização no banco.`);
   }
 
   article["APROVADO POR"] = username;
@@ -468,23 +470,49 @@ async function aprovarManualmente(id, fileName, username = "Desconhecido", feedb
 }
 
 async function reprovarManualmente(id, fileName, username = "Desconhecido", feedbackCurador = "", feedbackSobreIA = null, aiAnalysisFeedback = null) {
-  const article = await Article.findById(id);
-  if (!article) throw new Error("Artigo não encontrado.");
-
-  const cleanName = path.basename(fileName);
-  const sourcePath = findFileInFolders(cleanName);
-  if (!sourcePath) throw new Error("Arquivo não encontrado no sistema de arquivos.");
+  console.log(`[reprovarManualmente] Iniciando para ID: ${id}, Arquivo: ${fileName}, Usuário: ${username}`);
   
-  const targetPath = path.join(REPROVADOS_DIR, cleanName);
-  
+  let article;
   try {
-    if (sourcePath !== targetPath) {
-      await fs.rename(sourcePath, targetPath);
-    }
-  } catch (e) {
-    console.error(`[reprovarManualmente] Erro ao mover arquivo: ${e.message}`);
+    article = await Article.findById(id);
+  } catch (error) {
+    console.error(`[reprovarManualmente] Erro ao buscar artigo por ID ${id}: ${error.message}`);
+    throw new Error(`Erro ao buscar artigo no banco de dados: ${error.message}`);
   }
 
+  if (!article) {
+    console.warn(`[reprovarManualmente] Artigo com ID ${id} não encontrado.`);
+    throw new Error("Artigo não encontrado.");
+  }
+
+  console.log(`[reprovarManualmente] Artigo encontrado: "${article["Título"] || article["Titulo"] || 'Sem Título'}"`);
+
+  // Garantir que fileName seja string
+  const safeFileName = String(fileName || "");
+  const cleanName = path.basename(safeFileName);
+  console.log(`[reprovarManualmente] Nome limpo do arquivo: ${cleanName}`);
+  
+  const sourcePath = findFileInFolders(cleanName);
+  
+  if (sourcePath) {
+    const targetPath = path.join(REPROVADOS_DIR, cleanName);
+    console.log(`[reprovarManualmente] Movendo de ${sourcePath} para ${targetPath}`);
+    try {
+      if (sourcePath !== targetPath) {
+        await fs.rename(sourcePath, targetPath);
+        console.log(`[reprovarManualmente] Arquivo movido com sucesso.`);
+      } else {
+        console.log(`[reprovarManualmente] Arquivo já está na pasta de reprovados.`);
+      }
+    } catch (e) {
+      console.error(`[reprovarManualmente] Erro ao mover arquivo: ${e.message}`);
+      // Não interrompemos o processo se o arquivo não puder ser movido
+    }
+  } else {
+    console.warn(`[reprovarManualmente] Arquivo não encontrado no sistema: ${cleanName}. Prosseguindo apenas com atualização no banco.`);
+  }
+
+  console.log(`[reprovarManualmente] Atualizando metadados de curadoria...`);
   article["APROVADO POR"] = username;
   if (feedbackCurador) article["FEEDBACK DO CURADOR"] = feedbackCurador;
   if (feedbackSobreIA) article["FEEDBACK SOBRE IA"] = safelyParseJSON(feedbackSobreIA);
@@ -503,8 +531,15 @@ async function reprovarManualmente(id, fileName, username = "Desconhecido", feed
     article["FEEDBACK DO CURADOR (escrever)"] = undefined;
   }
 
-  await article.save();
-  return { success: true };
+  try {
+    console.log(`[reprovarManualmente] Salvando alterações no MongoDB...`);
+    await article.save();
+    console.log(`[reprovarManualmente] Artigo salvo com sucesso.`);
+    return { success: true };
+  } catch (error) {
+    console.error(`[reprovarManualmente] Erro ao salvar artigo: ${error.message}`);
+    throw new Error(`Erro ao salvar artigo no banco de dados: ${error.message}`);
+  }
 }
 
 async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Desconhecido") {
