@@ -1,255 +1,149 @@
-const xlsx = require('xlsx');
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
+const { Article } = require('../src/models/Article');
 
 // --- CONFIGURAÇÃO DE CAMINHOS ---
 const BASE_DIR = path.join(__dirname, '..');
-const CONSOLIDADO_PATH = path.join(BASE_DIR, 'Consolidado - Respostas Gerais.xlsx');
 const DOCUMENTS_DIR = path.join(BASE_DIR, 'documents');
 const APROVADOS_DIR = path.join(DOCUMENTS_DIR, 'aprovados');
 const REPROVADOS_DIR = path.join(DOCUMENTS_DIR, 'reprovados');
 
-const SHEET_NAME = 'Tabela completa';
-
-// MongoDB URI - Fallback para localhost se falhar o IP específico
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/cientometria';
-
-// Definir o Schema do Artigo
-const articleSchema = new mongoose.Schema({
-  "URL DO DOCUMENTO": String,
-  "APROVAÇÃO MANUAL": String,
-  "ARTIGOS REJEITADOS": String,
-  "APROVAÇÃO CURADOR (marcar)": String,
-}, { strict: false });
-
-const Article = mongoose.models.Article || mongoose.model('Article', articleSchema);
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cientometria';
 
 // Garantir que as pastas existam
-[APROVADOS_DIR, REPROVADOS_DIR].forEach(dir => {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
+[DOCUMENTS_DIR, APROVADOS_DIR, REPROVADOS_DIR].forEach(dir => {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 });
 
-function findFileAnywhere(fileName) {
-  if (!fileName) return null;
-  const locations = [
-    path.join(DOCUMENTS_DIR, fileName),
-    path.join(APROVADOS_DIR, fileName),
-    path.join(REPROVADOS_DIR, fileName)
-  ];
-  for (const loc of locations) {
-    if (fs.existsSync(loc)) return loc;
-  }
-  return null;
-}
-
 async function organize() {
-  console.log('--- INICIANDO ORGANIZAÇÃO E LIMPEZA DE DOCUMENTOS ---');
+  console.log('--- INICIANDO ORGANIZAÇÃO E LIMPEZA DE DOCUMENTOS (MODO MONGODB) ---');
   
-  // 1. LIMPEZA DE .TXT NO PENDENTES
-  console.log('🧹 Limpando arquivos .txt da pasta de pendentes...');
-  if (fs.existsSync(DOCUMENTS_DIR)) {
-    const filesInRoot = fs.readdirSync(DOCUMENTS_DIR);
-    let txtDeleted = 0;
-    filesInRoot.forEach(file => {
-      const filePath = path.join(DOCUMENTS_DIR, file);
-      if (fs.statSync(filePath).isFile() && file.toLowerCase().endsWith('.txt')) {
-        try {
-          fs.unlinkSync(filePath);
-          txtDeleted++;
-        } catch (e) {
-          console.error(`Erro ao deletar ${file}: ${e.message}`);
-        }
-      }
-    });
-    if (txtDeleted > 0) console.log(`✨ Removidos ${txtDeleted} arquivos .txt prematuros.`);
-  }
+  const statusMap = new Map(); // fileName -> { rank, label }
 
   try {
-    console.log(`🔗 Tentando conectar ao MongoDB em: ${MONGODB_URI}`);
-    await mongoose.connect(MONGODB_URI, { serverSelectionTimeoutMS: 5000 });
+    await mongoose.connect(MONGODB_URI);
     console.log('✅ Conectado ao MongoDB.');
-  } catch (err) {
-    console.error('⚠️ Erro ao conectar ao MongoDB.', err.message);
-    console.log('⚠️ Continuando apenas com a lógica baseada no disco e pastas...');
-  }
-
-  // 2. CONSOLIDAÇÃO E DEDUPLICAÇÃO DE STATUS
-  // Prioridade: 3 (Manual), 2 (Rejeitado), 1 (IA), 0 (Pendente)
-  const statusMap = new Map();
-
-  function updateStatusMap(fileName, manual, curador, rejected, sourceId = null) {
-    if (!fileName || fileName.toString().startsWith('http')) return;
     
-    let rank = 0;
-    if (manual) rank = 3;
-    else if (rejected) rank = 2;
-    else if (curador) rank = 1;
-
-    const current = statusMap.get(fileName);
-    if (!current || rank > current.rank) {
-      statusMap.set(fileName, { manual, curador, rejected, rank, sourceId });
-    }
-  }
-
-  // Ler MongoDB
-  if (mongoose.connection.readyState === 1) {
     const articles = await Article.find({});
     console.log(`🔍 Analisando ${articles.length} registros no MongoDB...`);
     
-    const duplicatesToRemove = [];
-    const seenFiles = new Map();
-
     articles.forEach(art => {
       const fileName = art["URL DO DOCUMENTO"];
       if (!fileName) return;
-
+      
       const manual = String(art["APROVAÇÃO MANUAL"] || '').toUpperCase() === 'TRUE';
       const curador = String(art["APROVAÇÃO CURADOR (marcar)"] || '').toUpperCase() === 'TRUE';
       const rejected = String(art["ARTIGOS REJEITADOS"] || '').toUpperCase() === 'TRUE';
       
-      let rank = 0;
-      if (manual) rank = 3;
-      else if (rejected) rank = 2;
-      else if (curador) rank = 1;
-
-      if (seenFiles.has(fileName)) {
-        const prev = seenFiles.get(fileName);
-        if (rank > prev.rank) {
-          duplicatesToRemove.push(prev.id);
-          seenFiles.set(fileName, { id: art._id, rank });
-        } else {
-          duplicatesToRemove.push(art._id);
-        }
-      } else {
-        seenFiles.set(fileName, { id: art._id, rank });
+      let rank = manual ? 3 : (rejected ? 2 : (curador ? 1 : 0));
+      
+      const current = statusMap.get(fileName);
+      if (!current || rank > current.rank) {
+        statusMap.set(fileName, { 
+          rank, 
+          label: rank === 3 ? 'APROVADO' : (rank === 2 ? 'REPROVADO' : (rank === 1 ? 'IA' : 'PENDENTE')) 
+        });
       }
-
-      updateStatusMap(fileName, manual, curador, rejected, art._id);
     });
-
-    if (duplicatesToRemove.length > 0) {
-      console.log(`🗑️ Removendo ${duplicatesToRemove.length} duplicatas do MongoDB...`);
-      await Article.deleteMany({ _id: { $in: duplicatesToRemove } });
-    }
+  } catch (err) {
+    console.error('❌ Erro crítico ao conectar ao MongoDB:', err.message);
+    process.exit(1);
   }
 
-  // Ler Excel com proteção contra EISDIR
-  if (fs.existsSync(CONSOLIDADO_PATH)) {
-    const fstats = fs.statSync(CONSOLIDADO_PATH);
-    if (fstats.isFile()) {
-      try {
-        const wb = xlsx.readFile(CONSOLIDADO_PATH);
-        const ws = wb.Sheets[SHEET_NAME];
-        if (ws) {
-          const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
-          const headers = allData[0];
-          const rows = allData.slice(1);
+  // 2. ESCANEAMENTO DO DISCO
+  console.log('📂 Escaneando arquivos no disco...');
+  const allFiles = new Map(); // fileName -> [caminhos onde foi encontrado]
 
-          const colUrlIdx = headers.indexOf('URL DO DOCUMENTO');
-          const colAprovManualIdx = headers.indexOf('APROVAÇÃO MANUAL');
-          const colAprovIaIdx = headers.indexOf('APROVAÇÃO CURADOR (marcar)');
-          const colRejeitadosIdx = headers.indexOf('ARTIGOS REJEITADOS');
-
-          rows.forEach(row => {
-            updateStatusMap(
-              row[colUrlIdx],
-              String(row[colAprovManualIdx] || '').toUpperCase() === 'TRUE',
-              String(row[colAprovIaIdx] || '').toUpperCase() === 'TRUE',
-              String(row[colRejeitadosIdx] || '').toUpperCase() === 'TRUE'
-            );
-          });
-        }
-      } catch (e) {
-        console.error(`⚠️ Erro ao ler Excel: ${e.message}`);
+  function scanDir(dir) {
+    if (!fs.existsSync(dir)) return;
+    const items = fs.readdirSync(dir);
+    items.forEach(item => {
+      const fullPath = path.join(dir, item);
+      if (fs.statSync(fullPath).isDirectory()) {
+        // Não reentrar nas pastas de destino para evitar loops se forem subpastas, 
+        // mas aqui elas são subpastas de DOCUMENTS_DIR.
+        if (item !== 'aprovados' && item !== 'reprovados') scanDir(fullPath);
+      } else if (item.toLowerCase().endsWith('.pdf')) {
+        const list = allFiles.get(item) || [];
+        list.push(fullPath);
+        allFiles.set(item, list);
+      } else if (item.toLowerCase().endsWith('.txt') && dir === DOCUMENTS_DIR) {
+        // Limpar TXT órfão na raiz se desejar
+        try { fs.unlinkSync(fullPath); } catch(e) {}
       }
-    } else {
-      console.warn(`⚠️ Aviso: ${CONSOLIDADO_PATH} existe mas é um diretório, ignorando leitura do Excel.`);
-    }
+    });
   }
 
-  // 3. EXECUÇÃO DA MOVIMENTAÇÃO
-  let stats = { movedToAprovados: 0, movedToReprovados: 0, movedToRoot: 0, alreadyCorrect: 0 };
+  scanDir(DOCUMENTS_DIR);
+  scanDir(APROVADOS_DIR);
+  scanDir(REPROVADOS_DIR);
 
-  for (const [fileName, statusInfo] of statusMap.entries()) {
+  console.log(`📊 Encontrados ${allFiles.size} arquivos PDF únicos.`);
+
+  let stats = { moved: 0, deleted: 0, kept: 0 };
+
+  for (const [fileName, locations] of allFiles.entries()) {
+    const status = statusMap.get(fileName) || { rank: 0, label: 'PENDENTE' };
     let targetDir = DOCUMENTS_DIR;
-    let label = 'PENDENTE';
-
-    if (statusInfo.rank === 3 || statusInfo.rank === 1) {
-      targetDir = APROVADOS_DIR;
-      label = statusInfo.rank === 3 ? 'APROVADO (MANUAL)' : 'APROVADO (IA)';
-    } else if (statusInfo.rank === 2) {
-      targetDir = REPROVADOS_DIR;
-      label = 'REJEITADO';
-    }
+    
+    // Regra: Aprovado Manual (3) ou Aprovado IA (1) -> Aprovados
+    // Rejeitado (2) -> Reprovados
+    if (status.rank === 3 || status.rank === 1) targetDir = APROVADOS_DIR;
+    else if (status.rank === 2) targetDir = REPROVADOS_DIR;
 
     const targetPath = path.join(targetDir, fileName);
-    const locations = [
-      path.join(DOCUMENTS_DIR, fileName),
-      path.join(APROVADOS_DIR, fileName),
-      path.join(REPROVADOS_DIR, fileName)
-    ];
+    let mainFileProcessed = false;
 
-    let processedMainFile = false;
+    // Ordenar caminhos para priorizar o que já está no lugar certo
+    locations.sort((a, b) => (a === targetPath ? -1 : 1));
 
     for (const loc of locations) {
-      if (fs.existsSync(loc) && fs.statSync(loc).isFile()) {
-        if (loc === targetPath) {
-          if (!processedMainFile) {
-            stats.alreadyCorrect++;
-            processedMainFile = true;
-          }
-          continue;
-        }
+      if (loc === targetPath && !mainFileProcessed) {
+        mainFileProcessed = true;
+        stats.kept++;
+        continue;
+      }
 
+      if (mainFileProcessed) {
+        // Já temos uma cópia no lugar certo, deletar esta duplicata
         try {
-          if (fs.existsSync(targetPath) || processedMainFile) {
-            fs.unlinkSync(loc);
-            console.log(`[DUPLICATA] Removido: ${path.relative(BASE_DIR, loc)} (Já existe no destino: ${label})`);
-            const txtLoc = loc.replace(/\.[^/.]+$/, "") + ".txt";
-            if (fs.existsSync(txtLoc)) try { fs.unlinkSync(txtLoc); } catch (e) {}
-          } else {
-            fs.renameSync(loc, targetPath);
-            const txtName = fileName.replace(/\.[^/.]+$/, "") + ".txt";
-            const possibleTxtLocations = [
-              path.join(DOCUMENTS_DIR, txtName),
-              path.join(APROVADOS_DIR, txtName),
-              path.join(REPROVADOS_DIR, txtName)
-            ];
-            const targetTxtPath = targetPath.replace(/\.[^/.]+$/, "") + ".txt";
-            let movedTxt = false;
+          fs.unlinkSync(loc);
+          console.log(`🗑️  Duplicata removida: ${path.relative(BASE_DIR, loc)}`);
+          stats.deleted++;
+        } catch (e) { console.error(`Erro ao deletar: ${e.message}`); }
+      } else {
+        // Mover para o lugar certo
+        try {
+          fs.renameSync(loc, targetPath);
+          console.log(`🚚 Movido para ${status.label}: ${fileName}`);
+          mainFileProcessed = true;
+          stats.moved++;
+        } catch (e) { console.error(`Erro ao mover: ${e.message}`); }
+      }
 
-            for (const txtLoc of possibleTxtLocations) {
-              if (fs.existsSync(txtLoc) && fs.statSync(txtLoc).isFile()) {
-                if (txtLoc === targetTxtPath) { movedTxt = true; continue; }
-                if (movedTxt) fs.unlinkSync(txtLoc);
-                else { fs.renameSync(txtLoc, targetTxtPath); movedTxt = true; }
-              }
-            }
-
-            if (targetDir === APROVADOS_DIR) stats.movedToAprovados++;
-            else if (targetDir === REPROVADOS_DIR) stats.movedToReprovados++;
-            else stats.movedToRoot++;
-
-            console.log(`[${label}] Movido: ${fileName}`);
-            processedMainFile = true;
+      // Sincronizar TXT se existir
+      const txtSource = loc.replace(/\.pdf$/i, '.txt');
+      const txtTarget = targetPath.replace(/\.pdf$/i, '.txt');
+      if (fs.existsSync(txtSource)) {
+        try {
+          if (txtSource !== txtTarget) {
+            if (fs.existsSync(txtTarget)) fs.unlinkSync(txtSource);
+            else fs.renameSync(txtSource, txtTarget);
           }
-        } catch (e) {
-          console.error(`Erro ao processar ${fileName}: ${e.message}`);
-        }
+        } catch (e) {}
       }
     }
   }
 
   console.log('\n--- RESUMO FINAL ---');
-  console.log(`✅ Aprovados: ${stats.movedToAprovados}`);
-  console.log(`❌ Reprovados: ${stats.movedToReprovados}`);
-  console.log(`⏳ Pendentes: ${stats.movedToRoot}`);
-  console.log(`✨ Já estavam corretos: ${stats.alreadyCorrect}`);
+  console.log(`🚚 Movidos para pasta correta: ${stats.moved}`);
+  console.log(`🗑️  Duplicatas deletadas: ${stats.deleted}`);
+  console.log(`✨ Já estavam no lugar: ${stats.kept}`);
   
-  if (mongoose.connection.readyState === 1) await mongoose.disconnect();
+  await mongoose.connection.close();
   process.exit(0);
 }
 

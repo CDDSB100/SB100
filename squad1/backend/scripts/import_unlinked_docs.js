@@ -1,14 +1,16 @@
-const {
-  ALL_METADATA_FIELDS,
-} = require("../src/controllers/metadata_controller.js");
-const xlsx = require("xlsx");
+const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
 
-const CONSOLIDADO_PATH = path.join(__dirname, "../Consolidado - Respostas Gerais.xlsx");
+const { Article } = require("../src/models/Article");
+const {
+  ALL_METADATA_FIELDS,
+} = require("../src/controllers/metadata_controller.js");
+
 const DOCUMENTS_DIR = path.join(__dirname, "../documents");
-const SHEET_NAME = "Tabela completa";
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cientometria';
 const API_BASE_URL = "https://curadoria-llm-curadoria.hf.space";
 
 async function callCustomCuradorApi(pdfBuffer, headers) {
@@ -20,7 +22,7 @@ async function callCustomCuradorApi(pdfBuffer, headers) {
   };
   try {
     const res = await axios.post(`${API_BASE_URL}/curadoria`, payload, {
-      timeout: 120000,
+      timeout: 300000, // Aumentado para 5 min
       headers: { "Content-Type": "application/json" },
     });
     return res.data;
@@ -38,7 +40,7 @@ async function callCategorizationApi(pdfBuffer) {
   };
   try {
     const res = await axios.post(`${API_BASE_URL}/categorize`, payload, {
-      timeout: 60000,
+      timeout: 120000,
       headers: { "Content-Type": "application/json" },
     });
     return res.data.category;
@@ -48,72 +50,75 @@ async function callCategorizationApi(pdfBuffer) {
 }
 
 async function run() {
-  console.log("Analyzing documents not yet in Excel...");
+  console.log("--- INICIANDO IMPORTAÇÃO DE DOCUMENTOS NÃO VINCULADOS (MODO MONGODB) ---");
   
-  const wb = xlsx.readFile(CONSOLIDADO_PATH);
-  const ws = wb.Sheets[SHEET_NAME];
-  const allData = xlsx.utils.sheet_to_json(ws, { header: 1 });
-  const headers = allData[0];
-  
-  const urlIndex = headers.indexOf("URL DO DOCUMENTO");
-  const doiIndex = headers.indexOf("DOI");
-  
-  const linkedFiles = allData.slice(1).map(row => row[urlIndex]).filter(val => val && !val.startsWith("http"));
-  const localFiles = fs.readdirSync(DOCUMENTS_DIR).filter(f => f.toLowerCase().endsWith(".pdf"));
-  
-  const unlinkedFiles = localFiles.filter(f => !linkedFiles.includes(f));
-  console.log(`Found ${unlinkedFiles.length} files not yet linked in Excel.`);
+  try {
+    await mongoose.connect(MONGODB_URI);
+    console.log("✅ Conectado ao MongoDB.");
 
-  for (const file of unlinkedFiles) {
-    console.log(`Processing: ${file}`);
-    const filePath = path.join(DOCUMENTS_DIR, file);
-    const pdfBuffer = fs.readFileSync(filePath);
+    // Buscar todos os arquivos já vinculados no banco
+    const linkedArticles = await Article.find({ 
+      "URL DO DOCUMENTO": { $exists: true, $ne: "", $ne: null } 
+    }).select("URL DO DOCUMENTO DOI");
+    
+    const linkedFiles = linkedArticles.map(a => a["URL DO DOCUMENTO"]);
+    const localFiles = fs.readdirSync(DOCUMENTS_DIR).filter(f => f.toLowerCase().endsWith(".pdf"));
+    
+    const unlinkedFiles = localFiles.filter(f => !linkedFiles.includes(f));
+    console.log(`🔍 Encontrados ${unlinkedFiles.length} arquivos no disco não vinculados no MongoDB.`);
 
-    console.log("  > Extracting metadata and categorizing...");
-    const category = await callCategorizationApi(pdfBuffer);
-    const extractedData = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
-
-    if (!extractedData) {
-        console.error(`  > Failed to extract data for ${file}`);
-        continue;
+    if (unlinkedFiles.length === 0) {
+      console.log("Nenhum arquivo novo para importar.");
+      process.exit(0);
     }
 
-    // Check DOI duplicate in Excel
-    const doi = extractedData["DOI"];
-    if (doi && doi !== "N/A") {
-        const duplicate = allData.some(row => row[doiIndex] && row[doiIndex].toString().includes(doi));
-        if (duplicate) {
-            console.log(`  > Skipping ${file}: DOI ${doi} already in Excel.`);
-            continue;
-        }
+    for (const file of unlinkedFiles) {
+      console.log(`\n📄 Processando: ${file}`);
+      const filePath = path.join(DOCUMENTS_DIR, file);
+      const pdfBuffer = fs.readFileSync(filePath);
+
+      console.log("  > Extraindo metadados e categorizando via IA...");
+      const category = await callCategorizationApi(pdfBuffer);
+      const extractedData = await callCustomCuradorApi(pdfBuffer, ALL_METADATA_FIELDS);
+
+      if (!extractedData) {
+          console.error(`  > ❌ Falha ao extrair dados para ${file}`);
+          continue;
+      }
+
+      // Verificar duplicidade por DOI no MongoDB
+      const doi = extractedData["DOI"];
+      if (doi && doi !== "N/A" && doi !== "") {
+          const duplicate = await Article.findOne({ DOI: doi });
+          if (duplicate) {
+              console.log(`  > ⚠️ Pulando ${file}: DOI ${doi} já existe no MongoDB.`);
+              continue;
+          }
+      }
+
+      // Preparar objeto do artigo
+      const articleData = {
+        ...extractedData,
+        "URL DO DOCUMENTO": file,
+        "CATEGORIA": category,
+        "APROVAÇÃO CURADOR (marcar)": "FALSE",
+        "ARTIGOS REJEITADOS": "FALSE",
+        "INSERIDO POR": "Sistema (Auto-Import)",
+        "work_id": `auto-${Date.now()}-${Math.floor(Math.random() * 1000)}`
+      };
+
+      const newArticle = new Article(articleData);
+      await newArticle.save();
+      
+      console.log(`  > ✅ Importado com sucesso: ${extractedData["Título"] || extractedData["Titulo"] || file}`);
     }
 
-    const newRow = new Array(headers.length).fill("");
-    headers.forEach((h, i) => {
-        if (extractedData[h]) newRow[i] = extractedData[h];
-    });
-
-    // Manually set some fields
-    newRow[urlIndex] = file;
-    const catIndex = headers.indexOf("CATEGORIA");
-    if (catIndex !== -1) newRow[catIndex] = category;
-    
-    // Set status fields to Pending
-    const statusIdx1 = headers.indexOf("APROVAÇÃO CURADOR (marcar)");
-    const statusIdx2 = headers.indexOf("ARTIGOS REJEITADOS");
-    if (statusIdx1 !== -1) newRow[statusIdx1] = "FALSE";
-    if (statusIdx2 !== -1) newRow[statusIdx2] = "FALSE";
-
-    allData.push(newRow);
-    console.log(`  > Added to Excel: ${extractedData["Título"] || extractedData["Titulo"] || file}`);
-    
-    // Save progress after each file
-    const newWs = xlsx.utils.aoa_to_sheet(allData);
-    wb.Sheets[SHEET_NAME] = newWs;
-    xlsx.writeFile(wb, CONSOLIDADO_PATH);
+    console.log("\n🎉 Processo de importação concluído!");
+  } catch (error) {
+    console.error("❌ Erro durante o processamento:", error);
+  } finally {
+    await mongoose.connection.close();
   }
-
-  console.log("Batch processing finished!");
 }
 
 run();
