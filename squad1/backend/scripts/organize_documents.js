@@ -24,8 +24,12 @@ async function organize() {
   const statusMap = new Map(); // fileName -> { rank, label }
 
   try {
-    await mongoose.connect(MONGODB_URI);
-    console.log('✅ Conectado ao MongoDB.');
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(MONGODB_URI);
+      console.log('✅ Conectado ao MongoDB.');
+    } else {
+      console.log('✅ Já conectado ao MongoDB (via Model).');
+    }
     
     const articles = await Article.find({});
     console.log(`🔍 Analisando ${articles.length} registros no MongoDB...`);

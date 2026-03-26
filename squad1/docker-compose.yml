@@ -2,7 +2,8 @@ services:
   mongodb:
     image: mongo:4.4
     container_name: mongodb
-    # Banco de dados fica apenas na rede interna do Docker
+    ports:
+      - "27017:27017"
     volumes:
       - mongodb_data:/data/db
     restart: always
