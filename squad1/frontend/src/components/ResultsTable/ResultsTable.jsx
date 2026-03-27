@@ -87,6 +87,20 @@ const ResultsTable = ({ results, onSave, loading }) => {
   const [orderBy, setOrderBy] = useState('year');
   const [filterText, setFilterText] = useState('');
 
+  // Helper para normalizar o acesso aos dados (suporta chaves em PT e EN)
+  const getRowValue = (row, field) => {
+    if (!row) return '';
+    switch(field) {
+      case 'title': return row.title || row['Título'] || '';
+      case 'authors': return row.authors || row['Autor(es)'] || '';
+      case 'year': return row.year || row['Ano'] || '';
+      case 'source': return row.source || row['Título do periódico'] || '';
+      case 'doi': return row.doi || row['DOI'] || '';
+      case 'pdf_url': return row.pdf_url || row['URL DO DOCUMENTO'] || '';
+      default: return row[field] || '';
+    }
+  };
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -95,7 +109,7 @@ const ResultsTable = ({ results, onSave, loading }) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = results.map((n, i) => n.id ?? `row-${i}`);
+      const newSelecteds = results.map((n, i) => n.id || n.work_id || `row-${i}`);
       setSelected(newSelecteds);
       return;
     }
@@ -117,28 +131,49 @@ const ResultsTable = ({ results, onSave, loading }) => {
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
   const handleSave = () => {
-    const selectedData = results.filter((row, i) => selected.includes(row.id ?? `row-${i}`));
-    onSave(selectedData);
+    const selectedData = results.filter((row, i) => selected.includes(row.id || row.work_id || `row-${i}`));
+    
+    // Normalizar para o formato que o backend espera (sempre chaves em PT)
+    const normalizedData = selectedData.map(row => ({
+      "Título": getRowValue(row, 'title'),
+      "Autor(es)": getRowValue(row, 'authors'),
+      "Ano": String(getRowValue(row, 'year')),
+      "DOI": getRowValue(row, 'doi'),
+      "URL DO DOCUMENTO": getRowValue(row, 'pdf_url'),
+      "work_id": row.work_id || row.id,
+      "Número de citações recebidas (Google Scholar)": String(row.cited_by_count || row['Número de citações recebidas (Google Scholar)'] || "0"),
+      "Tipo de documento": row.type || row['Tipo de documento'] || "article",
+      "Título do periódico": getRowValue(row, 'source')
+    }));
+
+    onSave(normalizedData);
   };
 
   const generateBibTeX = (data) => {
     return data.map((row, index) => {
-        const id = row.doi ? row.doi.split('/').pop() : `article_${index}`;
-        const authors = Array.isArray(row.authors) ? row.authors.join(' and ') : row.authors;
+        const title = getRowValue(row, 'title');
+        const authorsRaw = getRowValue(row, 'authors');
+        const authors = Array.isArray(authorsRaw) ? authorsRaw.join(' and ') : authorsRaw;
+        const year = getRowValue(row, 'year');
+        const doi = getRowValue(row, 'doi');
+        const source = getRowValue(row, 'source');
+        const pdf = getRowValue(row, 'pdf_url');
+
+        const id = doi ? doi.split('/').pop() : `article_${index}`;
         
         return `@article{${id},
-  title = {${row.title}},
+  title = {${title}},
   author = {${authors}},
-  journal = {${row.source || 'Unknown'}},
-  year = {${row.year}},
-  doi = {${row.doi || ''}},
-  url = {${row.pdf_url || ''}}
+  journal = {${source || 'Unknown'}},
+  year = {${year}},
+  doi = {${doi || ''}},
+  url = {${pdf || ''}}
 }`;
     }).join('\n\n');
   };
 
   const handleExportBibTeX = () => {
-      const selectedData = results.filter((row, i) => selected.includes(row.id ?? `row-${i}`));
+      const selectedData = results.filter((row, i) => selected.includes(row.id || row.work_id || `row-${i}`));
       const bibtexContent = generateBibTeX(selectedData);
       
       const blob = new Blob([bibtexContent], { type: 'text/plain;charset=utf-8' });
@@ -155,16 +190,17 @@ const ResultsTable = ({ results, onSave, loading }) => {
     if (!filterText) return results;
     const lowerFilter = filterText.toLowerCase();
     return results.filter((row) => {
-      const title = row.title ? row.title.toLowerCase() : '';
-      const authors = Array.isArray(row.authors) ? row.authors.join(' ').toLowerCase() : (row.authors ? row.authors.toLowerCase() : '');
+      const title = getRowValue(row, 'title').toLowerCase();
+      const authorsRaw = getRowValue(row, 'authors');
+      const authors = Array.isArray(authorsRaw) ? authorsRaw.join(' ').toLowerCase() : authorsRaw.toLowerCase();
       return title.includes(lowerFilter) || authors.includes(lowerFilter);
     });
   }, [results, filterText]);
 
   const sortedResults = useMemo(() => {
     const comparator = (a, b) => {
-      let aValue = a[orderBy];
-      let bValue = b[orderBy];
+      let aValue = getRowValue(a, orderBy);
+      let bValue = getRowValue(b, orderBy);
 
       if (aValue === null || aValue === undefined) aValue = '';
       if (bValue === null || bValue === undefined) bValue = '';
@@ -247,9 +283,17 @@ const ResultsTable = ({ results, onSave, loading }) => {
             />
             <TableBody>
               {sortedResults.map((row, index) => {
-                const uniqueId = row.id ?? `row-${index}`;
+                const uniqueId = row.id || row.work_id || `row-${index}`;
                 const isItemSelected = isSelected(uniqueId);
-                const authorsText = Array.isArray(row.authors) ? row.authors.join(', ') : row.authors;
+                
+                // Normalização para exibição amigável
+                const title = getRowValue(row, 'title') || 'Sem título';
+                const authorsRaw = getRowValue(row, 'authors');
+                const authorsText = Array.isArray(authorsRaw) ? authorsRaw.join(', ') : (authorsRaw || '—');
+                const year = getRowValue(row, 'year') || '—';
+                const source = getRowValue(row, 'source') || '—';
+                const doi = getRowValue(row, 'doi');
+                const pdf_url = getRowValue(row, 'pdf_url');
 
                 return (
                   <TableRow
@@ -271,11 +315,11 @@ const ResultsTable = ({ results, onSave, loading }) => {
                     </TableCell>
                     <TableCell sx={{ maxWidth: 400 }}>
                       <Typography variant="body2" sx={{ fontWeight: 700, color: 'primary.main', mb: 0.5 }}>
-                        {row.title || 'Sem título'}
+                        {title}
                       </Typography>
-                      {row.pdf_url && (
+                      {pdf_url && (
                         <Link 
-                          href={row.pdf_url} 
+                          href={pdf_url} 
                           target="_blank" 
                           rel="noopener" 
                           sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, fontSize: '0.7rem', fontWeight: 600 }}
@@ -285,21 +329,21 @@ const ResultsTable = ({ results, onSave, loading }) => {
                       )}
                     </TableCell>
                     <TableCell sx={{ fontSize: '0.85rem' }}>
-                      <Typography variant="body2" noWrap sx={{ maxWidth: 200 }}>{authorsText || '—'}</Typography>
+                      <Typography variant="body2" noWrap sx={{ maxWidth: 200 }}>{authorsText}</Typography>
                     </TableCell>
                     <TableCell>
-                      <Chip label={row.year || '—'} size="small" sx={{ fontWeight: 700, borderRadius: 1 }} />
+                      <Chip label={year} size="small" sx={{ fontWeight: 700, borderRadius: 1 }} />
                     </TableCell>
                     <TableCell>
                       <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.secondary' }}>
-                        {row.source || '—'}
+                        {source}
                       </Typography>
                     </TableCell>
                     <TableCell>
-                      {row.doi ? (
+                      {doi ? (
                         <Tooltip title="Abrir DOI">
-                          <IconButton size="small" href={`https://doi.org/${row.doi}`} target="_blank" rel="noopener">
-                            <Link sx={{ fontSize: '0.75rem', fontWeight: 600, textDecoration: 'none' }}>{row.doi.substring(0, 15)}...</Link>
+                          <IconButton size="small" href={doi.startsWith('http') ? doi : `https://doi.org/${doi}`} target="_blank" rel="noopener">
+                            <Link sx={{ fontSize: '0.75rem', fontWeight: 600, textDecoration: 'none' }}>{doi.length > 15 ? doi.substring(0, 15) + '...' : doi}</Link>
                           </IconButton>
                         </Tooltip>
                       ) : (

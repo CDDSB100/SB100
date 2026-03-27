@@ -47,6 +47,7 @@ const SearchForm = ({ onSearch, loading }) => {
   }, [searchHistory]);
 
   const saveToHistory = (params) => {
+    if (!params.search_terms && !params.start_year && !params.end_year) return;
     const newHistory = [params, ...searchHistory.filter(h => h.search_terms !== params.search_terms)].slice(0, 5);
     setSearchHistory(newHistory);
   };
@@ -70,9 +71,9 @@ const SearchForm = ({ onSearch, loading }) => {
   };
 
   const restoreHistory = (historyItem) => {
-    setSearchTerms(historyItem.search_terms);
-    setStartYear(historyItem.start_year);
-    setEndYear(historyItem.end_year);
+    setSearchTerms(historyItem.search_terms || '');
+    setStartYear(historyItem.start_year || '');
+    setEndYear(historyItem.end_year || '');
     setSortOption(historyItem.sort_option || 'relevance');
   };
 
@@ -104,19 +105,18 @@ const SearchForm = ({ onSearch, loading }) => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
-                label="Expressão de Busca (OpenAlex)"
-                placeholder="Ex: 'climate change' AND ('adaptation' OR 'mitigation')"
+                label="Pesquisa Livre (Termos, Título, DOI...)"
+                placeholder="Ex: 'climate change', ou um DOI específico, ou termos combinados..."
                 variant="outlined"
                 fullWidth
                 multiline
                 rows={2}
                 value={searchTerms}
                 onChange={(e) => setSearchTerms(e.target.value)}
-                required
                 InputProps={{
                   sx: { borderRadius: 3 }
                 }}
-                helperText="Combine termos usando AND, OR, NOT e parênteses."
+                helperText="Você pode pesquisar por palavras-chave, títulos ou identificadores. Use AND, OR para combinar."
               />
             </Grid>
             
@@ -127,7 +127,6 @@ const SearchForm = ({ onSearch, loading }) => {
                 fullWidth
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value)}
-                required
                 InputProps={{
                   startAdornment: <InputAdornment position="start"><CalendarTodayIcon fontSize="small" /></InputAdornment>,
                   sx: { borderRadius: 3 }
@@ -141,7 +140,6 @@ const SearchForm = ({ onSearch, loading }) => {
                 fullWidth
                 value={endYear}
                 onChange={(e) => setEndYear(e.target.value)}
-                required
                 InputProps={{
                   startAdornment: <InputAdornment position="start"><CalendarTodayIcon fontSize="small" /></InputAdornment>,
                   sx: { borderRadius: 3 }
@@ -186,6 +184,7 @@ const SearchForm = ({ onSearch, loading }) => {
                  <Chip label="5 Anos" variant="outlined" size="small" onClick={() => handleDateShortcut(5)} sx={{ borderRadius: 1.5, fontWeight: 600 }} />
                  <Chip label="10 Anos" variant="outlined" size="small" onClick={() => handleDateShortcut(10)} sx={{ borderRadius: 1.5, fontWeight: 600 }} />
                  <Chip label="20 Anos" variant="outlined" size="small" onClick={() => handleDateShortcut(20)} sx={{ borderRadius: 1.5, fontWeight: 600 }} />
+                 <Chip label="Limpar Datas" variant="outlined" size="small" onClick={() => { setStartYear(''); setEndYear(''); }} sx={{ borderRadius: 1.5, fontWeight: 600 }} />
                </Stack>
             </Grid>
           </Grid>
@@ -244,9 +243,9 @@ const SearchForm = ({ onSearch, loading }) => {
                         sx={{ borderRadius: 2, py: 1 }}
                       >
                         <ListItemText 
-                          primary={item.search_terms} 
+                          primary={item.search_terms || '(Apenas Datas)'} 
                           primaryTypographyProps={{ fontWeight: 600, noWrap: true, fontSize: '0.85rem' }}
-                          secondary={`${item.start_year}-${item.end_year} • ${item.sort_option === 'relevance' ? 'Relevância' : 'Data'}`}
+                          secondary={`${item.start_year || 'ini'}-${item.end_year || 'fim'} • ${item.sort_option === 'relevance' ? 'Relevância' : 'Data'}`}
                           secondaryTypographyProps={{ fontSize: '0.75rem' }}
                         />
                       </ListItem>

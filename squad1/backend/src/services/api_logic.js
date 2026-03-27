@@ -639,25 +639,67 @@ async function downloadCuratedDocuments() {
 async function searchOpenAlex(search_terms, start_year, end_year, sort_option) {
   const url = "https://api.openalex.org/works";
   const params = {
-    search: search_terms,
-    filter: `publication_year:${start_year}-${end_year}`,
-    sort: sort_option === "cited_by_count" ? "cited_by_count:desc" : "publication_year:desc",
     per_page: 50,
   };
 
+  if (search_terms) params.search = search_terms;
+  
+  // Construção dinâmica do filtro de ano
+  let yearFilter = "";
+  if (start_year && end_year) {
+    yearFilter = `publication_year:${start_year}-${end_year}`;
+  } else if (start_year) {
+    yearFilter = `publication_year:${start_year}-`;
+  } else if (end_year) {
+    yearFilter = `publication_year:-${end_year}`;
+  }
+
+  if (yearFilter) params.filter = yearFilter;
+
+  // Ordenação
+  if (sort_option === "cited_by_count" || sort_option === "cited") {
+    params.sort = "cited_by_count:desc";
+  } else if (sort_option === "newest") {
+    params.sort = "publication_year:desc";
+  } else {
+    // default OpenAlex relevance or specified
+    params.sort = sort_option === "relevance" ? null : sort_option;
+  }
+
   try {
     const response = await axios.get(url, { params });
-    return response.data.results.map(work => ({
-      work_id: work.id,
-      "Título": work.title,
-      "Autor(es)": (work.authorships || []).map(a => a.author.display_name).join(", "),
-      "Ano": String(work.publication_year),
-      "DOI": work.doi || "",
-      "Número de citações recebidas (Google Scholar)": String(work.cited_by_count || "0"),
-      "URL DO DOCUMENTO": work.primary_location?.pdf_url || work.doi || "",
-      "Tipo de documento": work.type,
-      "Título do periódico": work.primary_location?.source?.display_name || "",
-    }));
+    return response.data.results.map(work => {
+      const title = work.title || "Sem título";
+      const authors = (work.authorships || []).map(a => a.author.display_name).join(", ");
+      const year = String(work.publication_year || "");
+      const doi = work.doi || "";
+      const pdf_url = work.primary_location?.pdf_url || work.doi || "";
+      const source = work.primary_location?.source?.display_name || "";
+
+      return {
+        // IDs
+        work_id: work.id,
+        id: work.id,
+
+        // Portuguese keys (for backend/database compatibility)
+        "Título": title,
+        "Autor(es)": authors,
+        "Ano": year,
+        "DOI": doi,
+        "Número de citações recebidas (Google Scholar)": String(work.cited_by_count || "0"),
+        "URL DO DOCUMENTO": pdf_url,
+        "Tipo de documento": work.type,
+        "Título do periódico": source,
+
+        // English keys (for ResultsTable frontend compatibility)
+        "title": title,
+        "authors": authors,
+        "year": year,
+        "doi": doi,
+        "pdf_url": pdf_url,
+        "source": source
+      };
+    });
   } catch (error) {
     console.error("OpenAlex Search Error:", error.message);
     throw new Error("Erro ao buscar no OpenAlex: " + error.message);

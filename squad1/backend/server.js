@@ -889,21 +889,12 @@ app.post("/api/search", authenticateToken, authorizeModify, async (req, res) => 
   try {
     const { search_terms, start_year, end_year, sort_option } = req.body;
 
-    if (!search_terms) {
-      return res
-        .status(400)
-        .json({ error: "Parameter 'search_terms' is missing." });
-    }
+    const startYearInt = start_year ? parseInt(start_year, 10) : null;
+    const endYearInt = end_year ? parseInt(end_year, 10) : null;
 
-    const startYearInt = parseInt(start_year, 10);
-    const endYearInt = parseInt(end_year, 10);
-
-    if (isNaN(startYearInt) || isNaN(endYearInt)) {
-      return res
-        .status(400)
-        .json({
-          error: "Parameters 'start_year' and 'end_year' must be integers.",
-        });
+    // Pelo menos um filtro deve ser fornecido para evitar buscas vazias pesadas
+    if (!search_terms && !startYearInt && !endYearInt) {
+      return res.status(400).json({ error: "Forneça pelo menos um termo de busca ou um intervalo de anos." });
     }
 
     const results = await searchOpenAlex(

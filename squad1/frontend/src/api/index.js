@@ -1,8 +1,18 @@
 import axios from "axios";
 
-// IMPORTANTE: Use apenas '/api' para que o proxy do Vite funcione.
-// Isso evita erros de "Mixed Content" (HTTPS chamando HTTP).
-const API_BASE_URL = '/api';
+const PROD_URL = "https://sb100cientometria.optin.com.br";
+
+// Se estiver rodando localmente (Vite default port 5173 ou similar), aponta para o servidor de teste.
+const getBaseApiUrl = () => {
+  if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
+  
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return `${PROD_URL}/api`;
+  }
+  return '/api';
+};
+
+const API_BASE_URL = getBaseApiUrl();
 
 const api = axios.create({
   baseURL: API_BASE_URL,
