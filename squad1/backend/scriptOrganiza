@@ -1,0 +1,26 @@
+const mongoose = require('mongoose');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cientometria';
+
+async function check() {
+  await mongoose.connect(MONGODB_URI);
+  const collection = mongoose.connection.db.collection('articles');
+  const sample = await collection.findOne({ "URL DO DOCUMENTO": { $exists: true } });
+  console.log('Sample document fields:', Object.keys(sample));
+  
+  // Try to find if there is a status field
+  const possibleStatusFields = ['status', 'STATUS', 'Status', 'situacao', 'SITUAÇÃO'];
+  for (const field of possibleStatusFields) {
+    const values = await collection.distinct(field);
+    if (values.length > 0) {
+      console.log(`Field "${field}" has values:`, values);
+    }
+  }
+  
+  await mongoose.connection.close();
+}
+
+check();
+
