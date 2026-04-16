@@ -2,11 +2,12 @@ FROM node:20-slim
 
 WORKDIR /app
 
-# Instala dependências de sistema mínimas se necessário
-RUN apt-get update && apt-get install -y libsqlite3-dev && rm -rf /var/lib/apt/lists/*
+# Instala dependências de sistema essenciais (build-essential para bcrypt, se necessário)
+RUN apt-get update && apt-get install -y python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 # Instala dependências do Node.js
 COPY package*.json ./
+# Força o rebuild de módulos nativos como bcrypt para garantir compatibilidade
 RUN npm install --production
 
 # Copia o restante do código
