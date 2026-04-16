@@ -22,10 +22,8 @@ FROM nginx:alpine
 # Copia o build do React para o diretório padrão do Nginx
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# O Nginx padrão servirá os arquivos estáticos na porta 80 do contêiner.
-# (Em ambientes de produção reais, você copiaria um nginx.conf personalizado aqui 
-#  para lidar com o roteamento SPA (fallback para index.html), como:
-#  COPY nginx.conf /etc/nginx/conf.d/default.conf)
+# Copia a configuração personalizada do Nginx para lidar com rotas SPA
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
