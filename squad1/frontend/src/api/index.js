@@ -33,7 +33,7 @@ export const searchArticles = async (searchParams) => {
 };
 
 export const saveArticles = async (selectedRows) => {
-  const response = await api.post("/save", { selected_rows: selectedRows });
+  const response = await api.post("/save", { selectedRows });
   return response.data;
 };
 
@@ -47,22 +47,22 @@ export const triggerBatchCuration = async () => {
   return response.data;
 };
 
-export const triggerSingleCuration = async (rowNumber) => {
+export const triggerSingleCuration = async (workId) => {
   const response = await api.post("/trigger-curation-single", {
-    row_number: rowNumber,
+    workId,
   });
   return response.data;
 };
 
-export const categorizeArticleRow = async (rowNumber) => {
+export const categorizeArticleRow = async (workId) => {
   const response = await api.post("/categorize-single", {
-    row_number: rowNumber,
+    workId,
   });
   return response.data;
 };
 
-export const deleteArticleRow = async (rowNumber) => {
-  const response = await api.post("/delete-row", { row_number: rowNumber });
+export const deleteArticleRow = async (workId) => {
+  const response = await api.post("/delete-row", { workId });
   return response.data;
 };
 
@@ -86,13 +86,13 @@ export const manualInsertArticle = async (dataToSave, file) => {
   return response.data;
 };
 
-export const manualApproveArticle = async (rowNumber, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback) => {
+export const manualApproveArticle = async (workId, fileName, curatorFeedback, feedbackOnAi, aiFeedback) => {
   const response = await api.post("/manual-approval", {
-    row_number: rowNumber,
-    fileName: fileName,
-    feedbackCurador: feedbackCurador,
-    feedbackSobreIA: feedbackSobreIA,
-    aiAnalysisFeedback: aiAnalysisFeedback,
+    workId,
+    fileName,
+    curatorFeedback,
+    feedbackOnAi,
+    aiFeedback,
   });
   return response.data;
 };
@@ -106,13 +106,13 @@ export const batchUploadZip = async (file) => {
   return response.data;
 };
 
-export const manualRejectArticle = async (rowNumber, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback) => {
+export const manualRejectArticle = async (workId, fileName, curatorFeedback, feedbackOnAi, aiFeedback) => {
   const response = await api.post("/manual-rejection", {
-    row_number: rowNumber,
-    fileName: fileName,
-    feedbackCurador: feedbackCurador,
-    feedbackSobreIA: feedbackSobreIA,
-    aiAnalysisFeedback: aiAnalysisFeedback,
+    workId,
+    fileName,
+    curatorFeedback,
+    feedbackOnAi,
+    aiFeedback,
   });
   return response.data;
 };
@@ -186,10 +186,10 @@ export const deleteUser = async (id) => {
   return response.data;
 };
 
-export const updateUserPermissions = async (id, role, allowed_categories) => {
+export const updateUserPermissions = async (id, role, allowedCategories) => {
   const response = await api.put(`/users/${id}/permissions`, {
     role,
-    allowed_categories,
+    allowedCategories,
   });
   return response.data;
 };

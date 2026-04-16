@@ -30,32 +30,62 @@ import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import {
   manualInsertArticle,
   extractMetadata,
-  checkApiHealth,
 } from "../../api";
+
+const FIELD_LABELS = {
+  title: "Título",
+  subtitle: "Subtítulo",
+  authors: "Autor(es)",
+  year: "Ano",
+  citationsCount: "Citações",
+  keywords: "Palavras-chave",
+  abstract: "Resumo",
+  documentType: "Tipo de Documento",
+  publisher: "Editora",
+  institution: "Instituição",
+  location: "Local",
+  workType: "Tipo de Trabalho",
+  journalTitle: "Periódico",
+  journalQuartile: "Quartil",
+  volume: "Volume",
+  issue: "Fascículo",
+  pages: "Páginas",
+  doi: "DOI",
+  numbering: "Numeração",
+  qualis: "Qualis",
+  category: "Categoria",
+  soilAndRegionCharacteristics: "Características do Solo/Região",
+  toolsAndTechniques: "Ferramentas e Técnicas",
+  nutrients: "Nutrientes",
+  nutrientSupplyStrategies: "Estratégias de Fornecimento",
+  cropGroups: "Grupos de Culturas",
+  cropsPresent: "Culturas Presentes",
+};
 
 const ManualInsertPage = () => {
   const [formData, setFormData] = useState({
-    "Autor(es)": "",
-    "Título": "",
-    "Subtítulo": "",
-    "Ano": "",
-    "Número de citações recebidas (Google Scholar)": "",
-    "Palavras-chave": "",
-    "Resumo": "",
-    "Tipo de documento": "",
-    "Editora": "",
-    "Instituição": "",
-    "Local": "",
-    "Tipo de trabalho": "",
-    "Título do periódico": "",
-    "Quartil do periódico": "",
-    "Volume": "",
-    "Número/fascículo": "",
-    "Páginas": "",
-    "DOI": "",
-    "Numeração": "",
-    "Qualis": "",
-    "pub_url": "",
+    authors: "",
+    title: "",
+    subtitle: "",
+    year: "",
+    citationsCount: "",
+    keywords: "",
+    abstract: "",
+    documentType: "",
+    publisher: "",
+    institution: "",
+    location: "",
+    workType: "",
+    journalTitle: "",
+    journalQuartile: "",
+    volume: "",
+    issue: "",
+    pages: "",
+    doi: "",
+    numbering: "",
+    qualis: "",
+    documentUrl: "",
+    category: "",
   });
 
   const [searchTitle, setSearchTitle] = useState("");
@@ -100,14 +130,14 @@ const ManualInsertPage = () => {
       setSuccess("Dados extraídos com sucesso! Revise os campos abaixo.");
       setActiveStep(1);
     } catch (err) {
-      setError(err.response?.data?.detail || "Falha na extração por IA.");
+      setError(err.response?.data?.error || "Falha na extração por IA.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleSave = async () => {
-    if (!formData.Título || !formData["Autor(es)"]) {
+    if (!formData.title || !formData.authors) {
       setError("Título e Autor(es) são obrigatórios.");
       return;
     }
@@ -118,12 +148,13 @@ const ManualInsertPage = () => {
       await manualInsertArticle(formData, file);
       setSuccess("Artigo catalogado com sucesso na base de dados!");
       setFormData({
-        "Autor(es)": "", "Título": "", "Subtítulo": "", "Ano": "",
-        "Número de citações recebidas (Google Scholar)": "", "Palavras-chave": "",
-        "Resumo": "", "Tipo de documento": "", "Editora": "", "Instituição": "",
-        "Local": "", "Tipo de trabalho": "", "Título do periódico": "",
-        "Quartil do periódico": "", "Volume": "", "Número/fascículo": "",
-        "Páginas": "", "DOI": "", "Numeração": "", "Qualis": "", "pub_url": "",
+        authors: "", title: "", subtitle: "", year: "",
+        citationsCount: "", keywords: "", abstract: "",
+        documentType: "", publisher: "", institution: "",
+        location: "", workType: "", journalTitle: "",
+        journalQuartile: "", volume: "", issue: "",
+        pages: "", doi: "", numbering: "", qualis: "",
+        documentUrl: "", category: "",
       });
       setSearchTitle("");
       setFile(null);
@@ -137,8 +168,6 @@ const ManualInsertPage = () => {
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', pb: 10 }}>
-      
-      
       <Box sx={{ bgcolor: 'primary.main', color: 'white', py: 6, mb: 4 }}>
         <Container maxWidth="lg">
           <Stack direction="row" spacing={2} alignItems="center">
@@ -161,7 +190,6 @@ const ManualInsertPage = () => {
         </Stepper>
 
         <Grid container spacing={4}>
-          {/* Step 1: Extraction */}
           <Grid item xs={12} md={4}>
             <Paper sx={{ p: 4, borderRadius: 4, height: '100%' }}>
               <Typography variant="h6" sx={{ fontWeight: 800, mb: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -208,7 +236,6 @@ const ManualInsertPage = () => {
             </Paper>
           </Grid>
 
-          {/* Step 2: Form */}
           <Grid item xs={12} md={8}>
             <Paper sx={{ p: 4, borderRadius: 4 }}>
               <Typography variant="h6" sx={{ fontWeight: 800, mb: 3 }}>
@@ -220,19 +247,20 @@ const ManualInsertPage = () => {
 
               <Grid container spacing={2}>
                 {Object.keys(formData).map((key) => {
-                  if (key === "pub_url") return null;
-                  const isLarge = ["Título", "Autor(es)", "Resumo", "Palavras-chave"].includes(key);
+                  if (key === "documentUrl" || key === "aiFeedback" || key === "feedbackOnAi") return null;
+                  const label = FIELD_LABELS[key] || key;
+                  const isLarge = ["title", "authors", "abstract", "keywords", "soilAndRegionCharacteristics"].includes(key);
                   return (
                     <Grid item xs={12} sm={isLarge ? 12 : 6} key={key}>
                       <TextField
                         name={key}
-                        label={key}
+                        label={label}
                         value={formData[key]}
                         onChange={handleInputChange}
                         fullWidth
                         size="small"
-                        multiline={key === "Resumo" || key === "Título"}
-                        rows={key === "Resumo" ? 4 : 1}
+                        multiline={["abstract", "title", "soilAndRegionCharacteristics"].includes(key)}
+                        rows={key === "abstract" ? 4 : 1}
                       />
                     </Grid>
                   );
@@ -244,7 +272,7 @@ const ManualInsertPage = () => {
                   variant="contained"
                   size="large"
                   onClick={handleSave}
-                  disabled={loading || !formData.Título}
+                  disabled={loading || !formData.title}
                   startIcon={<SaveIcon />}
                   sx={{ py: 2, px: 10, borderRadius: '50px', fontWeight: 900 }}
                 >

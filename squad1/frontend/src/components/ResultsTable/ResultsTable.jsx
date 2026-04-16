@@ -37,7 +37,7 @@ const headCells = [
   { id: 'title', label: 'Título' },
   { id: 'authors', label: 'Autores' },
   { id: 'year', label: 'Ano' },
-  { id: 'source', label: 'Fonte' },
+  { id: 'journalTitle', label: 'Fonte' },
   { id: 'doi', label: 'DOI' },
 ];
 
@@ -117,7 +117,17 @@ const ResultsTable = ({ results, onSave, loading }) => {
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
   const handleSave = () => {
-    const selectedData = results.filter((row, i) => selected.includes(row.id ?? `row-${i}`));
+    const selectedData = results
+      .filter((row, i) => selected.includes(row.id ?? `row-${i}`))
+      .map(row => ({
+        title: row.title || '',
+        authors: Array.isArray(row.authors) ? row.authors.join(', ') : (row.authors || ''),
+        year: row.year || '',
+        journalTitle: row.source || row.journalTitle || '',
+        doi: row.doi || '',
+        documentUrl: row.pdf_url || row.documentUrl || '',
+        status: 'Pendente'
+      }));
     onSave(selectedData);
   };
 
@@ -129,10 +139,10 @@ const ResultsTable = ({ results, onSave, loading }) => {
         return `@article{${id},
   title = {${row.title}},
   author = {${authors}},
-  journal = {${row.source || 'Unknown'}},
+  journal = {${row.journalTitle || row.source || 'Unknown'}},
   year = {${row.year}},
   doi = {${row.doi || ''}},
-  url = {${row.pdf_url || ''}}
+  url = {${row.documentUrl || row.pdf_url || ''}}
 }`;
     }).join('\n\n');
   };
@@ -292,7 +302,7 @@ const ResultsTable = ({ results, onSave, loading }) => {
                     </TableCell>
                     <TableCell>
                       <Typography variant="caption" sx={{ fontWeight: 600, color: 'text.secondary' }}>
-                        {row.source || '—'}
+                        {row.journalTitle || row.source || '—'}
                       </Typography>
                     </TableCell>
                     <TableCell>

@@ -90,37 +90,72 @@ import {
 } from '../../api';
 
 // Standard metadata fields to ensure they always appear
+const FIELD_LABELS = {
+  title: "Título",
+  subtitle: "Subtítulo",
+  authors: "Autor(es)",
+  year: "Ano",
+  citationsCount: "Citações",
+  keywords: "Palavras-chave",
+  abstract: "Resumo",
+  documentType: "Tipo de Documento",
+  publisher: "Editora",
+  institution: "Instituição",
+  location: "Local",
+  workType: "Tipo de Trabalho",
+  journalTitle: "Periódico",
+  journalQuartile: "Quartil",
+  volume: "Volume",
+  issue: "Fascículo",
+  pages: "Páginas",
+  doi: "DOI",
+  numbering: "Numeração",
+  qualis: "Qualis",
+  category: "Categoria",
+  soilAndRegionCharacteristics: "Características do Solo/Região",
+  toolsAndTechniques: "Ferramentas e Técnicas",
+  nutrients: "Nutrientes",
+  nutrientSupplyStrategies: "Estratégias de Fornecimento",
+  cropGroups: "Grupos de Culturas",
+  cropsPresent: "Culturas Presentes",
+  aiFeedback: "Análise da IA",
+  curatorFeedback: "Feedback do Curador",
+  feedbackOnAi: "Avaliação sobre a IA",
+  scientometricScore: "Score",
+  status: "Status"
+};
+
 const MASTER_METADATA_FIELDS = [
-  "Autor(es)",
-  "Título",
-  "Subtítulo",
-  "Ano",
-  "Número de citações recebidas (Google Scholar)",
-  "Palavras-chave",
-  "Resumo",
-  "Tipo de documento",
-  "Editora",
-  "Instituição",
-  "Local",
-  "Tipo de trabalho",
-  "Título do periódico",
-  "Quartil do periódico",
-  "Volume",
-  "Número/fascículo",
-  "Páginas",
-  "DOI",
-  "Numeração",
-  "Qualis",
-  "CATEGORIA",
-  "Caracteristicas do solo e região (escrever)",
-  "ferramentas e técnicas (seleção)",
-  "nutrientes (seleção)",
-  "estratégias de fornecimento de nutrientes (seleção)",
-  "grupos de culturas (seleção)",
-  "culturas presentes (seleção)",
-  "FEEDBACK DA IA",
-  "FEEDBACK DO CURADOR",
-  "FEEDBACK SOBRE IA",
+  "authors",
+  "title",
+  "subtitle",
+  "year",
+  "citationsCount",
+  "keywords",
+  "abstract",
+  "documentType",
+  "publisher",
+  "institution",
+  "location",
+  "workType",
+  "journalTitle",
+  "journalQuartile",
+  "volume",
+  "issue",
+  "pages",
+  "doi",
+  "numbering",
+  "qualis",
+  "category",
+  "soilAndRegionCharacteristics",
+  "toolsAndTechniques",
+  "nutrients",
+  "nutrientSupplyStrategies",
+  "cropGroups",
+  "cropsPresent",
+  "aiFeedback",
+  "curatorFeedback",
+  "feedbackOnAi",
 ];
 
 const safelyParseJSON = (str) => {
@@ -175,7 +210,7 @@ function CurationPage() {
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [sortBy, setSortBy] = useState("__row_number");
+  const [sortBy, setSortBy] = useState("workId");
   const [sortOrder, setSortOrder] = useState("asc");
 
   const [isTriggering, setIsTriggering] = useState(false);
@@ -206,7 +241,7 @@ function CurationPage() {
       setArticles(data);
       if (data.length > 0) {
         // Coletar cabeçalhos para filtros e ordenação
-        const categories = [...new Set(data.map(a => a.CATEGORIA || a.categoria).filter(Boolean))];
+        const categories = [...new Set(data.map(a => a.category).filter(Boolean))];
         setUniqueCategories(categories);
       }
     } catch (err) {
@@ -322,22 +357,20 @@ function CurationPage() {
 
   const filteredArticles = useMemo(() => {
     const filtered = articles.filter((article) => {
-      const category = (article.CATEGORIA || article.categoria || "").trim();
+      const category = (article.category || "").trim();
       const matchCategory = categoryFilter === "all" || category === categoryFilter;
 
-      const aprov = String(article["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase();
-      const manualAprov = String(article["APROVAÇÃO MANUAL"] || "").toLowerCase();
-      const rejected = String(article["ARTIGOS REJEITADOS"] || "").toLowerCase();
+      const currentStatus = article.status || "Pendente";
       
-      let status = "pending";
-      if (manualAprov === "true" || manualAprov === "sim") status = "approved_manual";
-      else if (aprov === "true" || aprov === "sim") status = "approved_ia";
-      else if (rejected === "true" || rejected === "sim") status = "rejected";
+      let statusKey = "pending";
+      if (currentStatus === "Aprovado Manualmente") statusKey = "approved_manual";
+      else if (currentStatus === "Aprovado por IA") statusKey = "approved_ia";
+      else if (currentStatus === "Rejeitado") statusKey = "rejected";
 
-      const matchStatus = statusFilter === "all" || status === statusFilter;
+      const matchStatus = statusFilter === "all" || statusKey === statusFilter;
 
-      const title = (article.Titulo || article["Título"] || "").toLowerCase();
-      const authors = (article["Autor(es)"] || "").toLowerCase();
+      const title = (article.title || "").toLowerCase();
+      const authors = (article.authors || "").toLowerCase();
       const matchSearch = title.includes(searchQuery.toLowerCase()) || authors.includes(searchQuery.toLowerCase());
 
       return matchCategory && matchStatus && matchSearch;
@@ -350,9 +383,7 @@ function CurationPage() {
       if (valA === null || valA === undefined) valA = "";
       if (valB === null || valB === undefined) valB = "";
 
-      if (sortBy === "__row_number") {
-        // Agora __row_number é o _id do MongoDB, então não é numérico sequencial simples
-        // Mas o sortBy __row_number ainda é usado pelo frontend
+      if (sortBy === "workId") {
         return sortOrder === "asc" ? String(valA).localeCompare(String(valB)) : String(valB).localeCompare(String(valA));
       }
 
@@ -367,20 +398,10 @@ function CurationPage() {
 
   const stats = useMemo(() => {
     const total = articles.length;
-    const approved_manual = articles.filter(a => {
-      const manual = String(a["APROVAÇÃO MANUAL"] || "").toLowerCase();
-      return manual === "true" || manual === "sim";
-    }).length;
-    const approved_ia = articles.filter(a => {
-      const aprov = String(a["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase();
-      const manual = String(a["APROVAÇÃO MANUAL"] || "").toLowerCase();
-      return (aprov === "true" || aprov === "sim") && !(manual === "true" || manual === "sim");
-    }).length;
-    const rejected = articles.filter(a => {
-      const rej = String(a["ARTIGOS REJEITADOS"] || "").toLowerCase();
-      return rej === "true" || rej === "sim";
-    }).length;
-    const pending = total - approved_manual - approved_ia - rejected;
+    const approved_manual = articles.filter(a => a.status === "Aprovado Manualmente").length;
+    const approved_ia = articles.filter(a => a.status === "Aprovado por IA").length;
+    const rejected = articles.filter(a => a.status === "Rejeitado").length;
+    const pending = articles.filter(a => a.status === "Pendente" || !a.status).length;
     return { total, approved_manual, approved_ia, rejected, pending };
   }, [articles]);
 
@@ -439,10 +460,10 @@ function CurationPage() {
     }
   };
 
-  const handleSingleCuration = async (rowNumber) => {
-    setProcessingRow(rowNumber);
+  const handleSingleCuration = async (workId) => {
+    setProcessingRow(workId);
     try {
-      const response = await triggerSingleCuration(rowNumber);
+      const response = await triggerSingleCuration(workId);
       setAnalysisResult(response.updatedArticle || response.article);
       setOpenAnalysisDialog(true);
       setSnackbar({ open: true, message: "Análise concluída!", severity: "success" });
@@ -454,10 +475,10 @@ function CurationPage() {
     }
   };
 
-  const handleCategorize = async (rowNumber) => {
-    setProcessingRow(rowNumber);
+  const handleCategorize = async (workId) => {
+    setProcessingRow(workId);
     try {
-      const response = await categorizeArticleRow(rowNumber);
+      const response = await categorizeArticleRow(workId);
       setAnalysisResult(response.updatedArticle || response.article);
       setOpenAnalysisDialog(true);
       setSnackbar({ open: true, message: "Categorização concluída!", severity: "success" });
@@ -470,11 +491,11 @@ function CurationPage() {
   };
 
   const handleDelete = async (article) => {
-    const rowNumber = article.__row_number;
-    if (!window.confirm(`Excluir artigo "${article.Titulo || article.Título}"?`)) return;
-    setProcessingRow(rowNumber);
+    const workId = article.workId;
+    if (!window.confirm(`Excluir artigo "${article.title}"?`)) return;
+    setProcessingRow(workId);
     try {
-      await deleteArticleRow(rowNumber);
+      await deleteArticleRow(workId);
       setSnackbar({ open: true, message: "Artigo removido!", severity: "success" });
       fetchArticles();
     } catch (err) {
@@ -486,24 +507,24 @@ function CurationPage() {
 
   const handleManualApprove = (article) => {
     setPendingAction({ 
-      rowNumber: article.__row_number, 
-      fileName: article["URL DO DOCUMENTO"], 
+      workId: article.workId, 
+      fileName: article.documentUrl, 
       action: 'approve' 
     });
-    setFeedbackText(article["FEEDBACK DO CURADOR"] || "");
+    setFeedbackText(article.curatorFeedback || "");
     
-    const currentAiEval = safelyParseJSON(article["FEEDBACK SOBRE IA"]);
+    const currentAiEval = article.feedbackOnAi;
     if (typeof currentAiEval === 'object' && currentAiEval !== null) {
       setAiEvaluation(currentAiEval);
     } else {
       setAiEvaluation({ is_accurate: true, is_useful: true, human_correction_notes: "", ai_performance_rating: 5, adjustment_required: false });
     }
 
-    const currentAiAnalysis = safelyParseJSON(article["FEEDBACK DA IA"]);
+    const currentAiAnalysis = article.aiFeedback;
     if (typeof currentAiAnalysis === 'object' && currentAiAnalysis !== null) {
       setAiAnalysis(currentAiAnalysis);
     } else {
-      setAiAnalysis({ technical_summary: article["FEEDBACK DA IA"] || "", agronomic_insights: "", relevance_score: 7 });
+      setAiAnalysis({ technical_summary: article.aiFeedback || "", agronomic_insights: "", relevance_score: 7 });
     }
 
     setFeedbackDialogOpen(true);
@@ -511,24 +532,24 @@ function CurationPage() {
 
   const handleManualReject = (article) => {
     setPendingAction({ 
-      rowNumber: article.__row_number, 
-      fileName: article["URL DO DOCUMENTO"], 
+      workId: article.workId, 
+      fileName: article.documentUrl, 
       action: 'reject' 
     });
-    setFeedbackText(article["FEEDBACK DO CURADOR"] || "");
+    setFeedbackText(article.curatorFeedback || "");
     
-    const currentAiEval = safelyParseJSON(article["FEEDBACK SOBRE IA"]);
+    const currentAiEval = article.feedbackOnAi;
     if (typeof currentAiEval === 'object' && currentAiEval !== null) {
       setAiEvaluation(currentAiEval);
     } else {
       setAiEvaluation({ is_accurate: false, is_useful: false, human_correction_notes: "", ai_performance_rating: 1, adjustment_required: true });
     }
 
-    const currentAiAnalysis = safelyParseJSON(article["FEEDBACK DA IA"]);
+    const currentAiAnalysis = article.aiFeedback;
     if (typeof currentAiAnalysis === 'object' && currentAiAnalysis !== null) {
       setAiAnalysis(currentAiAnalysis);
     } else {
-      setAiAnalysis({ technical_summary: article["FEEDBACK DA IA"] || "", agronomic_insights: "", relevance_score: 3 });
+      setAiAnalysis({ technical_summary: article.aiFeedback || "", agronomic_insights: "", relevance_score: 3 });
     }
     
     setFeedbackDialogOpen(true);
@@ -536,13 +557,13 @@ function CurationPage() {
 
   const handleAiFeedbackOnly = (article) => {
     setPendingAction({ 
-      rowNumber: article.__row_number, 
-      fileName: article["URL DO DOCUMENTO"], 
+      workId: article.workId, 
+      fileName: article.documentUrl, 
       action: 'ai_feedback' 
     });
-    setFeedbackText(article["FEEDBACK DO CURADOR"] || "");
+    setFeedbackText(article.curatorFeedback || "");
     
-    const currentAiEval = safelyParseJSON(article["FEEDBACK SOBRE IA"]);
+    const currentAiEval = article.feedbackOnAi;
     if (typeof currentAiEval === 'object' && currentAiEval !== null) {
       setAiEvaluation(currentAiEval);
     } else {
@@ -552,27 +573,27 @@ function CurationPage() {
   };
 
   const confirmFeedbackAction = async () => {
-    const { rowNumber, fileName, action } = pendingAction;
+    const { workId, fileName, action } = pendingAction;
     
     if (action !== 'ai_feedback' && !feedbackText.trim()) {
       setSnackbar({ open: true, message: "O feedback do curador é obrigatório.", severity: "warning" });
       return;
     }
 
-    setProcessingRow(rowNumber);
+    setProcessingRow(workId);
     setFeedbackDialogOpen(false);
 
     try {
       if (action === 'approve') {
-        await manualApproveArticle(rowNumber, fileName, feedbackText, aiEvaluation, aiAnalysis);
+        await manualApproveArticle(workId, fileName, feedbackText, aiEvaluation, aiAnalysis);
         setSnackbar({ open: true, message: "Artigo aprovado manualmente!", severity: "success" });
       } else if (action === 'reject') {
-        await manualRejectArticle(rowNumber, fileName, feedbackText, aiEvaluation, aiAnalysis);
+        await manualRejectArticle(workId, fileName, feedbackText, aiEvaluation, aiAnalysis);
         setSnackbar({ open: true, message: "Artigo rejeitado manualmente!", severity: "success" });
       } else if (action === 'ai_feedback') {
-        await updateArticle(rowNumber, {
-          "FEEDBACK DO CURADOR": feedbackText,
-          "FEEDBACK SOBRE IA": aiEvaluation
+        await updateArticle(workId, {
+          curatorFeedback: feedbackText,
+          feedbackOnAi: aiEvaluation
         });
         setSnackbar({ open: true, message: "Feedback atualizado com sucesso!", severity: "success" });
       }
@@ -609,8 +630,8 @@ function CurationPage() {
       Object.keys(prepareForEdit).forEach(key => {
         const val = prepareForEdit[key];
         if (typeof val === 'object' && val !== null) {
-          // Caso especial: FEEDBACK DA IA - mostrar apenas o texto do sumário técnico para o usuário
-          if (key === "FEEDBACK DA IA" && val.technical_summary) {
+          // Caso especial: aiFeedback - mostrar apenas o texto do sumário técnico para o usuário
+          if (key === "aiFeedback" && val.technical_summary) {
             prepareForEdit[key] = val.technical_summary;
           } else {
             prepareForEdit[key] = JSON.stringify(val, null, 2);
@@ -622,10 +643,10 @@ function CurationPage() {
     }
   };
 
-  const renderMetadataValue = (header, value) => {
+  const renderMetadataValue = (fieldKey, value) => {
     if (!value || value === "N/A" || value === "---") return "---";
     
-    if (header === "FEEDBACK DA IA") {
+    if (fieldKey === "aiFeedback") {
       const aiFeedback = typeof value === 'string' ? safelyParseJSON(value) : value;
       if (typeof aiFeedback === 'object' && aiFeedback !== null) {
         // Retorna apenas o sumário técnico conforme solicitado pelo usuário
@@ -633,7 +654,7 @@ function CurationPage() {
       }
     }
     
-    if (header === "FEEDBACK SOBRE IA") {
+    if (fieldKey === "feedbackOnAi") {
       const aiEval = typeof value === 'string' ? safelyParseJSON(value) : value;
       if (typeof aiEval === 'object' && aiEval !== null) {
         return (
@@ -652,7 +673,7 @@ function CurationPage() {
       }
     }
 
-    if (header === "FEEDBACK DO CURADOR") {
+    if (fieldKey === "curatorFeedback") {
         return <Typography variant="body2" sx={{ fontStyle: 'italic', fontWeight: 500 }}>"{value}"</Typography>;
     }
 
@@ -663,26 +684,26 @@ function CurationPage() {
     return value;
   };
 
-  const handleFieldChange = (header, value) => {
+  const handleFieldChange = (fieldKey, value) => {
     setEditedResult(prev => ({
       ...prev,
-      [header]: value
+      [fieldKey]: value
     }));
   };
 
   const handleSaveChanges = async () => {
     try {
-      const id = analysisResult._id || analysisResult.__row_number;
+      const id = analysisResult.workId || analysisResult._id;
       
-      // Antes de salvar, verificar se precisamos remontar o objeto do FEEDBACK DA IA
+      // Antes de salvar, verificar se precisamos remontar o objeto do aiFeedback
       const dataToSave = { ...editedResult };
-      const originalFeedback = safelyParseJSON(analysisResult["FEEDBACK DA IA"]);
+      const originalFeedback = safelyParseJSON(analysisResult.aiFeedback);
       
       if (typeof originalFeedback === 'object' && originalFeedback !== null && originalFeedback.technical_summary) {
         // Se mudou o texto, preservamos a estrutura do objeto mas atualizamos o sumário
-        dataToSave["FEEDBACK DA IA"] = {
+        dataToSave.aiFeedback = {
           ...originalFeedback,
-          technical_summary: editedResult["FEEDBACK DA IA"]
+          technical_summary: editedResult.aiFeedback
         };
       }
 
@@ -698,17 +719,15 @@ function CurationPage() {
   };
 
   const getStatusChip = (article) => {
-    const aprov = String(article["APROVAÇÃO CURADOR (marcar)"] || "").toLowerCase();
-    const manual = String(article["APROVAÇÃO MANUAL"] || "").toLowerCase();
-    const rejected = String(article["ARTIGOS REJEITADOS"] || "").toLowerCase();
+    const currentStatus = article.status || "Pendente";
 
-    if (manual === "true" || manual === "sim") 
+    if (currentStatus === "Aprovado Manualmente") 
       return <Chip icon={<CheckCircleIcon />} label="Aprovado Manualmente" color="success" size="small" sx={{ fontWeight: 700 }} />;
     
-    if (aprov === "true" || aprov === "sim") 
+    if (currentStatus === "Aprovado por IA") 
       return <Chip icon={<AutoFixHighIcon />} label="Aprovado por IA" color="info" size="small" sx={{ fontWeight: 700 }} />;
 
-    if (rejected === "true" || rejected === "sim") 
+    if (currentStatus === "Rejeitado") 
       return <Chip icon={<CancelIcon />} label="Rejeitado" color="error" size="small" sx={{ fontWeight: 700 }} />;
 
     return <Chip icon={<HourglassEmptyIcon />} label="Pendente" color="warning" size="small" sx={{ fontWeight: 700 }} />;
@@ -846,9 +865,9 @@ function CurationPage() {
               <FormControl fullWidth>
                 <InputLabel>Ordenar por</InputLabel>
                 <Select value={sortBy} label="Ordenar por" onChange={(e) => setSortBy(e.target.value)}>
-                  <MenuItem value="__row_number">Ordem de Inserção</MenuItem>
-                  <MenuItem value="Titulo">Título</MenuItem>
-                  <MenuItem value="Autor(es)">Autores</MenuItem>
+                  <MenuItem value="workId">Ordem de Inserção</MenuItem>
+                  <MenuItem value="title">Título</MenuItem>
+                  <MenuItem value="authors">Autores</MenuItem>
                 </Select>
               </FormControl>
             </Grid>
@@ -880,7 +899,7 @@ function CurationPage() {
           <>
             <Grid container spacing={3}>
               {filteredArticles.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((article) => (
-                <Grid item xs={12} md={4} key={article.__row_number}>
+                <Grid item xs={12} md={4} key={article.workId}>
                   <Fade in timeout={500}>
                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 4, position: 'relative' }}>
                       <Box sx={{ position: 'absolute', top: 12, right: 12, zIndex: 2 }}>
@@ -890,42 +909,42 @@ function CurationPage() {
                         <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 1.5 }}>
                           <CategoryIcon sx={{ fontSize: 16, color: 'secondary.main' }} />
                           <Typography variant="caption" sx={{ fontWeight: 800, color: 'secondary.main', textTransform: 'uppercase' }}>
-                            {article.CATEGORIA || article.categoria || "Sem Categoria"}
+                            {article.category || "Sem Categoria"}
                           </Typography>
                         </Stack>
                         <Typography variant="h6" sx={{ fontWeight: 800, mb: 2, lineHeight: 1.2, height: '3.6em', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
-                          {article["Título"] || article.Titulo || "Sem Título"}
+                          {article.title || "Sem Título"}
                         </Typography>
                         <Stack spacing={1.5}>
                           <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                             <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'primary.light' }}>A</Avatar>
                             <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                              {article["Autor(es)"] || "Autor Desconhecido"}
+                              {article.authors || "Autor Desconhecido"}
                             </Typography>
                           </Box>
                           <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                             <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'grey.300' }}>D</Avatar>
-                            <Typography variant="body2" color="text.secondary">DOI: {article.DOI || "N/A"}</Typography>
+                            <Typography variant="body2" color="text.secondary">DOI: {article.doi || "N/A"}</Typography>
                           </Box>
                           <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                             <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'success.light' }}>I</Avatar>
                             <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem' }}>
-                              Inserido por: <strong>{article["INSERIDO POR"] || "Sistema"}</strong>
+                              Inserido por: <strong>{article.insertedBy || "Sistema"}</strong>
                             </Typography>
                           </Box>
-                          {article["APROVADO POR"] && (
+                          {article.approvedBy && (
                             <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                               <Avatar sx={{ width: 24, height: 24, fontSize: '0.7rem', bgcolor: 'info.light' }}>C</Avatar>
                               <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.8rem' }}>
-                                Curador: <strong>{article["APROVADO POR"]}</strong>
+                                Curador: <strong>{article.approvedBy}</strong>
                               </Typography>
                             </Box>
                           )}
                         </Stack>
                         
-                        {/* 1. ANÁLISE DA INTELIGÊNCIA ARTIFICIAL (Feedback da IA) */}
+                        {/* 1. ANÁLISE DA INTELIGÊNCIA ARTIFICIAL (aiFeedback) */}
                         {(() => {
-                          const val = article["FEEDBACK DA IA"];
+                          const val = article.aiFeedback;
                           const aiFeedback = typeof val === 'string' ? safelyParseJSON(val) : val;
                           
                           if (!aiFeedback || aiFeedback === "N/A" || aiFeedback === "---") return null;
@@ -943,20 +962,20 @@ function CurationPage() {
                         })()}
 
                         {/* 2. FEEDBACK DO CURADOR (Manual) */}
-                        {article["FEEDBACK DO CURADOR"] && article["FEEDBACK DO CURADOR"] !== "N/A" && article["FEEDBACK DO CURADOR"] !== "---" && (
+                        {article.curatorFeedback && article.curatorFeedback !== "N/A" && article.curatorFeedback !== "---" && (
                           <Box sx={{ mt: 2, p: 2, bgcolor: 'rgba(76, 175, 80, 0.05)', borderRadius: 3, borderLeft: '4px solid', borderColor: '#4caf50' }}>
                             <Typography variant="caption" sx={{ fontWeight: 800, display: 'flex', alignItems: 'center', gap: 1, mb: 0.5, color: '#4caf50' }}>
                               <ScienceIcon fontSize="small" /> RELEVÂNCIA TÉCNICA (HUMANO):
                             </Typography>
                             <Typography variant="body2" sx={{ fontSize: '0.85rem', color: 'text.primary' }}>
-                              "{article["FEEDBACK DO CURADOR"]}"
+                              "{article.curatorFeedback}"
                             </Typography>
                           </Box>
                         )}
 
                         {/* 3. FEEDBACK SOBRE A IA (Observation about AI) */}
                         {(() => {
-                          const val = article["FEEDBACK SOBRE IA"];
+                          const val = article.feedbackOnAi;
                           const aiEvaluationField = typeof val === 'string' ? safelyParseJSON(val) : val;
                           if (!aiEvaluationField || aiEvaluationField === "N/A" || aiEvaluationField === "---") return null;
 
@@ -992,8 +1011,8 @@ function CurationPage() {
                           <Tooltip title="Visualizar PDF">
                             <IconButton 
                               color="primary" 
-                              onClick={() => handlePreview(article["URL DO DOCUMENTO"])}
-                              disabled={!article["URL DO DOCUMENTO"]}
+                              onClick={() => handlePreview(article.documentUrl)}
+                              disabled={!article.documentUrl}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <PictureAsPdfIcon fontSize="small" />
@@ -1002,11 +1021,11 @@ function CurationPage() {
                           <Tooltip title="Baixar PDF">
                             <IconButton 
                               color="primary" 
-                              onClick={() => handleDownloadSingle(article["URL DO DOCUMENTO"])}
-                              disabled={!article["URL DO DOCUMENTO"] || processingRow === article["URL DO DOCUMENTO"]}
+                              onClick={() => handleDownloadSingle(article.documentUrl)}
+                              disabled={!article.documentUrl}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
-                              {processingRow === article["URL DO DOCUMENTO"] ? <CircularProgress size={20} /> : <DownloadIcon fontSize="small" />}
+                              {processingRow === article.documentUrl ? <CircularProgress size={20} /> : <DownloadIcon fontSize="small" />}
                             </IconButton>
                           </Tooltip>
                           <Tooltip title="Ver Metadados Completos">
@@ -1023,8 +1042,8 @@ function CurationPage() {
                             <IconButton 
                               size="small"
                               color="primary"
-                              onClick={() => handleSingleCuration(article.__row_number)}
-                              disabled={processingRow === article.__row_number}
+                              onClick={() => handleSingleCuration(article.workId)}
+                              disabled={processingRow === article.workId}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <AutoFixHighIcon fontSize="small" />
@@ -1037,7 +1056,7 @@ function CurationPage() {
                             color="success"
                             startIcon={<CheckCircleIcon />}
                             onClick={() => handleManualApprove(article)}
-                            disabled={processingRow === article.__row_number}
+                            disabled={processingRow === article.workId}
                             sx={{ borderRadius: '50px' }}
                           >
                             Aprovar
@@ -1049,7 +1068,7 @@ function CurationPage() {
                             color="error"
                             startIcon={<CancelIcon />}
                             onClick={() => handleManualReject(article)}
-                            disabled={processingRow === article.__row_number}
+                            disabled={processingRow === article.workId}
                             sx={{ borderRadius: '50px' }}
                           >
                             Rejeitar
@@ -1059,7 +1078,7 @@ function CurationPage() {
                             <IconButton 
                               color="default"
                               onClick={() => handleDelete(article)}
-                              disabled={processingRow === article.__row_number}
+                              disabled={processingRow === article.workId}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <DeleteIcon fontSize="small" />
@@ -1067,7 +1086,7 @@ function CurationPage() {
                           </Tooltip>
                         </Stack>
                       </CardActions>
-                      {processingRow === article.__row_number && <LinearProgress sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} />}
+                      {processingRow === article.workId && <LinearProgress sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} />}
                     </Card>
                   </Fade>
                 </Grid>
@@ -1127,30 +1146,29 @@ function CurationPage() {
           {analysisResult && (
             <Grid container spacing={3}>
               {/* Render Standard Fields first */}
-              {MASTER_METADATA_FIELDS.map((header) => {
-                // Determine the actual value (handling Title/Título alias)
-                let value = analysisResult[header];
-                if (header === "Título" && value === undefined) value = analysisResult["Titulo"];
+              {MASTER_METADATA_FIELDS.map((fieldKey) => {
+                const label = FIELD_LABELS[fieldKey] || fieldKey;
+                const value = analysisResult[fieldKey];
                 
-                const isFullWidth = header === "Resumo" || header === "Título" || header.includes("FEEDBACK");
+                const isFullWidth = fieldKey === "abstract" || fieldKey === "title" || fieldKey.includes("Feedback");
                 
                 return (
-                  <Grid item xs={12} sm={isFullWidth ? 12 : 6} key={header}>
+                  <Grid item xs={12} sm={isFullWidth ? 12 : 6} key={fieldKey}>
                     {isEditing ? (
                       <TextField
                         fullWidth
-                        label={header}
-                        value={editedResult[header] || (header === "Título" ? (editedResult["Título"] || editedResult["Titulo"] || "") : "")}
-                        onChange={(e) => handleFieldChange(header, e.target.value)}
-                        multiline={header === "Resumo" || header.includes("FEEDBACK") || header === "Palavras-chave"}
-                        rows={header === "Resumo" ? 4 : (header.includes("FEEDBACK") ? 6 : 1)}
+                        label={label}
+                        value={editedResult[fieldKey] || ""}
+                        onChange={(e) => handleFieldChange(fieldKey, e.target.value)}
+                        multiline={fieldKey === "abstract" || fieldKey.includes("Feedback") || fieldKey === "keywords"}
+                        rows={fieldKey === "abstract" ? 4 : (fieldKey.includes("Feedback") ? 6 : 1)}
                         variant="outlined"
                       />
                     ) : (
                       <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 3, height: '100%' }}>
-                        <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{header}</Typography>
+                        <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{label}</Typography>
                         <Box sx={{ mt: 0.5, wordBreak: 'break-word' }}>
-                          {renderMetadataValue(header, value)}
+                          {renderMetadataValue(fieldKey, value)}
                         </Box>
                       </Box>
                     )}
@@ -1159,31 +1177,30 @@ function CurationPage() {
               })}
 
               {/* Render any extra fields found in the object that are not in MASTER_METADATA_FIELDS */}
-              {Object.keys(analysisResult).map((header) => {
-                if (MASTER_METADATA_FIELDS.includes(header) || 
-                    header === "Titulo" || // Skip Titulo alias
-                    header.startsWith("_") || 
-                    header === "createdAt" || 
-                    header === "updatedAt" || 
-                    header === "__v" || 
-                    header === "__row_number" ||
-                    header === "FEEDBACK DO CURADOR (escrever)") return null;
+              {Object.keys(analysisResult).map((key) => {
+                if (MASTER_METADATA_FIELDS.includes(key) || 
+                    key.startsWith("_") || 
+                    key === "createdAt" || 
+                    key === "updatedAt" || 
+                    key === "__v" || 
+                    key === "workId" ||
+                    key === "status") return null;
                 
                 return (
-                  <Grid item xs={12} sm={6} key={header}>
+                  <Grid item xs={12} sm={6} key={key}>
                     {isEditing ? (
                       <TextField
                         fullWidth
-                        label={header}
-                        value={editedResult[header] || ""}
-                        onChange={(e) => handleFieldChange(header, e.target.value)}
+                        label={key}
+                        value={editedResult[key] || ""}
+                        onChange={(e) => handleFieldChange(key, e.target.value)}
                         variant="outlined"
                       />
                     ) : (
                       <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 3, height: '100%' }}>
-                        <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{header}</Typography>
+                        <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{key}</Typography>
                         <Box sx={{ mt: 0.5, wordBreak: 'break-word' }}>
-                          {renderMetadataValue(header, analysisResult[header])}
+                          {renderMetadataValue(key, analysisResult[key])}
                         </Box>
                       </Box>
                     )}
@@ -1201,7 +1218,7 @@ function CurationPage() {
             </>
           ) : (
             <>
-              <Button onClick={() => handleCategorize(analysisResult.__row_number)} startIcon={<CategoryIcon />} color="secondary" variant="outlined" sx={{ borderRadius: '50px' }}>Recategorizar</Button>
+              <Button onClick={() => handleCategorize(analysisResult.workId)} startIcon={<CategoryIcon />} color="secondary" variant="outlined" sx={{ borderRadius: '50px' }}>Recategorizar</Button>
               <Button onClick={() => setOpenAnalysisDialog(false)} variant="contained" size="large" sx={{ borderRadius: '50px', px: 4 }}>Fechar</Button>
             </>
           )}

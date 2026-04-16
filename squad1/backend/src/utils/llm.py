@@ -14,79 +14,38 @@ from pypdf import PdfReader
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
 
-try:
-    from dotenv import load_dotenv
-    # --- CONFIGURAÇÃO DE LOGS ---
-    LOG_FILE = "llm.log"
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        handlers=[
-            logging.FileHandler(LOG_FILE),
-            logging.StreamHandler()
-        ]
-    )
-    logger = logging.getLogger(__name__)
-
-    # Tenta carregar variáveis de ambiente de múltiplos locais
-    env_locations = [
-        os.path.join(os.getcwd(), ".env"),
-        os.path.join(os.path.dirname(__file__), "..", "..", ".env"),
-        ".env"
+# --- CONFIGURAÇÃO DE LOGS ---
+LOG_FILE = "llm.log"
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler()
     ]
+)
+logger = logging.getLogger(__name__)
 
-    found_env = False
-    for loc in env_locations:
-        if os.path.exists(loc):
-            logger.info(f"Carregando .env de: {loc}")
-            load_dotenv(loc, override=True)
-            found_env = True
-
-    if not found_env:
-        logger.warning("Nenhum arquivo .env encontrado nas localizações padrão.")
-except ImportError:
-    # Fallback caso python-dotenv não esteja instalado
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
-    logger.warning("Aviso: Módulo 'python-dotenv' não encontrado. As variáveis de ambiente devem ser configuradas manualmente.")
-
-# Variáveis de Ambiente
+# Variáveis de Ambiente e Qdrant Credentials
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-QDRANT_URL = os.getenv("QDRANT_URL")
-QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
-QDRANT_COLLECTION = "BaseCurador"
+QDRANT_URL = "https://57eb89f7-8062-4156-8bd9-761b749c9d3b.sa-east-1-0.aws.cloud.qdrant.io:6333"
+QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.o4SI3QmZtkdOUXK8KVRunQT1SymcxtZrkzUVCXmiZvQ"
+COLLECTION_NAME = "sb100"
 
 OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://172.28.181.92:11434/v1")
 LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
 
-# Debug de inicialização (sem vazar a chave completa)
-if GROQ_API_KEY:
-    logger.info(f"GROQ_API_KEY detectada (prefixo: {GROQ_API_KEY[:7]}...)")
-else:
-    logger.error("GROQ_API_KEY NÃO ENCONTRADA no ambiente!")
-
 # Inicialização de Clientes
 def get_groq_client():
-    global client_groq
-    if 'client_groq' not in globals() or client_groq is None:
-        key = os.getenv("GROQ_API_KEY")
-        if key:
-            try:
-                client_groq = Groq(api_key=key)
-                return client_groq
-            except Exception as e:
-                logger.error(f"Erro ao iniciar Groq: {e}")
-                return None
-        return None
-    return client_groq
+    key = os.getenv("GROQ_API_KEY")
+    if key:
+        try:
+            return Groq(api_key=key)
+        except Exception as e:
+            logger.error(f"Erro ao iniciar Groq: {e}")
+    return None
 
 client_groq = get_groq_client()
-
-client_llm = OpenAI(
-    base_url=OLLAMA_BASE_URL,
-    api_key="ollama",
-    timeout=120.0,
-)
 
 client_qdrant = None
 encoder = None
@@ -100,35 +59,29 @@ if QDRANT_URL and QDRANT_API_KEY:
 
 app = FastAPI()
 
-# ========== CONFIGURAÇÃO DE CORS ==========
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # Permitir tudo em produção se necessário, ou restringir
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# ===========================================
 
 class PDFPayload(BaseModel):
     encoded_content: str
-    content_type: str # 'pdf' or 'text'
+    content_type: str 
     headers: List[str]
     category: Optional[str] = None
 
 # --- FUNÇÕES AUXILIARES ---
 
 def clean_text_for_llm(text: str) -> str:
-    """Limpa ruídos de PDF e normaliza o texto para o LLM."""
-    if not text:
-        return ""
+    if not text: return ""
     text = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]', '', text)
     text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r'(Page \d+ of \d+|Página \d+ de \d+)', '', text, flags=re.IGNORECASE)
     return text.strip()
 
 def get_document_text(encoded_content: str, content_type: str) -> str:
-    """Extrai texto de conteúdo base64, seja PDF ou texto puro."""
     try:
         if content_type == 'text':
             decoded_text = base64.b64decode(encoded_content).decode('utf-8')
@@ -136,218 +89,122 @@ def get_document_text(encoded_content: str, content_type: str) -> str:
         elif content_type == 'pdf':
             if "," in encoded_content:
                 encoded_content = encoded_content.split(",")[1]
-
             pdf_data = base64.b64decode(encoded_content)
             pdf_file = io.BytesIO(pdf_data)
             reader = PdfReader(pdf_file)
-
             raw_text = ""
-            max_pages = min(len(reader.pages), 10)
-
-            for i in range(max_pages):
+            for i in range(min(len(reader.pages), 10)):
                 page_text = reader.pages[i].extract_text()
-                if page_text:
-                    raw_text += page_text + "\n"
-
+                if page_text: raw_text += page_text + "\n"
             return clean_text_for_llm(raw_text)
         else:
-            raise ValueError(f"Tipo de conteúdo desconhecido: {content_type}")
+            raise ValueError(f"Tipo desconhecido: {content_type}")
     except Exception as e:
-        logger.error(f"Erro na extração de texto: {e}")
-        raise HTTPException(status_code=400, detail=f"Erro ao ler conteúdo: {str(e)}")
+        logger.error(f"Erro na extração: {e}")
+        raise HTTPException(status_code=400, detail=str(e))
 
 def search_similar_docs(text_query: str, limit: int = 3) -> str:
-    """Busca fatos científicos existentes para verificar contradições."""
     if not client_qdrant or not encoder:
         return "Nenhum contexto prévio disponível."
-
     try:
         query_vector = encoder.encode(text_query[:1000]).tolist()
         hits = client_qdrant.search(
-            collection_name=QDRANT_COLLECTION,
+            collection_name=COLLECTION_NAME,
             query_vector=query_vector,
             limit=limit
         )
-
         context = ""
         for hit in hits:
             snippet = hit.payload.get("text", "")[:500]
             context += f"- {snippet}\n"
-        return context if context else "Nenhum contexto prévio relevante encontrado."
+        return context if context else "Nenhum contexto prévio relevante."
     except Exception as e:
-        logger.error(f"Erro na busca Qdrant: {e}")
-        return "Erro ao acessar o banco de conhecimento."
-
-def clean_json_string(json_str: str) -> str:
-    """Remove blocos de markdown ```json ... ```."""
-    json_str = json_str.strip()
-    if json_str.startswith("```"):
-        lines = json_str.split('\n')
-        if lines[0].startswith("```"):
-            lines = lines[1:]
-        if lines[-1].startswith("```"):
-            lines = lines[:-1]
-        json_str = "\n".join(lines)
-    return json_str.strip()
+        logger.error(f"Erro Qdrant: {e}")
+        return "Erro ao acessar base de conhecimento."
 
 # --- ENDPOINT PRINCIPAL ---
 
 @app.post("/curadoria")
 async def curar_documento(payload: PDFPayload):
-    # 1. Verificação de Saúde Reativa
-    groq = get_groq_client()
-    if not groq:
-        raise HTTPException(status_code=503, detail="Serviço indisponível: Groq não configurada.")
+    if not client_groq:
+        raise HTTPException(status_code=503, detail="Groq não configurada.")
 
-    # 2. Extração de Texto
     document_text = get_document_text(payload.encoded_content, payload.content_type)
-
-    # 3. Guardrail: Texto Vazio ou Insuficiente
     if len(document_text) < 150:
-        if not ("APROVAÇÃO CURADOR (marcar)" in payload.headers or "FEEDBACK DA IA" in payload.headers):
-            raise HTTPException(status_code=400, detail="Texto insuficiente para análise.")
-        else:
-             return {
-                 "APROVAÇÃO CURADOR (marcar)": False, 
-                 "FEEDBACK DA IA": {
-                     "technical_summary": "Rejeitado: Texto insuficiente para análise científica.",
-                     "agronomic_insights": "N/A",
-                     "relevance_score": 0.0
-                 }
+         return {
+             "status": "rejected", 
+             "aiFeedback": {
+                 "technical_summary": "Rejeitado: Texto insuficiente.",
+                 "agronomic_insights": "N/A",
+                 "relevance_score": 0.0
              }
+         }
 
-    # 4. RAG: Busca de Contexto
     referencia_rag = search_similar_docs(document_text[:1000])
-    contexto_ref = f"### EXISTING DATABASE KNOWLEDGE (For Contradiction Check):\n{referencia_rag}\n"
-
-    # 5. Gerenciamento de Colunas e Schema
-    current_headers = list(payload.headers)
-    if "CATEGORIA" in current_headers:
-        current_headers.remove("CATEGORIA")
-
-    # Garante que os novos campos estruturados estejam no esquema, substituindo os legados para a IA
-    if "APROVAÇÃO CURADOR (marcar)" not in current_headers:
-        current_headers.append("APROVAÇÃO CURADOR (marcar)")
     
-    # Removemos o feedback do curador humano do prompt da IA, pois ela gera o seu próprio
-    if "FEEDBACK DO CURADOR (escrever)" in current_headers:
-        current_headers.remove("FEEDBACK DO CURADOR (escrever)")
-    if "FEEDBACK DO CURADOR" in current_headers:
-        current_headers.remove("FEEDBACK DO CURADOR")
-    if "FEEDBACK SOBRE IA" in current_headers:
-        current_headers.remove("FEEDBACK SOBRE IA")
-    
-    # Adicionamos o campo de feedback estruturado da IA
-    if "FEEDBACK DA IA" not in current_headers:
-        current_headers.append("FEEDBACK DA IA")
-
-    json_skeleton = {header: "" for header in current_headers}
-    # Definimos a estrutura interna do Feedback da IA
-    json_skeleton["FEEDBACK DA IA"] = {
-        "technical_summary": "Resumo técnico detalhado da fisiologia/manejo/descobertas.",
-        "agronomic_insights": "Insights agronômicos sobre a cultura, solo ou manejos mencionados.",
-        "relevance_score": 0.0 # Pontuação de 0 a 10
+    # CamelCase Schema Mapping
+    schema = {
+        "title": "Title of the work",
+        "subtitle": "Subtitle of the work",
+        "authors": "Author list",
+        "year": "Publication year",
+        "keywords": "Keywords from text",
+        "abstract": "Brief summary",
+        "documentType": "Type of document",
+        "publisher": "Publisher name",
+        "institution": "Institution name",
+        "location": "Location",
+        "workType": "Work type",
+        "journalTitle": "Journal title",
+        "journalQuartile": "Journal quartile",
+        "volume": "Volume",
+        "issue": "Issue",
+        "pages": "Pages",
+        "doi": "DOI link",
+        "numbering": "Numbering",
+        "qualis": "Qualis classification",
+        "soilAndRegionCharacteristics": "One paragraph describing soil and region",
+        "toolsAndTechniques": "List of techniques used",
+        "nutrients": "List of nutrients studied",
+        "nutrientSupplyStrategies": "Fertilization strategies",
+        "cropGroups": "Crop groups",
+        "cropsPresent": "Specific crops",
+        "aiFeedback": {
+            "technical_summary": "Technical summary in Portuguese",
+            "agronomic_insights": "Agronomic insights in Portuguese",
+            "relevance_score": 0.0
+        },
+        "status": "approved_ia OR rejected"
     }
-    
-    schema_str = json.dumps(json_skeleton, indent=2)
 
-    # 6. Prompt Engineering
-    if payload.category == "solos":
-        system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica de SOLOS (pedologia, física, química e biologia do solo).
+    system_prompt = f"""You are a scientific curator assistant specializing in agriculture (Soil, Citrus, and Sugarcane).
+Your task is to extract metadata from the provided text and return a valid JSON object matching the requested schema.
 
-Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido e preencher o esquema JSON.
+CRITERIA FOR APPROVAL (status field):
+1. The paper MUST be about Soil science OR Citrus/Sugarcane cultivation.
+2. It MUST be a scientific study (paper, thesis, technical report).
+3. It MUST NOT contradict the provided 'Existing Database Knowledge'.
 
-**INSTRUÇÕES DE EXTRAÇÃO DE METADADOS (Siga para todos os campos):**
-- **Título:** Extraia o TÍTULO COMPLETO do artigo. É crucial identificar o título real no início do documento.
-- **Subtítulo:** Extraia o subtítulo do artigo, se houver.
-- **Caracteristicas do solo e região (escrever):** Descreva em um parágrafo as características do solo, clima e localização geográfica mencionadas no estudo. Se não mencionadas, deixe vazio.
-- **ferramentas e técnicas (seleção):** Liste as metodologias científicas, ferramentas de laboratório ou campo. Ex: "Análise granulométrica, Espectroscopia, Difração de Raios-X, Amostragem de solo". Sempre liste pelo menos uma se aplicável.
-- **nutrientes (seleção):** Liste os nutrientes, minerais ou elementos químicos foco do estudo do solo. Ex: "Nitrogênio, Fósforo, Carbono orgânico, Silício". Sempre liste pelo menos um se aplicável.
-- **estratégias de fornecimento de nutrientes (seleção):** Liste o modo de correção ou fertilização do solo. Ex: "Calagem, Gessagem, Adubação de base, Incorporação de resíduos". Sempre liste pelo menos uma se aplicável.
-- **grupos de culturas (seleção):** Liste os grandes grupos de culturas agrícolas investigados no solo. Sempre liste pelo menos um se aplicável.
-- **culturas presentes (seleção):** Liste os nomes específicos das culturas ou plantas estudadas. Sempre liste pelo menos uma se aplicável.
+Return 'approved_ia' in status if all criteria are met, otherwise return 'rejected'.
+All string values MUST be in PORTUGUESE (PT-BR).
+Do not translate JSON keys.
 
-**CONTEXTO DE CURADORIA E ANÁLISE:**
-Você atuará como um Curador Científico especializado em SOLOS, seguindo estes critérios:
-
-**CRITÉRIOS DE VALIDAÇÃO (OBRIGATÓRIOS - TODOS devem ser atendidos para aprovação):**
-1.  **Tópico Principal:** O FOCO PRINCIPAL do artigo deve ser o estudo do SOLO (manejo, conservação, fertilidade, física ou biologia do solo).
-    -   *REJEITAR* se o foco for puramente genética vegetal ou processamento industrial sem foco no solo.
-2.  **Formato:** Deve ser um artigo científico, tese ou estudo de caso detalhado com Metodologia e Resultados claros.
-3.  **Consistência:** Não deve contradizer fatos do 'EXISTING DATABASE KNOWLEDGE'.
-
-**REGRAS DE FEEDBACK E SAÍDA (Siga rigorosamente):**
-1.  Sua saída completa deve ser um único objeto JSON válido.
-2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento.
-3.  **FEEDBACK DA IA (Objeto Estruturado):**
-    -   **technical_summary:** Um resumo técnico conciso destacando a relevância do estudo para a ciência do solo.
-    -   **agronomic_insights:** Identifique se o texto menciona manejos agrícolas, produtividade, pragas ou recomendações técnicas.
-    -   **relevance_score:** Atribua uma nota de 0.0 a 10.0 baseada no rigor científico e aplicabilidade prática.
-4.  Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` or `false` baseada nos critérios de validação.
-5.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
-
-ESQUEMA:
-{schema_str}
-"""
-    else:
-        system_prompt = f"""Você é um assistente especializado em extração de metadados e curadoria científica de CITROS E CANA (cultivo e manejo de citricultura e cana-de-açúcar).
-
-Sua Tarefa Principal: Extrair todos os metadados solicitados do texto fornecido e preencher o esquema JSON.
-
-**INSTRUÇÕES DE EXTRAÇÃO DE METADADOS (Siga para todos os campos):**
-- **Título:** Extraia o TÍTULO COMPLETO do artigo. É crucial identificar o título real no início do documento.
-- **Subtítulo:** Extraia o subtítulo do artigo, se houver.
-- **Caracteristicas do solo e região (escrever):** Descreva em um parágrafo as características do solo, clima e localização geográfica mencionadas no estudo de citros ou cana. Se não mencionadas, deixe vazio.
-- **ferramentas e técnicas (seleção):** Liste, em formato de string separada por vírgulas, as principais ferramentas, equipamentos e metodologias científicas utilizadas. Ex: "Cromatografia gasosa, Fotossíntese líquida, RCBD, ANOVA". Sempre liste pelo menos uma se aplicável.
-- **nutrientes (seleção):** Liste, em formato de string separada por vírgulas, todos os nutrientes ou compostos que são foco do estudo. Ex: "Nitrogênio, Potássio, Sacarose, Ácidos orgânicos". Sempre liste pelo menos um se aplicável.
-- **estratégias de fornecimento de nutrientes (seleção):** Liste, em formato de string separada por vírgulas, as estratégias de fertilização ou manejo. Ex: "Fertirrigação, Aplicação foliar, Controle de pragas, Poda". Sempre liste pelo menos uma se aplicável.
-- **grupos de culturas (seleção):** Liste "Frutíferas" para citros ou "Grandes Culturas" para cana, conforme o caso.
-- **culturas presentes (seleção):** Liste os nomes específicos das culturas estudadas (ex: Laranja Hamlin, Cana-de-açúcar RB867515). Sempre liste pelo menos uma se aplicável.
-
-**CONTEXTO DE CURADORIA E ANÁLISE:**
-Você atuará como um Curador Científico especializado em CITROS E CANA, seguindo estes critérios:
-
-**CRITÉRIOS DE VALIDAÇÃO (OBRIGATÓRIOS - TODOS devem ser atendidos para aprovação):**
-1.  **Tópico Principal:** O FOCO PRINCIPAL do artigo deve ser CITROS (laranja, limão, tangerina, etc.) ou CANA-DE-AÇÚCAR (produção, manejo, doenças, nutrição).
-    -   *REJEITAR* se o tópico for outras culturas sem relação com citros ou cana.
-2.  **Formato:** Deve ser um artigo científico, tese ou estudo de caso detalhado com Metodologia e Resultados claros.
-3.  **Consistência:** Não deve contradizer fatos do 'EXISTING DATABASE KNOWLEDGE'.
-
-**REGRAS DE FEEDBACK E SAÍDA (Siga rigorosamente):**
-1.  Sua saída completa deve ser um único objeto JSON válido.
-2.  Preencha todos os campos de texto do esquema com base no conteúdo do documento.
-3.  **FEEDBACK DA IA (Objeto Estruturado):**
-    -   **technical_summary:** Um resumo técnico conciso destacando a contribuição científica (ex: adubação nitrogenada em cana).
-    -   **agronomic_insights:** Identifique menções a manejos de solo, desenvolvimento da cultura ou necessidades técnicas.
-    -   **relevance_score:** Atribua uma nota de 0.0 a 10.0 baseada no rigor científico e utilidade prática para o produtor.
-4.  Defina o campo **'APROVAÇÃO CURADOR (marcar)'** como `true` ou `false` baseada nos critérios de validação.
-5.  **IDIOMA:** TODOS os valores de string no JSON devem estar em PORTUGUÊS (PT-BR). Não traduza as chaves JSON.
-
-ESQUEMA:
-{schema_str}
+SCHEMA:
+{json.dumps(schema, indent=2)}
 """
 
     user_prompt = f"""
-### TAREFA
-1. Analise o TEXTO DE ENTRADA.
-2. Compare com o CONHECIMENTO EXISTENTE DO BANCO DE DADOS (se fornecido).
-3. Preencha o ESQUEMA JSON ALVO com os metadados extraídos.
+### EXISTING DATABASE KNOWLEDGE:
+{referencia_rag}
 
-{contexto_ref if referencia_rag != "Nenhum contexto prévio disponível." else ""}
-
-### TEXTO DE ENTRADA
-'''
+### INPUT TEXT:
 {document_text[:6000]}
-'''
 
-### SAÍDA
-Retorne APENAS o objeto JSON preenchido."""
-
-    logger.info(f"--- INICIANDO CURADORIA ---")
-    logger.info(f"Payload Category: {payload.category}")
+### OUTPUT:
+Return ONLY the filled JSON object."""
 
     try:
-        completion = groq.chat.completions.create(
+        completion = client_groq.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
@@ -356,78 +213,36 @@ Retorne APENAS o objeto JSON preenchido."""
             temperature=0.0,
             response_format={"type": "json_object"}
         )
-
-        raw_response = completion.choices[0].message.content
-        logger.info(f"Resposta Bruta da LLM: {raw_response}")
-
-        clean_response = clean_json_string(raw_response)
-        return json.loads(clean_response)
-
+        return json.loads(completion.choices[0].message.content)
     except Exception as e:
         logger.error(f"Erro Groq: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/categorize")
 async def categorize_article(payload: PDFPayload):
-    groq = get_groq_client()
-    if not groq:
-        raise HTTPException(status_code=503, detail="Serviço indisponível: Groq não configurada.")
-
+    if not client_groq:
+        raise HTTPException(status_code=503, detail="Groq não configurada.")
     document_text = get_document_text(payload.encoded_content, payload.content_type)
 
-    if len(document_text) < 100:
-        raise HTTPException(status_code=400, detail="Texto insuficiente para categorização.")
-
-    system_prompt = """Você é um assistente especializado em classificação de artigos científicos agrícolas.
-
-Classifique o artigo em UMA das seguintes categorias:
-1. **solos** - Artigos sobre pedologia, física do solo, química do solo, biologia do solo, manejo e conservação do solo, fertilidade do solo, nutrição de plantas via solo
-2. **citros e cana** - Artigos sobre cultivo, manejo, nutrição e fisiologia de citros (laranja, limão, tangerina) ou cana-de-açúcar
-
-Instruções:
-- Analise o CONTEÚDO PRINCIPAL do artigo
-- Se o foco principal for SOLO, retorne "solos"
-- Se o foco principal for CITROS ou CANA, retorne "citros e cana"
-- Retorne APENAS o nome exato da categoria, em minúsculas
-
-Categorias válidas:
-- solos
-- citros e cana"""
-
-    user_prompt = f"ARTIGO:\n{document_text[:6000]}\n\nCLASSIFICAÇÃO:"
-
+    system_prompt = """Classify the article into ONE category: 'solos' or 'citros e cana'.
+Return ONLY the category name in lowercase."""
+    
     try:
-        completion = groq.chat.completions.create(
+        completion = client_groq.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": f"ARTICLE:\n{document_text[:4000]}"}
             ],
             model="llama-3.1-8b-instant",
             temperature=0.0,
-            max_tokens=50,
+            max_tokens=20,
         )
-
         category = completion.choices[0].message.content.strip().lower()
-
-        # Normalização de categorias
-        if "solo" in category:
-            category = "solos"
-        elif "citro" in category or "cana" in category:
-            category = "citros e cana"
-        else:
-            # Se não reconhecer, fazer inferência baseada no conteúdo
-            if "solo" in document_text[:2000].lower() or "pedologia" in document_text.lower():
-                category = "solos"
-            else:
-                category = "citros e cana"
-
-        logger.info(f"Categorização realizada: {category}")
-        return {"category": category}
-
+        if "solo" in category: return {"category": "solos"}
+        return {"category": "citros e cana"}
     except Exception as e:
-        logger.error(f"Erro na categorização: {e}")
-        raise HTTPException(status_code=500, detail=f"Erro ao categorizar: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
 def read_root():
-    return {"status": "online", "version": "v12-Contradiction-Fixed", "service": "Groq Cloud"}
+    return {"status": "online", "qdrant": "connected" if client_qdrant else "offline"}
