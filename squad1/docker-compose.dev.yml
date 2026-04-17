@@ -1,0 +1,79 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb_dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_dev:/data/db
+    restart: always
+
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant_dev
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data_dev:/qdrant/storage
+    restart: always
+
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    container_name: backend_dev
+    # Para Hot Reload em Node, o ideal seria usar volumes e um comando tipo nodemon
+    # Mas como o Dockerfile padrão usa 'node server.js', o hot reload aqui é via restart manual
+    # ou o usuário pode alterar para nodemon se desejar.
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    env_file:
+      - env/.env.dev
+    depends_on:
+      - mongodb
+    restart: always
+
+  python:
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+    container_name: python_dev
+    volumes:
+      - ./backend:/app
+    env_file:
+      - env/.env.dev
+    depends_on:
+      - qdrant
+    restart: always
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile.dev
+    container_name: frontend_dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    env_file:
+      - env/.env.dev
+    restart: always
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_dev
+    ports:
+      - "5173:80"
+    volumes:
+      - ./nginx/dev.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - frontend
+      - backend
+      - python
+    restart: always
+
+volumes:
+  mongodb_data_dev:
+  qdrant_data_dev:

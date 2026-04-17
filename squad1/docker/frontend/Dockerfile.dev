@@ -1,0 +1,9 @@
+# Dockerfile para Frontend (Desenvolvimento)
+FROM node:20-slim
+WORKDIR /app
+COPY frontend/package*.json ./
+RUN npm install
+COPY frontend/ .
+EXPOSE 3000
+# Forçamos o Vite a rodar na porta 3000 para deixar a 5173 livre para o Nginx
+CMD ["npm", "run", "dev", "--", "--port", "3000", "--host"]
