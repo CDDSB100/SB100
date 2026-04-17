@@ -203,12 +203,14 @@ app.post("/api/trigger-curation", authenticateToken, authorizeModify, async (req
 });
 
 app.post("/api/trigger-curation-single", authenticateToken, authorizeModify, async (req, res) => {
-  const result = await executarCuradoriaLinhaUnica(req.body.row_number);
+  const id = req.body.workId || req.body.row_number || req.body.id;
+  const result = await executarCuradoriaLinhaUnica(id);
   res.json(result);
 });
 
 app.post("/api/categorize-single", authenticateToken, authorizeModify, async (req, res) => {
-  const result = await executarCategorizacaoLinhaUnica(req.body.row_number);
+  const id = req.body.workId || req.body.row_number || req.body.id;
+  const result = await executarCategorizacaoLinhaUnica(id);
   res.json(result);
 });
 
@@ -279,8 +281,18 @@ app.post("/api/manual-rejection", authenticateToken, authorizeModify, async (req
 });
 
 app.post("/api/batch-upload-zip", authenticateToken, authorizeModify, upload.single('file'), async (req, res) => {
-    const result = await processZipUpload(req.file.buffer, req.user.username);
-    res.json(result);
+    // Inicia processamento em background para não travar a requisição
+    batchProgress = { total: 0, current: 0, processed: 0, errors: 0, skipped: 0, status: 'processing', message: 'Iniciando extração...' };
+    
+    processZipUpload(req.file.buffer, req.user.username, (progress) => {
+        batchProgress = { ...batchProgress, ...progress };
+    }).catch(err => {
+        console.error("Erro no processamento do ZIP:", err);
+        batchProgress.status = 'error';
+        batchProgress.message = err.message;
+    });
+
+    res.json({ message: "Upload recebido. Processamento iniciado em lote." });
 });
 
 app.get("/api/batch-progress", authenticateToken, (req, res) => res.json(batchProgress));
@@ -304,8 +316,24 @@ app.get("/api/llm-logs", authenticateToken, async (req, res) => {
     res.json({ logs: logs.split("\n").slice(-200).join("\n") });
 });
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`API SERVER READY ON PORT ${port}`);
+// Servir arquivos estáticos do frontend (após o build)
+const frontendDistPath = path.resolve(__dirname, "../frontend/dist");
+if (fsSync.existsSync(frontendDistPath)) {
+  console.log(`  > server.js: Servindo frontend de ${frontendDistPath}`);
+  app.use(express.static(frontendDistPath));
+  
+  // Rota catch-all para o React (SPA)
+  app.get("*", (req, res, next) => {
+    if (req.path.startsWith("/api") || req.path.startsWith("/docs") || req.path.startsWith("/documents")) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, "index.html"));
+  });
+}
+
+const finalPort = process.env.PORT || 5173;
+app.listen(finalPort, "0.0.0.0", () => {
+  console.log(`API SERVER READY ON PORT ${finalPort}`);
 });
 
 module.exports = app;

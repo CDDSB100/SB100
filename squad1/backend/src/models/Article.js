@@ -1,71 +1,122 @@
-const mongoose = require('mongoose');
+const { pool } = require('../services/database');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cientometria';
-
-// Conexão com tratamento de erro resiliente
-const connectDB = async () => {
-  try {
-    await mongoose.connect(MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000,
-    });
-    console.log('✅ Conectado ao MongoDB');
-  } catch (err) {
-    console.error('⚠️ ATENÇÃO: Falha ao conectar ao MongoDB. Algumas funcionalidades de persistência podem não estar disponíveis.');
-    if (process.env.NODE_ENV === 'production') {
-      console.error('❌ Erro crítico em produção. Encerrando...');
-      process.exit(1);
-    }
+class Article {
+  constructor(data) {
+    Object.assign(this, data);
   }
-};
 
-connectDB();
+  static find(query = {}) {
+    const executeQuery = async () => {
+      let sql = 'SELECT * FROM articles';
+      const params = [];
+      const whereClauses = [];
 
-const articleSchema = new mongoose.Schema({
-  title: String,
-  subtitle: String,
-  authors: String,
-  year: String,
-  citationsCount: String,
-  keywords: String,
-  abstract: String,
-  documentType: String,
-  publisher: String,
-  institution: String,
-  location: String,
-  workType: String,
-  journalTitle: String,
-  journalQuartile: String,
-  volume: String,
-  issue: String,
-  pages: String,
-  doi: String,
-  numbering: String,
-  qualis: String,
-  category: String,
-  soilAndRegionCharacteristics: String,
-  toolsAndTechniques: String,
-  nutrients: String,
-  nutrientSupplyStrategies: String,
-  cropGroups: String,
-  cropsPresent: String,
-  aiFeedback: mongoose.Schema.Types.Mixed,
-  curatorFeedback: mongoose.Schema.Types.Mixed,
-  feedbackOnAi: mongoose.Schema.Types.Mixed,
-  documentUrl: String,
-  insertedBy: String,
-  approvedBy: String,
-  status: {
-    type: String,
-    enum: ['pending', 'approved_ia', 'approved_manual', 'rejected'],
-    default: 'pending'
-  },
-  scientometricScore: Number,
-  workId: String,
-}, { 
-  strict: false,
-  timestamps: true 
-});
+      // Basic support for Mongoose-style query
+      if (Object.keys(query).length > 0) {
+        for (const [key, value] of Object.entries(query)) {
+          if (key === '$or' && Array.isArray(value)) {
+            const orClauses = [];
+            for (const condition of value) {
+              for (const [orKey, orValue] of Object.entries(condition)) {
+                if (orValue && typeof orValue === 'object' && orValue.$ne !== undefined) {
+                  orClauses.push(`"${orKey}" != ?`);
+                  params.push(orValue.$ne);
+                } else {
+                  orClauses.push(`"${orKey}" = ?`);
+                  params.push(orValue);
+                }
+              }
+            }
+            if (orClauses.length > 0) {
+              whereClauses.push(`(${orClauses.join(' OR ')})`);
+            }
+          } else if (value && typeof value === 'object' && value.$ne !== undefined) {
+            whereClauses.push(`"${key}" != ?`);
+            params.push(value.$ne);
+          } else {
+            whereClauses.push(`"${key}" = ?`);
+            params.push(value);
+          }
+        }
+      }
 
-const Article = mongoose.model('Article', articleSchema);
+      if (whereClauses.length > 0) {
+        sql += ' WHERE ' + whereClauses.join(' AND ');
+      }
+
+      sql += ' ORDER BY createdAt DESC';
+
+      const [rows] = await pool.execute(sql, params);
+      return rows.map(row => new Article(row));
+    };
+
+    const promise = executeQuery();
+    
+    // Add mock sort/limit/exec for chaining compatibility
+    promise.sort = function() { return this; };
+    promise.limit = function() { return this; };
+    promise.exec = function() { return this; };
+    
+    return promise;
+  }
+
+  static findOne(query = {}) {
+    const promise = (async () => {
+      const results = await this.find(query);
+      return results.length > 0 ? results[0] : null;
+    })();
+    
+    promise.sort = function() { return this; };
+    return promise;
+  }
+
+  static async findById(id) {
+    const [rows] = await pool.execute('SELECT * FROM articles WHERE _id = ?', [id]);
+    return rows.length > 0 ? new Article(rows[0]) : null;
+  }
+
+  static async findByIdAndDelete(id) {
+    await pool.execute('DELETE FROM articles WHERE _id = ?', [id]);
+    return { success: true };
+  }
+
+  static async deleteMany() {
+    await pool.execute('DELETE FROM articles');
+    return { success: true };
+  }
+
+  async save() {
+    const fields = Object.keys(this).filter(k => k !== '_id' && k !== 'createdAt' && k !== 'updatedAt');
+    // For SQLite, we should stringify objects
+    const values = fields.map(f => {
+        const val = this[f];
+        if (val !== null && typeof val === 'object') {
+            return JSON.stringify(val);
+        }
+        return val;
+    });
+
+    if (this._id) {
+      const setClause = fields.map(f => `"${f}" = ?`).join(', ');
+      await pool.execute(`UPDATE articles SET ${setClause}, updatedAt = CURRENT_TIMESTAMP WHERE _id = ?`, [...values, this._id]);
+    } else {
+      const columns = fields.map(f => `"${f}"`).join(', ');
+      const placeholders = fields.map(() => '?').join(', ');
+      const [result] = await pool.execute(`INSERT INTO articles (${columns}) VALUES (${placeholders})`, values);
+      this._id = result.insertId;
+    }
+    return this;
+  }
+
+  toObject() {
+    const obj = {};
+    for (const key of Object.keys(this)) {
+      if (typeof this[key] !== 'function') {
+        obj[key] = this[key];
+      }
+    }
+    return obj;
+  }
+}
 
 module.exports = { Article };

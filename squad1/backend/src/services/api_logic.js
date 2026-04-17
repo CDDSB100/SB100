@@ -161,8 +161,16 @@ async function direcionarArquivoAposProcessamentoLocal(fileName, article, aprova
 
 // --- MAIN LOGIC ---
 async function processarUmArtigo(articleId) {
-  const article = await Article.findById(articleId);
-  if (!article) throw new Error("Artigo não encontrado.");
+  let article = null;
+  if (typeof articleId === 'number' || !isNaN(Number(articleId))) {
+    article = await Article.findById(articleId);
+  }
+  
+  if (!article) {
+    article = await Article.findOne({ workId: articleId });
+  }
+
+  if (!article) throw new Error(`Artigo não encontrado (ID/WorkId: ${articleId}).`);
 
   const fileName = article.documentUrl || "";
   if (!fileName) return { success: false, article };
@@ -180,7 +188,7 @@ async function processarUmArtigo(articleId) {
     });
 
     const boolAprovado = normalizarBooleano(extractedData.status || extractedData.aprovacao);
-    article.status = boolAprovado ? "approved_ia" : "rejected";
+    article.status = boolAprovado ? "Aprovado por IA" : "Rejeitado";
     
     let aiFeedbackObj = null;
     if (extractedData.aiFeedback) {
@@ -213,7 +221,7 @@ async function processarUmArtigo(articleId) {
     return { success: true, article };
   } catch (e) {
     console.error(`  > ERROR on article ${articleId}: ${e.message}`);
-    article.status = "rejected";
+    article.status = "Rejeitado";
     article.aiFeedback = { 
       technical_summary: `Falha no processamento: ${e.message}`, 
       agronomic_insights: "Erro", 
@@ -242,19 +250,33 @@ async function manualInsert(data, username = "Desconhecido") {
   const title = (data.title || "").trim();
   const doi = (data.doi || "").trim();
 
-  const existing = await Article.findOne({
-    $or: [
-      { doi: doi, doi: { $ne: "N/A", $ne: "" } },
-      { title: title, title: { $ne: "N/A", $ne: "" } }
-    ]
-  });
+  // Busca robusta sem chaves duplicadas
+  let existing = null;
+  
+  if (doi && doi !== "N/A" && doi !== "") {
+    existing = await Article.findOne({ doi });
+  }
+  
+  if (!existing && title && title !== "N/A" && title !== "") {
+    existing = await Article.findOne({ title });
+  }
 
-  if (existing && title !== "" && title.toLowerCase() !== "n/a") {
-    return { status: "error", message: `Erro: O documento '${title}' já está cadastrado.` };
+  if (existing) {
+    // Se já existe mas não tem documento, vinculamos o novo arquivo
+    if (!existing.documentUrl || existing.documentUrl === "N/A") {
+      existing.documentUrl = data.documentUrl;
+      if (data.category && (!existing.category || existing.category === "N/A")) {
+        existing.category = data.category;
+      }
+      await existing.save();
+      return { status: "success", message: `Vínculo atualizado para '${title}'.`, article: existing, updated: true };
+    }
+    return { status: "skipped", message: `Documento '${title}' já cadastrado.`, article: existing };
   }
 
   const articleData = { ...data, insertedBy: username };
   if (!articleData.workId) articleData.workId = `manual-${Date.now()}`;
+  if (!articleData.status) articleData.status = 'Pendente';
 
   articleData.aiFeedback = safelyParseJSON(articleData.aiFeedback);
   articleData.feedbackOnAi = safelyParseJSON(articleData.feedbackOnAi);
@@ -321,7 +343,7 @@ async function aprovarManualmente(id, fileName, username = "Desconhecido", feedb
       article.aiFeedback = parsedAiAnalysis;
   }
 
-  article.status = "approved_manual";
+  article.status = "Aprovado Manualmente";
   await article.save();
   return { success: true };
 }
@@ -353,7 +375,7 @@ async function reprovarManualmente(id, fileName, username = "Desconhecido", feed
       article.aiFeedback = parsedAiAnalysis;
   }
 
-  article.status = "rejected";
+  article.status = "Rejeitado";
   await article.save();
   return { success: true };
 }
@@ -370,7 +392,7 @@ async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Descon
   articleData.category = category;
   articleData.documentUrl = fileName;
   articleData.insertedBy = username;
-  articleData.status = 'pending';
+  articleData.status = 'Pendente';
   
   if (!articleData.title || articleData.title === "N/A") {
     articleData.title = fileName.replace(/\.pdf$/i, "");
@@ -399,7 +421,7 @@ async function updateArticle(id, data) {
 
 async function downloadCuratedDocuments() {
   const articles = await Article.find({
-    status: { $in: ["approved_manual", "approved_ia"] }
+    status: { $in: ["Aprovado Manualmente", "Aprovado por IA"] }
   });
 
   const zip = new AdmZip();
@@ -471,7 +493,7 @@ async function saveData(selected_rows, username) {
       const article = new Article({
         ...row,
         insertedBy: username,
-        status: 'pending',
+        status: 'Pendente',
       });
       await article.save();
       savedCount++;
@@ -522,11 +544,20 @@ async function processDriveFolderForBatchInsert(folderPath, username, progressCa
 }
 
 async function executarCategorizacaoLinhaUnica(articleId) {
-  const article = await Article.findById(articleId);
-  if (!article) throw new Error("Artigo não encontrado.");
+  let article = null;
+  if (typeof articleId === 'number' || !isNaN(Number(articleId))) {
+    article = await Article.findById(articleId);
+  }
+
+  if (!article) {
+    article = await Article.findOne({ workId: articleId });
+  }
+
+  if (!article) throw new Error(`Artigo não encontrado (ID/WorkId: ${articleId}).`);
 
   const fileName = article.documentUrl || "";
-  if (!fileName) throw new Error("URL não informada.");
+  if (!fileName) throw new Error("Documento sem URL.");
+
 
   const filePath = findFileInFolders(fileName);
   if (!filePath) throw new Error(`Arquivo não encontrado.`);
@@ -561,30 +592,65 @@ module.exports = {
   fixMissingTitles,
   processDriveFolderForBatchInsert,
   findFileInFolders,
+  listPdfsRecursive,
   deleteRow,
   manualInsert,
+  processSinglePdfForInsert,
   aprovarManualmente,
   reprovarManualmente,
   updateArticle,
   downloadCuratedDocuments,
-  processZipUpload: async (buf, user) => {
+  processZipUpload: async (buf, user, progressCallback) => {
     const tmp = path.join(os.tmpdir(), `zip-${Date.now()}`);
     await fs.mkdir(tmp, { recursive: true });
     try {
       const zip = new AdmZip(buf);
       zip.extractAllTo(tmp, true);
       const pdfFiles = await listPdfsRecursive(tmp);
+      
+      let processed = 0, errors = 0, skipped = 0;
+      const total = pdfFiles.length;
+
+      if (progressCallback) progressCallback({ total, current: 0, processed, errors, skipped, status: 'processing', message: 'Iniciando processamento de PDFs...' });
+
       for (const file of pdfFiles) {
-        const pdfBuffer = await fs.readFile(file.localPath);
-        const data = await processSinglePdfForInsert(pdfBuffer, file.name, user);
-        await manualInsert(data, user);
-        await fs.copyFile(file.localPath, path.join(DOCUMENTS_DIR, file.name));
+        try {
+          const pdfBuffer = await fs.readFile(file.localPath);
+          const data = await processSinglePdfForInsert(pdfBuffer, file.name, user);
+          const result = await manualInsert(data, user);
+          
+          if (result.status === 'skipped') skipped++;
+          else processed++;
+
+          // Always copy file to documents dir if not exists
+          const targetPath = path.join(DOCUMENTS_DIR, file.name);
+          if (!fsSync.existsSync(targetPath)) {
+            await fs.copyFile(file.localPath, targetPath);
+          }
+        } catch (e) {
+          console.error(`Erro ao processar ${file.name}:`, e.message);
+          errors++;
+        }
+        
+        if (progressCallback) {
+          progressCallback({ 
+            total, 
+            current: processed + errors + skipped, 
+            processed, 
+            errors, 
+            skipped, 
+            status: 'processing', 
+            message: `Processando: ${file.name}` 
+          });
+        }
       }
-      return { message: "Upload concluído." };
+
+      if (progressCallback) progressCallback({ total, current: total, processed, errors, skipped, status: 'completed', message: 'Upload e processamento concluídos!' });
+      return { message: "Upload concluído.", processed, errors, skipped };
     } finally {
       setTimeout(() => {
         try { if (fsSync.existsSync(tmp)) fsSync.rmSync(tmp, { recursive: true, force: true }); } catch(e) {}
-      }, 60000);
+      }, 30000);
     }
   },
   uploadFileToDrive: async (d, p, f) => {

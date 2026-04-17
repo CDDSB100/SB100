@@ -1,34 +1,30 @@
+const path = require('path');
+
 module.exports = {
   apps: [
     {
       name: "api-node",
-      script: "./api-cientometria/server.js",
+      script: "server.js",
+      cwd: path.resolve(__dirname, "backend"),
+      restart_delay: 5000,
       env: {
-        NODE_ENV: "development",
-        PORT: 5001,
-        MONGODB_URI: "mongodb://localhost:27017/cientometria",
+        NODE_ENV: "production",
+        PORT: 5173, // Única porta liberada no firewall
         API_BASE_URL: "http://localhost:8000",
-        JWT_SECRET: "chave-local-123"
+        JWT_SECRET: "3u4Lsp/bXSWoc5zoAfEJAku6aa1GRFWqIn32zhHJgVs="
       }
     },
     {
-      name: "api-python",
+      name: "api-llm",
       script: "main.py",
-      cwd: "./api-cientometria",
-      interpreter: "python3",
+      cwd: path.resolve(__dirname, "backend"),
+      interpreter: path.resolve(__dirname, "backend/venv/bin/python"),
+      kill_timeout: 10000,
+      restart_delay: 8000,
       env: {
-        PORT: 8000,
+        FASTAPI_PORT: 8000,
         QDRANT_URL: "http://localhost:6333",
-        LLM_MODEL: "llama3.1:8b"
-      }
-    },
-    {
-      name: "frontend",
-      script: "npm",
-      args: "run dev -- --port 3000",
-      cwd: "./frontend",
-      env: {
-        VITE_API_URL: "http://localhost:5001"
+        LLM_MODEL: "qwen/qwen3-8b"
       }
     }
   ]

@@ -27,31 +27,35 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Variáveis de Ambiente e Qdrant Credentials
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OPENROUTER_API_KEY = "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"
 QDRANT_URL = "https://57eb89f7-8062-4156-8bd9-761b749c9d3b.sa-east-1-0.aws.cloud.qdrant.io:6333"
 QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.o4SI3QmZtkdOUXK8KVRunQT1SymcxtZrkzUVCXmiZvQ"
 COLLECTION_NAME = "sb100"
 
-OLLAMA_BASE_URL = os.getenv("OLLAMA_BASE_URL", "http://172.28.181.92:11434/v1")
-LLM_MODEL = os.getenv("LLM_MODEL", "llama3.1:8b")
-
 # Inicialização de Clientes
-def get_groq_client():
-    key = os.getenv("GROQ_API_KEY")
-    if key:
-        try:
-            return Groq(api_key=key)
-        except Exception as e:
-            logger.error(f"Erro ao iniciar Groq: {e}")
+def get_openrouter_client():
+    try:
+        return OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=OPENROUTER_API_KEY,
+            default_headers={
+                "HTTP-Referer": "https://github.com/google/gemini-cli", # Site URL opcional
+                "X-Title": "Gemini-CLI Agricultural Curator", # App Name opcional
+            }
+        )
+    except Exception as e:
+        logger.error(f"Erro ao iniciar OpenRouter: {e}")
     return None
 
-client_groq = get_groq_client()
+client_llm = get_openrouter_client()
+LLM_MODEL = "qwen/qwen3-8b"
 
 client_qdrant = None
 encoder = None
 
 if QDRANT_URL and QDRANT_API_KEY:
     try:
+        from qdrant_client import QdrantClient
         client_qdrant = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
         encoder = SentenceTransformer("all-MiniLM-L6-v2")
     except Exception as e:
@@ -108,26 +112,32 @@ def search_similar_docs(text_query: str, limit: int = 3) -> str:
         return "Nenhum contexto prévio disponível."
     try:
         query_vector = encoder.encode(text_query[:1000]).tolist()
+        
+        # Use simple search call with named arguments
         hits = client_qdrant.search(
             collection_name=COLLECTION_NAME,
             query_vector=query_vector,
             limit=limit
         )
+
         context = ""
         for hit in hits:
-            snippet = hit.payload.get("text", "")[:500]
+            # Handle standard Qdrant result object
+            payload = hit.payload if hasattr(hit, 'payload') else {}
+            snippet = payload.get("text", "")[:500]
             context += f"- {snippet}\n"
         return context if context else "Nenhum contexto prévio relevante."
     except Exception as e:
-        logger.error(f"Erro Qdrant: {e}")
+        logger.error(f"Erro Qdrant: {e} | Tipo Cliente: {type(client_qdrant)}")
         return "Erro ao acessar base de conhecimento."
 
 # --- ENDPOINT PRINCIPAL ---
 
 @app.post("/curadoria")
 async def curar_documento(payload: PDFPayload):
-    if not client_groq:
-        raise HTTPException(status_code=503, detail="Groq não configurada.")
+    logger.info(f"Usando modelo: {LLM_MODEL}")
+    if not client_llm:
+        raise HTTPException(status_code=503, detail="OpenRouter não configurado.")
 
     document_text = get_document_text(payload.encoded_content, payload.content_type)
     if len(document_text) < 150:
@@ -204,36 +214,41 @@ SCHEMA:
 Return ONLY the filled JSON object."""
 
     try:
-        completion = client_groq.chat.completions.create(
+        completion = client_llm.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            model="llama-3.1-8b-instant",
-            temperature=0.0,
-            response_format={"type": "json_object"}
+            model=LLM_MODEL,
+            temperature=0.0
         )
-        return json.loads(completion.choices[0].message.content)
+        content = completion.choices[0].message.content.strip()
+        # Find JSON if mixed with other text
+        json_match = re.search(r'\{.*\}', content, re.DOTALL)
+        if json_match:
+            return json.loads(json_match.group(0))
+        return json.loads(content)
     except Exception as e:
-        logger.error(f"Erro Groq: {e}")
+        logger.error(f"Erro OpenRouter: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/categorize")
 async def categorize_article(payload: PDFPayload):
-    if not client_groq:
-        raise HTTPException(status_code=503, detail="Groq não configurada.")
+    logger.info(f"Usando modelo (Categorização): {LLM_MODEL}")
+    if not client_llm:
+        raise HTTPException(status_code=503, detail="OpenRouter não configurado.")
     document_text = get_document_text(payload.encoded_content, payload.content_type)
 
     system_prompt = """Classify the article into ONE category: 'solos' or 'citros e cana'.
 Return ONLY the category name in lowercase."""
     
     try:
-        completion = client_groq.chat.completions.create(
+        completion = client_llm.chat.completions.create(
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": f"ARTICLE:\n{document_text[:4000]}"}
             ],
-            model="llama-3.1-8b-instant",
+            model=LLM_MODEL,
             temperature=0.0,
             max_tokens=20,
         )
@@ -241,6 +256,7 @@ Return ONLY the category name in lowercase."""
         if "solo" in category: return {"category": "solos"}
         return {"category": "citros e cana"}
     except Exception as e:
+        logger.error(f"Erro OpenRouter: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
