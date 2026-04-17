@@ -1,50 +1,34 @@
 module.exports = {
   apps: [
     {
-      name: "organize-docs",
-      script: "./backend/scripts/organize_documents.js",
-      autorestart: false,
-      watch: false,
-      env: {
-        MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria"
-      }
-    },
-    {
       name: "api-node",
-      script: "./backend/server.js",
-      instances: 1,
-      autorestart: true,
-      max_memory_restart: "1G",
-      // Logs config
-      error_file: "./backend/logs/err.log",
-      out_file: "./backend/logs/out.log",
-      log_date_format: "YYYY-MM-DD HH:mm:ss",
-      combine_logs: true,
-      merge_logs: true,
+      script: "./api-cientometria/server.js",
       env: {
         NODE_ENV: "development",
         PORT: 5001,
-        MONGODB_URI: "mongodb://172.28.181.92:27017/cientometria",
-        API_BASE_URL: "http://172.28.181.92:8000"
+        MONGODB_URI: "mongodb://localhost:27017/cientometria",
+        API_BASE_URL: "http://localhost:8000",
+        JWT_SECRET: "chave-local-123"
       }
     },
     {
       name: "api-python",
-      script: "./backend/main.py",
-      interpreter: "./backend/venv/bin/python",
-      instances: 1,
-      autorestart: true,
-      // Logs config
-      error_file: "./backend/logs/python-err.log",
-      out_file: "./backend/logs/python-out.log",
-      log_date_format: "YYYY-MM-DD HH:mm:ss",
+      script: "main.py",
+      cwd: "./api-cientometria",
+      interpreter: "python3",
       env: {
         PORT: 8000,
-        GROQ_API_KEY: process.env.GROQ_API_KEY,
-        QDRANT_URL: process.env.QDRANT_URL,
-        QDRANT_API_KEY: process.env.QDRANT_API_KEY,
-        OLLAMA_BASE_URL: process.env.OLLAMA_BASE_URL || "http://172.28.181.92:11434/v1",
+        QDRANT_URL: "http://localhost:6333",
         LLM_MODEL: "llama3.1:8b"
+      }
+    },
+    {
+      name: "frontend",
+      script: "npm",
+      args: "run dev -- --port 3000",
+      cwd: "./frontend",
+      env: {
+        VITE_API_URL: "http://localhost:5001"
       }
     }
   ]

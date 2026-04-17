@@ -438,7 +438,7 @@ async function searchOpenAlex(search_terms, start_year, end_year, sort_option) {
       year: String(work.publication_year),
       doi: work.doi || "",
       citationsCount: String(work.cited_by_count || "0"),
-      documentUrl: work.primary_location?.pdf_url || work.doi || "",
+      documentUrl: (work.primary_location && work.primary_location.pdf_url) || work.doi || "",
       documentType: work.type,
       journalTitle: work.primary_location?.source?.display_name || "",
     }));

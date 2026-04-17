@@ -22,13 +22,13 @@ services:
   backend:
     build:
       context: .
-      dockerfile: docker/backend/Dockerfile
+      dockerfile: docke./api-cientometria/Dockerfile
     container_name: backend_dev
     # Para Hot Reload em Node, o ideal seria usar volumes e um comando tipo nodemon
     # Mas como o Dockerfile padrão usa 'node server.js', o hot reload aqui é via restart manual
     # ou o usuário pode alterar para nodemon se desejar.
     volumes:
-      - ./backend:/app
+      - ./api-cientometria:/app
       - /app/node_modules
     env_file:
       - env/.env.dev
@@ -42,7 +42,7 @@ services:
       dockerfile: docker/python/Dockerfile
     container_name: python_dev
     volumes:
-      - ./backend:/app
+      - ./api-cientometria:/app
     env_file:
       - env/.env.dev
     depends_on:

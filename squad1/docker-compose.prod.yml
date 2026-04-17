@@ -16,11 +16,11 @@ services:
   backend:
     build:
       context: .
-      dockerfile: docker/backend/Dockerfile
+      dockerfile: docke./api-cientometria/Dockerfile
     container_name: backend_prod
     volumes:
-      - ./backend/api.db:/app/api.db
-      - ./backend/documents:/app/documents
+      - ./api-cientometria/api.db:/app/api.db
+      - ./api-cientometria/documents:/app/documents
     env_file:
       - env/.env.prod
     depends_on:
