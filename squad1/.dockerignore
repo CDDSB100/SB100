@@ -1,0 +1,20 @@
+# Ignorar pastas de dependências locais
+**/node_modules
+**/venv
+**/.venv
+**/__pycache__
+**/.pytest_cache
+
+# Ignorar logs e arquivos temporários
+**/*.log
+.git
+.gitignore
+.dockerignore
+
+# Ignorar dados pesados que devem ser montados via volumes
+backend/documents
+backend/api.db
+backend/Consolidado - Respostas Gerais.xlsx
+
+# Ignorar arquivos de ambiente (serão passados via env_file ou Docker)
+.env*
