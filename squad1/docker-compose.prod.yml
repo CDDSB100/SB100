@@ -55,4 +55,5 @@ services:
 volumes:
   mongodb_data:
     external: true
+    name: squad1_mongodb_data
   qdrant_data_prod:
