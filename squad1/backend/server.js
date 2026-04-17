@@ -159,15 +159,19 @@ app.post("/api/login", async (req, res) => {
   if (!username || !password) return res.status(400).json({ error: "Obrigatório." });
 
   try {
-    const [rows] = await pool.execute("SELECT *, CAST(id AS TEXT) as id_str FROM users WHERE username = ?", [username]);
-    const user = rows[0];
+    const user = await User.findOne({ username });
     if (!user || !(await bcrypt.compare(password, user.password_hash))) {
       return res.status(401).json({ error: "Inválido." });
     }
 
-    const accessToken = jwt.sign({ username: user.username, id: user.id_str, role: user.role }, JWT_SECRET, { expiresIn: "1h" });
+    const accessToken = jwt.sign(
+      { username: user.username, id: user._id.toString(), role: user.role }, 
+      JWT_SECRET, 
+      { expiresIn: "1h" }
+    );
     res.json({ accessToken });
   } catch (err) {
+    console.error("Erro no login:", err);
     res.status(500).json({ error: "Erro interno." });
   }
 });
