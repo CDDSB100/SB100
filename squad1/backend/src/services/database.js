@@ -1,49 +1,41 @@
-const mongoose = require('mongoose');
-const bcrypt = require("bcrypt");
-const { User } = require("../models/User");
+const sqlite3 = require('sqlite3').verbose();
+const path = require('path');
+const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
+const dbPath = path.join(__dirname, '../../api.db');
 
-const initDb = async () => {
-  console.log("Initializing MongoDB administrative data...");
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) console.error('Error opening SQLite database:', err.message);
+  else console.log('Connected to SQLite database at:', dbPath);
+});
 
-  // Admin user details from environment or defaults
-  const adminUsername = process.env.ADMIN_USERNAME || "admin";
-  const adminPassword = process.env.ADMIN_PASSWORD || "password123";
-  const adminEmail = process.env.ADMIN_EMAIL || "admin@example.com";
-  const adminRole = "admin";
-
-  try {
-    const existingAdmin = await User.findOne({ username: adminUsername });
-
-    if (!existingAdmin) {
-      console.log(`Admin user '${adminUsername}' not found, creating...`);
-      const hash = await bcrypt.hash(adminPassword, saltRounds);
-      
-      const newAdmin = new User({
-        username: adminUsername,
-        email: adminEmail,
-        password_hash: hash,
-        role: adminRole,
-        is_active: true
+// Wrapper para manter compatibilidade com pool.execute
+const pool = {
+  execute: (sql, params = []) => {
+    return new Promise((resolve, reject) => {
+      db.all(sql, params, (err, rows) => {
+        if (err) reject(err);
+        else resolve([rows]);
       });
-
-      await newAdmin.save();
-      console.log(`Admin user '${adminUsername}' created successfully.`);
-    } else {
-      console.log(`Admin user '${adminUsername}' already exists.`);
-    }
-  } catch (err) {
-    console.error("Error initializing admin user in MongoDB:", err.message);
+    });
   }
 };
 
-// Manteve-se o nome por compatibilidade se algum arquivo ainda importar
-const pool = {
-    execute: async () => {
-        console.warn("⚠️ Chamada legada ao 'pool.execute' detectada. Migre para Mongoose.");
-        return [[]];
-    }
+const initDb = () => {
+  // O SQLite já deve estar inicializado com seus usuários.
+  // Apenas garantimos que a tabela existe se for um banco novo.
+  db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE,
+      email TEXT,
+      password_hash TEXT,
+      role TEXT,
+      is_active INTEGER,
+      allowed_categories TEXT
+    )`);
+  });
 };
 
 module.exports = { pool, initDb, saltRounds };
