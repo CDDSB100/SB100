@@ -1,13 +1,10 @@
-version: '3.8'
-
 services:
   mongodb:
     image: mongo:4.4
     container_name: mongodb_prod
     volumes:
-      - mongodb_data_prod:/data/db
+      - mongodb_data:/data/db
     restart: always
-    # Nenhuma porta exposta externamente
 
   qdrant:
     image: qdrant/qdrant
@@ -56,5 +53,6 @@ services:
     restart: always
 
 volumes:
-  mongodb_data_prod:
+  mongodb_data:
+    external: true
   qdrant_data_prod:
