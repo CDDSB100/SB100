@@ -39,6 +39,8 @@ const {
   resolveConflict,
 } = require("./src/services/api_logic.js");
 const { pool, initDb, saltRounds } = require("./src/services/database.js");
+const { migrateExcelToSqlite } = require("./src/services/migration_service.js");
+
 const { extractMetadata, ALL_METADATA_FIELDS } = require("./src/controllers/metadata_controller.js");
 const multer = require("multer");
 const { swaggerUi, specs, swaggerOptions } = require('./swagger');
@@ -77,7 +79,15 @@ function computeNetworkBaseUrl() {
 app.locals.baseNetworkUrl = computeNetworkBaseUrl();
 const JWT_SECRET = process.env.JWT_SECRET || "sua-chave-secreta-super-dificil-de-adivinhar";
 
-initDb();
+initDb()
+  .then(async () => {
+    console.log("Database initialized successfully.");
+    // Rodar migração automática
+    await migrateExcelToSqlite();
+  })
+  .catch((err) => {
+    console.error("Failed to initialize database:", err);
+  });
 
 app.use(bodyParser.json());
 app.use(cors({
