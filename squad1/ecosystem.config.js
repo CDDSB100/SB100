@@ -24,7 +24,7 @@ module.exports = {
       env: {
         FASTAPI_PORT: 8000,
         QDRANT_URL: "http://localhost:6333",
-        LLM_MODEL: "qwen/qwen3-8b"
+        LLM_MODEL: "google/gemini-2.0-flash-001"
       }
     }
   ]

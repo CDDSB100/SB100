@@ -13,8 +13,12 @@ from openai import OpenAI
 from pypdf import PdfReader
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
+from dotenv import load_dotenv
 
-# --- CONFIGURAÇÃO DE LOGS ---
+# --- CONFIGURAÇÃO ---
+env_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
+load_dotenv(dotenv_path=env_path)
+
 LOG_FILE = "llm.log"
 logging.basicConfig(
     level=logging.INFO,
@@ -26,43 +30,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Variáveis de Ambiente e Qdrant Credentials
-OPENROUTER_API_KEY = "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"
-QDRANT_URL = "https://57eb89f7-8062-4156-8bd9-761b749c9d3b.sa-east-1-0.aws.cloud.qdrant.io:6333"
-QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.o4SI3QmZtkdOUXK8KVRunQT1SymcxtZrkzUVCXmiZvQ"
-COLLECTION_NAME = "sb100"
-
-# Inicialização de Clientes
-def get_openrouter_client():
-    try:
-        return OpenAI(
-            base_url="https://openrouter.ai/api/v1",
-            api_key=OPENROUTER_API_KEY,
-            default_headers={
-                "HTTP-Referer": "https://github.com/google/gemini-cli", # Site URL opcional
-                "X-Title": "Gemini-CLI Agricultural Curator", # App Name opcional
-            }
-        )
-    except Exception as e:
-        logger.error(f"Erro ao iniciar OpenRouter: {e}")
-    return None
-
-client_llm = get_openrouter_client()
-LLM_MODEL = "qwen/qwen3-8b"
-
-client_qdrant = None
-encoder = None
-
-if QDRANT_URL and QDRANT_API_KEY:
-    try:
-        from qdrant_client import QdrantClient
-        client_qdrant = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
-        encoder = SentenceTransformer("all-MiniLM-L6-v2")
-    except Exception as e:
-        logger.error(f"Erro ao iniciar Qdrant/Encoder: {e}")
-
 app = FastAPI()
 
+# ========== CONFIGURAÇÃO DE CORS ==========
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -71,11 +41,36 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Variáveis de Ambiente
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+QDRANT_URL = os.getenv("QDRANT_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+QDRANT_COLLECTION = "BaseCurador"
+
+client_groq = None
+if GROQ_API_KEY:
+    try:
+        client_groq = Groq(api_key=GROQ_API_KEY)
+    except Exception as e:
+        logger.error(f"Erro ao iniciar Groq: {e}")
+
+client_qdrant = None
+encoder = None
+
+if QDRANT_URL and QDRANT_API_KEY:
+    try:
+        client_qdrant = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
+        encoder = SentenceTransformer("all-MiniLM-L6-v2")
+    except Exception as e:
+        logger.error(f"Erro ao iniciar Qdrant/Encoder: {e}")
+
 class PDFPayload(BaseModel):
     encoded_content: str
-    content_type: str 
+    content_type: str
     headers: List[str]
     category: Optional[str] = None
+    ignore_conflict: Optional[bool] = False
+    metadata: Optional[Dict[str, Any]] = None
 
 # --- FUNÇÕES AUXILIARES ---
 
@@ -88,177 +83,87 @@ def clean_text_for_llm(text: str) -> str:
 def get_document_text(encoded_content: str, content_type: str) -> str:
     try:
         if content_type == 'text':
-            decoded_text = base64.b64decode(encoded_content).decode('utf-8')
-            return clean_text_for_llm(decoded_text)
-        elif content_type == 'pdf':
-            if "," in encoded_content:
-                encoded_content = encoded_content.split(",")[1]
-            pdf_data = base64.b64decode(encoded_content)
-            pdf_file = io.BytesIO(pdf_data)
-            reader = PdfReader(pdf_file)
-            raw_text = ""
-            for i in range(min(len(reader.pages), 10)):
-                page_text = reader.pages[i].extract_text()
-                if page_text: raw_text += page_text + "\n"
-            return clean_text_for_llm(raw_text)
-        else:
-            raise ValueError(f"Tipo desconhecido: {content_type}")
+            return base64.b64decode(encoded_content).decode('utf-8')
+        # PDF parsing removido para poupar recursos da VM. Node.js deve enviar o texto.
+        return ""
     except Exception as e:
-        logger.error(f"Erro na extração: {e}")
-        raise HTTPException(status_code=400, detail=str(e))
+        logger.error(f"Erro extração: {e}")
+        return ""
 
 def search_similar_docs(text_query: str, limit: int = 3) -> str:
-    if not client_qdrant or not encoder:
-        return "Nenhum contexto prévio disponível."
+    if not client_qdrant or not encoder: return "Contexto indisponível."
     try:
-        query_vector = encoder.encode(text_query[:1000]).tolist()
-        
-        # Use simple search call with named arguments
-        hits = client_qdrant.search(
-            collection_name=COLLECTION_NAME,
-            query_vector=query_vector,
-            limit=limit
-        )
+        vector = encoder.encode(text_query[:1000]).tolist()
+        hits = client_qdrant.query_points(
+            collection_name=QDRANT_COLLECTION,
+            query_batch=[{"vector": vector, "limit": limit}]
+        ).batch[0]
+        return "\n".join([f"- {h.payload.get('text', '')[:500]}" for h in hits])
+    except: return "Erro no banco."
 
-        context = ""
-        for hit in hits:
-            # Handle standard Qdrant result object
-            payload = hit.payload if hasattr(hit, 'payload') else {}
-            snippet = payload.get("text", "")[:500]
-            context += f"- {snippet}\n"
-        return context if context else "Nenhum contexto prévio relevante."
-    except Exception as e:
-        logger.error(f"Erro Qdrant: {e} | Tipo Cliente: {type(client_qdrant)}")
-        return "Erro ao acessar base de conhecimento."
-
-# --- ENDPOINT PRINCIPAL ---
+# --- ENDPOINT ---
 
 @app.post("/curadoria")
 async def curar_documento(payload: PDFPayload):
-    logger.info(f"Usando modelo: {LLM_MODEL}")
-    if not client_llm:
-        raise HTTPException(status_code=503, detail="OpenRouter não configurado.")
-
+    if not client_groq: raise HTTPException(status_code=503)
     document_text = get_document_text(payload.encoded_content, payload.content_type)
-    if len(document_text) < 150:
-         return {
-             "status": "rejected", 
-             "aiFeedback": {
-                 "technical_summary": "Rejeitado: Texto insuficiente.",
-                 "agronomic_insights": "N/A",
-                 "relevance_score": 0.0
-             }
-         }
-
     referencia_rag = search_similar_docs(document_text[:1000])
     
-    # CamelCase Schema Mapping
-    schema = {
-        "title": "Title of the work",
-        "subtitle": "Subtitle of the work",
-        "authors": "Author list",
-        "year": "Publication year",
-        "keywords": "Keywords from text",
-        "abstract": "Brief summary",
-        "documentType": "Type of document",
-        "publisher": "Publisher name",
-        "institution": "Institution name",
-        "location": "Location",
-        "workType": "Work type",
-        "journalTitle": "Journal title",
-        "journalQuartile": "Journal quartile",
-        "volume": "Volume",
-        "issue": "Issue",
-        "pages": "Pages",
-        "doi": "DOI link",
-        "numbering": "Numbering",
-        "qualis": "Qualis classification",
-        "soilAndRegionCharacteristics": "One paragraph describing soil and region",
-        "toolsAndTechniques": "List of techniques used",
-        "nutrients": "List of nutrients studied",
-        "nutrientSupplyStrategies": "Fertilization strategies",
-        "cropGroups": "Crop groups",
-        "cropsPresent": "Specific crops",
-        "aiFeedback": {
-            "technical_summary": "Technical summary in Portuguese",
-            "agronomic_insights": "Agronomic insights in Portuguese",
-            "relevance_score": 0.0
-        },
-        "status": "approved_ia OR rejected"
-    }
+    headers_to_extract = [h for h in payload.headers if h not in ["CATEGORIA", "curatorFeedback", "aiFeedback", "status"]]
 
-    system_prompt = f"""You are a scientific curator assistant specializing in agriculture (Soil, Citrus, and Sugarcane).
-Your task is to extract metadata from the provided text and return a valid JSON object matching the requested schema.
+    if payload.category == "solos":
+        contexto = "Especialista em Ciência do Solo (Pedologia/Física/Química)."
+        criterios = "1. Foco em Manejo, Fertilidade, Conservação ou Biologia do Solo. 2. Aceite Relatórios Técnicos e Experimentos."
+    else:
+        contexto = "Especialista em Citricultura e Cana-de-açúcar."
+        criterios = "1. Foco em produção/manejo de Citros ou Cana. 2. Aceite Relatórios de Pesquisa e Teses."
 
-CRITERIA FOR APPROVAL (status field):
-1. The paper MUST be about Soil science OR Citrus/Sugarcane cultivation.
-2. It MUST be a scientific study (paper, thesis, technical report).
-3. It MUST NOT contradict the provided 'Existing Database Knowledge'.
+    system_prompt = f"""Você é um {contexto}.
+Sua missão: Extrair metadados e atuar como CURADOR CIENTÍFICO.
 
-Return 'approved_ia' in status if all criteria are met, otherwise return 'rejected'.
-All string values MUST be in PORTUGUESE (PT-BR).
-Do not translate JSON keys.
+CRITÉRIOS DE APROVAÇÃO:
+{criterios}
+3. Verifique contradições com o BANCO: {referencia_rag}
 
-SCHEMA:
-{json.dumps(schema, indent=2)}
+REGRAS DE SAÍDA:
+- Use APENAS JSON plano (sem objetos aninhados).
+- No campo "APROVAÇÃO CURADOR (marcar)", retorne true (booleano).
+- No campo "FEEDBACK DO CURADOR (escrever)", explique DETALHADAMENTE a contribuição técnica do estudo para a categoria {payload.category}.
+- Se aprovar, o feedback DEVE começar com "Aprovado:".
+
+CAMPOS DO JSON:
+{json.dumps({h: "string" for h in headers_to_extract}, indent=2)}
+E os campos: "APROVAÇÃO CURADOR (marcar)": boolean, "FEEDBACK DO CURADOR (escrever)": "texto"
 """
 
-    user_prompt = f"""
-### EXISTING DATABASE KNOWLEDGE:
-{referencia_rag}
-
-### INPUT TEXT:
-{document_text[:6000]}
-
-### OUTPUT:
-Return ONLY the filled JSON object."""
+    user_prompt = f"TEXTO:\n{document_text[:6000]}"
 
     try:
-        completion = client_llm.chat.completions.create(
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ],
-            model=LLM_MODEL,
-            temperature=0.0
+        completion = client_groq.chat.completions.create(
+            messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}],
+            model="llama-3.1-8b-instant",
+            temperature=0.0,
+            response_format={"type": "json_object"}
         )
-        content = completion.choices[0].message.content.strip()
-        # Find JSON if mixed with other text
-        json_match = re.search(r'\{.*\}', content, re.DOTALL)
-        if json_match:
-            return json.loads(json_match.group(0))
-        return json.loads(content)
+        result = json.loads(completion.choices[0].message.content)
+        if "category" not in result: result["category"] = payload.category
+        return result
     except Exception as e:
-        logger.error(f"Erro OpenRouter: {e}")
+        logger.error(f"Erro Groq: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/categorize")
 async def categorize_article(payload: PDFPayload):
-    logger.info(f"Usando modelo (Categorização): {LLM_MODEL}")
-    if not client_llm:
-        raise HTTPException(status_code=503, detail="OpenRouter não configurado.")
     document_text = get_document_text(payload.encoded_content, payload.content_type)
-
-    system_prompt = """Classify the article into ONE category: 'solos' or 'citros e cana'.
-Return ONLY the category name in lowercase."""
-    
+    prompt = f"Classifique em 'solos' ou 'citros e cana'. Retorne apenas a palavra.\n\n{document_text[:2000]}"
     try:
-        completion = client_llm.chat.completions.create(
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"ARTICLE:\n{document_text[:4000]}"}
-            ],
-            model=LLM_MODEL,
-            temperature=0.0,
-            max_tokens=20,
+        completion = client_groq.chat.completions.create(
+            messages=[{"role": "user", "content": prompt}],
+            model="llama-3.1-8b-instant", temperature=0.0
         )
-        category = completion.choices[0].message.content.strip().lower()
-        if "solo" in category: return {"category": "solos"}
-        return {"category": "citros e cana"}
-    except Exception as e:
-        logger.error(f"Erro OpenRouter: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
+        cat = completion.choices[0].message.content.strip().lower()
+        return {"category": "solos" if "solo" in cat else "citros e cana"}
+    except: return {"category": "citros e cana"}
 
 @app.get("/")
-def read_root():
-    return {"status": "online", "qdrant": "connected" if client_qdrant else "offline"}
+def read_root(): return {"status": "online"}

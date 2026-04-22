@@ -460,18 +460,52 @@ function CurationPage() {
     }
   };
 
-  const handleSingleCuration = async (workId) => {
+  // --- MODAL DE CONFLITO ---
+  const [conflictModalOpen, setConflictModalOpen] = useState(false);
+  const [conflictData, setConflictData] = useState(null);
+  const [activeArticleId, setActiveArticleId] = useState(null);
+
+  const handleSingleCuration = async (workId, force = false) => {
     setProcessingRow(workId);
     try {
-      const response = await triggerSingleCuration(workId);
+      const response = await triggerSingleCuration(workId, force);
+      console.log("Response da IA:", response);
+      
+      if (response.conflict) {
+        console.log("Conflito detectado! Abrindo modal...");
+        setConflictData(response.conflict_details);
+        setActiveArticleId(workId);
+        setConflictModalOpen(true);
+        return;
+      }
+
       setAnalysisResult(response.updatedArticle || response.article);
       setOpenAnalysisDialog(true);
       setSnackbar({ open: true, message: "Análise concluída!", severity: "success" });
       fetchArticles();
     } catch (err) {
+      console.error("Erro na curadoria:", err);
       setSnackbar({ open: true, message: "Erro na análise: " + err.message, severity: "error" });
     } finally {
       setProcessingRow(null);
+    }
+  };
+
+  const handleResolveConflict = async (resolution) => {
+    try {
+      setProcessingRow(activeArticleId);
+      setConflictModalOpen(false);
+      
+      const response = await resolveConflict(activeArticleId, resolution, conflictData.conflicting_id);
+      
+      setSnackbar({ open: true, message: response.message, severity: "success" });
+      fetchArticles();
+    } catch (err) {
+      setSnackbar({ open: true, message: "Erro ao resolver conflito: " + err.message, severity: "error" });
+    } finally {
+      setProcessingRow(null);
+      setConflictData(null);
+      setActiveArticleId(null);
     }
   };
 
@@ -1042,11 +1076,22 @@ function CurationPage() {
                             <IconButton 
                               size="small"
                               color="primary"
-                              onClick={() => handleSingleCuration(article.workId)}
+                              onClick={() => handleSingleCuration(article.workId, false)}
                               disabled={processingRow === article.workId}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <AutoFixHighIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                          <Tooltip title="Forçar Reanálise Completa">
+                            <IconButton 
+                              size="small"
+                              color="secondary"
+                              onClick={() => handleSingleCuration(article.workId, true)}
+                              disabled={processingRow === article.workId}
+                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                            >
+                              <BuildIcon fontSize="small" />
                             </IconButton>
                           </Tooltip>
                           
@@ -1384,6 +1429,108 @@ function CurationPage() {
           >
             {pendingAction?.action === 'ai_feedback' ? 'Salvar Feedback' : `Finalizar ${pendingAction?.action === 'approve' ? 'Aprovação' : 'Rejeição'}`}
           </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Conflict Modal */}
+      <Dialog open={conflictModalOpen} onClose={() => setConflictModalOpen(false)} maxWidth="md" fullWidth PaperProps={{ sx: { borderRadius: 4 } }}>
+        <DialogTitle sx={{ fontWeight: 900, bgcolor: 'warning.main', color: 'white', py: 3 }}>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <ErrorIcon fontSize="large" />
+            <Typography variant="h5" sx={{ fontWeight: 900 }}>Conflito de Informação Detectado</Typography>
+          </Stack>
+        </DialogTitle>
+        <DialogContent sx={{ p: 4 }}>
+          {conflictData && (
+            <Stack spacing={3}>
+              <Alert severity="warning" variant="outlined" sx={{ fontWeight: 600 }}>
+                A IA detectou que este novo artigo contradiz ou duplica informações já existentes no banco de dados vetorial (Qdrant).
+              </Alert>
+              
+              <Box sx={{ p: 3, bgcolor: 'grey.50', borderRadius: 3 }}>
+                <Typography variant="subtitle2" color="primary" sx={{ fontWeight: 900, mb: 1 }}>POR QUE HÁ UM CONFLITO?</Typography>
+                <Typography variant="body1" sx={{ fontWeight: 500 }}>{conflictData.explanation}</Typography>
+              </Box>
+
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <Box sx={{ p: 2, bgcolor: '#fff3e0', borderRadius: 3, border: '1px solid #ffe0b2', height: '100%' }}>
+                    <Typography variant="subtitle2" color="warning.dark" sx={{ fontWeight: 900, mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <StorageIcon fontSize="small" /> CONTEÚDO NO BANCO (QDRANT)
+                    </Typography>
+                    <Typography variant="caption" sx={{ fontWeight: 800, display: 'block', mb: 1 }}>ID: {conflictData.conflicting_id}</Typography>
+                    <Box sx={{ 
+                      maxHeight: '200px', 
+                      overflowY: 'auto', 
+                      fontSize: '0.8rem', 
+                      bgcolor: 'rgba(255,255,255,0.5)', 
+                      p: 1.5, 
+                      borderRadius: 2,
+                      fontStyle: 'italic'
+                    }}>
+                      {conflictData.conflicting_text || "Texto não disponível."}
+                    </Box>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Box sx={{ p: 2, bgcolor: '#e3f2fd', borderRadius: 3, border: '1px solid #bbdefb', height: '100%' }}>
+                    <Typography variant="subtitle2" color="primary.dark" sx={{ fontWeight: 900, mb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <PictureAsPdfIcon fontSize="small" /> NOVO DOCUMENTO (PREVIEW)
+                    </Typography>
+                    <Typography variant="caption" sx={{ fontWeight: 800, display: 'block', mb: 1 }}>Conteúdo do arquivo sendo processado</Typography>
+                    <Box sx={{ 
+                      maxHeight: '200px', 
+                      overflowY: 'auto', 
+                      fontSize: '0.8rem', 
+                      bgcolor: 'rgba(255,255,255,0.5)', 
+                      p: 1.5, 
+                      borderRadius: 2 
+                    }}>
+                      {conflictData.document_text_preview || "Texto não disponível."}
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+
+              <Typography variant="h6" sx={{ fontWeight: 800, mt: 2 }}>O que você deseja fazer?</Typography>
+              
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <Button 
+                    fullWidth 
+                    variant="contained" 
+                    color="primary" 
+                    size="large"
+                    onClick={() => handleResolveConflict('overwrite_chunk')}
+                    sx={{ py: 2, borderRadius: 3, fontWeight: 800 }}
+                  >
+                    Sobrescrever Artigo Existente
+                  </Button>
+                  <Typography variant="caption" sx={{ textAlign: 'center', display: 'block', mt: 1, color: 'text.secondary' }}>
+                    Substitui a informação antiga pela nova no banco local.
+                  </Typography>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Button 
+                    fullWidth 
+                    variant="outlined" 
+                    color="error" 
+                    size="large"
+                    onClick={() => handleResolveConflict('discard')}
+                    sx={{ py: 2, borderRadius: 3, fontWeight: 800 }}
+                  >
+                    Descartar Novo Artigo
+                  </Button>
+                  <Typography variant="caption" sx={{ textAlign: 'center', display: 'block', mt: 1, color: 'text.secondary' }}>
+                    Ignora o novo arquivo e mantém o banco como está.
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Stack>
+          )}
+        </DialogContent>
+        <DialogActions sx={{ p: 3 }}>
+          <Button onClick={() => setConflictModalOpen(false)} color="inherit">Cancelar e Revisar</Button>
         </DialogActions>
       </Dialog>
 

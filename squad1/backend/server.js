@@ -36,6 +36,7 @@ const {
   processDriveFolderForBatchInsert,
   uploadFileToDrive,
   downloadCuratedDocuments,
+  resolveConflict,
 } = require("./src/services/api_logic.js");
 const { pool, initDb, saltRounds } = require("./src/services/database.js");
 const { extractMetadata, ALL_METADATA_FIELDS } = require("./src/controllers/metadata_controller.js");
@@ -204,8 +205,19 @@ app.post("/api/trigger-curation", authenticateToken, authorizeModify, async (req
 
 app.post("/api/trigger-curation-single", authenticateToken, authorizeModify, async (req, res) => {
   const id = req.body.workId || req.body.row_number || req.body.id;
-  const result = await executarCuradoriaLinhaUnica(id);
+  const forceSave = req.body.forceSave || false;
+  const result = await executarCuradoriaLinhaUnica(id, forceSave);
   res.json(result);
+});
+
+app.post("/api/resolve-conflict", authenticateToken, authorizeModify, async (req, res) => {
+  const { articleId, resolution, conflictingId } = req.body;
+  try {
+    const result = await resolveConflict(articleId, resolution, conflictingId);
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.post("/api/categorize-single", authenticateToken, authorizeModify, async (req, res) => {
@@ -269,14 +281,14 @@ app.post("/api/manual-insert", authenticateToken, authorizeModify, upload.single
 });
 
 app.post("/api/manual-approval", authenticateToken, authorizeModify, async (req, res) => {
-    const { row_number, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback } = req.body;
-    const result = await aprovarManualmente(row_number, fileName, req.user.username, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback);
+    const { workId, fileName, curatorFeedback, feedbackOnAi, aiFeedback } = req.body;
+    const result = await aprovarManualmente(workId, fileName, req.user.username, curatorFeedback, feedbackOnAi, aiFeedback);
     res.json(result);
 });
 
 app.post("/api/manual-rejection", authenticateToken, authorizeModify, async (req, res) => {
-    const { row_number, fileName, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback } = req.body;
-    const result = await reprovarManualmente(row_number, fileName, req.user.username, feedbackCurador, feedbackSobreIA, aiAnalysisFeedback);
+    const { workId, fileName, curatorFeedback, feedbackOnAi, aiFeedback } = req.body;
+    const result = await reprovarManualmente(workId, fileName, req.user.username, curatorFeedback, feedbackOnAi, aiFeedback);
     res.json(result);
 });
 

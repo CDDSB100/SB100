@@ -11,31 +11,73 @@ class Article {
       const params = [];
       const whereClauses = [];
 
+      const processCondition = (key, value, clauses) => {
+        if (value && typeof value === 'object' && !Array.isArray(value)) {
+          if (value.$ne !== undefined) {
+            if (value.$ne === null) {
+              clauses.push(`"${key}" IS NOT NULL`);
+            } else {
+              clauses.push(`"${key}" != ?`);
+              params.push(value.$ne);
+            }
+          }
+          if (value.$exists !== undefined) {
+            if (value.$exists) {
+              clauses.push(`"${key}" IS NOT NULL`);
+            } else {
+              clauses.push(`"${key}" IS NULL`);
+            }
+          }
+          if (value.$regex !== undefined) {
+             clauses.push(`"${key}" LIKE ?`);
+             params.push(`%${value.$regex.source || value.$regex}%`);
+          }
+          if (value.$in !== undefined && Array.isArray(value.$in)) {
+             const placeholders = value.$in.map(() => '?').join(', ');
+             clauses.push(`"${key}" IN (${placeholders})`);
+             params.push(...value.$in);
+          }
+        } else if (value === null) {
+          clauses.push(`"${key}" IS NULL`);
+        } else {
+          clauses.push(`"${key}" = ?`);
+          params.push(value);
+        }
+      };
+
       // Basic support for Mongoose-style query
       if (Object.keys(query).length > 0) {
         for (const [key, value] of Object.entries(query)) {
           if (key === '$or' && Array.isArray(value)) {
             const orClauses = [];
             for (const condition of value) {
+              const subClauses = [];
               for (const [orKey, orValue] of Object.entries(condition)) {
-                if (orValue && typeof orValue === 'object' && orValue.$ne !== undefined) {
-                  orClauses.push(`"${orKey}" != ?`);
-                  params.push(orValue.$ne);
-                } else {
-                  orClauses.push(`"${orKey}" = ?`);
-                  params.push(orValue);
-                }
+                processCondition(orKey, orValue, subClauses);
+              }
+              if (subClauses.length > 0) {
+                orClauses.push(`(${subClauses.join(' AND ')})`);
               }
             }
             if (orClauses.length > 0) {
               whereClauses.push(`(${orClauses.join(' OR ')})`);
             }
-          } else if (value && typeof value === 'object' && value.$ne !== undefined) {
-            whereClauses.push(`"${key}" != ?`);
-            params.push(value.$ne);
+          } else if (key === '$and' && Array.isArray(value)) {
+             const andClauses = [];
+             for (const condition of value) {
+               const subClauses = [];
+               for (const [andKey, andValue] of Object.entries(condition)) {
+                 processCondition(andKey, andValue, subClauses);
+               }
+               if (subClauses.length > 0) {
+                 andClauses.push(`(${subClauses.join(' AND ')})`);
+               }
+             }
+             if (andClauses.length > 0) {
+               whereClauses.push(`(${andClauses.join(' AND ')})`);
+             }
           } else {
-            whereClauses.push(`"${key}" = ?`);
-            params.push(value);
+            processCondition(key, value, whereClauses);
           }
         }
       }
@@ -80,13 +122,29 @@ class Article {
     return { success: true };
   }
 
-  static async deleteMany() {
-    await pool.execute('DELETE FROM articles');
-    return { success: true };
+  static async deleteMany(query = {}) {
+    if (Object.keys(query).length === 0) {
+      await pool.execute('DELETE FROM articles');
+      return { success: true, deletedCount: -1 }; // deletedCount not easily available without extra query
+    }
+    
+    // For specific deleteMany, we find then delete
+    const articles = await this.find(query);
+    for (const article of articles) {
+      await this.findByIdAndDelete(article._id);
+    }
+    return { success: true, deletedCount: articles.length };
   }
 
   async save() {
-    const fields = Object.keys(this).filter(k => k !== '_id' && k !== 'createdAt' && k !== 'updatedAt');
+    // Collect all fields from this object
+    const fields = Object.keys(this).filter(k => 
+      k !== '_id' && 
+      k !== 'createdAt' && 
+      k !== 'updatedAt' && 
+      typeof this[k] !== 'function'
+    );
+    
     // For SQLite, we should stringify objects
     const values = fields.map(f => {
         const val = this[f];

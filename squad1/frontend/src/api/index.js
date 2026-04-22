@@ -47,9 +47,19 @@ export const triggerBatchCuration = async () => {
   return response.data;
 };
 
-export const triggerSingleCuration = async (workId) => {
+export const triggerSingleCuration = async (workId, forceSave = false) => {
   const response = await api.post("/trigger-curation-single", {
     workId,
+    forceSave,
+  });
+  return response.data;
+};
+
+export const resolveConflict = async (articleId, resolution, conflictingId) => {
+  const response = await api.post("/resolve-conflict", {
+    articleId,
+    resolution,
+    conflictingId
   });
   return response.data;
 };

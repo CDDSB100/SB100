@@ -51,8 +51,8 @@ async function performOCR(pdfBuffer, maxPages = 3) {
     console.log(`Iniciando OCR para as primeiras ${maxPages} páginas...`);
     let fullText = "";
     try {
-        const { pdfToImg } = await import('pdf-to-img');
-        const images = await pdfToImg(pdfBuffer);
+        const pdfToImgModule = await import('pdf-to-img');
+        const images = await pdfToImgModule.pdf(pdfBuffer);
         let pageCount = 0;
         
         for await (const image of images) {
@@ -233,11 +233,6 @@ async function extractMetadata(req, res) {
             const data = await pdf(file.buffer);
             documentFullText = data.text;
             
-            if (!documentFullText || documentFullText.trim().length < 500) {
-                const ocrText = await performOCR(file.buffer);
-                documentFullText = (documentFullText || "") + "\n\n" + ocrText;
-            }
-
             queryTitle = data.info.Title || (documentFullText || '').split('\n')[0].trim();
         } catch (e) {
             console.error("Erro ao processar PDF:", e.message)
@@ -257,4 +252,5 @@ async function extractMetadata(req, res) {
 module.exports = {
     ALL_METADATA_FIELDS,
     extractMetadata,
+    performOCR,
 };
