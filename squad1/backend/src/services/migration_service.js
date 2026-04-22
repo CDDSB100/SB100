@@ -9,7 +9,13 @@ async function migrateExcelToSqlite() {
     console.log('--- Verificando Migração Automática (Excel -> SQLite) ---');
     
     if (!fs.existsSync(CONSOLIDADO_PATH)) {
-        console.warn('  > Aviso: Arquivo Excel não encontrado. Pulando migração.');
+        console.warn('  > Aviso: Arquivo Excel não encontrado em:', CONSOLIDADO_PATH);
+        return;
+    }
+
+    const stats = fs.statSync(CONSOLIDADO_PATH);
+    if (stats.isDirectory()) {
+        console.error('  > Erro: O caminho do Excel aponta para um diretório, não um arquivo:', CONSOLIDADO_PATH);
         return;
     }
 
