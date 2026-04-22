@@ -170,15 +170,18 @@ async function direcionarArquivoAposProcessamentoLocal(fileName, article, aprova
 // --- MAIN LOGIC ---
 async function processarUmArtigo(articleId, forceSave = false) {
   let article = null;
-  if (typeof articleId === 'number' || !isNaN(Number(articleId))) {
-    article = await Article.findById(articleId);
-  }
-  
+
+  // No SQLite o ID é numérico ou o workId é string. Tentamos ambos.
+  article = await Article.findById(articleId);
+
   if (!article) {
     article = await Article.findOne({ workId: articleId });
   }
 
-  if (!article) throw new Error(`Artigo não encontrado (ID/WorkId: ${articleId}).`);
+  if (!article) {
+    console.error(`[processarUmArtigo] Artigo não encontrado para o ID: ${articleId}`);
+    return { success: false, error: "Artigo não encontrado" };
+  }
 
   const fileName = article.documentUrl || "";
   if (!fileName) return { success: false, article };
@@ -306,14 +309,17 @@ async function processarUmArtigo(articleId, forceSave = false) {
     await direcionarArquivoAposProcessamentoLocal(fileName, article, boolAprovado);
     return { success: true, article };
   } catch (e) {
-    console.error(`  > ERROR on article ${articleId}: ${e.message}`);
-    article.status = "Rejeitado";
-    article.aiFeedback = { 
-      technical_summary: `Falha no processamento: ${e.message}`, 
-      agronomic_insights: "Erro na extração de conteúdo.", 
-      relevance_score: 0 
-    };
-    await article.save();
+    const errorId = articleId || (article ? article._id : "N/A");
+    console.error(`  > ERROR on article ${errorId}: ${e.message}`);
+    if (article) {
+      article.status = "Rejeitado";
+      article.aiFeedback = { 
+        technical_summary: `Falha no processamento: ${e.message}`, 
+        agronomic_insights: "Erro na extração de conteúdo.", 
+        relevance_score: 0 
+      };
+      await article.save();
+    }
     return { success: false, article };
   }
 }
