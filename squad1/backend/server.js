@@ -261,7 +261,7 @@ app.post("/api/categorize-single", authenticateToken, authorizeModify, async (re
 
 app.get("/api/curation", authenticateToken, async (req, res) => {
   let articles = await getCuratedArticles();
-  if (req.user && req.user.role !== 'admin' && req.user.allowed_categories) {
+  if (req.user && req.user.role !== 'admin' && req.user.allowed_categories && req.user.allowed_categories.length > 0) {
     const allowed = req.user.allowed_categories.map(c => String(c).toLowerCase());
     articles = articles.filter(a => allowed.includes(String(a.category || "").toLowerCase()));
   }
@@ -270,7 +270,7 @@ app.get("/api/curation", authenticateToken, async (req, res) => {
 
 app.get("/api/articles/status/:status", authenticateToken, async (req, res) => {
   let articles = await getArticlesByStatus(req.params.status);
-  if (req.user && req.user.role !== 'admin' && req.user.allowed_categories) {
+  if (req.user && req.user.role !== 'admin' && req.user.allowed_categories && req.user.allowed_categories.length > 0) {
     const allowed = req.user.allowed_categories.map(c => String(c).toLowerCase());
     articles = articles.filter(a => allowed.includes(String(a.category || "").toLowerCase()));
   }
