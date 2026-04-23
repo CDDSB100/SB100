@@ -1,11 +1,26 @@
 const { pool } = require('../services/database');
 
+// Vamos definir aqui os campos permitidos para evitar dependência circular pesada
+// mas garantindo que o banco suporte todos eles.
+const ALLOWED_FIELDS = [
+    "title", "subtitle", "authors", "year", "citationsCount", "keywords", "abstract",
+    "documentType", "publisher", "institution", "location", "workType",
+    "journalTitle", "journalQuartile", "volume", "issue", "pages", "doi",
+    "numbering", "qualis", "category", "soilAndRegionCharacteristics",
+    "toolsAndTechniques", "nutrients", "nutrientSupplyStrategies",
+    "cropGroups", "cropsPresent", "aiFeedback", "curatorFeedback",
+    "feedbackOnAi", "documentUrl", "insertedBy", "approvedBy", "status",
+    "scientometricScore", "workId", "CONTRADICAO_DETECTADA",
+    "MOTIVO_CONTRADICAO", "EVIDENCIAS_CONTRADICAO"
+];
+
 class Article {
   constructor(data) {
     Object.assign(this, data);
   }
 
   static find(query = {}) {
+    // ... (restante do código find igual)
     const executeQuery = async () => {
       let sql = 'SELECT * FROM articles';
       const params = [];
@@ -137,8 +152,9 @@ class Article {
   }
 
   async save() {
-    // Collect all fields from this object
+    // Collect all fields from this object that are allowed in the database
     const fields = Object.keys(this).filter(k => 
+      ALLOWED_FIELDS.includes(k) &&
       k !== '_id' && 
       k !== 'createdAt' && 
       k !== 'updatedAt' && 
@@ -151,16 +167,18 @@ class Article {
         if (val !== null && typeof val === 'object') {
             return JSON.stringify(val);
         }
-        return val;
+        return val === undefined ? null : val;
     });
 
     if (this._id) {
       const setClause = fields.map(f => `"${f}" = ?`).join(', ');
-      await pool.execute(`UPDATE articles SET ${setClause}, updatedAt = CURRENT_TIMESTAMP WHERE _id = ?`, [...values, this._id]);
+      const sql = `UPDATE articles SET ${setClause}, updatedAt = CURRENT_TIMESTAMP WHERE _id = ?`;
+      await pool.execute(sql, [...values, this._id]);
     } else {
       const columns = fields.map(f => `"${f}"`).join(', ');
       const placeholders = fields.map(() => '?').join(', ');
-      const [result] = await pool.execute(`INSERT INTO articles (${columns}) VALUES (${placeholders})`, values);
+      const sql = `INSERT INTO articles (${columns}) VALUES (${placeholders})`;
+      const [result] = await pool.execute(sql, values);
       this._id = result.insertId;
     }
     return this;

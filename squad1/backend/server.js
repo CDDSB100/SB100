@@ -215,6 +215,12 @@ app.post("/api/trigger-curation", authenticateToken, authorizeModify, async (req
 
 app.post("/api/trigger-curation-single", authenticateToken, authorizeModify, async (req, res) => {
   const id = req.body.workId || req.body.row_number || req.body.id;
+  console.log(`[API] Solicitação de curadoria individual recebida para o ID: ${id}`);
+  
+  if (!id) {
+    return res.status(400).json({ error: "ID do artigo não fornecido na requisição." });
+  }
+
   const forceSave = req.body.forceSave || false;
   const result = await executarCuradoriaLinhaUnica(id, forceSave);
   res.json(result);
@@ -278,16 +284,22 @@ app.post("/api/delete-row", authenticateToken, authorizeModify, async (req, res)
 });
 
 app.post("/api/manual-insert", authenticateToken, authorizeModify, upload.single('file'), async (req, res) => {
-  const data = req.body || {};
-  if (req.file) {
-    const tmpPath = path.join(__dirname, "temp_uploads", `${Date.now()}-${req.file.originalname}`);
-    if (!fsSync.existsSync(path.join(__dirname, "temp_uploads"))) fsSync.mkdirSync(path.join(__dirname, "temp_uploads"), { recursive: true });
-    await fs.writeFile(tmpPath, req.file.buffer);
-    data.documentUrl = await uploadFileToDrive(null, tmpPath, req.file.originalname);
-    await fs.unlink(tmpPath);
+  try {
+    const data = req.body || {};
+    if (req.file) {
+      console.log("[manual-insert] Recebido arquivo:", req.file.originalname);
+      const tmpPath = path.join(__dirname, "temp_uploads", `${Date.now()}-${req.file.originalname}`);
+      if (!fsSync.existsSync(path.join(__dirname, "temp_uploads"))) fsSync.mkdirSync(path.join(__dirname, "temp_uploads"), { recursive: true });
+      await fs.writeFile(tmpPath, req.file.buffer);
+      data.documentUrl = await uploadFileToDrive(null, tmpPath, req.file.originalname);
+      await fs.unlink(tmpPath);
+    }
+    const result = await manualInsert(data, req.user ? req.user.username : "Desconhecido");
+    res.status(result.status === "success" ? 201 : (result.status === "skipped" ? 200 : 500)).json(result);
+  } catch (err) {
+    console.error("[manual-insert] Erro crítico:", err.message);
+    res.status(500).json({ status: "error", message: err.message });
   }
-  const result = await manualInsert(data, req.user ? req.user.username : "Desconhecido");
-  res.status(result.status === "success" ? 201 : 500).json(result);
 });
 
 app.post("/api/manual-approval", authenticateToken, authorizeModify, async (req, res) => {
