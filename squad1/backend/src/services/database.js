@@ -90,6 +90,9 @@ const initDb = async () => {
             status TEXT DEFAULT 'pending',
             scientometricScore REAL,
             workId TEXT,
+            CONTRADICAO_DETECTADA TEXT,
+            MOTIVO_CONTRADICAO TEXT,
+            EVIDENCIAS_CONTRADICAO TEXT,
             createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
             updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP
         );
