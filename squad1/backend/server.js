@@ -199,8 +199,25 @@ app.post("/api/register", authenticateToken, authorizeAdmin, async (req, res) =>
 });
 
 app.get("/api/users", authenticateToken, authorizeAdmin, async (req, res) => {
-  const [rows] = await pool.execute("SELECT id, username, email, role, is_active FROM users");
+  const [rows] = await pool.execute("SELECT id, username, email, role, is_active, allowed_categories FROM users");
   res.json(rows);
+});
+
+app.put("/api/users/:id/permissions", authenticateToken, authorizeAdmin, async (req, res) => {
+  const { id } = req.params;
+  const { role, allowedCategories } = req.body;
+  
+  try {
+    const allowedCategoriesStr = JSON.stringify(allowedCategories || []);
+    await pool.execute(
+      "UPDATE users SET role = ?, allowed_categories = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+      [role, allowedCategoriesStr, id]
+    );
+    res.json({ success: true, message: "Permissões atualizadas com sucesso." });
+  } catch (err) {
+    console.error("Erro ao atualizar permissões:", err);
+    res.status(500).json({ error: "Erro ao atualizar permissões no banco de dados." });
+  }
 });
 
 app.delete("/api/users/:id", authenticateToken, authorizeAdmin, async (req, res) => {
