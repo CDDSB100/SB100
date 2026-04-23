@@ -18,7 +18,8 @@ import DescriptionIcon from '@mui/icons-material/Description';
 
 const CATEGORIES_OPTIONS = [
   "solos",
-  "citros e cana"
+  "citros e cana",
+  "genomica"
 ];
 
 const UserManagement = () => {
@@ -212,6 +213,7 @@ const UserManagement = () => {
                   <MenuItem value="cientometria">Cientometria (Leitura/Escrita)</MenuItem>
                   <MenuItem value="curadoria_citros_cana">Curador Citros e Cana</MenuItem>
                   <MenuItem value="curadoria_solos">Curador Solos</MenuItem>
+                  <MenuItem value="curadoria_genomica">Curador Genômica</MenuItem>
                 </Select>
               </FormControl>
             </Box>

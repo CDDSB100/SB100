@@ -242,7 +242,7 @@ const HelpPage = () => {
                     <CheckCircleIcon fontSize="small" /> Curador Especialista
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
-                    Valida os dados extraídos pela IA e decide a aprovação final dentro de sua área técnica (Solos ou Citros/Cana).
+                    Valida os dados extraídos pela IA e decide a aprovação final dentro de sua área técnica (Solos, Genômica ou Citros/Cana).
                   </Typography>
                 </Box>
               </Stack>
@@ -271,3 +271,4 @@ const HelpPage = () => {
 };
 
 export default HelpPage;
+;

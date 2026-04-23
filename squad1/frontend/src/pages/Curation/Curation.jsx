@@ -360,12 +360,13 @@ function CurationPage() {
       const category = (article.category || "").trim();
       const matchCategory = categoryFilter === "all" || category === categoryFilter;
 
-      const currentStatus = article.status || "Pendente";
+      const currentStatus = (article.status || "pending").toLowerCase();
       
       let statusKey = "pending";
-      if (currentStatus === "Aprovado Manualmente") statusKey = "approved_manual";
-      else if (currentStatus === "Aprovado por IA") statusKey = "approved_ia";
-      else if (currentStatus === "Rejeitado") statusKey = "rejected";
+      if (currentStatus === "aprovado manualmente") statusKey = "approved_manual";
+      else if (currentStatus === "aprovado por ia") statusKey = "approved_ia";
+      else if (currentStatus === "rejeitado") statusKey = "rejected";
+      else if (currentStatus === "pending" || currentStatus === "pendente") statusKey = "pending";
 
       const matchStatus = statusFilter === "all" || statusKey === statusFilter;
 
@@ -398,10 +399,13 @@ function CurationPage() {
 
   const stats = useMemo(() => {
     const total = articles.length;
-    const approved_manual = articles.filter(a => a.status === "Aprovado Manualmente").length;
-    const approved_ia = articles.filter(a => a.status === "Aprovado por IA").length;
-    const rejected = articles.filter(a => a.status === "Rejeitado").length;
-    const pending = articles.filter(a => a.status === "Pendente" || !a.status).length;
+    const approved_manual = articles.filter(a => (a.status || "").toLowerCase() === "aprovado manualmente").length;
+    const approved_ia = articles.filter(a => (a.status || "").toLowerCase() === "aprovado por ia").length;
+    const rejected = articles.filter(a => (a.status || "").toLowerCase() === "rejeitado").length;
+    const pending = articles.filter(a => {
+      const s = (a.status || "pending").toLowerCase();
+      return s === "pending" || s === "pendente";
+    }).length;
     return { total, approved_manual, approved_ia, rejected, pending };
   }, [articles]);
 
@@ -464,6 +468,11 @@ function CurationPage() {
   const [conflictModalOpen, setConflictModalOpen] = useState(false);
   const [conflictData, setConflictData] = useState(null);
   const [activeArticleId, setActiveArticleId] = useState(null);
+  
+  // --- MODAL DE CONTRADIÇÃO (Artigos Fictícios) ---
+  const [contradictionModalOpen, setContradictionModalOpen] = useState(false);
+  const [contradictionReason, setContradictionReason] = useState("");
+  const [contradictionEvidence, setContradictionEvidence] = useState("");
 
   const handleSingleCuration = async (workId, force = false) => {
     setProcessingRow(workId);
@@ -477,6 +486,17 @@ function CurationPage() {
         setActiveArticleId(workId);
         setConflictModalOpen(true);
         return;
+      }
+
+      if (response.CONTRADICAO_DETECTADA) {
+        console.log("Contradição/Artigo Fictício detectado! Abrindo modal...");
+        setContradictionReason(response.MOTIVO_CONTRADICAO || "Inconsistências científicas detectadas.");
+        setContradictionEvidence(response.EVIDENCIAS_CONTRADICAO || "");
+        setContradictionModalOpen(true);
+        // Não abrimos o diálogo de análise imediatamente para que o usuário veja o alerta
+        setAnalysisResult(response.updatedArticle || response.article);
+        fetchArticles();
+        return; 
       }
 
       setAnalysisResult(response.updatedArticle || response.article);
@@ -525,11 +545,11 @@ function CurationPage() {
   };
 
   const handleDelete = async (article) => {
-    const workId = article.workId;
+    const id = article._id;
     if (!window.confirm(`Excluir artigo "${article.title}"?`)) return;
-    setProcessingRow(workId);
+    setProcessingRow(id);
     try {
-      await deleteArticleRow(workId);
+      await deleteArticleRow(id);
       setSnackbar({ open: true, message: "Artigo removido!", severity: "success" });
       fetchArticles();
     } catch (err) {
@@ -541,7 +561,7 @@ function CurationPage() {
 
   const handleManualApprove = (article) => {
     setPendingAction({ 
-      workId: article.workId, 
+      workId: article._id, 
       fileName: article.documentUrl, 
       action: 'approve' 
     });
@@ -566,7 +586,7 @@ function CurationPage() {
 
   const handleManualReject = (article) => {
     setPendingAction({ 
-      workId: article.workId, 
+      workId: article._id, 
       fileName: article.documentUrl, 
       action: 'reject' 
     });
@@ -591,7 +611,7 @@ function CurationPage() {
 
   const handleAiFeedbackOnly = (article) => {
     setPendingAction({ 
-      workId: article.workId, 
+      workId: article._id, 
       fileName: article.documentUrl, 
       action: 'ai_feedback' 
     });
@@ -933,7 +953,7 @@ function CurationPage() {
           <>
             <Grid container spacing={3}>
               {filteredArticles.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((article) => (
-                <Grid item xs={12} md={4} key={article.workId}>
+                <Grid item xs={12} md={4} key={article._id}>
                   <Fade in timeout={500}>
                     <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: 4, position: 'relative' }}>
                       <Box sx={{ position: 'absolute', top: 12, right: 12, zIndex: 2 }}>
@@ -1076,8 +1096,8 @@ function CurationPage() {
                             <IconButton 
                               size="small"
                               color="primary"
-                              onClick={() => handleSingleCuration(article.workId, false)}
-                              disabled={processingRow === article.workId}
+                              onClick={() => handleSingleCuration(article._id, false)}
+                              disabled={processingRow === article._id}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <AutoFixHighIcon fontSize="small" />
@@ -1087,8 +1107,8 @@ function CurationPage() {
                             <IconButton 
                               size="small"
                               color="secondary"
-                              onClick={() => handleSingleCuration(article.workId, true)}
-                              disabled={processingRow === article.workId}
+                              onClick={() => handleSingleCuration(article._id, true)}
+                              disabled={processingRow === article._id}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <BuildIcon fontSize="small" />
@@ -1101,7 +1121,7 @@ function CurationPage() {
                             color="success"
                             startIcon={<CheckCircleIcon />}
                             onClick={() => handleManualApprove(article)}
-                            disabled={processingRow === article.workId}
+                            disabled={processingRow === article._id}
                             sx={{ borderRadius: '50px' }}
                           >
                             Aprovar
@@ -1113,7 +1133,7 @@ function CurationPage() {
                             color="error"
                             startIcon={<CancelIcon />}
                             onClick={() => handleManualReject(article)}
-                            disabled={processingRow === article.workId}
+                            disabled={processingRow === article._id}
                             sx={{ borderRadius: '50px' }}
                           >
                             Rejeitar
@@ -1123,7 +1143,7 @@ function CurationPage() {
                             <IconButton 
                               color="default"
                               onClick={() => handleDelete(article)}
-                              disabled={processingRow === article.workId}
+                              disabled={processingRow === article._id}
                               sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
                             >
                               <DeleteIcon fontSize="small" />
@@ -1131,7 +1151,7 @@ function CurationPage() {
                           </Tooltip>
                         </Stack>
                       </CardActions>
-                      {processingRow === article.workId && <LinearProgress sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} />}
+                      {processingRow === article._id && <LinearProgress sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }} />}
                     </Card>
                   </Fade>
                 </Grid>
@@ -1200,15 +1220,30 @@ function CurationPage() {
                 return (
                   <Grid item xs={12} sm={isFullWidth ? 12 : 6} key={fieldKey}>
                     {isEditing ? (
-                      <TextField
-                        fullWidth
-                        label={label}
-                        value={editedResult[fieldKey] || ""}
-                        onChange={(e) => handleFieldChange(fieldKey, e.target.value)}
-                        multiline={fieldKey === "abstract" || fieldKey.includes("Feedback") || fieldKey === "keywords"}
-                        rows={fieldKey === "abstract" ? 4 : (fieldKey.includes("Feedback") ? 6 : 1)}
-                        variant="outlined"
-                      />
+                      fieldKey === "category" ? (
+                        <FormControl fullWidth variant="outlined">
+                          <InputLabel>Categoria</InputLabel>
+                          <Select
+                            value={editedResult[fieldKey] || ""}
+                            onChange={(e) => handleFieldChange(fieldKey, e.target.value)}
+                            label="Categoria"
+                          >
+                            <MenuItem value="solos">Solos</MenuItem>
+                            <MenuItem value="citros e cana">Citros e Cana</MenuItem>
+                            <MenuItem value="genomica">Genômica</MenuItem>
+                          </Select>
+                        </FormControl>
+                      ) : (
+                        <TextField
+                          fullWidth
+                          label={label}
+                          value={editedResult[fieldKey] || ""}
+                          onChange={(e) => handleFieldChange(fieldKey, e.target.value)}
+                          multiline={fieldKey === "abstract" || fieldKey.includes("Feedback") || fieldKey === "keywords"}
+                          rows={fieldKey === "abstract" ? 4 : (fieldKey.includes("Feedback") ? 6 : 1)}
+                          variant="outlined"
+                        />
+                      )
                     ) : (
                       <Box sx={{ p: 2, bgcolor: 'grey.50', borderRadius: 3, height: '100%' }}>
                         <Typography variant="caption" color="primary" sx={{ fontWeight: 900, textTransform: 'uppercase', letterSpacing: 1 }}>{label}</Typography>
@@ -1531,6 +1566,59 @@ function CurationPage() {
         </DialogContent>
         <DialogActions sx={{ p: 3 }}>
           <Button onClick={() => setConflictModalOpen(false)} color="inherit">Cancelar e Revisar</Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Contradiction Modal (Fictitious Article) */}
+      <Dialog open={contradictionModalOpen} onClose={() => setContradictionModalOpen(false)} maxWidth="sm" fullWidth PaperProps={{ sx: { borderRadius: 4, border: '2px solid', borderColor: 'error.main' } }}>
+        <DialogTitle sx={{ fontWeight: 900, bgcolor: 'error.main', color: 'white', py: 3 }}>
+          <Stack direction="row" spacing={2} alignItems="center">
+            <ThermostatIcon fontSize="large" />
+            <Typography variant="h5" sx={{ fontWeight: 900 }}>Alerta de Rigor Científico</Typography>
+          </Stack>
+        </DialogTitle>
+        <DialogContent sx={{ p: 4 }}>
+          <Stack spacing={3} sx={{ mt: 1 }}>
+            <Alert severity="error" variant="filled" sx={{ fontWeight: 700, borderRadius: 2 }}>
+              POSSÍVEL DOCUMENTO FICTÍCIO DETECTADO
+            </Alert>
+            
+            <Typography variant="body1" sx={{ fontWeight: 500, lineHeight: 1.6 }}>
+              O sistema de Inteligência Artificial identificou que este documento apresenta características de conteúdo <strong>fictício</strong>, <strong>alucinado</strong> ou <strong>cientificamente inconsistente</strong>.
+            </Typography>
+
+            <Box sx={{ p: 3, bgcolor: 'error.light', color: 'error.contrastText', borderRadius: 3, opacity: 0.9 }}>
+              <Typography variant="subtitle2" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>Motivo da Suspeita:</Typography>
+              <Typography variant="body2" sx={{ fontWeight: 600, fontStyle: 'italic', mb: 2 }}>
+                {contradictionReason}
+              </Typography>
+              
+              {contradictionEvidence && (
+                <>
+                  <Divider sx={{ my: 1.5, borderColor: 'rgba(255,255,255,0.3)' }} />
+                  <Typography variant="subtitle2" sx={{ fontWeight: 900, mb: 1, textTransform: 'uppercase' }}>Evidências de Contradição:</Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 500, fontSize: '0.8rem', bgcolor: 'rgba(0,0,0,0.1)', p: 1, borderRadius: 1 }}>
+                    {contradictionEvidence}
+                  </Typography>
+                </>
+              )}
+            </Box>
+
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 2 }}>
+              * Recomendamos a revisão manual imediata deste documento antes de qualquer utilização em sua base científica.
+            </Typography>
+          </Stack>
+        </DialogContent>
+        <DialogActions sx={{ p: 3, bgcolor: 'grey.50' }}>
+          <Button 
+            fullWidth 
+            variant="contained" 
+            color="error" 
+            onClick={() => setContradictionModalOpen(false)}
+            sx={{ borderRadius: '50px', py: 1.5, fontWeight: 800 }}
+          >
+            Entendido, irei revisar manualmente
+          </Button>
         </DialogActions>
       </Dialog>
 

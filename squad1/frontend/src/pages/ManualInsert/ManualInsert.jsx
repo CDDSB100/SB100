@@ -18,7 +18,11 @@ import {
   Fade,
   Stepper,
   Step,
-  StepLabel
+  StepLabel,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -86,6 +90,9 @@ const ManualInsertPage = () => {
     qualis: "",
     documentUrl: "",
     category: "",
+    CONTRADICAO_DETECTADA: false,
+    MOTIVO_CONTRADICAO: "",
+    EVIDENCIAS_CONTRADICAO: "",
   });
 
   const [searchTitle, setSearchTitle] = useState("");
@@ -123,11 +130,17 @@ const ManualInsertPage = () => {
       setFormData((prev) => {
         const updated = { ...prev };
         Object.keys(response).forEach(key => {
-          if (key in updated) updated[key] = response[key];
+          // Map all fields, even if not in initial state (to be safe)
+          updated[key] = response[key];
         });
         return updated;
       });
-      setSuccess("Dados extraídos com sucesso! Revise os campos abaixo.");
+
+      if (response.CONTRADICAO_DETECTADA) {
+          setError(`Alerta de Rigor Científico: ${response.MOTIVO_CONTRADICAO}`);
+      } else {
+          setSuccess("Dados extraídos com sucesso! Buscamos em Crossref, OpenAlex e via IA.");
+      }
       setActiveStep(1);
     } catch (err) {
       setError(err.response?.data?.error || "Falha na extração por IA.");
@@ -155,6 +168,9 @@ const ManualInsertPage = () => {
         journalQuartile: "", volume: "", issue: "",
         pages: "", doi: "", numbering: "", qualis: "",
         documentUrl: "", category: "",
+        CONTRADICAO_DETECTADA: false,
+        MOTIVO_CONTRADICAO: "",
+        EVIDENCIAS_CONTRADICAO: "",
       });
       setSearchTitle("");
       setFile(null);
@@ -195,8 +211,8 @@ const ManualInsertPage = () => {
               <Typography variant="h6" sx={{ fontWeight: 800, mb: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
                 <AutoFixHighIcon color="secondary" /> 1. Assistente de IA
               </Typography>
-              <Typography variant="body2" color="text.secondary" paragraph>
-                Nossa IA pode preencher os campos automaticamente a partir do PDF ou apenas do título.
+              <Typography variant="body2" color="text.secondary" paragraph sx={{ fontStyle: 'italic' }}>
+                Buscando em: Crossref, OpenAlex e Base Vetorial.
               </Typography>
               
               <Stack spacing={3}>
@@ -230,7 +246,7 @@ const ManualInsertPage = () => {
                   disabled={loading || (!searchTitle && !file)}
                   sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
                 >
-                  {loading ? <CircularProgress size={24} color="inherit" /> : "Extrair com IA"}
+                  {loading ? <CircularProgress size={24} color="inherit" /> : "Extrair com IA Completa"}
                 </Button>
               </Stack>
             </Paper>
@@ -242,14 +258,35 @@ const ManualInsertPage = () => {
                 2. Metadados do Artigo
               </Typography>
               
-              {error && <Alert severity="error" sx={{ mb: 3, borderRadius: 2 }}>{error}</Alert>}
+              {error && <Alert severity={error.includes("Alerta") ? "warning" : "error"} sx={{ mb: 3, borderRadius: 2 }}>{error}</Alert>}
               {success && <Alert severity="success" sx={{ mb: 3, borderRadius: 2 }}>{success}</Alert>}
 
               <Grid container spacing={2}>
                 {Object.keys(formData).map((key) => {
-                  if (key === "documentUrl" || key === "aiFeedback" || key === "feedbackOnAi") return null;
+                  if (["documentUrl", "aiFeedback", "feedbackOnAi", "CONTRADICAO_DETECTADA", "MOTIVO_CONTRADICAO", "EVIDENCIAS_CONTRADICAO"].includes(key)) return null;
                   const label = FIELD_LABELS[key] || key;
                   const isLarge = ["title", "authors", "abstract", "keywords", "soilAndRegionCharacteristics"].includes(key);
+                  
+                  if (key === "category") {
+                    return (
+                      <Grid item xs={12} sm={6} key={key}>
+                        <FormControl fullWidth size="small">
+                          <InputLabel>Categoria</InputLabel>
+                          <Select
+                            name={key}
+                            value={formData[key] || ""}
+                            label="Categoria"
+                            onChange={handleInputChange}
+                          >
+                            <MenuItem value="solos">Solos</MenuItem>
+                            <MenuItem value="citros e cana">Citros e Cana</MenuItem>
+                            <MenuItem value="genomica">Genômica</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Grid>
+                    );
+                  }
+
                   return (
                     <Grid item xs={12} sm={isLarge ? 12 : 6} key={key}>
                       <TextField

@@ -159,16 +159,24 @@ async function direcionarArquivoAposProcessamentoLocal(fileName, article, aprova
       await fs.rename(sourcePath, targetPath);
     }
     
+    // Sanitizar nome para o TXT de feedback (remover caracteres problemáticos)
+    const safeTxtName = cleanName.replace(/\.pdf$/i, "").replace(/[^a-z0-9]/gi, "_") + ".txt";
     const txtContent = ALL_METADATA_FIELDS.map(h => `${h}: ${article[h] || ""}`).join("\n");
-    const txtPath = path.join(targetDir, cleanName.replace(/\.pdf$/i, "") + ".txt");
+    const txtPath = path.join(targetDir, safeTxtName);
+    
     await fs.writeFile(txtPath, txtContent);
   } catch (e) {
-    console.error("  > Archival error: " + e.message);
+    console.error("  > Archival error (non-fatal): " + e.message);
   }
 }
 
 // --- MAIN LOGIC ---
 async function processarUmArtigo(articleId, forceSave = false) {
+  if (!articleId) {
+    console.error("[processarUmArtigo] Erro: ID do artigo é nulo ou indefinido.");
+    return { success: false, error: "ID inválido" };
+  }
+
   let article = null;
 
   // No SQLite o ID é numérico ou o workId é string. Tentamos ambos.
@@ -267,10 +275,24 @@ async function processarUmArtigo(articleId, forceSave = false) {
 
     article.status = boolAprovado ? "Aprovado por IA" : "Rejeitado";
 
+    // Capturar contradição se existir com normalização robusta
+    const rawContradiction = finalData.CONTRADICAO_DETECTADA ?? finalData.contradiction_detected;
+    const isContradictory = normalizarBooleano(rawContradiction);
+
+    if (isContradictory) {
+      article.CONTRADICAO_DETECTADA = true;
+      article.MOTIVO_CONTRADICAO = finalData.MOTIVO_CONTRADICAO || finalData.contradiction_reason || "Conteúdo identificado como inconsistente ou fictício.";
+      article.EVIDENCIAS_CONTRADICAO = finalData.EVIDENCIAS_CONTRADICAO || "";
+    } else {
+      article.CONTRADICAO_DETECTADA = false;
+      article.MOTIVO_CONTRADICAO = "";
+      article.EVIDENCIAS_CONTRADICAO = "";
+    }
+
     // Forçar o objeto de feedback para que o frontend exiba corretamente
     finalData.aiFeedback = {
       technical_summary: feedbackTexto || `O documento sobre ${article.title || "este tema"} foi processado com sucesso.`,
-      agronomic_insights: "Análise técnica detalhada.",
+      agronomic_insights: finalData.MOTIVO_CONTRADICAO || "Análise técnica detalhada.",
       relevance_score: boolAprovado ? 8.5 : 2.0
     };
     
@@ -307,7 +329,14 @@ async function processarUmArtigo(articleId, forceSave = false) {
     }
     await article.save();
     await direcionarArquivoAposProcessamentoLocal(fileName, article, boolAprovado);
-    return { success: true, article };
+    return { 
+      success: true, 
+      article, 
+      updatedArticle: article,
+      CONTRADICAO_DETECTADA: article.CONTRADICAO_DETECTADA,
+      MOTIVO_CONTRADICAO: article.MOTIVO_CONTRADICAO,
+      EVIDENCIAS_CONTRADICAO: article.EVIDENCIAS_CONTRADICAO
+    };
   } catch (e) {
     const errorId = articleId || (article ? article._id : "N/A");
     console.error(`  > ERROR on article ${errorId}: ${e.message}`);
@@ -386,8 +415,13 @@ async function manualInsert(data, username = "Desconhecido") {
   articleData.curatorFeedback = safelyParseJSON(articleData.curatorFeedback);
 
   const article = new Article(articleData);
-  await article.save();
-  return { status: "success", message: "Inserido com sucesso!", article };
+  try {
+    await article.save();
+    return { status: "success", message: "Inserido com sucesso!", article };
+  } catch (err) {
+    console.error("[manualInsert] Erro ao salvar artigo:", err.message);
+    return { status: "error", message: "Erro ao salvar no banco: " + err.message };
+  }
 }
 
 async function getArticlesByStatus(status) {
@@ -505,8 +539,31 @@ async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Descon
 }
 
 async function updateArticle(id, data) {
-  const article = await Article.findById(id);
-  if (!article) throw new Error("Artigo não encontrado.");
+  console.log(`[updateArticle] Recebido ID: ${id}`);
+  let article = null;
+
+  // 1. Tentar buscar pelo ID vindo no corpo dos dados (_id ou workId) se o da URL falhar ou for ambíguo
+  const searchId = id || data._id || data.workId;
+
+  // 2. Tentar buscar por ID numérico (_id)
+  if (!isNaN(Number(searchId))) {
+    article = await Article.findById(Number(searchId));
+  }
+
+  // 3. Tentar buscar por workId (string)
+  if (!article && searchId) {
+    article = await Article.findOne({ workId: searchId });
+  }
+
+  // 4. Fallback: buscar pelo ID original da URL como string
+  if (!article && id) {
+    article = await Article.findById(id);
+  }
+
+  if (!article) {
+    console.error(`[updateArticle] FALHA: Artigo não encontrado para ID: ${id}. Dados recebidos:`, JSON.stringify(data).substring(0, 200));
+    throw new Error("Artigo não encontrado.");
+  }
 
   ALL_METADATA_FIELDS.forEach(f => {
     if (data[f] !== undefined) {

@@ -41,7 +41,10 @@ const ALL_METADATA_FIELDS = [
     "approvedBy",
     "status",
     "scientometricScore",
-    "workId"
+    "workId",
+    "CONTRADICAO_DETECTADA",
+    "MOTIVO_CONTRADICAO",
+    "EVIDENCIAS_CONTRADICAO"
 ];
 
 /**
@@ -115,12 +118,51 @@ async function getCrossrefMetadata(query) {
 }
 
 /**
+ * Busca metadados no OpenAlex como fallback.
+ */
+async function getOpenAlexMetadata(query) {
+    try {
+        console.log(`Buscando no OpenAlex por: ${query}`);
+        const url = "https://api.openalex.org/works";
+        const params = {
+            search: query,
+            per_page: 1,
+        };
+        const response = await axios.get(url, { params });
+
+        if (response.data.results && response.data.results.length > 0) {
+            const item = response.data.results[0];
+            const authors = (item.authorships || [])
+                .map(a => a.author.display_name)
+                .join(", ");
+
+            return {
+                title: item.title || "",
+                authors: authors,
+                year: String(item.publication_year || ""),
+                citationsCount: String(item.cited_by_count || "0"),
+                doi: item.doi || "",
+                documentType: item.type || "",
+                journalTitle: item.primary_location?.source?.display_name || "",
+            };
+        }
+        return null;
+    } catch (e) {
+        console.error(`Erro na busca do OpenAlex: ${e.message}`);
+        return null;
+    }
+}
+
+/**
  * Chama o serviço de categorização do LLM.
  */
-async function callCategorizationApi(pdfBuffer) {
+async function callCategorizationApi(pdfBuffer, documentText = "") {
+    const base64_content = pdfBuffer ? pdfBuffer.toString("base64") : Buffer.from(documentText).toString("base64");
+    const content_type = pdfBuffer ? "pdf" : "text";
+
     const payload = {
-        encoded_content: pdfBuffer.toString("base64"),
-        content_type: "pdf",
+        encoded_content: base64_content,
+        content_type: content_type,
         headers: [],
     };
     try {
@@ -138,22 +180,15 @@ async function callCategorizationApi(pdfBuffer) {
 /**
  * Chama o serviço LLM para extrair metadados adicionais.
  */
-async function callLLMService(documentText, file = null) {
-    let base64_content;
-    let content_type;
-
-    if (file && file.buffer) {
-        base64_content = file.buffer.toString('base64');
-        content_type = 'pdf';
-    } else {
-        base64_content = Buffer.from(documentText).toString('base64');
-        content_type = 'text';
+async function callLLMService(documentText) {
+    if (!documentText || documentText.trim().length < 10) {
+        return { error: "Texto do documento insuficiente para análise LLM." };
     }
 
     try {
         const llmPayload = {
-            encoded_content: base64_content,
-            content_type: content_type,
+            encoded_content: Buffer.from(documentText).toString('base64'),
+            content_type: 'text',
             headers: ALL_METADATA_FIELDS.filter(f => !["category", "status", "insertedBy", "approvedBy"].includes(f)),
         };
 
@@ -172,27 +207,50 @@ async function runExtractionAgent(query, documentText = null, file = null) {
     try {
         let combinedData = ALL_METADATA_FIELDS.reduce((acc, field) => ({ ...acc, [field]: "" }), {});
         let crossrefData = {};
+        let openAlexData = {};
         let llmResult = {};
         let category = "N/A";
 
+        // 1. Buscar em fontes externas (Crossref)
         if (query) {
             crossrefData = await getCrossrefMetadata(query);
             if (crossrefData && !crossrefData.error) {
                 Object.assign(combinedData, crossrefData);
             }
+            
+            // 2. Fallback para OpenAlex se Crossref falhar ou retornar pouco dado
+            if (!combinedData.doi || !combinedData.authors) {
+                openAlexData = await getOpenAlexMetadata(query);
+                if (openAlexData) {
+                    Object.keys(openAlexData).forEach(key => {
+                        if (!combinedData[key] || combinedData[key] === "N/A") {
+                            combinedData[key] = openAlexData[key];
+                        }
+                    });
+                }
+            }
         }
 
+        // 3. Categorização via LLM
         if (file && file.buffer) {
-            category = await callCategorizationApi(file.buffer);
+            category = await callCategorizationApi(file.buffer, documentText);
+            combinedData.category = category;
+        } else if (documentText) {
+            category = await callCategorizationApi(null, documentText);
             combinedData.category = category;
         }
 
-        if (documentText || file) {
-            llmResult = await callLLMService(documentText, file);
+        // 4. Extração profunda via LLM usando o texto extraído
+        if (documentText && documentText.trim().length > 50) {
+            llmResult = await callLLMService(documentText);
             if (llmResult && !llmResult.error) {
                 Object.keys(llmResult).forEach(key => {
-                    if (ALL_METADATA_FIELDS.includes(key) && !combinedData[key]) {
-                        combinedData[key] = llmResult[key];
+                    // Priorizar dados do LLM para campos técnicos complexos
+                    if (ALL_METADATA_FIELDS.includes(key)) {
+                        const val = llmResult[key];
+                        if (val && val !== "N/A" && val !== "---") {
+                             combinedData[key] = val;
+                        }
                     }
                 });
                 
@@ -204,11 +262,11 @@ async function runExtractionAgent(query, documentText = null, file = null) {
         combinedData.feedbackOnAi = {
             is_accurate: true,
             is_useful: true,
-            human_correction_notes: "",
-            ai_performance_rating: 0,
+            human_correction_notes: "Extraído automaticamente via Agente de Metadados.",
+            ai_performance_rating: 4,
             adjustment_required: false
         };
-        combinedData.status = 'pending';
+        combinedData.status = 'Pendente';
 
         return combinedData;
     } catch (e) {
@@ -233,7 +291,13 @@ async function extractMetadata(req, res) {
             const data = await pdf(file.buffer);
             documentFullText = data.text;
             
-            queryTitle = data.info.Title || (documentFullText || '').split('\n')[0].trim();
+            // Fallback para OCR se o texto extraído for muito curto (PDF de imagem)
+            if (!documentFullText || documentFullText.trim().length < 200) {
+                console.log("Texto insuficiente no PDF. Iniciando OCR...");
+                documentFullText = await performOCR(file.buffer);
+            }
+            
+            queryTitle = title || data.info.Title || (documentFullText || '').split('\n')[0].trim();
         } catch (e) {
             console.error("Erro ao processar PDF:", e.message)
             return res.status(500).json({ error: `Falha ao processar o arquivo PDF: ${e.message}` });

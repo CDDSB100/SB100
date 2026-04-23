@@ -104,7 +104,7 @@ const AboutPage = () => {
               </Typography>
               
               <Typography variant="h6" sx={{ opacity: 0.9, fontWeight: 400, mx: "auto", maxWidth: "700px", lineHeight: 1.6 }}>
-                O SB100 é uma iniciativa de vanguarda que une inteligência artificial e curadoria humana para acelerar a pesquisa científica em solos, citros e cana-de-açúcar.
+                O SB100 é uma iniciativa de vanguarda que une inteligência artificial e curadoria humana para acelerar a pesquisa científica em solos, genômica, citros e cana-de-açúcar.
               </Typography>
             </Box>
           </Fade>
