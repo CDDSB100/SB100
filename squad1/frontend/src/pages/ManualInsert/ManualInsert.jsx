@@ -38,7 +38,7 @@ import {
 import { useAuth } from "../../hooks/useAuth";
 
 const FIELD_LABELS = {
-...
+  title: "Título",
   subtitle: "Subtítulo",
   authors: "Autor(es)",
   year: "Ano",
