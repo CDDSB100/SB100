@@ -109,7 +109,7 @@ const SearchForm = ({ onSearch, loading }) => {
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <TextField
-                label="Expressão de Busca (OpenAlex)"
+                label="Expressão de Busca (Bases Globais)"
                 placeholder="Ex: 'climate change' AND ('adaptation' OR 'mitigation')"
                 variant="outlined"
                 fullWidth
@@ -117,7 +117,6 @@ const SearchForm = ({ onSearch, loading }) => {
                 rows={2}
                 value={searchTerms}
                 onChange={(e) => setSearchTerms(e.target.value)}
-                required
                 InputProps={{
                   sx: { borderRadius: 3 }
                 }}
@@ -132,7 +131,6 @@ const SearchForm = ({ onSearch, loading }) => {
                 fullWidth
                 value={startYear}
                 onChange={(e) => setStartYear(e.target.value)}
-                required
                 InputProps={{
                   startAdornment: <InputAdornment position="start"><CalendarTodayIcon fontSize="small" /></InputAdornment>,
                   sx: { borderRadius: 3 }
@@ -146,7 +144,6 @@ const SearchForm = ({ onSearch, loading }) => {
                 fullWidth
                 value={endYear}
                 onChange={(e) => setEndYear(e.target.value)}
-                required
                 InputProps={{
                   startAdornment: <InputAdornment position="start"><CalendarTodayIcon fontSize="small" /></InputAdornment>,
                   sx: { borderRadius: 3 }

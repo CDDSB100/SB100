@@ -37,6 +37,7 @@ const {
   uploadFileToDrive,
   downloadCuratedDocuments,
   resolveConflict,
+  searchAllBases,
 } = require("./src/services/api_logic.js");
 const { pool, initDb, saltRounds } = require("./src/services/database.js");
 const { migrateExcelToSqlite } = require("./src/services/migration_service.js");
@@ -285,7 +286,7 @@ app.get("/api/download-all", authenticateToken, async (req, res) => {
 
 app.post("/api/search", authenticateToken, authorizeModify, async (req, res) => {
   const { search_terms, start_year, end_year, sort_option } = req.body;
-  const results = await searchOpenAlex(search_terms, start_year, end_year, sort_option);
+  const results = await searchAllBases(search_terms, start_year, end_year, sort_option);
   res.json(results);
 });
 

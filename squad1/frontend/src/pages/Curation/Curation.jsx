@@ -99,6 +99,7 @@ const FIELD_LABELS = {
   citationsCount: "Citações",
   keywords: "Palavras-chave",
   abstract: "Resumo",
+  methodology: "Metodologia",
   documentType: "Tipo de Documento",
   publisher: "Editora",
   institution: "Instituição",
@@ -122,6 +123,7 @@ const FIELD_LABELS = {
   aiFeedback: "Análise da IA",
   curatorFeedback: "Feedback do Curador",
   feedbackOnAi: "Avaliação sobre a IA",
+  retrievalSource: "Base de Origem",
   scientometricScore: "Score",
   status: "Status"
 };
@@ -131,9 +133,11 @@ const MASTER_METADATA_FIELDS = [
   "title",
   "subtitle",
   "year",
+  "retrievalSource",
   "citationsCount",
   "keywords",
   "abstract",
+  "methodology",
   "documentType",
   "publisher",
   "institution",

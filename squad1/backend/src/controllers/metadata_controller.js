@@ -13,6 +13,7 @@ const ALL_METADATA_FIELDS = [
     "citationsCount",
     "keywords",
     "abstract",
+    "methodology",
     "documentType",
     "publisher",
     "institution",

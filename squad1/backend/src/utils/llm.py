@@ -138,22 +138,24 @@ async def curar_documento(payload: PDFPayload):
     system_prompt = f"""Você é um {contexto} sênior com alto rigor científico.
 Sua missão: Extrair metadados e atuar como CURADOR CIENTÍFICO CRÍTICO.
 
-CRITÉRIOS DE APROVAÇÃO:
-{criterios}
-3. Verifique contradições com o BANCO: {referencia_rag}
-4. RIGOR CIENTÍFICO: Identifique se o artigo parece FICTÍCIO, gerado por IA sem base real, ou se apresenta contradições metodológicas graves.
+CRITÉRIOS DE ANÁLISE:
+1. {criterios}
+2. Verifique contradições com o BANCO: {referencia_rag}
+3. RIGOR CIENTÍFICO: Identifique se o artigo parece FICTÍCIO, gerado por IA sem base real, ou se apresenta contradições metodológicas graves.
+4. METODOLOGIA: Extraia detalhes específicos sobre como o estudo foi conduzido (materiais, métodos, delineamento experimental, análise estatística).
 
 REGRAS DE SAÍDA:
 - Use APENAS JSON plano.
 - No campo "APROVAÇÃO CURADOR (marcar)", retorne true APENAS se o artigo for cientificamente sólido e relevante.
 - Se o artigo for FICTÍCIO ou apresentar contradições graves, defina "CONTRADICAO_DETECTADA" como true e explique em "MOTIVO_CONTRADICAO".
 - No campo "FEEDBACK DO CURADOR (escrever)", explique DETALHADAMENTE a contribuição técnica.
-- Se aprovado, o feedback deve ser profissional. Se rejeitado, justifique com rigor.
+- No campo "methodology", resuma a abordagem experimental em até 300 palavras.
 
 CAMPOS OBRIGATÓRIOS NO JSON:
 {json.dumps({h: "string" for h in headers_to_extract}, indent=2)}
 Adicione também:
 "category": "string (deve ser 'solos', 'genomica' ou 'citros e cana')",
+"methodology": "string (resumo técnico da metodologia)",
 "APROVAÇÃO CURADOR (marcar)": boolean,
 "FEEDBACK DO CURADOR (escrever)": "string",
 "CONTRADICAO_DETECTADA": boolean,

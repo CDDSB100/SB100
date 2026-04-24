@@ -61,6 +61,7 @@ const initDb = async () => {
             citationsCount TEXT,
             keywords TEXT,
             abstract TEXT,
+            methodology TEXT,
             documentType TEXT,
             publisher TEXT,
             institution TEXT,
@@ -85,6 +86,7 @@ const initDb = async () => {
             curatorFeedback TEXT,
             feedbackOnAi TEXT,
             documentUrl TEXT,
+            retrievalSource TEXT,
             insertedBy TEXT,
             approvedBy TEXT,
             status TEXT DEFAULT 'pending',
@@ -105,6 +107,19 @@ const initDb = async () => {
         
         db.run(createArticlesTableSql, async (err) => {
           if (err) return reject(err);
+
+          // Alter table to add new columns if they don't exist
+          db.all("PRAGMA table_info(articles)", (err, rows) => {
+            if (err) return reject(err);
+            const columns = rows.map(r => r.name);
+            
+            if (!columns.includes('retrievalSource')) {
+              db.run("ALTER TABLE articles ADD COLUMN retrievalSource TEXT");
+            }
+            if (!columns.includes('methodology')) {
+              db.run("ALTER TABLE articles ADD COLUMN methodology TEXT");
+            }
+          });
 
           // Admin user details
           const adminUsername = process.env.ADMIN_USERNAME || "admin";

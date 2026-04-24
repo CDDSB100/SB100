@@ -409,6 +409,7 @@ async function manualInsert(data, username = "Desconhecido") {
   const articleData = { ...data, insertedBy: username };
   if (!articleData.workId) articleData.workId = `manual-${Date.now()}`;
   if (!articleData.status) articleData.status = 'Pendente';
+  if (!articleData.retrievalSource) articleData.retrievalSource = 'Upload Manual';
 
   articleData.aiFeedback = safelyParseJSON(articleData.aiFeedback);
   articleData.feedbackOnAi = safelyParseJSON(articleData.feedbackOnAi);
@@ -530,6 +531,7 @@ async function processSinglePdfForInsert(pdfBuffer, fileName, username = "Descon
   articleData.documentUrl = fileName;
   articleData.insertedBy = username;
   articleData.status = 'Pendente';
+  articleData.retrievalSource = 'Upload de Arquivo';
   
   if (!articleData.title || articleData.title === "N/A") {
     articleData.title = fileName.replace(/\.pdf$/i, "");
@@ -605,11 +607,28 @@ async function downloadCuratedDocuments() {
 async function searchOpenAlex(search_terms, start_year, end_year, sort_option) {
   const url = "https://api.openalex.org/works";
   const params = {
-    search: search_terms,
-    filter: `publication_year:${start_year}-${end_year}`,
-    sort: sort_option === "cited_by_count" ? "cited_by_count:desc" : "publication_year:desc",
+    search: search_terms || "",
     per_page: 50,
   };
+
+  const filters = [];
+  if (start_year && end_year) {
+    filters.push(`publication_year:${start_year}-${end_year}`);
+  } else if (start_year) {
+    filters.push(`publication_year:${start_year}-`);
+  } else if (end_year) {
+    filters.push(`publication_year:-${end_year}`);
+  }
+
+  if (filters.length > 0) {
+    params.filter = filters.join(",");
+  }
+
+  if (sort_option === "cited_by_count" || sort_option === "cited") {
+    params.sort = "cited_by_count:desc";
+  } else if (sort_option === "newest") {
+    params.sort = "publication_year:desc";
+  }
 
   try {
     const response = await axios.get(url, { params });
@@ -623,10 +642,78 @@ async function searchOpenAlex(search_terms, start_year, end_year, sort_option) {
       documentUrl: (work.primary_location && work.primary_location.pdf_url) || work.doi || "",
       documentType: work.type,
       journalTitle: work.primary_location?.source?.display_name || "",
+      methodology: "Extraível via Processamento IA",
+      retrievalSource: "OpenAlex",
     }));
   } catch (error) {
     console.error("OpenAlex Search Error:", error.message);
-    throw new Error("Erro ao buscar no OpenAlex.");
+    return []; // Retorna vazio em vez de erro para não quebrar o fluxo se houver múltiplas bases
+  }
+}
+
+async function searchCrossref(search_terms, start_year, end_year) {
+  if (!search_terms) return [];
+  const url = `https://api.crossref.org/works`;
+  const params = {
+    query: search_terms,
+    rows: 50,
+  };
+
+  const filters = [];
+  if (start_year) filters.push(`from-pub-date:${start_year}-01-01`);
+  if (end_year) filters.push(`until-pub-date:${end_year}-12-31`);
+  
+  if (filters.length > 0) {
+    params.filter = filters.join(",");
+  }
+
+  try {
+    const response = await axios.get(url, { params });
+    if (!response.data.message || !response.data.message.items) return [];
+
+    return response.data.message.items.map(item => ({
+      workId: item.DOI || `crossref-${Math.random().toString(36).substr(2, 9)}`,
+      title: item.title ? item.title[0] : "Sem Título",
+      authors: (item.author || []).map(a => `${a.given || ""} ${a.family || ""}`.trim()).join(", "),
+      year: item.created ? String(item.created["date-parts"][0][0]) : "N/A",
+      doi: item.DOI || "",
+      citationsCount: String(item["is-referenced-by-count"] || "0"),
+      documentUrl: item.URL || item.DOI || "",
+      documentType: item.type,
+      journalTitle: item["container-title"] ? item["container-title"][0] : "",
+      methodology: "Extraível via Processamento IA",
+      retrievalSource: "Crossref",
+    }));
+  } catch (error) {
+    console.error("Crossref Search Error:", error.message);
+    return [];
+  }
+}
+
+async function searchAllBases(search_terms, start_year, end_year, sort_option) {
+  try {
+    const [openAlexResults, crossrefResults] = await Promise.all([
+      searchOpenAlex(search_terms, start_year, end_year, sort_option),
+      searchCrossref(search_terms, start_year, end_year)
+    ]);
+
+    // Combinar e remover duplicados por DOI
+    const combined = [...openAlexResults];
+    const existingDois = new Set(openAlexResults.map(r => r.doi.toLowerCase()).filter(Boolean));
+
+    crossrefResults.forEach(res => {
+      if (res.doi && !existingDois.has(res.doi.toLowerCase())) {
+        combined.push(res);
+        existingDois.add(res.doi.toLowerCase());
+      } else if (!res.doi) {
+        combined.push(res);
+      }
+    });
+
+    return combined;
+  } catch (error) {
+    console.error("Search All Bases Error:", error.message);
+    throw new Error("Erro ao realizar busca nas bases.");
   }
 }
 
@@ -654,10 +741,12 @@ async function saveData(selected_rows, username) {
         ...row,
         insertedBy: username,
         status: 'Pendente',
+        retrievalSource: row.retrievalSource || 'OpenAlex' // Fallback
       });
       await article.save();
       savedCount++;
     } catch (error) {
+      console.error("Save Data Error:", error.message);
       errorCount++;
     }
   }
@@ -771,6 +860,7 @@ module.exports = {
   executarCuradoriaLinhaUnica: processarUmArtigo,
   executarCategorizacaoLinhaUnica,
   searchOpenAlex,
+  searchAllBases,
   saveData,
   deleteUnavailableRows,
   fixMissingTitles,

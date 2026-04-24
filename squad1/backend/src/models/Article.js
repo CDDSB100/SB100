@@ -11,7 +11,8 @@ const ALLOWED_FIELDS = [
     "cropGroups", "cropsPresent", "aiFeedback", "curatorFeedback",
     "feedbackOnAi", "documentUrl", "insertedBy", "approvedBy", "status",
     "scientometricScore", "workId", "CONTRADICAO_DETECTADA",
-    "MOTIVO_CONTRADICAO", "EVIDENCIAS_CONTRADICAO"
+    "MOTIVO_CONTRADICAO", "EVIDENCIAS_CONTRADICAO", "retrievalSource",
+    "methodology"
 ];
 
 class Article {
