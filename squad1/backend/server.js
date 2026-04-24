@@ -149,7 +149,7 @@ const authorizeAdmin = (req, res, next) => {
 };
 
 const authorizeModify = (req, res, next) => {
-  if (req.user && req.user.role !== 'visualizador') next();
+  if (req.user && req.user.role !== 'visualizador' && req.user.role !== 'visitante') next();
   else res.status(403).json({ error: "Apenas leitura." });
 };
 

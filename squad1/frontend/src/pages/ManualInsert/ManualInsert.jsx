@@ -24,7 +24,7 @@ import {
   Select,
   MenuItem
 } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SearchIcon from "@mui/icons-material/Search";
@@ -35,9 +35,10 @@ import {
   manualInsertArticle,
   extractMetadata,
 } from "../../api";
+import { useAuth } from "../../hooks/useAuth";
 
 const FIELD_LABELS = {
-  title: "Título",
+...
   subtitle: "Subtítulo",
   authors: "Autor(es)",
   year: "Ano",
@@ -67,6 +68,10 @@ const FIELD_LABELS = {
 };
 
 const ManualInsertPage = () => {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     authors: "",
     title: "",
@@ -238,16 +243,20 @@ const ManualInsertPage = () => {
                   {file && <Chip label={file.name} onDelete={() => setFile(null)} color="primary" sx={{ mt: 1, width: '100%' }} />}
                 </Box>
 
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  fullWidth
-                  onClick={handleExtract}
-                  disabled={loading || (!searchTitle && !file)}
-                  sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
-                >
-                  {loading ? <CircularProgress size={24} color="inherit" /> : "Extrair com IA Completa"}
-                </Button>
+                <Tooltip title={isVisitor ? "Visitantes não podem extrair metadados" : ""}>
+                  <span>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      fullWidth
+                      onClick={handleExtract}
+                      disabled={loading || (!searchTitle && !file) || isVisitor}
+                      sx={{ py: 1.5, borderRadius: 3, fontWeight: 800 }}
+                    >
+                      {loading ? <CircularProgress size={24} color="inherit" /> : "Extrair com IA Completa"}
+                    </Button>
+                  </span>
+                </Tooltip>
               </Stack>
             </Paper>
           </Grid>
@@ -305,16 +314,20 @@ const ManualInsertPage = () => {
               </Grid>
 
               <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid', borderColor: 'divider', display: 'flex', justifyContent: 'center' }}>
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={handleSave}
-                  disabled={loading || !formData.title}
-                  startIcon={<SaveIcon />}
-                  sx={{ py: 2, px: 10, borderRadius: '50px', fontWeight: 900 }}
-                >
-                  {loading ? "Processando..." : "Salvar na Base"}
-                </Button>
+                <Tooltip title={isVisitor ? "Visitantes não podem salvar artigos" : ""}>
+                  <span>
+                    <Button
+                      variant="contained"
+                      size="large"
+                      onClick={handleSave}
+                      disabled={loading || !formData.title || isVisitor}
+                      startIcon={<SaveIcon />}
+                      sx={{ py: 2, px: 10, borderRadius: '50px', fontWeight: 900 }}
+                    >
+                      {loading ? "Processando..." : "Salvar na Base"}
+                    </Button>
+                  </span>
+                </Tooltip>
               </Box>
             </Paper>
           </Grid>

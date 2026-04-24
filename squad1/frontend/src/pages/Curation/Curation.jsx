@@ -78,7 +78,7 @@ import {
   categorizeArticleRow, 
   deleteArticleRow, 
   deleteUnavailableArticles, 
-  manualApproveArticle,
+  manualApproveArticle, 
   manualRejectArticle,
   batchUploadZip,
   getLlmLogs,
@@ -88,6 +88,7 @@ import {
   downloadAllDocuments,
   downloadDocument
 } from '../../api';
+import { useAuth } from "../../hooks/useAuth";
 
 // Standard metadata fields to ensure they always appear
 const FIELD_LABELS = {
@@ -176,6 +177,9 @@ const safelyParseJSON = (str) => {
 };
 
 function CurationPage() {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+
   const [feedbackDialogOpen, setFeedbackDialogOpen] = useState(false);
   const [feedbackText, setFeedbackText] = useState("");
   
@@ -805,37 +809,51 @@ function CurationPage() {
               <Typography variant="h6" sx={{ opacity: 0.8, fontWeight: 400 }}>Validação e categorização de evidências científicas.</Typography>
             </Grid>
             <Grid item xs={12} md={4} sx={{ display: 'flex', justifyContent: { xs: 'flex-start', md: 'flex-end' }, gap: 2, flexWrap: 'wrap' }}>
-              <Button 
-                component="label"
-                variant="contained" 
-                color="info" 
-                startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <CloudUploadIcon />}
-                disabled={isTriggering || loading}
-                sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
-              >
-                Subir ZIP
-                <input type="file" hidden accept=".zip" onChange={handleZipUpload} />
-              </Button>
-              <Button 
-                variant="contained" 
-                color="secondary" 
-                startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <AutoFixHighIcon />}
-                onClick={handleBatchCuration}
-                disabled={isTriggering || loading}
-                sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
-              >
-                IA em Lote
-              </Button>
-              <Button 
-                variant="outlined" 
-                color="inherit" 
-                startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <BuildIcon />}
-                onClick={handleFixTitles}
-                disabled={isTriggering || loading}
-                sx={{ borderRadius: '50px', px: 3, fontWeight: 800, color: 'white', borderColor: 'rgba(255,255,255,0.5)' }}
-              >
-                Reparar Títulos
-              </Button>
+              <Tooltip title={isVisitor ? "Visitantes não podem fazer upload" : ""}>
+                <span>
+                  <Button 
+                    component="label"
+                    variant="contained" 
+                    color="info" 
+                    startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <CloudUploadIcon />}
+                    disabled={isTriggering || loading || isVisitor}
+                    sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
+                  >
+                    Subir ZIP
+                    <input type="file" hidden accept=".zip" onChange={handleZipUpload} />
+                  </Button>
+                </span>
+              </Tooltip>
+              
+              <Tooltip title={isVisitor ? "Visitantes não podem executar IA em lote" : ""}>
+                <span>
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <AutoFixHighIcon />}
+                    onClick={handleBatchCuration}
+                    disabled={isTriggering || loading || isVisitor}
+                    sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
+                  >
+                    IA em Lote
+                  </Button>
+                </span>
+              </Tooltip>
+
+              <Tooltip title={isVisitor ? "Visitantes não podem reparar títulos" : ""}>
+                <span>
+                  <Button 
+                    variant="outlined" 
+                    color="inherit" 
+                    startIcon={isTriggering ? <CircularProgress size={20} color="inherit" /> : <BuildIcon />}
+                    onClick={handleFixTitles}
+                    disabled={isTriggering || loading || isVisitor}
+                    sx={{ borderRadius: '50px', px: 3, fontWeight: 800, color: 'white', borderColor: 'rgba(255,255,255,0.5)' }}
+                  >
+                    Reparar Títulos
+                  </Button>
+                </span>
+              </Tooltip>
               <Tooltip title="Recarregar Artigos">
                 <IconButton onClick={fetchArticles} sx={{ bgcolor: 'rgba(255,255,255,0.1)', color: 'white' }}>
                   <RefreshIcon />
@@ -1092,62 +1110,77 @@ function CurationPage() {
                           </Tooltip>
                         </Box>
                         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 1, justifyContent: 'flex-end' }}>
-                          <Tooltip title="Análise IA">
-                            <IconButton 
-                              size="small"
-                              color="primary"
-                              onClick={() => handleSingleCuration(article._id, false)}
-                              disabled={processingRow === article._id}
-                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
-                            >
-                              <AutoFixHighIcon fontSize="small" />
-                            </IconButton>
-                          </Tooltip>
-                          <Tooltip title="Forçar Reanálise Completa">
-                            <IconButton 
-                              size="small"
-                              color="secondary"
-                              onClick={() => handleSingleCuration(article._id, true)}
-                              disabled={processingRow === article._id}
-                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
-                            >
-                              <BuildIcon fontSize="small" />
-                            </IconButton>
+                          <Tooltip title={isVisitor ? "Visitantes não podem usar IA" : "Análise IA"}>
+                            <span>
+                              <IconButton 
+                                size="small"
+                                color="primary"
+                                onClick={() => handleSingleCuration(article._id, false)}
+                                disabled={processingRow === article._id || isVisitor}
+                                sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                              >
+                                <AutoFixHighIcon fontSize="small" />
+                              </IconButton>
+                            </span>
                           </Tooltip>
                           
-                          <Button 
-                            variant="contained" 
-                            size="small" 
-                            color="success"
-                            startIcon={<CheckCircleIcon />}
-                            onClick={() => handleManualApprove(article)}
-                            disabled={processingRow === article._id}
-                            sx={{ borderRadius: '50px' }}
-                          >
-                            Aprovar
-                          </Button>
+                          <Tooltip title={isVisitor ? "Visitantes não podem forçar reanálise" : "Forçar Reanálise Completa"}>
+                            <span>
+                              <IconButton 
+                                size="small"
+                                color="secondary"
+                                onClick={() => handleSingleCuration(article._id, true)}
+                                disabled={processingRow === article._id || isVisitor}
+                                sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                              >
+                                <BuildIcon fontSize="small" />
+                              </IconButton>
+                            </span>
+                          </Tooltip>
+                          
+                          <Tooltip title={isVisitor ? "Visitantes não podem aprovar artigos" : ""}>
+                            <span>
+                              <Button 
+                                variant="contained" 
+                                size="small" 
+                                color="success"
+                                startIcon={<CheckCircleIcon />}
+                                onClick={() => handleManualApprove(article)}
+                                disabled={processingRow === article._id || isVisitor}
+                                sx={{ borderRadius: '50px' }}
+                              >
+                                Aprovar
+                              </Button>
+                            </span>
+                          </Tooltip>
 
-                          <Button 
-                            variant="contained" 
-                            size="small" 
-                            color="error"
-                            startIcon={<CancelIcon />}
-                            onClick={() => handleManualReject(article)}
-                            disabled={processingRow === article._id}
-                            sx={{ borderRadius: '50px' }}
-                          >
-                            Rejeitar
-                          </Button>
+                          <Tooltip title={isVisitor ? "Visitantes não podem rejeitar artigos" : ""}>
+                            <span>
+                              <Button 
+                                variant="contained" 
+                                size="small" 
+                                color="error"
+                                startIcon={<CancelIcon />}
+                                onClick={() => handleManualReject(article)}
+                                disabled={processingRow === article._id || isVisitor}
+                                sx={{ borderRadius: '50px' }}
+                              >
+                                Rejeitar
+                              </Button>
+                            </span>
+                          </Tooltip>
 
-                          <Tooltip title="Excluir Registro">
-                            <IconButton 
-                              color="default"
-                              onClick={() => handleDelete(article)}
-                              disabled={processingRow === article._id}
-                              sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
-                            >
-                              <DeleteIcon fontSize="small" />
-                            </IconButton>
+                          <Tooltip title={isVisitor ? "Visitantes não podem excluir registros" : "Excluir Registro"}>
+                            <span>
+                              <IconButton 
+                                color="default"
+                                onClick={() => handleDelete(article)}
+                                disabled={processingRow === article._id || isVisitor}
+                                sx={{ bgcolor: 'white', border: '1px solid', borderColor: 'divider' }}
+                              >
+                                <DeleteIcon fontSize="small" />
+                              </IconButton>
+                            </span>
                           </Tooltip>
                         </Stack>
                       </CardActions>
@@ -1189,21 +1222,26 @@ function CurationPage() {
       {/* Details Dialog */}
       <Dialog open={openAnalysisDialog} onClose={() => { if(!isEditing) setOpenAnalysisDialog(false); }} maxWidth="md" fullWidth PaperProps={{ sx: { borderRadius: 4 } }}>
         <DialogTitle sx={{ fontWeight: 900, bgcolor: 'primary.main', color: 'white', py: 3 }}>
-          <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
+            <Stack direction="row" spacing={2} alignItems="center" justifyContent="space-between">
             <Stack direction="row" spacing={2} alignItems="center">
               <InfoIcon />
               <Typography variant="h5" sx={{ fontWeight: 900 }}>{isEditing ? "Editar Metadados" : "Metadados do Artigo"}</Typography>
             </Stack>
             {!isEditing && (
-              <Button 
-                startIcon={<EditIcon />} 
-                variant="contained" 
-                color="secondary" 
-                onClick={handleEditToggle}
-                sx={{ borderRadius: '50px' }}
-              >
-                Editar
-              </Button>
+              <Tooltip title={isVisitor ? "Visitantes não podem editar metadados" : ""}>
+                <span>
+                  <Button 
+                    startIcon={<EditIcon />} 
+                    variant="contained" 
+                    color="secondary" 
+                    onClick={handleEditToggle}
+                    disabled={isVisitor}
+                    sx={{ borderRadius: '50px' }}
+                  >
+                    Editar
+                  </Button>
+                </span>
+              </Tooltip>
             )}
           </Stack>
         </DialogTitle>
@@ -1298,7 +1336,20 @@ function CurationPage() {
             </>
           ) : (
             <>
-              <Button onClick={() => handleCategorize(analysisResult.workId)} startIcon={<CategoryIcon />} color="secondary" variant="outlined" sx={{ borderRadius: '50px' }}>Recategorizar</Button>
+              <Tooltip title={isVisitor ? "Visitantes não podem recategorizar" : ""}>
+                <span>
+                  <Button 
+                    onClick={() => handleCategorize(analysisResult.workId)} 
+                    startIcon={<CategoryIcon />} 
+                    color="secondary" 
+                    variant="outlined" 
+                    disabled={isVisitor}
+                    sx={{ borderRadius: '50px' }}
+                  >
+                    Recategorizar
+                  </Button>
+                </span>
+              </Tooltip>
               <Button onClick={() => setOpenAnalysisDialog(false)} variant="contained" size="large" sx={{ borderRadius: '50px', px: 4 }}>Fechar</Button>
             </>
           )}

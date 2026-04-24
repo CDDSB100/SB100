@@ -214,6 +214,7 @@ const UserManagement = () => {
                   <MenuItem value="curadoria_citros_cana">Curador Citros e Cana</MenuItem>
                   <MenuItem value="curadoria_solos">Curador Solos</MenuItem>
                   <MenuItem value="curadoria_genomica">Curador Genômica</MenuItem>
+                  <MenuItem value="visitante">Visitante (Apenas Leitura)</MenuItem>
                 </Select>
               </FormControl>
             </Box>

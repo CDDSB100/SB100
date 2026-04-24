@@ -32,6 +32,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ArticleIcon from '@mui/icons-material/Article';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { useAuth } from '../../hooks/useAuth';
 
 const headCells = [
   { id: 'title', label: 'Título' },
@@ -82,6 +83,9 @@ function EnhancedTableHead(props) {
 }
 
 const ResultsTable = ({ results, onSave, loading }) => {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+  
   const [selected, setSelected] = useState([]);
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('year');
@@ -231,15 +235,19 @@ const ResultsTable = ({ results, onSave, loading }) => {
                 >
                   BibTeX
                 </Button>
-                <Button
-                  variant="contained"
-                  onClick={handleSave}
-                  disabled={selected.length === 0 || loading}
-                  startIcon={<SaveIcon />}
-                  sx={{ borderRadius: '50px', fontWeight: 800, px: 3 }}
-                >
-                  Salvar Selecionados ({selected.length})
-                </Button>
+                <Tooltip title={isVisitor ? "Usuários visitantes não podem salvar artigos" : ""}>
+                  <span>
+                    <Button
+                      variant="contained"
+                      onClick={handleSave}
+                      disabled={selected.length === 0 || loading || isVisitor}
+                      startIcon={<SaveIcon />}
+                      sx={{ borderRadius: '50px', fontWeight: 800, px: 3 }}
+                    >
+                      Salvar Selecionados ({selected.length})
+                    </Button>
+                  </span>
+                </Tooltip>
               </Stack>
             </Grid>
           </Grid>

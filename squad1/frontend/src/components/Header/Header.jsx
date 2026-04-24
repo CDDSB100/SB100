@@ -70,7 +70,7 @@ const Header = () => {
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon />, path: '/home', show: isAuthenticated },
     { text: 'Busca', icon: <SearchIcon />, path: '/search', show: isAuthenticated },
-    { text: 'Inserção Manual', icon: <PlaylistAddIcon />, path: '/manual-insert', show: isAuthenticated },
+    { text: 'Inserção Manual', icon: <PlaylistAddIcon />, path: '/manual-insert', show: isAuthenticated && userRole !== 'visitante' },
     { text: 'Curadoria', icon: <ArticleIcon />, path: '/curation', show: isAuthenticated },
     { text: 'Usuários', icon: <GroupIcon />, path: '/user-management', show: isAuthenticated && userRole === 'admin' },
     { text: 'Swagger', icon: <DescriptionIcon />, onClick: handleOpenSwagger, show: isAuthenticated && userRole === 'admin' },
