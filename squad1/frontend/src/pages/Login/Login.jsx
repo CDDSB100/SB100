@@ -27,13 +27,13 @@ import { login } from "../../api";
 function LoginPage() {
   const navigate = useNavigate();
   const auth = useAuth();
-  const { isAuthenticated } = auth;
+  const { isAuthenticated, isLoading } = auth;
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!isLoading && isAuthenticated) {
       navigate("/home");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, isLoading, navigate]);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

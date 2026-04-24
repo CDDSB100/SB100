@@ -15,35 +15,49 @@ const defaultAuthValue = {
 export const AuthContext = createContext(defaultAuthValue);
 
 export function AuthProvider({ children }) {
-    const [userToken, setUserToken] = useState(() => {
-        try {
-            const token = localStorage.getItem('accessToken');
-            if (token === 'undefined' || token === 'null' || !token) return null;
-            return token;
-        } catch (e) {
-            return null;
-        }
-    });
-
-    const [userRole, setUserRole] = useState(() => {
-        try {
-            const token = localStorage.getItem('accessToken');
-            if (token && token !== 'undefined' && token !== 'null') {
-                const decodedToken = jwtDecode(token);
-                // Verifica expiração básica (opcional mas recomendado)
-                if (decodedToken.exp && decodedToken.exp * 1000 < Date.now()) {
-                    localStorage.removeItem('accessToken');
-                    return null;
-                }
-                return decodedToken.role;
-            }
-        } catch (error) {
-            return null;
-        }
-        return null;
-    });
-
+    const [userToken, setUserToken] = useState(null);
+    const [userRole, setUserRole] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    // Inicialização robusta e unificada
+    useEffect(() => {
+        const initializeAuth = () => {
+            try {
+                const token = localStorage.getItem('accessToken');
+                
+                if (!token || token === 'undefined' || token === 'null') {
+                    setUserToken(null);
+                    setUserRole(null);
+                    setIsLoading(false);
+                    return;
+                }
+
+                const decodedToken = jwtDecode(token);
+                const currentTime = Date.now() / 1000;
+
+                // Verifica expiração
+                if (decodedToken.exp && decodedToken.exp < currentTime) {
+                    console.warn("Token expirado detectado na inicialização.");
+                    localStorage.removeItem('accessToken');
+                    setUserToken(null);
+                    setUserRole(null);
+                } else {
+                    setUserToken(token);
+                    setUserRole(decodedToken.role);
+                    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+                }
+            } catch (error) {
+                console.error("Erro ao validar token na inicialização:", error);
+                localStorage.removeItem('accessToken');
+                setUserToken(null);
+                setUserRole(null);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        initializeAuth();
+    }, []);
 
     const login = useCallback((token) => {
         if (token) {
@@ -52,6 +66,7 @@ export function AuthProvider({ children }) {
             try {
                 const decodedToken = jwtDecode(token);
                 setUserRole(decodedToken.role);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             } catch (error) {
                 console.error("Error decoding token on login:", error);
                 setUserRole(null);
@@ -63,17 +78,14 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('accessToken');
         setUserToken(null);
         setUserRole(null);
+        delete axios.defaults.headers.common['Authorization'];
     }, []);
 
-    // Sincroniza axios sempre que o token mudar
+    // Sincroniza axios sempre que o token mudar (para garantir consistência)
     useEffect(() => {
         if (userToken) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
-        } else {
-            delete axios.defaults.headers.common['Authorization'];
         }
-        // Marcar como carregado após a primeira inicialização
-        setIsLoading(false);
     }, [userToken]);
 
     const authValue = useMemo(() => ({
