@@ -5,8 +5,12 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchForm from '../../components/SearchForm';
 import ResultsTable from '../../components/ResultsTable';
 import { searchArticles, saveArticles } from '../../api';
+import { useAuth } from '../../hooks/useAuth';
 
 function SearchPage() {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+  
   const [results, setResults] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
   const [saveLoading, setSaveLoading] = useState(false);
@@ -30,6 +34,10 @@ function SearchPage() {
   };
 
   const handleSave = async (selectedRows) => {
+    if (isVisitor) {
+      setSnackbar({ open: true, message: 'Visitantes não podem salvar artigos.', severity: 'warning' });
+      return;
+    }
     setSaveLoading(true);
     setSnackbar({ open: false, message: '', severity: 'success' });
     try {

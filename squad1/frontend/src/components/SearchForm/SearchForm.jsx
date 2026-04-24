@@ -31,8 +31,13 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import SortIcon from '@mui/icons-material/Sort';
+import { useAuth } from '../../hooks/useAuth';
+import { Tooltip } from '@mui/material';
 
 const SearchForm = ({ onSearch, loading }) => {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+
   const [searchTerms, setSearchTerms] = useState('');
   const [startYear, setStartYear] = useState('');
   const [endYear, setEndYear] = useState('');
@@ -167,17 +172,21 @@ const SearchForm = ({ onSearch, loading }) => {
             </Grid>
 
             <Grid item xs={12} sm={6} md={3}>
-              <Button
-                type="submit"
-                variant="contained"
-                size="large"
-                fullWidth
-                disabled={loading}
-                startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SearchIcon />}
-                sx={{ height: '56px', borderRadius: 3, fontWeight: 800, fontSize: '1.1rem' }}
-              >
-                {loading ? 'BUSCANDO...' : 'EXECUTAR'}
-              </Button>
+              <Tooltip title={isVisitor ? "Visitantes não podem realizar buscas avançadas" : ""}>
+                <span>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                    fullWidth
+                    disabled={loading || isVisitor}
+                    startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SearchIcon />}
+                    sx={{ height: '56px', borderRadius: 3, fontWeight: 800, fontSize: '1.1rem' }}
+                  >
+                    {loading ? 'BUSCANDO...' : 'EXECUTAR'}
+                  </Button>
+                </span>
+              </Tooltip>
             </Grid>
 
             <Grid item xs={12}>
