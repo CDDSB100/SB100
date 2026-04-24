@@ -25,6 +25,91 @@ const API_BASE_URL = process.env.API_BASE_URL || "http://localhost:8000";
 });
 
 // --- HELPERS ---
+/**
+ * Tenta encontrar um link de PDF direto para um DOI usando a API do OpenAlex.
+ */
+async function findPdfUrlByDoi(doi) {
+  if (!doi || doi === "N/A") return null;
+  try {
+    const cleanDoi = doi.startsWith('http') ? doi : `https://doi.org/${doi}`;
+    console.log(`[Enrichment] Buscando PDF direto no OpenAlex para o DOI: ${cleanDoi}`);
+    const res = await axios.get(`https://api.openalex.org/works/${encodeURIComponent(cleanDoi)}`, { timeout: 10000 });
+    
+    // Tenta encontrar uma localização que tenha pdf_url
+    const locations = res.data.locations || [];
+    if (res.data.primary_location?.pdf_url) return res.data.primary_location.pdf_url;
+    
+    const bestLocation = locations.find(l => l.pdf_url);
+    return bestLocation ? bestLocation.pdf_url : null;
+  } catch (e) {
+    console.error(`[Enrichment] Erro ao buscar link no OpenAlex: ${e.message}`);
+    return null;
+  }
+}
+
+async function downloadDocumentFile(url, fileName, doi = null) {
+  try {
+    let targetUrl = url;
+
+    // Se o link for um DOI ou não terminar em .pdf, tentamos encontrar o PDF real
+    if (!targetUrl || !targetUrl.toLowerCase().endsWith('.pdf') || targetUrl.includes('doi.org')) {
+      const discoveredUrl = await findPdfUrlByDoi(doi || url);
+      if (discoveredUrl) {
+        console.log(`[Download] PDF direto descoberto: ${discoveredUrl}`);
+        targetUrl = discoveredUrl;
+      }
+    }
+
+    if (!targetUrl || !targetUrl.startsWith('http')) {
+      console.log(`[Download] Nenhuma URL de PDF válida encontrada para: ${fileName}`);
+      return null;
+    }
+    
+    // Pequeno delay para não parecer um bot ultra-rápido (ajuda com MDPI/Nature)
+    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+
+    // Cabeçalhos de "Navegador Real" ultra-completos
+    const response = await axios({
+      method: 'get',
+      url: targetUrl,
+      responseType: 'arraybuffer',
+      timeout: 120000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,application/pdf,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9,pt-BR;q=0.8,pt;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Referer': 'https://www.google.com/',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'cross-site',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    });
+
+    const contentType = (response.headers['content-type'] || "").toLowerCase();
+    
+    // Se recebemos um HTML/XML em vez de PDF, significa que caímos em uma landing page ou bloqueio
+    if (contentType.includes('text/html') || contentType.includes('text/xml')) {
+        console.log(`[Download] A URL retornou página da web em vez de PDF: ${targetUrl}`);
+        return null;
+    }
+
+    const safeName = fileName.replace(/[^a-z0-9]/gi, '_').substring(0, 100) + "_" + Date.now() + ".pdf";
+    const filePath = path.join(DOCUMENTS_DIR, safeName);
+    
+    await fs.writeFile(filePath, response.data);
+    console.log(`[Download] Sucesso: ${safeName}`);
+    return safeName;
+  } catch (error) {
+    console.error(`[Download] Falha ao baixar ${url}:`, error.message);
+    return null;
+  }
+}
+
 function safelyParseJSON(str) {
   if (str === null || str === undefined) return str;
   if (typeof str !== 'string') return str;
@@ -692,65 +777,82 @@ async function searchCrossref(search_terms, start_year, end_year) {
 
 async function searchAllBases(search_terms, start_year, end_year, sort_option) {
   try {
-    const [openAlexResults, crossrefResults] = await Promise.all([
-      searchOpenAlex(search_terms, start_year, end_year, sort_option),
-      searchCrossref(search_terms, start_year, end_year)
-    ]);
-
-    // Combinar e remover duplicados por DOI
-    const combined = [...openAlexResults];
-    const existingDois = new Set(openAlexResults.map(r => r.doi.toLowerCase()).filter(Boolean));
-
-    crossrefResults.forEach(res => {
-      if (res.doi && !existingDois.has(res.doi.toLowerCase())) {
-        combined.push(res);
-        existingDois.add(res.doi.toLowerCase());
-      } else if (!res.doi) {
-        combined.push(res);
-      }
-    });
-
-    return combined;
+    // Agora utilizamos apenas o OpenAlex conforme solicitado
+    const results = await searchOpenAlex(search_terms, start_year, end_year, sort_option);
+    return results;
   } catch (error) {
-    console.error("Search All Bases Error:", error.message);
-    throw new Error("Erro ao realizar busca nas bases.");
+    console.error("Search OpenAlex Error:", error.message);
+    throw new Error("Erro ao realizar busca no OpenAlex.");
   }
 }
 
 async function saveData(selected_rows, username) {
+  console.log(`[saveData] Iniciando processamento para ${username}. Total de linhas: ${selected_rows?.length}`);
+  
+  if (!selected_rows || !Array.isArray(selected_rows)) {
+    console.error("[saveData] Erro: selected_rows não é um array válido.");
+    return { saved: 0, skipped: 0, errors: 0 };
+  }
+
   let savedCount = 0, skippedCount = 0, errorCount = 0;
 
   for (const row of selected_rows) {
     try {
-      const title = (row.title || "").trim();
+      const title = (row.title || "Sem Título").trim();
       const doi = (row.doi || "").trim();
       
-      const existing = await Article.findOne({
-        $or: [
-          { doi: doi, doi: { $ne: null, $ne: "", $ne: "N/A" } },
-          { title: title, title: { $ne: null, $ne: "", $ne: "N/A" } }
-        ]
-      });
+      console.log(`[saveData] Analisando artigo: "${title}" (DOI: ${doi || 'N/A'})`);
 
-      if (existing && title !== "" && title.toLowerCase() !== "n/a") {
+      // 1. Verificar duplicados (Busca no SQLite via Model)
+      let existing = null;
+      try {
+        if (doi && doi !== "N/A" && doi !== "") {
+          existing = await Article.findOne({ doi });
+        }
+        if (!existing && title && title !== "N/A" && title !== "" && title !== "Sem Título") {
+          existing = await Article.findOne({ title });
+        }
+      } catch (dbErr) {
+        console.error(`[saveData] Erro ao consultar banco: ${dbErr.message}`);
+      }
+
+      if (existing) {
+        console.log(`[saveData] Artigo já existe no banco. Pulando: ${title}`);
         skippedCount++;
         continue;
       }
 
+      // 2. Tentar baixar o documento
+      console.log(`[saveData] Tentando obter PDF para: ${title}`);
+      const remoteUrl = row.documentUrl || row.pdf_url || row.doi;
+      const localFileName = await downloadDocumentFile(remoteUrl, title, doi);
+
+      // 3. Validação Crítica: Só salvamos se o PDF foi obtido
+      if (!localFileName) {
+        console.warn(`[saveData] PDF não capturado para: ${title}. Artigo não será salvo.`);
+        skippedCount++;
+        continue;
+      }
+
+      // 4. Salvar no Banco
       const article = new Article({
         ...row,
         insertedBy: username,
         status: 'Pendente',
-        retrievalSource: row.retrievalSource || 'OpenAlex' // Fallback
+        documentUrl: localFileName, 
+        retrievalSource: row.retrievalSource || 'OpenAlex'
       });
+      
       await article.save();
+      console.log(`[saveData] SUCESSO: Artigo salvo e vinculado ao arquivo: ${localFileName}`);
       savedCount++;
     } catch (error) {
-      console.error("Save Data Error:", error.message);
+      console.error(`[saveData] Erro crítico na linha: ${error.message}`);
       errorCount++;
     }
   }
 
+  console.log(`[saveData] Fim do lote. Salvos: ${savedCount} | Pulados/Falhas: ${skippedCount} | Erros: ${errorCount}`);
   return { saved: savedCount, skipped: skippedCount, errors: errorCount };
 }
 

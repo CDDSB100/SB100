@@ -291,8 +291,16 @@ app.post("/api/search", authenticateToken, authorizeModify, async (req, res) => 
 });
 
 app.post("/api/save", authenticateToken, authorizeModify, async (req, res) => {
-  const username = req.user ? req.user.username : "Desconhecido";
-  const result = await saveData(req.body.selected_rows, username);
+  console.log(`[API] Rota /api/save acionada por: ${req.user ? req.user.username : "Desconhecido"}`);
+  const selected_rows = req.body.selected_rows || req.body.selectedRows;
+  
+  if (!selected_rows || !Array.isArray(selected_rows)) {
+    console.error("[API] Erro: selected_rows não é um array válido ou está vazio.");
+    return res.status(400).json({ error: "Dados inválidos: selected_rows deve ser um array." });
+  }
+
+  console.log(`[API] Processando salvamento de ${selected_rows.length} linhas.`);
+  const result = await saveData(selected_rows, req.user ? req.user.username : "Desconhecido");
   res.json(result);
 });
 

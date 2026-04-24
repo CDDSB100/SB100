@@ -113,7 +113,7 @@ const ResultsTable = ({ results, onSave, loading }) => {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = results.map((n, i) => n.id ?? `row-${i}`);
+      const newSelecteds = results.map((n) => n.workId || n.doi || n.title);
       setSelected(newSelecteds);
       return;
     }
@@ -136,13 +136,14 @@ const ResultsTable = ({ results, onSave, loading }) => {
 
   const handleSave = () => {
     const selectedData = results
-      .filter((row, i) => selected.includes(row.id ?? `row-${i}`))
+      .filter((row) => selected.includes(row.workId || row.doi || row.title))
       .map(row => ({
         title: row.title || '',
         authors: Array.isArray(row.authors) ? row.authors.join(', ') : (row.authors || ''),
         year: row.year || '',
         journalTitle: row.source || row.journalTitle || '',
         doi: row.doi || '',
+        workId: row.workId || '',
         documentUrl: row.pdf_url || row.documentUrl || '',
         methodology: row.methodology || 'Pendente extração IA',
         retrievalSource: row.retrievalSource || 'Desconhecida',
@@ -168,7 +169,7 @@ const ResultsTable = ({ results, onSave, loading }) => {
   };
 
   const handleExportBibTeX = () => {
-      const selectedData = results.filter((row, i) => selected.includes(row.id ?? `row-${i}`));
+      const selectedData = results.filter((row) => selected.includes(row.workId || row.doi || row.title));
       const bibtexContent = generateBibTeX(selectedData);
       
       const blob = new Blob([bibtexContent], { type: 'text/plain;charset=utf-8' });
@@ -287,7 +288,7 @@ const ResultsTable = ({ results, onSave, loading }) => {
             />
             <TableBody>
               {sortedResults.map((row, index) => {
-                const uniqueId = row.id ?? `row-${index}`;
+                const uniqueId = row.workId || row.doi || row.title;
                 const isItemSelected = isSelected(uniqueId);
                 const authorsText = Array.isArray(row.authors) ? row.authors.join(', ') : row.authors;
                 const docUrl = row.pdf_url || row.documentUrl;
