@@ -67,21 +67,24 @@ function HomePage() {
       path: "/curation",
       color: theme.palette.secondary.main,
     },
-    {
+  ];
+
+  if (userRole !== "visitante") {
+    menuItems.push({
       title: "Inserção Manual",
       description: "Adicione artigos e PDFs manualmente ao sistema.",
       icon: <PlaylistAddIcon sx={{ fontSize: 32 }} />,
       path: "/manual-insert",
       color: "#2e7d32",
-    },
-    {
+    });
+    menuItems.push({
       title: "Processamento em Lote",
       description: "Analise múltiplos PDFs de pastas locais de uma vez.",
       icon: <FolderIcon sx={{ fontSize: 32 }} />,
       path: "/batch-process-drive",
       color: "#ed6c02",
-    },
-  ];
+    });
+  }
 
   if (userRole === "admin") {
     menuItems.push({
@@ -241,53 +244,55 @@ function HomePage() {
         </Grid>
         
         {/* Productivity Section */}
-        <Box sx={{ mt: 6 }}>
-          <Fade in timeout={1500}>
-            <Paper 
-              elevation={0}
-              sx={{ 
-                p: { xs: 3, md: 5 }, 
-                borderRadius: 4, 
-                bgcolor: 'background.paper',
-                border: '1px solid',
-                borderColor: 'divider',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
-              }}
-            >
-              <Grid container spacing={4} alignItems="center">
-                <Grid item xs={12} md={8}>
-                  <Stack spacing={2}>
-                    <Typography variant="h5" sx={{ fontWeight: 900, color: 'primary.main', display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                      <Box sx={{ width: 8, height: 24, bgcolor: 'secondary.main', borderRadius: 4 }} />
-                      Dica de Produtividade
-                    </Typography>
-                    <Typography variant="body1" sx={{ color: 'text.primary', lineHeight: 1.7, maxWidth: 600, fontWeight: 500 }}>
-                      Utilize a <strong>Inserção Manual</strong> para adicionar artigos que não foram encontrados nas buscas automáticas. Você pode anexar o PDF diretamente e nossa IA extrairá os metadados para você.
-                    </Typography>
-                    <Box sx={{ pt: 1 }}>
-                      <Button 
-                        variant="contained" 
-                        size="large" 
-                        color="primary"
-                        onClick={() => navigate('/manual-insert')}
-                        sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
-                      >
-                        Experimentar Agora
-                      </Button>
-                    </Box>
-                  </Stack>
+        {userRole !== "visitante" && (
+          <Box sx={{ mt: 6 }}>
+            <Fade in timeout={1500}>
+              <Paper 
+                elevation={0}
+                sx={{ 
+                  p: { xs: 3, md: 5 }, 
+                  borderRadius: 4, 
+                  bgcolor: 'background.paper',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.03)'
+                }}
+              >
+                <Grid container spacing={4} alignItems="center">
+                  <Grid item xs={12} md={8}>
+                    <Stack spacing={2}>
+                      <Typography variant="h5" sx={{ fontWeight: 900, color: 'primary.main', display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <Box sx={{ width: 8, height: 24, bgcolor: 'secondary.main', borderRadius: 4 }} />
+                        Dica de Produtividade
+                      </Typography>
+                      <Typography variant="body1" sx={{ color: 'text.primary', lineHeight: 1.7, maxWidth: 600, fontWeight: 500 }}>
+                        Utilize a <strong>Inserção Manual</strong> para adicionar artigos que não foram encontrados nas buscas automáticas. Você pode anexar o PDF diretamente e nossa IA extrairá os metadados para você.
+                      </Typography>
+                      <Box sx={{ pt: 1 }}>
+                        <Button 
+                          variant="contained" 
+                          size="large" 
+                          color="primary"
+                          onClick={() => navigate('/manual-insert')}
+                          sx={{ borderRadius: '50px', px: 4, fontWeight: 800 }}
+                        >
+                          Experimentar Agora
+                        </Button>
+                      </Box>
+                    </Stack>
+                  </Grid>
+                  <Grid item xs={12} md={4} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
+                    <Box 
+                      component="img" 
+                      src="https://img.icons8.com/bubbles/200/idea.png" 
+                      sx={{ width: 180, filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.1))' }}
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} md={4} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center' }}>
-                  <Box 
-                    component="img" 
-                    src="https://img.icons8.com/bubbles/200/idea.png" 
-                    sx={{ width: 180, filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.1))' }}
-                  />
-                </Grid>
-              </Grid>
-            </Paper>
-          </Fade>
-        </Box>
+              </Paper>
+            </Fade>
+          </Box>
+        )}
       </Container>
       
     </Box>

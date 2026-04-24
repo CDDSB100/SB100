@@ -11,14 +11,19 @@ import {
   Stack,
   IconButton,
   Tooltip,
+  Grid
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { batchUploadZip } from '../../api';
+import { useAuth } from '../../hooks/useAuth';
 
 function BatchProcessDrivePage() {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+  
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState('');
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
@@ -85,17 +90,21 @@ function BatchProcessDrivePage() {
           </Box>
 
           <Box sx={{ position: 'relative', display: 'inline-block' }}>
-            <Button
-              component="label"
-              variant="contained"
-              size="large"
-              startIcon={loading ? <CircularProgress size={24} color="inherit" /> : <CloudUploadIcon />}
-              disabled={loading}
-              sx={{ borderRadius: '50px', px: 6, py: 2, fontSize: '1.1rem', fontWeight: 800, boxShadow: 4 }}
-            >
-              {loading ? 'Processando Arquivos...' : 'Selecionar Arquivo .ZIP'}
-              <input type="file" hidden accept=".zip" onChange={handleZipUpload} />
-            </Button>
+            <Tooltip title={isVisitor ? "Visitantes não podem realizar processamento em lote" : ""}>
+              <span>
+                <Button
+                  component="label"
+                  variant="contained"
+                  size="large"
+                  startIcon={loading ? <CircularProgress size={24} color="inherit" /> : <CloudUploadIcon />}
+                  disabled={loading || isVisitor}
+                  sx={{ borderRadius: '50px', px: 6, py: 2, fontSize: '1.1rem', fontWeight: 800, boxShadow: 4 }}
+                >
+                  {loading ? 'Processando Arquivos...' : 'Selecionar Arquivo .ZIP'}
+                  <input type="file" hidden accept=".zip" onChange={handleZipUpload} />
+                </Button>
+              </span>
+            </Tooltip>
             {loading && (
               <CircularProgress
                 size={68}
@@ -156,8 +165,5 @@ function BatchProcessDrivePage() {
     </Box>
   );
 }
-
-// Adicionando Grid que faltou na importação
-import { Grid } from '@mui/material';
 
 export default BatchProcessDrivePage;

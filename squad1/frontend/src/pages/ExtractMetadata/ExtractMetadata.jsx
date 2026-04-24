@@ -9,13 +9,18 @@ import {
   Snackbar,
   Alert,
   CircularProgress,
+  Tooltip,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import UploadIcon from '@mui/icons-material/Upload';
 import { extractMetadata } from '../../api';
+import { useAuth } from '../../hooks/useAuth';
 
 function ExtractMetadataPage() {
+  const { userRole } = useAuth();
+  const isVisitor = userRole === 'visitante';
+
   const [file, setFile] = useState(null);
   const [extractionData, setExtractionData] = useState({
     title: '',
@@ -137,14 +142,18 @@ function ExtractMetadataPage() {
           </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-            <Button
-              variant="contained"
-              onClick={handleExtract}
-              disabled={loading || !file}
-              startIcon={loading ? <CircularProgress size={20} /> : null}
-            >
-              {loading ? 'Extraindo...' : 'Extrair Metadados'}
-            </Button>
+            <Tooltip title={isVisitor ? "Visitantes não podem extrair metadados" : ""}>
+              <span>
+                <Button
+                  variant="contained"
+                  onClick={handleExtract}
+                  disabled={loading || !file || isVisitor}
+                  startIcon={loading ? <CircularProgress size={20} /> : null}
+                >
+                  {loading ? 'Extraindo...' : 'Extrair Metadados'}
+                </Button>
+              </span>
+            </Tooltip>
           </Box>
         </Paper>
 
