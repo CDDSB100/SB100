@@ -42,3 +42,12 @@ cloudflared/
 .cloudflared/
 snap/
 .npm/
+
+# Arquivos Vs Code
+.vscode-server/
+.local/
+.config/
+.cache/
+node_modules/
+*.log
+.bash_history
