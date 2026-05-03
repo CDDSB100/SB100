@@ -1,0 +1,12 @@
+# requirements.txt
+docling>=1.0.0
+pytesseract>=0.3.10
+pathlib
+qdrant-client
+torch
+sentence-transformers
+transformers
+pillow
+opencv-python-headless
+pdf2image
+

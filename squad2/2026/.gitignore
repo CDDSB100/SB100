@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Qdrant snapshots — usar o Qdrant do servidor diretamente,
+# nao versionar arquivos .snapshot (centenas de MB cada)
+*.snapshot
+
+# Dados pesados (PDFs, imagens, datasets)
+# Manter fora do git e referenciar via path/script de download
+data/pdf/
+data/pdfs-concluidos/
+data/pdfs-nao-vetorizados/
+data/imagens/
+
+# OS
+.DS_Store
+Thumbs.db
