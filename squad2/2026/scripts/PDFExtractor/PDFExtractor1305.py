@@ -48,11 +48,11 @@ from transformers import AutoTokenizer, AutoModelForMaskedLM
 # CONFIGURAÇÕES
 # ============================================================
 API_BASE     = "https://sb100cientometria.optin.com.br"
-API_USER     = ""
-API_PASSWORD = ""
+API_USER     = "INSIRA_O_LOGIN"
+API_PASSWORD = "INSIRA_A_SENHA"
 
-QDRANT_URL         = ""
-QDRANT_API_KEY     = ""
+QDRANT_URL         = "INSIRA_SUA_URL_QDRANT"
+QDRANT_API_KEY     = "INSIRA_SUA_API_KEY"
 COLLECTION_NAME    = "sb100"
 DENSE_VECTOR_NAME  = "vetor_denso"
 SPARSE_VECTOR_NAME = "vetor_esparso"
