@@ -420,7 +420,7 @@ for file in os.listdir(directory):
     # client = QdrantClient(url=os.getenv("QDRANT_URL"), api_key=os.getenv("QDRANT_API_KEY"))
     client = QdrantClient(
         url="http://10.147.20.52:6333/collections",
-        api_key="fwaoNYhMTH3vf2QfzrxajQ==",
+        api_key="",
     )
     client
 
