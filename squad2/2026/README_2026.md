@@ -15,7 +15,6 @@ Repositório de scripts, relatórios, apresentações e documentação técnica 
 ├── documentacao-pdfextractor/  ← documentação técnica do pipeline
 ├── relatorios/             ← relatórios FAPESP, de ferramentas e de testes
 ├── scripts/                ← scripts do pipeline e experimentos
-├── torch-env-check/        ← diagnóstico de compatibilidade AVX/PyTorch
 └── README.md               ← este arquivo
 ```
 
