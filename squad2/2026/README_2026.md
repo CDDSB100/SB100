@@ -1,87 +1,89 @@
-# Squad 02 — Ingestão e Vetorização / 2026
+# scripts/
 
-**Projeto SB100 Agrônomo Virtual | Iniciação Científica FAPESP**
-**Responsável:** Nicolas Alves Witzel da Silva
-
-Repositório de scripts, relatórios, apresentações e documentação técnica da Squad 02 referentes ao período de fevereiro a junho de 2026. O trabalho concentrou-se na construção e refinamento do pipeline de ingestão multimodal de artigos científicos agrícolas para o banco vetorial do SB100.
+Scripts e notebooks desenvolvidos pela Squad 02 no período de 2026, organizados por finalidade.
 
 ---
 
 ## Estrutura
 
 ```
-2026/
-├── apresentacoes/          ← slides de reuniões e apresentações internas
-├── documentacao-pdfextractor/  ← documentação técnica do pipeline
-├── relatorios/             ← relatórios FAPESP, de ferramentas e de testes
-├── scripts/                ← scripts do pipeline e experimentos
-└── README.md               ← este arquivo
+scripts/
+├── PDFExtractor/                          ← pipeline principal de ingestão
+├── TesteCGLP/                             ← experimentos de classificação e comparação
+├── Testes_Boletim_100_tamanhos_variados_de_chunk/  ← notebook e README do experimento principal
+├── testando-o-tamanho-das-chunks/         ← versão anterior dos testes de chunking
+├── pdf-extractor-2025/                    ← versão anterior do pipeline (referência)
+├── pdfextracto1304.../                    ← artefatos de sessão anterior
+├── pypdf/                                 ← experimento inicial de extração de imagens
+├── torch-env-check/                       ← diagnóstico de compatibilidade AVX/PyTorch
+├── README_Testes_Boletim_100_tamanhos_variados_de_chunk.md
+├── README_scripts.md                      ← este arquivo
+└── teste_qdrant.py                        ← teste de conexão com o Qdrant
 ```
 
 ---
 
-## Scripts
+## PDFExtractor/
 
-### Pipeline principal — `scripts/PDFExtractor/`
-
-| Arquivo | Descrição |
-|---|---|
-| `PDFExtractor1305.py` | Script principal de ingestão: extração (Docling + Tesseract), filtro OpenCV, vetorização (Qwen3 + SPLADE) e upsert no Qdrant. Inclui Scripts 1, 2 (Gemini Vision) e 3 (vetorização de imagens). |
-| `README_PDFExtractor1305.md` | Instruções completas de instalação, configuração e execução passo a passo. |
-| `ExplicacaoPDFExtractor.txt` | Descrição textual do fluxo do pipeline para referência rápida. |
-| `script-do-pdf-extractor-2025/pdfextractor.py` | Versão anterior do pipeline (v1, 2025) — mantida para referência histórica. |
-
-### Experimentos de chunking — `scripts/testando-o-tamanho-das-chunks/`
+Pipeline principal de ingestão multimodal. Contém o script de produção e sua documentação.
 
 | Arquivo | Descrição |
 |---|---|
-| `Testes_Boletim_100_tamanhos_variados_de_chunk.ipynb` | Notebook que popula 13 coleções Qdrant com 7 estratégias de chunking (fixed char, fixed token, semântico, struct+semântico, recursivo, sliding window, proposicional) sobre o Boletim 100. |
-| `README_Testes_Boletim_100_tamanhos_variados_de_chunk.md` | Descrição das 13 coleções, estratégias e passo a passo de execução. |
+| `PDFExtractor1305.py` | Script principal — extração (Docling + Tesseract), filtro OpenCV, Gemini Vision, vetorização (Qwen3 + SPLADE) e upsert no Qdrant |
+| `README_PDFExtractor1305.md` | Instruções completas de instalação, configuração e execução passo a passo |
+| `ExplicacaoPDFExtractor.txt` | Descrição textual resumida do fluxo para referência rápida |
+| `script-do-pdf-extractor-2025/` | Versão v1 do pipeline (2025) — mantida para referência histórica |
 
-### Experimentos de classificação e comparação — `scripts/TesteCGLP/`
+---
+
+## Testes_Boletim_100_tamanhos_variados_de_chunk/
+
+Pasta principal dos experimentos de chunking. Contém o notebook de produção e o README documentado.
+
+| Arquivo | Descrição |
+|---|---|
+| `Testes_Boletim_100_tamanhos_variados_de_chunk.ipynb` | Notebook principal — popula 13 coleções Qdrant com 7 estratégias de chunking sobre o Boletim 100 |
+| `README_Testes_Boletim_100_tamanhos_variados_de_chunk.md` | Descrição das 13 coleções, estratégias e passo a passo de execução |
+
+---
+
+## testando-o-tamanho-das-chunks/
+
+Versão anterior dos experimentos de chunking, com testes iniciais de tamanho fixo.
+
+| Arquivo | Descrição |
+|---|---|
+| `Testes_Boletim_100_tamanhos_variados_de_chunk (1).ipynb` | Versão anterior do notebook de chunking |
+| `teste_de_chunk_512_1024.py` | Script de comparação direta entre chunk 512 e 1024 chars |
+
+---
+
+## TesteCGLP/
 
 Notebooks de comparação de métodos de classificação e extração de imagens, conduzidos como experimentos paralelos ao pipeline principal.
 
 | Arquivo | Descrição |
 |---|---|
-| `N1_comparacao_3_metodos.ipynb` | Comparação inicial de 3 métodos |
-| `N2_comparacao_4_metodos_top10.ipynb` | Expansão para 4 métodos com top-10 |
-| `N3_chartvlm_classifier.ipynb` | Avaliação do ChartVLM como classificador |
+| `N1_comparacao_3_metodos.ipynb` | Comparação inicial de 3 métodos de extração/classificação |
+| `N2_comparacao_4_metodos_top10.ipynb` | Expansão para 4 métodos com avaliação top-10 |
+| `N3_chartvlm_classifier.ipynb` | Avaliação do ChartVLM como classificador de imagens científicas |
 | `N4_llamaparse_detector_classifier.ipynb` | LlamaParse como detector e classificador |
 | `N5_comparacao_qualidade_4dim.ipynb` | Comparação de qualidade com 4 dimensões de avaliação |
 
 ---
 
-## Relatórios
+## Outros
 
-### FAPESP — `relatorios/relatorio-anual-para-fapesp/`
-Relatórios de progresso submetidos à FAPESP cobrindo o período da bolsa.
-
-### Ferramentas avaliadas — `relatorios/relatorio-de-ferramentas/`
-Avaliações técnicas de ferramentas consideradas para integração ao pipeline:
-
-| Pasta | Ferramenta | Data |
-|---|---|---|
-| `relatorio-chandra-22-04-2026/` | Chandra OCR 2 — avaliação de viabilidade e benchmarks | Abr/2026 |
-| `relatorio-chartvlm-18-03-2026/` | ChartVLM — avaliação para extração de gráficos | Mar/2026 |
-| `relatorio-llamaparse/` | LlamaParse — avaliação para extração de PDFs | Mar/2026 |
-| `relatorioChandraLllamaGLM/` | Comparativo Chandra, LlamaParse e GLM | Abr–Mai/2026 |
-
-### Testes — `relatorios/relatorio-de-testes/`
-
-| Pasta | Conteúdo |
+| Arquivo / Pasta | Descrição |
 |---|---|
-| `relatorio-de-teste-boletim-100-tamanho-de-chunks/` | Metodologia e resultados dos experimentos de chunking no Boletim 100 |
-| `relatorio-tamanho-de-dimensao-de-vetores/` | Comparativo 512 vs 1024 dimensões de embedding com avaliação do Squad 04 |
-
-### Servidor — `relatorios/relatorio-do-servidor/`
-Diagnóstico da incompatibilidade AVX no servidor do projeto e justificativa técnica para adoção do Google Colab como ambiente permanente de execução.
-
-### Falcão — `relatorios/relatorio-alexandre-falcao/`
-Materiais produzidos para reuniões de avaliação com o Professor Alexandre Falcão, incluindo diagnóstico do filtro de imagens e validação de metodologia com OmniDocBench.
+| `pypdf/pdf_image_extraction.ipynb` | Experimento inicial de extração de imagens com PyPDF, substituído pelo pipeline OpenCV |
+| `pdf-extractor-2025/leo_squad2/` | Versão anterior do pipeline com ambiente vscode e requirements.txt, mantida para referência |
+| `pdfextracto1304.../` | Artefatos de sessão anterior — `indexados.json` e `metadados_api.json` |
+| `torch-env-check/` | Scripts de diagnóstico da incompatibilidade AVX no servidor do projeto |
+| `teste_qdrant.py` | Script simples de teste de conexão e contagem de pontos no Qdrant |
 
 ---
 
 ## Segurança
 
-Nenhum arquivo neste repositório contém credenciais, tokens, senhas ou chaves de API. Nos scripts, esses campos aparecem como marcadores genéricos (`INSERIR_URL_DO_QDRANT`, `INSERIR_CHAVE_SEGURA` etc.). Os valores reais devem ser solicitados ao coordenador da equipe.
+Nenhum script nesta pasta contém credenciais, tokens ou chaves de API. Os campos sensíveis aparecem como marcadores genéricos (`INSERIR_URL_DO_QDRANT`, `INSERIR_CHAVE_SEGURA` etc.). Solicite os valores reais ao coordenador da equipe antes de executar qualquer script.
