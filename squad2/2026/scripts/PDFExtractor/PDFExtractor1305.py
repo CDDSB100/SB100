@@ -1000,7 +1000,7 @@ import requests
 # ============================================================
 # CONFIGURAÇÕES
 # ============================================================
-GEMINI_API_KEY = "AIzaSyA1oP9dUPNzL28pI7zp3bRqN-GWS8Ci5bU"  # ← colocar sua API key
+GEMINI_API_KEY = ""  # ← colocar sua API key
 GEMINI_MODEL   = "gemini-3.1-pro-preview"
 
 # ── Google Drive
